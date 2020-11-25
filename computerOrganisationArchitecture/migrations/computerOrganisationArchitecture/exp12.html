@@ -1,0 +1,161 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} CPU Design{% endblock %}
+{% load static%}
+{% block theory%}
+<!-- theory content -->
+<h4>Theory</h4>
+<p>At the top level a computer consists of a CPU (central processing unit), memory, I/O components, with one or more
+    modules of each type. These modules are interconnected in a specific manner to achieve the basic functionality of a
+    computer i.e. executing programs. At the top level a computer system can be described as followes:</p>
+<ul>
+    <li>describing the external behavior of each component i.e the data and the control signals that ir exchanges with
+        other components</li>
+    <li>describing the interconnection structure and the controls required</li>
+</ul>
+<p>We are considering the Von Neumann architecture. Some of the basic features of this architecture are as follows:</p>
+<ul>
+    <li>data and instructions are stored in a single read-write memory</li>
+    <li>the contents of the memory are addressable by location</li>
+    <li>execution occurs in a sequential manner (unless explicitly specified) from one instruction to the next</li>
+</ul>
+<strong>Top level components and interactions among them:</strong>
+<ul>
+    <li>CPU exchanges data with memory. For this CPU uses two internal resisters. Following is a block diagram of a
+        basic computer system:
+        <center><img src="{% static 'computerOrganisationArchitecture/comp5.png' %}" alt=""></center>
+
+        <ul>
+            <li>Memory address register (MAR) which specifies the address for the next read or write</li>
+            <li>Memory buffer register (MBR) which contains the data to be written into memory or receives the data read
+                from memory</li>
+            <li>I/O buffer (I/O BR) register is used for the exchange of data between an I/O module and the CPU</li>
+        </ul>
+    </li>
+    <li>A memory module consists of a set of a locations defined by sequentially numbered addresses. Each location contains a binary number that cam be interpreted as either an instruction or data.</li>
+    <li>An I/O module transfers data from external devices to CPU and memory and vise versa</li>
+    <li>The basic function of a computer is to execute a program which consists of a set of instructions stored in the memory. Processing required for a single instruction is called an instruction cycle which consists instruction fetch and instruction execute. A register called program counter (PC) holds the address of the next instruction. Unless told otherwise the processor always increments PC after each instruction fetch so that the next instruction is fetched in sequence. The fetched instruction is fetched into a register called instruction register (IR). <br>
+    <strong>The basic instruction cycle is shown in the following figure:</strong>
+    <center><img src="{% static 'computerOrganisationArchitecture/inst.png' %}" alt=""></center>
+
+</li>
+    <li>After fetching an instruction, processor execute the instruction by doing some processing on the data which may involve arithmetic and logic unit (ALU), specified by the instruction, then processor writes back the result (if any) to the memory.</li>
+</ul>
+<p>This experiment provides a single instruction CPU with built-in controller. A working memory has been provided to check the working principle of the CPU. The single instruction which this CPU supports is SBN (subtract and branch if negative). The format of this instruction is:</p>
+<ul>
+    <li>SBN a,b,c   Mem[a] = Mem[a] - Mem[b]   if(Mem[a] < 0) goto  c</li>
+    <li>a,  b,  c are 4 bit addresses</li>
+    <li>Mem[a] denotes the contents of memory address a</li>
+</ul>
+<p>In this experiment, no I/O module has been included for the purpose of simplicity. The working memory should contain the programm and data in binary format. The CPU executes the programm. For halting, it uses self loop, no other halt instruction is provided.</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of CPU Design:</h4>
+<p>
+    Our main objective for this experiment is to show the basic top level functionality, organization and architecture of a computer.This top level structure and function of a basic computer is important because of its explanatory power in understanding the nature of a computer. A grasp on these basic structure and functionality will provide insight into system bottolnecks, alternative pathways. Because in many cases, requirement of greater system power and fail-safe capabilities are achieved by changing the system design rather than changing the speed and reliability of individual components. So we have designed a single instruction CPU which contains a controller. A working memory has been given to examine the behavior of the CPU. The memory will contain the program in binary format which will be executed by the CPU. Through this, students can observe the behavior of a basic CPU and as well as a computer. The I/O modules have not been included in the system for the purpose of symplicity. <br>
+    
+    <strong>Recommended learning activities for the experiment:</strong>  Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</p>
+    <strong>color configuration of wire for 5 valued logic supported by the simulator:</strong>
+<ul>
+    <li>if value is UNKNOWN, wire color= maroon</li>
+    <li>if value is TRUE, wire color= blue</li>
+    <li>if value is FALSE, wire color= black</li>
+    <li>if value is HI IMPEDENCE, wire color= green</li>
+    <li>if value is INVALID, wire color= orange</li>
+</ul>
+<strong>Test plan :</strong>
+<p>Load the memory according to the following figure, then start clock and observe the behavior of the CPU. See the content of memory by clicking show memory button in the left pane. Observe how the program is executing sequentially and modify the data content as per the program.</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/mem2.png' %}" alt=""></center>
+<strong>Assignment Statements :</strong>
+<ul>
+    <li>Design a single instruction CPU</li>
+    <li>Design a CPU with more instructions</li>
+</ul>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<strong>Procedure to perform the experiment:CPU Design</strong>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click
+        on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left
+        toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and
+        then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired
+        position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital
+        format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of
+        circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the
+        given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+        </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of
+            the whole circuit. Then there is no need to again press the 'simulate' button
+        </strong> </li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+
+{% endblock %}

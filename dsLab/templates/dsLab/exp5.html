@@ -1,0 +1,46 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Search Trees{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Search Trees
+</h4>
+<p>In this experiment, you will use binary trees to support dictionary operations such as Insert(), Delete(), Find(). This data structure is called a binary search tree. A binary search tree is a binary tree with the restriction that the value at any node is bigger than the values of all the items in the left subtree and is smaller than the values of all the elements in the right subtree.
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Search Trees
+</h4>
+<p>Data structures supporting dictionary operations, primarily insert(), delete(), and find(), play an important role. To support dictionary operations, one can use a hash table. But a hash table can only support these operations on O(1) average time. The worst case time could be very high.
+</p>
+<p>When using binary search trees, one can support all these operations in O(log n) time, in most cases. Moreover, a hash table cannot be used to support extended dictionary operations such as findMin() and findMax(). A binary tree can support these operations also efficiently.
+</p>
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Search Trees
+</h4>
+<p>At the end of this experiment, you will be able to:
+</p>
+<ul><li>Use trees for hierachial data .
+</li>
+<li>Know trees applications and its importance.
+</li>
+<li>Know search trees efficient operations like insert,delete and find.
+</li>
+</ul>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

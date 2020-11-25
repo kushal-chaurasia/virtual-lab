@@ -1,0 +1,274 @@
+{% extends 'seLab/basic.html' %}
+
+{%block title%}Identifying Domain Classes from the Problem Statements {% endblock %}
+
+
+{%load static%}
+
+{% block introduction %}
+<!-- theory introduction -->
+<h4>Introduction</h4>
+<p>Same types of objects are typically implemented by class in object oriented programming. As the structural unit of
+    the system can be represented through the classes, so, it is very important to identify the classes before start
+    implementing all the logical flows of the system.</p>
+<p>In this experiment we will learn how to identify the classes from a given problem statement.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Objectives</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Understand the concept of domain classes</li>
+    <li>Identify a list of potential domain classes from a given problem statement
+    </li>
+</ul>
+<H4> Domain Class</H4>
+<p>In Object Oriented paradigm Domain Object Model has become subject of interest for its excellent problem
+    comprehending capabilities towards the goal of designing a good software system. Domain Model, as a conceptual model
+    gives proper understanding of problem description through its highly effective component – the Domain Classes.
+    Domain classes are the abstraction of key entities, concepts or ideas presented in the problem statement [iv]. As
+    stated in [v], domain classes are used for representing business activities during the analysis phase.</p>
+
+<h4>Traditional Techniques for Identification of Classes</h4>
+<strong>Grammatical Approach Using Nouns</strong>
+<p>This object identification technique was proposed by Russell J. Abbot, and Grady Booch made the technique popular
+    [1]. This technique involves grammatical analysis of the problem statement to identify list of potential classes.
+    The logical steps are:</p>
+
+<ul>
+    <li>Obtain the user requirements (problem statement) as a simple, descriptive English text. This basically
+        corresponds to the use-case diagram for the problem statement.</li>
+    <li>Identify and mark the nouns, pronouns and noun phrases from the above problem statements </li>
+    <li>List of potential classes is obtained based on the category of the nouns (details given later). For example,
+        nouns that direct refer to any person, place, or entity in general, correspond to different objects. And so does
+        singular proper nouns. On the other hand, plural nouns and common nouns are candidates that usually map into
+        classes.
+    </li>
+</ul>
+<strong>Advantages</strong>
+
+<p>This is one of the simplest approaches that could be easily understood and applied by a larger section of the user
+    base. The problem statement does not necessarily be in English, but in any other language.</p>
+
+<strong>Disadvantages</strong>
+
+<p>The problem statement always may not help towards correct identification of a class. At times it could give us
+    redundant classes. At times the problem statement may use abbreviations for large systems or concepts, and
+    therefore, the identified class may actually point to an aggregate of classes. In other words, it may not find all
+    the objects.</p>
+<h5>Using Generalization</h5>
+In this approach, all potential objects are classified into different groups based on some common behaviour. Classes are
+derived from these groups.
+<br>
+<h5>Using Subclasses</h5>
+<p>Here, instead of identifying objects one goes for identification of classes based on some similar characteristics.
+    These are the specialized classes. Common characteristics are taken from them to form the higher level generalized
+    classes.</p>
+<br>
+<h5>Steps to Identify Domain Classes from Problem Statement </h5>
+<p>We now present the steps to identify domain classes from a given problem statement. This approach is mostly based on
+    the “Grammatical approach using nouns” discussed above, with some insights from</p>
+
+
+<ul>
+    <li>Make a list of potential objects by finding out the nouns and noun phrases from narrative problem statement</li>
+    <li>Apply subject matter expertise (or domain knowledge) to identify additional classes</li>
+    <li>Filter out the redundant or irrelevant classes</li>
+    <li>Classify all potential objects based on categories. We follow the category table as described by Ross</li>
+    <center><img src="{%static 'seLab/t14.png'%}" alt=""></center>
+    <li>Group the objects based on similar attributes. While grouping we should remember that
+        <ul>
+            <li>Different nouns (or noun phrases) can actually refer to the same thing (examples: house, home, abode)
+            </li>
+            <li>Same nouns (or noun phrases) could refer to different things or concepts (example: I go to school every
+                day / This school of thought agrees with the theory)</li>
+        </ul>
+    </li>
+    <li>Give related names to each group to generate the final list of top level classes</li>
+    <li>Iterate over to refine the list of classes</li>
+</ul>
+<h5>Advanced Concepts</h5>
+<p>Identification of domain classes might not be a simple task for novices. It requires expertise and domain knowledge
+    to identify business classes from plain English text. The concepts presented here have been kept simple in order to
+    make a student familiarize with the subject. A lot of work has been done in this area, and various techniques have
+    been proposed to identify domain classes. Interested readers may look at the following paper for an advanced
+    treatment on this subject matter.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- simulation content -->
+<h4>From the following problem statement, identify the domain classes</h4>
+<p>An automated teller machine (ATM) lets customers to withdraw cash anytime from anywhere without requiring involvement
+    of any banking clerk or representative. Customer must insert his ATM card into he machine and authenticate himself
+    by typing in his personal identification number (PIN). He cannot avail any of the facilities if the PIN entered is
+    wrong. Authenticated customers can also change their PIN. They can deposit cash to their account with the bank. Also
+    they can transfer funds to any other account. The ATM also provides options to the user to pay electricity or phone
+    bill. Everyday morning the stock of cash in the ATM machine is replenished by a representative from the bank. Also,
+    if the machine stops working, then it is fixed by a maintenance guy.</p>
+{% endblock %}
+
+{% block caseStudy %}
+<!-- case study content -->
+<h4>Case Study</h4>
+<hr>
+<strong># 1 : A Library Information System for SE VLabs Institute</strong>
+<hr>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of
+    Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number
+    of employees who work on different projects undertaken by the institution.</p>
+<p>As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library
+    Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to
+    borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend
+    the date of his borrowing if no other booking for that particular book has been made. For the library staff, this
+    system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and
+    complete control over the system, can enter a new record into the system when a new book has been purchased, or
+    remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search
+    books online. However, issuing or returning books is restricted to valid users (members) of LIS only.</p>
+<p>The final deliverable would a web application (using the recent HTML 5), which should run only within the institute
+    LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential
+    information (eg., passwords) is stored in plain text.</p>
+<hr>
+<hr>
+<p>From the given problem statement we can identify the following nouns and noun phrases:</p>
+<ul>
+    <li> The SE VLabs Institute </li>
+    <li> Software Engineering </li>
+    <li> Research scholars </li>
+    <li> Students </li>
+    <li> Professors </li>
+    <li> Employees </li>
+    <li> Projects </li>
+    <li> Institution </li>
+    <li> Library Information System </li>
+    <li> Members </li>
+    <li> Book </li>
+    <li> Desk </li>
+    <li> Chamber </li>
+    <li> System </li>
+    <li> Library staff </li>
+    <li> Librarian </li>
+    <li> Transactions </li>
+    <li> Record </li>
+    <li> Shelf </li>
+    <li> Non-member </li>
+    <li> Web application </li>
+    <li> LAN </li>
+    <li> Software </li>
+    <li> Information </li>
+    <li> Passwords </li>
+</ul>
+
+Let us put the above into different categories.
+<table>
+    <tr>
+        <th style="width: 20em;">People</th>
+        <th style="width: 20em;">Place</th>
+        <th style="width: 20em;">Thing</th>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li> Research scholars </li>
+                <li> Students </li>
+                <li> Professors </li>
+                <li> Employees </li>
+                <li> Members </li>
+                <li> Library staff </li>
+                <li> Librarian </li>
+                <li> Non-member </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>chamber</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li> Projects </li>
+                <li> Book </li>
+                <li> Desk </li>
+                <li> System </li>
+                <li> Shelf </li>
+                <li> LAN </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<br>
+
+<table>
+    <tr>
+        <th style="width: 20em;">Organisations</th>
+        <th style="width: 20em;">Concepts </th>
+        <th style="width: 20em;"> Events</th>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li> The SE VLabs Institute </li>
+                <li> Institution </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li> Software Engineering </li>
+                <li> Library Information System </li>
+                <li> Record </li>
+                <li> Web application </li>
+                <li> Software </li>
+                <li> Information </li>
+                <li> Password </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>Transactions </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<p>The nouns and noun phrases in the problem statement gives us a list of 25 potential classes. However, all of them may
+    not be relevant. For example, 'Chamber' is not something related to the Library Information System. And so are
+    'Projects', 'Desk', 'Shelf'. In a similar way, 'Software Engineering', 'Web application', 'Software' doesn't seem to
+    be potential classes in this context. If we filter these entries, we might find that the follwong set of classes
+    directly relate to the business activities of LIS:</p>
+<ul>
+    <li> Member </li>
+    <li> Book </li>
+    <li> Transaction (of books) </li>
+    <li> Librarian </li>
+    <li> Employee </li>
+</ul>
+<p>Although not explicitly mentioned in the problem statement, based on knowledge in related area one may point out few
+    other potential classes:</p>
+
+<ul>
+   <li> Book Inventory </li>
+   <li> Distributor </li>
+   <li> Order </li>
+   <li> Order Line Item </li>
+   <li> Payment </li>
+   <li> Invoice </li>
+</ul>
+Among the classes listed above, 'Member', 'Librarian', 'Employee' share some common characteristics. For instance, everyone has a name, each has got an unique ID in the institution. In fact, 'Librarian' and 'Member' are some specialized category of the class 'Employee'. (This considers a student is also an "employee".) The above identified conceptual classes pave the way for modeling of design and implementation classes.
+<hr>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>General Instructions</h4>
+<strong>Follow are the steps to be followed in general to perform the experiments</strong>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Solve the given list of exercises</li>
+</ul>
+{% endblock %}
+
+{% block excercise %}
+<!-- excercise content -->
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Quine - Mc Clusky Algorithm {% endblock %}
+
+{% block theory%}
+<!-- theory content -->
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+
+{% endblock %}

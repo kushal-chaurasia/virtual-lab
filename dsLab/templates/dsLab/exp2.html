@@ -1,0 +1,77 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Expression Evaluation using Stacks{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Expression Evaluation
+</h4>
+<p>This experiment guides you using stacks in a practical example. Stacks are an important data structure and finds applications where essentially the data item that is stored latest is what needs to be accessed first. Examples of applications of stakcs in natural settings include a stack of books on a table. Typically, as you pile books on a desk, the book that you can access instantly is the one that you placed at the latest time. A good computing application of stacks is to use it to evaluating arithmetical expressions. In this experiment, we will go through the entire expression evaluation process. The attached notes and the slides describe the technical details. The animation can help you understand the process via several examples. Use these resources to develop code for your own expression evaluator. To add a good interface, you can consider a small web interface where in one can type an expression and ask for it to be evaluated. Think of Google which can do this for most expressions.
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Expression Evaluation
+</h4>
+<strong>1.1 The Stack Data Structure
+</strong>
+<ul><li>The stack data structure is characterized by its last-in-first-out access mechanism. Thus, the element that is added most recently will be the element that is removed first on a remove call. Such an order of addition and deletion of items occurs in several natural settings. Consider for example, a stack of plates in a cafeteria.The first plate that is taken out is the plate that is on the top of the pile. This plate would be the one that is added to the pile most recently.
+</li>
+<li>Another example could be as follows. We are all used to text editors that allow for undo and redo operations. In such an editor, suppose S is the present text and a word w1 is deleted to get S'. Then a word w2 is deleted. Now, the user wishes to undo some of the changes. To get the correct result, it is possible only if all the operations done after w1 is deleted are also undone. Moreover, these operations must be performed in their reverse order. Thus, we need a mechanism to associate a stored set of items.Irrespective of the implemenation mechanism, the stack data structure has the following basic operations.Let S be a stack.
+</li>
+<li>Create :Create an empty stack.
+</li>
+<li>Push(element) : Pushes the item element to the top of the stack.
+</li>
+<li>Pop() : Returns the item that is most recently pushed.
+</li>
+<li>Size() : Return the size of the stack.
+</li></ul>
+<h4>1.2 Applications of Stacks
+</h4>
+<strong>1.2.1 Expression Evaluation
+</strong>
+<ul><li><p>One of the prominent applications of stacks is to expression evaluation. Consider a table calculator which evaluates arithemetic expressions involving addition, multiplication, subtraction, and division. For example,2+3 * 5 - 7 is a valid expression. The result of the above expression is 10 as multiplication has precedenceover addition and subtraction. To disambiguate, one also uses parantesis and write the same expression as 2+ (3*5) - 7. However, it would be quite cumbersome to use parantheses when especially, the precedence is known.Hence, one needs to first convert a given expression into an non-ambiguous model so that evaluation can be done easily. There are three ways to write an expression. The above way of writing expressions is called the infix notation because the operators are placed in between the two operators. There are other ways of writing an expression. In the prefix notation, operators preceede the operands. So the above expression would be written as -+*3 5 2 7. In the postfix notation, the operators are written after the operands. The postfix equivalent way of writing the above expression would be 3 5* 2 + 7 -. It turns out that the postfix and prefix notations are free of ambiguity. We will how that is the case first and then see how to convert a given expression in the infix form to its prefix form.
+</p></li></ul>
+<strong>1.2.2 Evaluating a Postfix Expression
+</strong>
+<br>
+<br>
+<ul><li><p>Consider an expression given in the postifix notation. We now see how to evaluate such an expression. For example, ab * c + is a postifix expression. Since the operators follow the operands, it is intuitive to see if the previously available two operands are the corresponding operands for a given operator. This intuition serves well and is correct.So, when processing a postfix expression from left to right, when we encounter an operator, we have to apply the operation to the two most recent operands. This suggests that the operands should be placed on a stack.
+</p></li></ul>
+<h4>2.1 The Queue Data Structure
+</h4>
+<ul><li>In the previous section, we have seen a new way of access model to the array can result in good solutions to important applications. A queue is another such data strucure which supports operations such as insert and delete. One can think of analogies to several situations such as a queue at a ticket reservation office, an operating system job queue, or a queue of aeroplanes ready to take off. In all such settings, the element or the object that is first inserted is the first one to come out of the queue also. Thus, the queue is a First-In- First-Out (FIFO) data structure. This suggests that there are two quantities associated with a queue, the front and the rear. The rear indicates the position where the new elements would be added. The front indicates the position from where elements can be deleted from the queue.Formally, a queue is a data structure which supports the following operations.
+</li>
+<li>Insert: Insert an element to the rear of the queue
+</li>
+<li>Delete: Delete an element from the front of the queue.
+</li>
+<li>Size: Return the size of the queue
+</li></ul>
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Expression Evaluation
+</h4>
+<p>At the end of this experiment, you will be able to:
+</p>
+<ul><li>Use stacks to evaluate expressions
+</li>
+<li>Know applications of stacks
+</li>
+<li>Set up a web based calculator
+</li></ul>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

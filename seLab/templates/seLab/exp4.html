@@ -1,0 +1,344 @@
+{% extends 'seLab/basic.html' %}
+
+{%block title%}E-R Modeling from the Problem Statements {% endblock %}
+
+
+{%load static%}
+
+{% block introduction %}
+<!-- theory introduction -->
+<h4>Introduction</h4>
+<p>Developing databases is a very important task to develop a system. Before going to form exact database tables and
+    establishing relationships between them, we conceptually or logically can model our database using ER diagrams.</p>
+<p>In this experiment we will learn how to find the entities, its attributes and how the relationships between the
+    entities can be established for a system.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Objectives</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Identify entity sets, their attributes, and various relationships</li>
+    <li>Represent the data model through ER diagram</li>
+</ul>
+
+<h5>Entity Relationship Model</h5>
+<p>Entity-Relationship model is used to represent a logical design of a database to be created. In ER model, real world
+    objects (or concepts) are abstracted as entities, and different possible associations among them are modeled as
+    relationships. <br>
+
+    For example, student and school -- they are two entities. Students study in school. So, these two entities are
+    associated with a relationship "Studies in". <br>
+
+    As another example, consider a system where some job runs every night, which updates the database. Here, job and
+    database could be two entities. They are associated with the relationship "Updates".</p>
+
+<h5>Entity Set and Relationship Set</h5>
+<p>An entity set is a collection of all similar entities. For example, "Student" is an entity set that abstracts all
+    students. Ram, John are specific entities belonging to this set. Similarly, a "Relationship" set is a set of similar
+    relationships.</p>
+<h5>Attributes of Entity</h5>
+<p>Attributes are the characteristics describing any entity belonging to an entity set. Any entity in a set can be
+    described by zero or more attributes. <br>
+
+    For example, any student has got a name, age, an address. At any given time a student can study only at one school.
+    In the school he would have a roll number, and of course a grade in which he studies. These data are the attributes
+    of the entity set Student.</p>
+
+
+<h5>Keys</h5>
+One or more attribute(s) of an entity set can be used to define the following keys:
+
+<ul>
+    <li><strong>Super key: </strong> One or more attributes, which when taken together, helps to uniquely identify an
+        entity in an entity set. For example, a school can have any number of students. However, if we know grade and
+        roll number, then we can uniquely identify a student in that school.</li>
+    <li><strong>Candidate key: </strong> It is a minimal subset of a super key. In other words, a super key might
+        contain extraneous attributes, which do not help in identifying an object uniquely. When such attributes are
+        removed, the key formed so is called a candidate key.</li>
+    <li><strong>Primary key: </strong> A database might have more than one candidate key. Any candidate key chosen for a
+        particular implementation of the database is called a primary key.</li>
+    <li><strong>Prime attribute:</strong> Any attribute taking part in a super key</li>
+</ul>
+<h5>Weak Entity</h5>
+<p>An entity set is said to be weak if it is dependent upon another entity set. A weak entity can't be uniquely
+    identified only by it's attributes. In other words, it doesn't have a super key. <br>
+
+    For example, consider a company that allows employees to have travel allowance for their immediate family. So, here
+    we have two entity sets: employee and family, related by "Can claim for". However, family doesn't have a super key.
+    Existence of a family is entirely dependent on the concerned employee. So, it is meaningful only with reference to
+    employee.</p>
+
+<h5>Entity Generalization and Specialization</h5>
+<p>Once we have identified the entity sets, we might find some similarities among them. For example, multiple person
+    interacts with a banking system. Most of them are customers, and rest employees or other service providers. Here,
+    customers, employees are persons, but with certain specializations. Or in other way, person is the generalized form
+    of customer and employee entity sets. <br>
+
+    ER model uses the "ISA" hierarchy to depict specialization (and thus, generalization).</p>
+
+<h5>Mapping Cardinalities</h5>
+<p>One of the main tasks of ER modeling is to associate different entity sets. Let's consider two entity sets E1 and E2
+    associated by a relationship set R. Based on the number of entities in E1 and E2 are associated with, we can have
+    the following four type of mappings:</p>
+<ul>
+    <li><strong>One to one:</strong> An entity in E1 is related to at most a single entity in E2, and vice versa</li>
+    <li><strong>One to Many: </strong> An entity in E1 could be related to zero or more entities in E2. Any entity in E2
+        could be related to at most a single entity in E1.</li>
+    <li><strong>Many to One: </strong> Zero or more number of entities in E1 could be associated to a single entity in
+        E2. However, an entity in E2 could be related to at most one entity in E1.</li>
+    <li><strong>Many to Many: </strong> Any number of entities could be related to any number of entities in E2,
+        including zero, and vice versa.
+    </li>
+</ul>
+
+<h5>ER Diagram</h5>
+<p>From a given problem statement we identify the possible entity sets, their attributes, and relationships among
+    different entity sets. Once we have these information, we represent them pictorially, called an entity-relationship
+    (ER) diagram.</p>
+
+<h5>Graphical Notations for ER Diagram</h5>
+<center><img src="{% static 'seLab/t13.png'%}" alt=""></center>
+
+<h5>Importance of ER modeling</h5>
+<pre>
+    Figure - 01 shows the different steps involved in implementation of a (relational) database.
+        <center><img src="{% static 'seLab/database_design_steps.png'%}" alt=""></center>
+        <center>Figure - 01: Steps to implement a RDBMS</center>
+    </pre>
+<p>Given a problem statement, the first step is to identify the entities, attributes and relationships. We represent
+    them using an ER diagram. Using this ER diagram, table structures are created, along with required constraints.
+    Finally, these tables are normalized in order to remove redundancy and maintain data integrity. Thus, to have data
+    stored efficiently, the ER diagram is to be drawn as much detailed and accurate as possible.</p>
+
+{% endblock %}
+
+
+{% block simulation %}
+<!-- simulation content -->
+<h5>Draw an ER diagram for a School Management System based on the following information.</h5>
+<p>You have been asked to implement a database for a school management system (SMS). This primarily consists of
+    maintaining students' information like name, address, date of birth, roll number, deparment, and so on. Details
+    about the school to be stored includes school's name, location. Although it is unlikely that there would be two
+    schools at the same place with same name, but our SMS would like to accomodate this </p>
+
+<p> Faculty members works in the school. They teaches the students. A faculty member normally teaches multiple students
+    at a time. Also, he can teach multiple courses to the students.</p>
+{% endblock %}
+
+{% block caseStudy %}
+<!-- case study content -->
+<h4>Case Study</h4>
+<h5># 1 : A Library Information System for SE VLabs Institute</h5>
+<hr>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of
+    Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number
+    of employees who work on different projects undertaken by the institution.</p>
+<p>As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library
+    Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to
+    borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend
+    the date of his borrowing if no other booking for that particular book has been made. For the library staff, this
+    system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and
+    complete control over the system, can enter a new record into the system when a new book has been purchased, or
+    remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search
+    books online. However, issuing or returning books is restricted to valid users (members) of LIS only.</p>
+<p>The final deliverable would a web application (using the recent HTML 5), which should run only within the institute
+    LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential
+    information (eg., passwords) is stored in plain text.</p>
+
+<hr>
+<hr>
+<p>A robust database backend is essential for a high-quality information system. Database schema should be efficiently
+    modeled, refined, and normalized. In this section we would develop a simple ER model for the Library Information
+    System.</p>
+<p>The first step towards ER modeling is to identify the set of relevant entities from the given problem statement. The
+    two primary, and obvious, entity sets in this context are "Member" and "Book". The entity set "Member" represents
+    all students, professors, or employees who have registered themselves with the LIS. While registering with the LIS
+    one has to furnish a lot of personal and professional information. This typically includes name (well, that is
+    trivial), employee ID (roll # for students), email address, phone #, age, date of joining in this institute. The
+    system may store some not-so-important information as well like, blood group, marital status, and so on. All these
+    pieces of information that an user has to provide are sufficient to describe a particular member. These
+    characteristics are the attributes of the entities belonging to the entity set "Member".</p>
+<p>The first step towards ER modeling is to identify the set of relevant entities from the given problem statement. The
+    two primary, and obvious, entity sets in this context are "Member" and "Book". The entity set "Member" represents
+    all students, professors, or employees who have registered themselves with the LIS. While registering with the LIS
+    one has to furnish a lot of personal and professional information. This typically includes name (well, that is
+    trivial), employee ID (roll # for students), email address, phone #, age, date of joining in this institute. The
+    system may store some not-so-important information as well like, blood group, marital status, and so on. All these
+    pieces of information that an user has to provide are sufficient to describe a particular member. These
+    characteristics are the attributes of the entities belonging to the entity set "Member".</p>
+<center><img src="{%static 'seLab/member.png'%}" alt=""></center>
+<center>Figure 1: "Member" entity set</center> <br>
+<p>Let us now focus on the "Book" entity set. Typical attributes of a book are it's title, name of author(s), publisher,
+    date of publication, edition, language, ISBN-10, ISBN-13, price (of course!), date of purchase. The set of listed
+    attributes for a book doesn't give a straight forward choice of primary key. For instance, several books could have
+    the same title. Again, ISBN numbers for a book are specific to it's edition -- it can't distinguish between two
+    books of the same edition. One might be tempted to use a combination of ('Title', 'Authors') as a primary key. This
+    has some shortcomings. It is advisable not to use texts as a PK. Moreover, the number of authors that a book could
+    have is not fixed, although it is a small, finite number. The rules of normalization (not covered here) would
+    dictate to have a separate field for each author like 'Author1', 'Author2', and so on. Therefore, we assign an extra
+    attribute, 'ID', to each book as it's PK. Different databases available in the market provide mechanisms to generate
+    such an unique ID, and automatically increment it whenever a new new entity is added. In fact, we could assign such
+    an ID to the "Member" entity set as well. However, because of availability of the unique 'Employee ID' field, we
+    skipped that. A graphical representation of the "Book" entity set is shown in figure 2.</p>
+
+<center><img src="{%static 'seLab/book.png'%}" alt=""></center>
+<center>Figure 2: "Book" entity set</center> <br>
+<p>One point to note here is that a book is likely to have multiple copies in the library. Therefore, one might wish to
+    have a '# of copies' attribute for the "Book" entity set. However, that won't allow us to differentiate among the
+    different copies of book bearing same title by same author(s), edition, and publisher. The approach that we have
+    taken is to uniquely identify each book even though they are copies of the same title.</p>
+<p>To buy any new book an order is to be placed to the distributor. This task is done by the librarian. Therefore,
+    "Librarian" and "Distributor" are two other entities playing roles in this system.</p>
+<p>Having identified the key entities, we could now relate them with each other. Let us consider the entity sets
+    "Member" and "Book". A member can issue books. In fact, he can issue multiple books up to a finite number say, N. A
+    particular book, however, could be issued by a single member only. Therefore, we have a one-to-many mapping from
+    "Member" to "Book" entity sets. This relationship between "Member" and "Book" entity sets is pictorially depicted in
+    figure 3.</p>
+<center><img src="{%static 'seLab/relationships.png'%}" alt=""></center>
+<center>Figure 3: Relationships among different entity sets</center> <br>
+<p>Figure 3 also shows that the librarian can "place order" for books to the distributor. This is a many-to-many mapping
+    since a librarian can purchase books from multiple distributors. Also, if the institute has more than one librarians
+    (or any other staff having such authority), then each of them could place order to the same distributor. An order is
+    termed as complete when distributor supplies the book(s) and invoice.</p>
+<p>The design in figure 3 has a flaw. Librarian himself could be a member of the LIS. However, he is a "special" kind of
+    member since he can place order for books. Our ER diagram doesn't reflect this scenario. Such special roles of an
+    entity set could be represented using "ISA" relationship, which is not discussed here</p>
+<p>Any kind of designing couldn't be possibly done at one go. Therefore, the baseline ER model so prepared should be
+    revised by considering the business model yet again to ensure that all necessary information could be captured. Once
+    this has been finalized, the next logical step would be to create table structures for each identified entity set
+    (and relationships in some cases) and normalize the relations.</p>
+
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>General Instructions</h4>
+<strong>Follow are the steps to be followed in general to perform the experiments</strong>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Solve the given list of exercises</li>
+</ul>
+
+{% endblock %}
+
+{% block excercise %}
+<!-- excercise content -->
+<a class="excercise relTable" href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise relTable" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+<div class="cont" id="ex01">
+    <h5>From the following problem statement identify the possible entity sets, their attributes, and relationships.
+    </h5>
+    <p>SE VLabs Inc. is a young company with a few departments spread across the country. As of now, the company has a
+        strength of 200+ employees.</p>
+    <p>Each employee works in a department. While joining, a person has to provide a lot of personal and professional
+        details including name, address, phone #, mail address, date of birth, and so on. Once all these information are
+        furnished, a unique ID is generated for each employee. He is then assigned a department in which he will work.
+    </p>
+    <p>There are around ten departments in the company. Unfortunately, two departments were given same names. However,
+        departments too have ID's, which are unique.</p>
+</div>
+
+
+<div class="cont" id="ex02">
+    <h5>Draw an ER diagram for the following problem:</h5>
+
+    <p>The latest cab services agency in the city has approached you to develop a Cab Management System for them. They
+        would be using this software to efficiently manage and track different cabs that are operated by them.</p>
+    <p>Cabs are solely owned by the agency. They hire people in contracts to drive the cabs. A cab can be uniquely
+        identified by, like any other vehicle in the country, its license plate. A few different categories of cars are
+        available from different manufacturers. And a few of them are AC cars.</p>
+    <p>Cab drivers are given a identification card while joining. The ID card contains his name, permanent address,
+        phone number, date of joining, duration of contract. Also, an unique alphanumeric code is assigned to each
+        number.</p>
+    <p>The agency provides service from 8 AM to 8 PM. Whenever any passenger books a cab, an available cab is allocated
+        for him. The booking receipt given to the passenger contains the car #, source and destination places. Once he
+        reaches the destination, he signs on a duplicate copy of the receipt and gives back to the driver. Driver must
+        submit this duplicate copy signed by the passenger at the agency for confirmation.</p>
+    <p>To evaluate their quality of service, the agency also wants a (optional) customer satisfaction survey, where
+        passengers can provide feedback about their journey through the agency's website.</p>
+
+</div>
+<div id="excerciseTable" style="display: none;">
+    <strong>Table #1: Add entities</strong>
+
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Weak</th>
+            <th>Add</th>
+        </tr>
+        <tr>
+            <form onsubmit="addEntity();" id="table1">
+                <td><input type="text" class="form-control" name="entity" placeholder="Name of Entity" id="entity"></td>
+                <td> <input type="checkbox" aria-label="Weak or Not"></td>
+                <td><button type="button" class="btn btn-info" id="addEntity">Add</button></td>
+            </form> 
+        </tr>
+    </table>
+    <br>
+    <strong>Table #2: Add attributes for each entity</strong>
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Attributes</th>
+            <th>Primary Key</th>
+            <th>Add</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <br>
+    </table>
+
+    <strong>Table #3: Define relationship between two entities</strong>
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Relation</th>
+            <th>Entity</th>
+            <th>Constraints</th>
+            <th>Add</th>
+        </tr>
+    </table>
+    <br>
+    <strong>Table #4: Entities and their attributes</strong>
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Attribute</th>
+            <th>Weak</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <strong>Table #5: Relationships between entities</strong>
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Relation</th>
+            <th>Entity</th>
+            <th>Constraints</th>
+            <th>Remove</th>
+        </tr>
+    </table>
+</div>
+<script src="{%static 'js/exp4.js'%}"></script>
+{% endblock %}

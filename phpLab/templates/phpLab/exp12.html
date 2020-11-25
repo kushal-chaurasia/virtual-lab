@@ -1,0 +1,145 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Session Handling</h4>
+<hr>
+<h4>Aim</h4>
+<b>The aim of this experiment is to understand the concept of a session in the browser and to manage sessions using PHP script.</b>
+<p>The Learner will be able to:</p>
+<ul>
+    <li>create html pages with php script for simple tasks like creating/destroying sessions and retrieving/modifying session variable.</li>
+    <li>describe the script at server side and client side for the session.</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Session Handling</h4>
+<hr>
+<h4>Theory</h4>
+<b>1.1 What is a session?</b>
+<p>A session is a way to make data accessible across various web pages. When a session is created, session ID is generated. A file is created with the name of session ID in temporary folder on the server. All session variables and their values are stored and maintained for the corresponding session on the server.
+</p>
+<b>1.2 Start a new session</b>
+<p>A session in PHP is created using session_start() function. <br>
+    session_start(); <br>
+    ?> <br>
+    This function generates a random session ID and is stored in a cookie named $PHPSESSID. Once the session commences , another instance of session_start() function would just be ignored and it continues the current session.</p>
+<b>1.3 Create, get and modify PHP session variable values</b>
+<p>The session variable can be created or modified and the value is set as follows: <br>
+    $_SESSION["session_variable"]=value; <br>
+    The session variable that are set on the previous page can be accessed on the current page using: <br>
+    Echo $_SESSION["session_variable"];</p>
+<b>1.4 Show all session variables</b>
+<p>print_r() is a function to display all session variables and can be used as: <br>
+    print_r($_SESSION);</p>
+    <b>1.5 Destroy session</b>
+    <p>A PHP session can be destroyed using session_destroy() function. The function requires no arguments. All variables associated with the current session get destroyed. All the session variables are available across the web pages, until the session_destroy() function is called.</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Session Handling</h4>
+<hr>
+<h4>Procedure</h4>
+<b>1] Setting session variable</b>
+<p>Click the Corresponding button in PHP frame to see PHP code. <br>
+    Click the "Execute PHP" button and observe the step by step execution. <br>
+    Observe the location of the yellow band. It highlights the line being executed. <br>
+    Once yellow band stops moving, observe output of the code at the right side and corresponding html code at the bottom of the page. <br>
+    Enter the values for Login ID and Username in the textboxes on the HTML Page. <br>
+    Click the "Set Values" button on the HTML page and, observe the output. <br>
+    To Retrieve the session value Click the "Go to Page2" button to see PHP code. Click "Execute PHP " button. <br>
+    Repeat step 2. <br>
+    Click the "Retrieve Username" / "Retrieve All" button on the HTML page and observe the output. <br>
+    Repeat step 2. <br>
+    To modify the values for username in the textbox on the HTML page, click the "Modify" button on the HTML page and observe the output. <br><br>
+    
+    Repeat step 2 <br>
+    To Remove the session variable Click the "Remove" button on the html page, observe the output. <br>
+    Repeat step 2.</p> <br>
+    <p><strong>Note:</strong> 
+     You may change the sequence of these operations, once you create a session variable.</p>
+     <b>2] Simulator</b>
+     <p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Session Handling</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+    &lt;!DOCTYPE html&gt;
+
+&lt;?php
+
+session_start();
+
+?&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml" &gt;
+
+&lt;head&gt;
+
+&lt;meta charset="utf-8" /&gt;
+
+&lt;title&gt;Introduction to PHP&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt; This new program helps in setting session varaibles&lt;/h1&gt;
+
+&lt;form name=formSubmit method="post" action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"&gt;
+
+&lt;table&gt;
+
+&lt;tr&gt;&lt;td&gt; Let us create two session variables LoginID and Username&lt;/td&gt;&lt;td&gt;
+
+&lt;tr&gt;&lt;td&gt; Enter LoginID&lt;/td&gt;&lt;td&gt; &lt;input type=text name=lid value= "&lt;?php echo isset($_POST['lid']) ? $_POST['lid'] : ''; ?&gt;" &gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt; Enter User name&lt;/td&gt;&lt;td&gt; &lt;input type=text name=uname value= "&lt;?php echo isset($_POST['uname']) ? $_POST['uname'] : ''; ?&gt;" &gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt; &lt;td&gt;&lt;input type = submit value = Set Values&gt;&lt;/input&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;/form&gt;
+
+&lt;?php
+
+if( count($_POST)>0 && isset($_POST["lid"]) && isset($_POST["uname"]) )
+
+{$session_lid = $_POST["lid"];
+
+$session_uname = $_POST["uname"];
+
+$_SESSION["loginID"] = $session_lid;
+
+$_SESSION["userName"] = $session_uname;
+
+echo "Session variables have been set.";
+
+echo "Your login ID is " . $_SESSION['loginID'] . ".&lt;br&gt;";
+
+echo "Your Username is " . $_SESSION['userName'] . ".";}
+
+?&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %}Session Handling {%endblock%}

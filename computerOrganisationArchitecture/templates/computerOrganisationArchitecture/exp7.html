@@ -1,0 +1,173 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Booth's Multiplyer {% endblock %}
+{%load static%}
+{% block theory%}
+<!-- theory content -->
+<h4>Booth's Multipliers :</h4>
+<p>Booth's multiplication algorithm is an algorithm which multiplies 2 signed integers in 2's complement. The algorithm
+    is depicted in the following figure with a brief description. This approach uses fewer additions and subtractions
+    than more straightforward algorithms.</p>
+    <center><img src="{%static 'computerOrganisationArchitecture/exp7.png' %}" alt=""></center>
+    <strong>Design Issues :</strong>
+    <p>Booth's algorithm can be implemented in many ways. This experiment is designed using a controller and a datapath. The operations on the data in the datapath is controlled by the control signal received from the controller. The datapath contains registers to hold multiplier, multiplicand, intermediate results, data processing units like ALU, adder/subtractor etc., counter and other combinational units. Following is the schemetic diagram of the Booth's multiplier which multiplies two 4-bit numbers in 2's complement of this experiment. Here the adder/subtractor unit is used as data processing unit.M, Q, A are 4-bit and Q-1 is a 1-bit rigister. M holds the multiplicand, Q holds the multiplier, A holds the results of adder/subtractor unit. The counter is a down counter which counts the number of operations needed for the multiplication. The data flow in the data path is controlled by the five control signals generated from the controller. these signals are load (to load data in registers), add (to initiate addition operation), sub (to initiate subtraction operation), shift (to initiate arithmetis right shift operation), dc (this is to decrement counter). The controller generates the control signals according to the input received from the datapath. Here the inputs are the least significant Q0 bit of Q register, Q-1 bit and count bit from the down counter.</p>
+    <center><img src="{%static 'computerOrganisationArchitecture/sch.png' %}" alt=""></center>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of 4 bit Booth's Multiplier:</h4>
+<ol>
+    <li>Understanding behaviour of Booth's multiplication algorithm from working module and the module designed by the student as part of the experiment</li>
+    <li>Designing Booth's multiplier with a controller and a datapath. This will also help in the learning of control unit design as a finite state machine</li>
+    <li>Understanding the advantages of Booth's multiplier</li>
+    <ul>
+        <li>It can handle signed integers in 2's complement notion</li>
+        <li>It decreases the number of addition and subtraction</li>
+        <li>It requires less hardware than combinational multiplier</li>
+        <li>It is faster than straightforward sequential multiplier</li>
+    </ul>
+</ol>
+<strong>Examining behaviour of 4 bit Booth's multiplier for the working module and module designed by the student as part of the experiment (refer to the circuit diagram):</strong>
+<p>Set M as 0111 which is 7 and Q as 0101 which is 5. Now start the multiplication operation and observe the results including the intermediate results. The Booth's algorithm on those inputs works as the following diagram, so the circuit must behave according to it.</p>
+<center><img src="{%static 'computerOrganisationArchitecture/eg.png' %}" alt=""></center>
+<p><strong>Recommended learning activities for the experiment:</strong>Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</p>
+<strong>color configuration of wire for 5 valued logic supported by the simulator:</strong>
+    <ul>
+        <li>if value is UNKNOWN, wire color= maroon</li>
+        <li>if value is TRUE, wire color= blue</li>
+        <li>if value is FALSE, wire color= black</li>
+        <li>if value is HI IMPEDENCE, wire color= green</li>
+        <li>if value is INVALID, wire color= orange</li>
+    </ul>
+    <strong>Test plan:</strong>
+    <ul>
+        <li>Compute the multiplication of 0101 which is 5 and 1010 which is -6 with the Booth's multiplication</li>
+        <li>Test the multiplication of two negative numbers and with two positive numbers</li>
+    </ul>
+    <strong>Assignment Statements :</strong>
+    <ul>
+        <li>Design a 4-bit Booth's multiplier circuit with a different controller behaving differently other than specified in this experiment</li>
+        <li>Design a 4-bit shift and add multiplier</li>
+        <li>Design a 8-bit shift and add multiplier</li>
+        <li>Design a 6-bit Booth's multiplier circuit</li>
+    </ul>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<p>Procedure to perform the experiment on the given working module which multiplies two 4-bit numbers</p>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To perform the experiment on the given modules, we need the datapath specified for booth's multiplication, a controller with a specified state chart, a clock input, bit switch (to give input, which will toggle its value with a double click), bit displays (for seeing output), wires.</li>
+    <li>Instantiating the controller: A control unit can be seen as a finite state machine, so its behavior can be represented in a state table. The controller of the simulator accepts the Moore type state chart and must contain an end state. State names will automatically be generated in the form of S. In the left pane of the simulator, click on the ASM chart button in the controller subsection. Give the required informations in the appeared form as follows:</li>
+    <ul>
+        <li>Number of states: 7</li>
+        <li>Number of inputs: 3</li>
+        <li>Number of outputs: 5</li>
+        <p>The controller will generate 5 output control signals. After entering these informations, the second form will appear where you can set the names of the inputs and outputs. Here inputs are the Q0, Q-1, count. Outputs control signals are load, add, sub, shift, dc. The order of given input/outputs are maintained while creating terminals of the controller. for example, the first output signal will appear in the left most output terminal (lower terminals), second output will appear in the second left most bit and so on. In case of input terminals, the left most bit is for clock input, so the first input appears in the second terminal, and then the order is maintained. Then the third form will appear where you actually specify the state chart i.e. state, outputs of that state and transition conditions . The fields of the chart will be generated dynamically according to previously given information on states, inputs and outputs.After entering the following state chart, click on the controller component in the palette of the simulator then click on the position of the design editor where you want to put the component (no drag and drop, simple click will serve the purpose).</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/stateTable.png' %}" alt=""></center>
+
+    </ul>
+    <li>Instantiate the Booth's multiplier datapath from the sequential ckt drawer in the palette (by clicking as mentioned previously).</li>
+    <li>The pin configuration of the component is shown whenever the mouse is hovered on any canned component of the palette or pressing the show pin configuration button on the toolbar will show it constantly in the left pane. Pin numbering starts from 1 and from the bottom left corner(indicating with the circle) and increases anticlockwise.</li>
+    <li>Pin configuration of the datapath module</li>
+    <ul>
+        <li>M : Multiplicand (4 bit), Q : Multiplier (4 bit)</li>
+        <li>Initialization : Inl:1, preset:1, set M, Q, start clock</li>
+        <li>Starting multiplication: Inl:0, preset:0, start clock</li>
+        <li>Result: FQ0 to FA3, at end state (here it is S6). These are the content of A(4bit) and Q(4bit) register, total 8 bit (FQ0 is LSB, FA3 is MSB)</li>
+        <li>I/P:</li>
+        <ul>
+            <li>Clk:32, Inl:31, preset:30</li>
+            <li>Control pins: load:29, add:28, sub:27, shift:26, dc:25</li>
+            <li>Multiplicand: M3 : 24, M2 : 23, M1 : 22, M0 : 21</li>
+            <li>Multiplier: Q3 : 20, Q2 : 19, Q1 : 18, Q0 : 17</li>
+        </ul>
+        <li>O/P: FQ-1 is output of Q-1 bit register, similarly FQ0 to FQ3 are for Q register and FA0 to FA3 are for A register.</li>
+        <ul>
+            <li>Datapath to controller input: Count, clkToController, FQ-1, FQ0</li>
+            <li>Count : 16, clkToController : 15, FQ-1 : 14, FQ0 : 13</li>
+            <li>FQ1 : 12, FQ2 : 11, FQ3 : 10</li>
+            <li>FA0 : 9, FA1 : 8, FA2 : 7, FA3 : 6</li>
+        </ul>
+    </ul>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. According to the following diagram connect all the components. Connect the controller outputs to the specified control input terminals of the datapath, specified datapath outputs to the inputs of the controller, the clock input, Bit switches with the inputs and Bit displays component with the outputs (from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer). After the connection is over click the selection tool in the pallete.
+        <center><img src="{%static 'computerOrganisationArchitecture/exp.png' %}" alt=""></center>
+    </li>
+    <li>At first initialize the multiplier by giving the specified inputs specified earlier, this will load the multiplier and multiplicand, then start the multiplication operation by giving the specified inputs specified earlier. At the end state (S6), the multiplication result will be seen through ports FQ0 to FA3 (FQ0 is LSB, FA3 is MSB). The current state of the controller is shown in the left pane as it transits from one state to another. The controller can be reset by clicking the reset controller button in the top toolbar, to start with a new input.</li>
+</ul>
+<strong>Circuit diagram of 4 bit Booth's Multiplier:</strong>
+<center><img src="{%static 'computerOrganisationArchitecture/bckt1.png' %}" alt=""></center>
+<p>The combinational logic between the control signals of the controller and the control pins of the registers are to satisfy different operational conditions of individual components. In this design, the controller controls only the multiplication process, the initialization has been seperated, so a multiplexer is used to the clock port of the controller to deactivate ot during initialization. Except M, A, Q, Q-1 registers one more 4-bit register has been used which works as temporary storage. With the preset, the down counter is set to all one which is then decremented. The controller state chart is designed in such a way that at each state it activates only one control signal. The controller of this circuit behaves according to the state chart shown in the procedure section of this experiment. A and Q will hold the final multiplication result.</p>
+<strong>Components</strong>
+<p>To build the 4 bit Booth's multiplier, we need :</p>
+<ul>
+    <li>Controller</li>
+    <li>Rigisters, Adder/subtractor unit, multiplexer, down counter, logic gates to construct the datapath</li>
+    <li>Input</li>
+    <li>Output</li>
+    <li>Wires To connect</li>
+</ul>
+
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}

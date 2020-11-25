@@ -1,0 +1,235 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>{%block title%} {% endblock %}</title>
+    <style>
+       
+        h3 {
+            display: inline;
+            padding: 4.5%;
+        }
+
+        .content {
+            display: none;
+        }
+        p{
+            text-align: justify;
+        }
+        .image{
+            
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+        .oline{
+            text-decoration: overline;
+        }
+        pre{
+            font: bold;
+        }
+        li{
+            text-align: justify;
+        }
+        label{
+            display: none;
+            font-weight: bold;
+            color: darkgreen;
+        }
+        {% block style %} 
+        /* space for adding css */
+        {% endblock %}
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Introduction </span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">Theory</span></h3>
+            </a>
+            <a class="link" href="#" rel="div3">
+                <h3><span class="badge badge-info">Simulation</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div4">
+                <h3><span class="badge badge-info">Procedure</span></h3>
+            </a>
+            <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Quizes</span></h3>
+            </a>
+            
+        </div>
+
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+                {% block introduction%}
+                <!-- theory content -->
+                {%endblock%}
+            </div>
+
+            <div class="content" id="div2">
+                {% block theory %}
+                <!-- objective conteent -->
+                {% endblock %}
+            </div>
+
+            <div class="content" id="div3">
+                {% block Simulation %} 
+                <!-- procedure content -->
+                {% endblock %}
+
+            </div>
+
+            <div class="content" id="div4">
+                {% block procedure %} 
+                <!-- experiment content -->
+                {% endblock %}
+            </div>
+
+
+            
+            <div class="content " id="div5">
+                 
+                <center>
+                    <h4>Quizes</h4>
+                </center>
+                {% block experimentName %} {%endblock%}
+                <strong>Multiple choice questions:</strong>
+                
+                {% for quiz in Exams %}
+                <table>
+                    
+                    <hr>
+                    <tr>
+                        <td>{{quiz}}</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option1" class="rb"  name = "{{quiz.id}}" value="{{quiz.option1}}">{{quiz.option1}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option2" class="rb" name = "{{quiz.id}}" value="{{quiz.option2}}">{{quiz.option2}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option3" class="rb" name = "{{quiz.id}}" value="{{quiz.option3}}">{{quiz.option3}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option4" class="rb" name = "{{quiz.id}}" value="{{quiz.option4}}">{{quiz.option4}} </td>
+                    </tr>
+                    <tr>
+                        <td> <label id="correctans" class="rb">{{quiz.correctans}}</label> </td>
+                    </tr>
+                </table>       
+                 {% endfor %} 
+                <input type="submit" value="Click for result" id="check" onclick="getAnswers();">
+                <b id="userAnswer"></b>
+                
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+
+        function getAnswers(){
+            document.getElementById(userAnswer).innerHTML = "";
+            var f = document.getElementsByTagName("input");
+            for(i=0;i<=f.length;i++)
+            {
+                if(f[i].type=="radio")
+                {
+                    if(f[i].checked)
+                    {
+                        document.getElementById(userAnswer).innerHTML += "Q" + f[i].name+"The answer you selected is: " +f[i].value+ "<br/>";
+
+                    }
+                }
+            }
+        }
+        $ (document).ready(function(){
+            $("#check").click(function(){
+            $(".rb").show();
+           
+        });
+        });
+
+{% block script %}
+// optional javascript which will be used in quiz
+ {% endblock %}
+
+    </script>
+
+</body>
+
+</html>

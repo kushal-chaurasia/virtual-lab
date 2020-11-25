@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitative Rectification for Half Wave Rectifier</title>
+    <script src="{% static 'js/caparechlfjs.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/capareccss.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/virtualc.css' %}">
+    <script type="text/javascript" src="{% static 'js/virtualc.js' %}"></script>
+    
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; top:5px;height:930px; width:1260px;">
+
+    <div style="font-size:30px; text-align:center;padding-right:100px; height:60px"><b>Capacitative Rectification for Half Wave Rectifier</b></div>
+    <div id="circuit" style="position:absolute;border: 2px solid #3385ff; top:40px;width:530px;height:390px;right:10px">
+        <div style="position:absolute; font-size:16px; top:0px;right:0px;  height:50px;background-color:#3385ff;  width:530px;font-weight: bold;"><p style="text-align:center;padding-right:390px;color:white"> <b> CIRCUIT </b></p></div>
+
+        <div id="ckt_values1" style="position:absolute; top:40px;right:20px; height:300px; width:400px">
+            <p>
+                <img src ="{% static 'beLab/caparechlfckt.png' %}" style="width:400px;height:300px;position:absolute;right:70px" />  
+
+                <input type="button" id="sncr" value="Half Wave Rectified" onclick="draw()" disabled="true" style="position:absolute;right:290px;top:230px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;">
+                <input type="button" id="run" value="Run Simulation" onclick="drwn()" disabled="true" style="position:absolute;right:50px;top:230px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;">
+                <input type="button" id="onff" value="On" onclick="mainswt()" style="position:absolute;top:320px;left:-70px;width:80px;cursor:pointer; text-align: center;border-radius: 5px;box-shadow: 0 2px #999;">
+            </p>
+        </div>
+    </div>
+
+    <div id="description" style="background-color: #3385ff; position:absolute; top:40px; left:10px; width:530px;font-size: 16px;font-weight: bold;">
+        <div class="dropdown">
+            <p style="text-align:center;padding-right:350px;color:white">INSTRUCTION</p>
+            <div class="dropdown-content">
+                <ol type="1">
+                    <li>Take a diode, and Load resistor of 1KOhms and capacitor of 102&#956;F.</li>
+                    <li>Connect to AC Voltage Source of 50 Hz, 2 V</li>
+                     <li>Click on 'ON' button to make the circuit on.</li>
+                    <li>Click on 'Sine Wave' button to observe the input waveform.</li>
+                    <li>Click on 'Run Simulation' button to observe the filtered waveform.</li>
+                    <li>Observe the corresponding waveform.</li>
+                    <li>Channel 1 shows the input wave, Channel 2 shows the output wave and Dual shows both the input and output wave.</li>
+                </ol> 
+            </div>
+        </div>
+    </div>
+
+    <div id="grpwrap" style="position:absolute;border: 2px solid #3385ff; top:120px;width:520px;height:400px;left:10px">
+        <div style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:520px;font-weight: bold;"><p style="text-align:center;padding-right:370px;color:white"> <b> GRAPH PLOT</b></p>
+            <div class="tooltip" ><button id="calci"  onclick="printf()" style="position:absolute;padding-right:40px; cursor:pointer;top:10px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;">
+                    <img src="{% static 'beLab/Print Filled.png' %}" alt="Save icon" style="width:20px;height:20px;top:10px;"/></button> 
+                <span class="tooltiptext">Print</span></div></div>
+
+        <canvas id="mycanvas" width="520" height="350" style="position:absolute;top:50px;left:0px;">   </canvas>
+        <!-- <p id="tym" align="center" style="position:absolute;top:610px; left:270px;font-family: Georgia;display:none">Time &#8594;</p>
+
+         <p id="volt" style="width:1px;word-wrap: break-word;top:350px;position:absolute;font-family: Georgia;left:40px;display:none"> &#8593; Voltage</p>  -->
+    </div>
+    <input type="button" id="chhn1" value="Channel 1" onclick="chnlo()" disabled style="position:absolute;left:20px;top:540px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;"/>
+    <input type="button" id="chhn2" value="Channel 2" onclick="chnlt()" disabled style="position:absolute;left:120px;top:540px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;"/>
+    <input type="button" id="grnd" value="Ground" onclick="grnds()" disabled style="position:absolute;left:220px;top:540px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;"/>
+    <input type="button" id="dual" value="Dual" onclick="bthd()" disabled style="position:absolute;left:320px;top:540px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;"/>
+
+    <div id="cntrwrap" style="position:absolute;border: 2px solid #3385ff; top:450px;width:530px;height:440px;right:10px;">
+        <div id="cntrlr" style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:530px;font-size: 16px;font-weight: bold;"><p style="text-align:center;padding-right:370px;color:white"><b>CONTROLS</b></p></div>
+        <div id="slide" style=" position:absolute; top:70px; right:0px; width:530px;  border-radius: 10px;">
+            <!-------------------------------------------------------------------channel 1------------------------------------------------>
+
+            <!--Vp (V) Peak Voltage-->
+            &nbsp;&nbsp;     V<sub>p<sub>ch1</sub></sub>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="range" id="peakslider"  name="pekvl" min="-2" max="2" step="0.1" value="1" disabled=true oninput="sliderChange()" style="cursor:pointer">
+            &nbsp;&nbsp; <input type="text" id="vp" size="8" name="peakvol" value="1" readonly >V<br><br>
+            <!--position y direction-->
+            &nbsp;&nbsp;  Position Y-Axis:<input type="range" id="fullps" min="-4" max="4" step="0.01" value="0" disabled=true oninput="posichnge()" style="cursor:pointer">
+            &nbsp;&nbsp; <input type="text" id="flps" size="8" value="0" readonly><br><br>
+            <!--Phase (deg) Time Shift-->
+            &nbsp;&nbsp;   Phase:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="phs" min="-360" max="360" step="90" value="0" disabled=true oninput="phasesld()" style="cursor:pointer">
+            &nbsp;&nbsp; <input id="phase" type="text" name="phase" size="8" value="0" readonly>Deg<br><br>
+            <!--fo (Hz) Sine frequency-->
+            &nbsp; &nbsp;   Frequency:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="frqs" min="1000" max="5000" step="10" value="1000" readonly disabled=true oninput="freqnc()"  style="width:160px;cursor:pointer">
+            <input id="freq" type="text" id="freq" name="fo" size="5" value="1000" readonly>Hz<br><br>
+            <!--------------------------------------channel 2-------------------------------------------------------------------------->
+            <!--Vp (V) Peak Voltage-->
+            &nbsp;&nbsp;  V<sub>p<sub>ch2</sub></sub>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="peakslider2" name="pekvl1" min="-2" max="2" step="0.1" value="1" disabled=true oninput="slidrchng()" style="cursor:pointer">
+            &nbsp; &nbsp;<input type="text" id="pksld" size="8" value="1" readonly>V<br><br>
+            <!--position y direction-->
+            &nbsp;&nbsp; Position Y-Axis:<input type="range" id="flrcps" min="-4" max="4" step="0.01" value="0" disabled=true oninput="poschg()" style="cursor:pointer">
+            &nbsp; &nbsp;<input type="text" id="flrec" size="8" value="0" readonly><br><br>
+            <!--Phase (deg) Time Shift-->
+            &nbsp; &nbsp;    Phase:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="phs2" min="-360" max="360" step="90" value="0" oninput="phaseslds()"style="cursor:pointer">
+            <input id="phases" type="text" name="phase" size="8" value="0" readonly>Deg<br><br>
+            <!--fo (Hz) Sine frequency-->
+            &nbsp; &nbsp;   Frequency:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fr" type="range" name="fr" size="10" step="100" readonly min="1000" max="5000" value="1000" oninput="frqs()"style="cursor:pointer">
+            <input id="fo" type="text" name="fo" size="10" value="1000" readonly>
+        </div>
+    </div>    
+
+    <div id="calcln" style="position:absolute;border: 2px solid #3385ff; top:590px;width:530px;height:230px;left:10px">
+        <div style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:530px;font-size: 16px;font-weight: bold;"><p style="text-align:center;padding-right:360px;color:white;"> <b> CALCULATION</b></p>
+            <div class="tooltip" ><button id="calci"  onclick="calcul()" style="position:absolute;padding-right:40px; top:10px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;cursor:pointer">
+                    <img src="{% static 'beLab/Calculator.png' %}" alt="Save icon" style="width:20px;height:20px;top:10px;"/></button> 
+                <span class="tooltiptext">Calculator</span></div></div>
+        <div style=" position:absolute;  top:50px;  left:0px; height:130px; width:530px;">
+            <br> &nbsp; &nbsp;Measure the  \(V_m\)<br><br>
+            &nbsp; &nbsp;  \(V_{rms}= \frac{V_m}{&#8730;2}\)<br><br>
+            &nbsp; &nbsp; \(V_{dc}= \frac{V_m} {&#960;}\)<br>                 
+            &nbsp; &nbsp; Ripple Factor=\(\frac{V_{ac}}{V_{dc}}\) \(\quad\)Since,  \(V_{ac}=\frac{\sqrt(V^2_{rms}-V^2_{dc})}{V_{dc}}\)<br>
+        </div></div>
+
+    <!--  <div align="center" style="position:absolute; top:820px; width:1160px">
+          <INPUT TYPE="button" onClick="printf()" value="Click here to print" style="cursor: pointer; text-align:center; font-size: 20px; height:40px; width:500px" >
+          <br><br>
+      </div> -->
+</div>
+
+<!--------------------------------- calculator --------------------------------------------->
+<div id="calculator" style="width:280px;height:400px;position:absolute;left:40%; top:450px;">
+    <div class="bttncls" id="close" >
+        <button type="button"  onclick="ok()" style="width:30px;right:-50px;top:25px;height:25px;border:none;background-color:white;cursor:pointer">
+            <img src="{% static 'beLab/Close Window.png' %}" alt="Save icon" style="width:30px;height:30px"/>
+        </button></div>
+
+    <div class="box" id="hide">
+        <div class="display"><input type="text" readonly size="17" id="d"></div>
+        <div class="keys">
+            <p>
+
+
+                <input type="button" class="button pink"  value="&#8730;" onclick="Root('sq')">
+                <input type="button" class="button pink"  value="&#8731;" onclick="Root('cu')">
+                <!--  <input type="button" class="button pink"  value="n&#8730;" onclick="Root('n')">-->
+                <input type="button" class="button pink"  value="x2" onclick="Power('sq')">
+                <input type="button" class="button pink"  value="x3" onclick="Power('cu')">
+                <!--  <input type="button" class="button pink"  value="\(x^n\)" onclick="Power('n')">-->
+
+            </p>
+            <p>
+                <input type="button" class="button pink"  value="sinr" onclick="TrigFunc('sin')">  
+                <input type="button" class="button pink"  value="cosr" onclick="TrigFunc('cos')">  
+                <input type="button" class="button pink"  value="tanr" onclick="TrigFunc('tan')">  
+                <input type="button" class="button pink"  value="/" onclick='v("/")'>  
+
+            </p>
+            <p><input type="button" class="button black" value="7" onclick='v("7")'>
+                <input type="button"  class="button black" value="8" onclick='v("8")'>
+                <input type="button" class="button black" value="9" onclick='v("9")'>
+                <input type="button" class="button pink" value="*" onclick='v("*")'>
+            </p>
+
+            <p><input type="button" class="button black" value="4" onclick='v("4")'>
+                <input type="button" class="button black" value="5" onclick='v("5")'>
+                <input type="button" class="button black" value="6"  onclick='v("6")'>
+                <input type="button"  class="button pink" value="-" onclick='v("-")'>
+            </p>
+
+            <p><input type="button" class="button black"  value="1" onclick='v("1")'>
+                <input type="button" class="button black" value="2" onclick='v("2")'>
+                <input type="button" class="button black" value="3" onclick='v("3")'>
+                <input type="button" class="button pink" value="+" onclick='v("+")'>
+            </p>
+
+            <p><input type="button" class="button black"  value="0" onclick='v("0")'>
+                <input type="button" class="button black" value="." onclick='v(".")'>
+                <input type="button" class="button black" value="C" onclick='del("")'>
+                <input type="button"  class="button orange" value="=" onclick='eqls()'>
+            </p>
+        </div>
+    </div>
+</div>       
+
+s
+
+<body>
+
+</body>
+
+</html>

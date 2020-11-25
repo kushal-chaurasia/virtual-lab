@@ -1,0 +1,211 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Arithmetic Logic Unit {% endblock %}
+{%load static%}
+{% block theory%}
+<!-- theory content -->
+<h4>Design of ALU</h4>
+<p>ALU or Arithmetic Logical Unit is a digital circuit to do arithmetic operations like addition, subtraction,division, multiplication and logical oparations like and, or, xor, nand, nor etc. A simple block diagram of a 4 bit ALU for operations and,or,xor and Add is shown here :</p>
+<center><img src="{%static 'computerOrganisationArchitecture/ALU6.png' %}" alt=""></center>
+<p>The 4-bit ALU block is combined using 4 1-bit ALU block</p>
+<strong>Design Issues :</strong>
+<p>The circuit functionality of a 1 bit ALU is shown here, depending upon the control signal S1 and S0 the circuit operates as follows: <br>
+
+    for Control signal S1 = 0 , S0 = 0, the output is <strong>A And B</strong>,<br>
+    
+    for Control signal S1 = 0 , S0 = 1, the output is <strong>A Or B</strong>,<br>
+    
+    for Control signal S1 = 1 , S0 = 0, the output is <strong>A Xor B</strong>,<br>
+    
+    for Control signal S1 = 1 , S0 = 1, the output is <strong>A Add B</strong>.</p>
+    <strong>The truth table for 16-bit ALU with capabilities similar to 74181 is shown here:</strong>
+    <br>
+    <center>
+        Required functionality of ALU (inputs and outputs are active high) <br> <br>
+        <img src="{%static 'computerOrganisationArchitecture/exp8.png' %}" alt="">
+        
+    </center>
+    The L denotes the logic low and H denotes logic high.
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of 4 bit arithmetic logic unit (with AND, OR, XOR, ADD operation):</h4>
+<ul>
+    <li>Understanding behaviour of arithmetic logic unit from working module and the module designed by the student as part of the experiment</li>
+    <li>Designing an arithmetic logic unit for given parameter</li>
+</ul>
+<strong>Examining behaviour of arithmetic logic unit for the working module and module designed by the student as part of the experiment (refer to the circuit diagram): <br>
+    Loading data in the arithmetic logic unit (refer to procedure tab for further detail and experiment manual for pin numbers): <br>
+    load the two input numbers as
+</strong>
+<ul>
+    <li>A(A3 A2 A1 A0): A3=1, A2=1, A1=0, A0=0</li>
+    <li>B(B3 B2 B1 B0): B3=1, B2=0, B1=0, B0=1</li>
+    <li>carry in(C0)=0</li>
+</ul>
+<strong>examining the AND behaviour:</strong>
+<ul>
+    <li>load data in select input as</li>
+    <ul>
+        <li>S1=0, S0=0 </li>
+    </ul>
+    <li>check output:</li>
+    <ul>
+        <li>F3=1, F2=0, F1=0, F0=0</li>
+        <li>cout=0 </li>
+    </ul>
+</ul>
+<strong>examining the OR behaviour:</strong>
+<ul>
+    <li>load data in select input as</li>
+    <ul>
+        <li>S1=0, S0=0 </li>
+    </ul>
+    <li>check output:</li>
+    <ul>
+        <li>F3=1, F2=0, F1=0, F0=0</li>
+        <li>cout=0 </li>
+    </ul>
+</ul>
+<strong>examining the XOR behaviour:</strong>
+<ul>
+    <li>load data in select input as</li>
+    <ul>
+        <li>S1=0, S0=0 </li>
+    </ul>
+    <li>check output:</li>
+    <ul>
+        <li>F3=1, F2=0, F1=0, F0=0</li>
+        <li>cout=0 </li>
+    </ul>
+</ul>
+<strong>examining the ADD behaviour:</strong>
+<ul>
+    <li>load data in select input as</li>
+    <ul>
+        <li>S1=0, S0=0 </li>
+    </ul>
+    <li>check output:</li>
+    <ul>
+        <li>F3=1, F2=0, F1=0, F0=0</li>
+        <li>cout=0 </li>
+    </ul>
+</ul>
+<p><strong>Recommended learning activities for the experiment</strong> Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</p>
+<strong>color configuration of wire for 5 valued logic supported by the simulator:</strong>
+<ul>
+    <li>if value is UNKNOWN, wire color= maroon</li>
+    <li>if value is TRUE, wire color= blue</li>
+    <li>if value is FALSE, wire color= black</li>
+    <li>if value is HI IMPEDENCE, wire color= green</li>
+    <li>if value is INVALID, wire color= orange</li>
+</ul>
+<strong>likewise the 16 bit arithmetic logic unit can be designed and tested</strong>
+<ul><li>by cascading 4 bit ALUs only the carry will propagate to the next level for ADD operation</li></ul>
+<strong>Test plan :</strong>
+<ul>
+    <li>Set inputs 0101 and 0011 and check output for all possible select input combinations.    </li>
+    <li>Set any two 16-bit number and check output for all possible select input combinations.</li>
+</ul>
+Use Display units for checking output. Try to use minimum number of components to build. The pin configuration of the canned components are shown when mouse hovered over a component.
+<strong>Assignment Statements :</strong>
+<ul>
+    <li>Design a 4 bit ALU comprising only the AND, OR, XOR and Add operations</li>
+    <li>Design a 16-bit ALU with capabilities similar to 74181
+    </li>
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Procedure to perform the experiment:Design of 4 bit ALU</h4>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To design the circuit we need 4 1-bit ALU, 11 Bit switch (to give input,which will toggle its value with a double click), 5 Bit displays (for seeing output), wires.
+    </li>
+    <li>The pin configuration of a component is shown whenever the mouse is hovered on any canned component of the palette. Pin numbering starts from 1 and from the bottom left corner (indicating with the circle) and increases anticlockwise.
+    </li>
+    <li>For 1-bit ALU input A0 is in pin-9,B0 is in pin-10, C0 is in pin-11 (this is input carry), for selection of operation, S0 is in pin-12, S1 is in pin-13, output F is in pin-8 and output carry is pin-7
+    </li>
+    <li>Click on the 1-bit ALU component (in the Other Component drawer in the pallet) and then click on the position of the editor window where you want to add the component (no drag and drop, simple click will serve the purpose), likewise add 3 more 1-bit ALU (from the Other Component drawer in the pallet), 11 Bit switches and 5 Bit Displays (from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer), 3 digital display and 1 bit Displays (from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer)
+    </li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. According to the circuit diagram connect all the components. Connect the Bit switches with the inputs and Bit displays component with the outputs. After the connection is over click the selection tool in the pallete.
+    </li>
+    <li>See the output, in the screenshot diagram we have given the value of S1 S0=11 which will perform add operation and two number input as A0 A1 A2 A3=0010 and B0 B1 B2 B3=0100 so get output F0 F1 F2 F3=0110 as sum and 0 as carry which is indeed an add operation.you can also use many other combination of different values and check the result. The operations are implemented using the truth table for 4 bit ALU given in the theory.
+    </li>
+</ul>
+<strong>Circuit diagram of 4 bit ALU:</strong>
+<center><img src="{%static 'computerOrganisationArchitecture/aluckt.png' %}" alt=""></center>
+<strong>Screenshot of Design of 4 bit ALU:</strong>
+<center><img style="width: 80%;" src="{%static 'computerOrganisationArchitecture/alu4bit.png' %}" alt=""></center>
+<strong>Components :</strong>
+<ul>
+    <li>AND gate, OR gate, XOR gate
+    </li>
+    <li>Full Adder,
+    </li>
+    <li>4-to-1 MUX<
+    </li>
+    <li>Wires to connect.
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}

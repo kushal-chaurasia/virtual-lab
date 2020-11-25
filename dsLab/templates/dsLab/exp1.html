@@ -1,0 +1,44 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Number Systems{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Number Systems
+</h4>
+<p>Since ancient times, the ability to represent numbers and perform arithmetic operations on numbers played an important role. Hence, it is interesting to study how different representation formats impact the number representation and operations. In this experiment, we study the efficacy of various number representation formats. The central message of this experiment is to appreciate that something that is as common as operating on numbers has an embedded data structure lesson. In this experiment, we will first understand how operations such as addition and multiplication can be done in various formats. We focus on four formats: unary, binary, decimal, and Roman. In each of these four representation formats, we will learn how to perform the above two operations. You can look at the lecture notes, browse through slides, and also see an animation that can run several examples.
+</p>
+<ul><li><p>The Hindu/Arabic System : This is also known as the decimal system and is presently in vogue in written communication. The system used 10 digits 0, 1, 2, ⋯, 9. For instance three hundred and sixty seven is written as 367. This is a positional number system with the right most position having a weight of 1, the next position a weight of 10, and so on.
+</p></li></ul>
+<ul><li><p>The Roman System : This is a system using the symbols I, V, X, L, C, and M. This is not a positional system. As an example, 24 is written as XXIV.
+</p></li></ul>
+<ul><li><p>The Unary and the Binary System : In the former, the only symbol used is I and a number is represented by writing a number of I´s equal to its value. For example, 7 is written as IIIIIII. It can be noticed that this system is too laborious for large numbers such as those beyond 20 or so.In the latter, two symbols 0 and 1 are used. This is a positional system with weights of 1, 2, 4, and so on. For instance, 55 is written as 110111. The latter is popular because of its use in the present generation computers.
+</p></li></ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Number Systems
+</h4>
+<p>1.2.4 Operations on Numbers Let us consider the basic arithmetic operations such as addition and multiplication. In the case of addition using the Hindu system, we have the notion of a carry so that if the sum of any two digits in a position with weight of 10k will create a carry of 1 with a weight of 10 k+1. The same is concept holds true for positional systems such as the binary system, with the only difference being the weights. In the unary system, the addition of numbers x and y will result in a number with x + y I's. Addition in the Roman system is much more complicated. To add two numbers in the Roman system,one starts by writing the numbers side by side. For example, to add 32 and 53, write XXXII and LIII side by side as XXXII LIII. Then, arrange these letters so that the numerals are in decreasing order. We get : LXXXIIIII. The five Is can be simplified by writing them as V. So, we get LXXXV. This process is continued till no simplification is possible. Care has to be taken when adding numbers such as 64, written as LXIV. Similar observations hold in the case of multiplication as multiplication can be treated as repeated addition in its basic form. So one way to multiply Roman numbers is to multiply the larger number by the smaller number. For example, to multiply 123 by 52, we start by writing the numbers as CXXIII and LII. Now, multiply the larger number CXIII by L. This is done by first multiplying by 10, which means promoting the symbols and then duplicating each symbol five times. Simplification can be done to reduce the number to the standard form. Then, multiplication by 2 is simply duplicating each symbol twice. Simplifying, we get the answer. The above reading suggests that the method of number representation does have a bearing on the ease of the operation. Hence, even with simple operations such as addition and multiplication, a better way to organize data helps in performing the operation efficiently. In the rest of this chapter, we will use the decimal/binary system. We will carry forward this lesson to other operations.
+</p>
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Number Systems
+</h4>
+<p>Understand the relationship between data representation and data manipulation. as a small practice, implement the operations ADD and MULTIPLY on four different representations. study the time taken for your implementations.
+</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

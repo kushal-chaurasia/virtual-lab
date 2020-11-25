@@ -1,0 +1,121 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Karnaugh Map {% endblock %}
+
+
+{%load static%}
+
+
+{% block theory%}
+<!-- theory content -->
+<h4>Theory</h4>
+<p>A Karnaugh Map provides a pictorial method of grouping together expressions with common factors and therefore
+    eliminating unwanted variables. The Karnaugh map can also be described as a special arrangement of a truth table.
+</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+
+<h4>Objective of Karnaugh Map</h4>
+<ul>
+    <li>A Tool to generate minimal size circuits</li>
+    <li>Graphical means of performing equivalent of algebraic implications</li>
+    <li>Places candidate terms for simplification together</li>
+</ul>
+<strong>Karnaugh Maps-Rules of Simplification</strong>
+<p>The Karnaugh map uses the following rules for the simplification of expressions by grouping together adjacent cells
+    containing ones</p>
+<ul>
+    <li>Groups may not include any cell containing a zero
+        <center><img src="{% static 'computerOrganisationArchitecture/k1.png' %}" alt=""></center>
+
+    </li>
+    <li>Groups must contain 1, 2, 4, 8, or in general 2n cells. That is if n = 1, a group will contain two 1's since 21
+        = 2. If n = 2, a group will contain four 1's since 22 = 4.
+        <center><img src="{% static 'computerOrganisationArchitecture/k2.png' %}" alt=""></center>
+
+    </li>
+
+    <li>Each group should be as large as possible
+        <center><img src="{% static 'computerOrganisationArchitecture/k3.png' %}" alt=""></center>
+
+    </li>
+    <li>Each cell containing a one must be in at least one group.
+        <center><img src="{% static 'computerOrganisationArchitecture/k4.png' %}" alt=""></center>
+
+    </li>
+    <li>Groups may overlap.
+        <center><img src="{% static 'computerOrganisationArchitecture/k5.png' %}" alt=""></center>
+
+    </li>
+    <li>Groups may wrap around the table. The leftmost cell in a row may be grouped with the rightmost cell and the top
+        cell in a column may be grouped with the bottom cell.
+        <center><img src="{% static 'computerOrganisationArchitecture/k6.png' %}" alt=""></center>
+
+    </li>
+    <li>There should be as few groups as possible, as long as this does not contradict any of the previous rules.
+        <center><img src="{% static 'computerOrganisationArchitecture/k7.png' %}" alt=""></center>
+
+    </li>
+</ul>
+<p>Karnaugh maps are used to simplify real-world logic requirements so that they can be implemented using a minimum
+    number of physical logic gates. A sum of product expression can always be implemented using AND gate feeding into an
+    OR gate, and a product of sum expression leads to OR gates feeding an AND gate.</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Procedure to perform the experiment:Karnaugh Map</h4>
+<strong>Procedure to perform the experiment:Karnaugh Map</strong>
+<p>A minimal sum-of-product design can be created as follows:</p>
+<ul>
+    <li>Create the K-map, entering a 1 or 0 in each square according to the desired logic function</li>
+    <li>Beginning with large rectangles and going to small rectangles, add rectangles until all minterms are 'covered'
+        (all '1's are included).</li>
+    <li>Generate the algebraic terms corresponding to the rectangles</li>
+</ul>
+
+<strong>Examples:</strong>
+<center><img src="{% static 'computerOrganisationArchitecture/k8.png' %}" alt=""></center>
+<strong>K-maps for Product-of-Sum Design</strong> <br>
+<strong>Product-of-sums design uses the same principles, but applied to the zeros of the function.</strong> <br>
+<strong>Examples:</strong>
+<center><img src="{% static 'computerOrganisationArchitecture/k9.png' %}" alt=""></center>
+<strong>Designing with Don't-Care Values</strong>
+<ul>
+    <li>In some situations, we don't care about the value of a logic function.</li>
+    <li>For example, if we use wxyz to represent a number from 0 to 9, we need not worry about the function value
+        produced for wxyz = 10...15.</li>
+    <li>For these situations, the function can be assigned an output in order to make the resulting circuit as simple as
+        possible</li>
+    <li>Suppose we wish to implement the function f(wxyz)=Sum(3,5,6,7)and we have the don't-care condition of
+        d=Sum(10,11,12,13,14,15).</li>
+</ul>
+<p>The sum-of-products implementation:</p>
+<center><img src="{% static 'computerOrganisationArchitecture/k10.png' %}" alt=""></center>
+
+<p>The product-of-sums implementation:</p>
+<center><img src="{% static 'computerOrganisationArchitecture/k11.png' %}" alt=""></center>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>Experiment</h4>
+<ul>
+    <li>Go to the simulator Tab.</li>
+    <li>Select number of variables from dropdown list. (Note: you can select from variables ranging from 1 to 8)</li>
+    <li>Select Yes or No to allow dontcare in K-map.</li>
+    <li>Select Yes or No to show result of K-map.</li>
+    <li>After that, below you can observe a table with 0’s filled based on no. of variables.</li>
+    <li>Change value of the cell by clicking on it from 0 to 1 or don’t care (X).</li>
+    <li>After your cell selection in the table, it will automatically selects & shows the possible combinations of 1’s
+        as Pairs, Quads or Octacts.</li>
+    <li>The result for your function is shown below after the table.</li>
+</ul>
+
+{% endblock %}
+
+{% block software %}
+<a href="/computerOrganisationArchitecture/simulator1"> Click here to go to simulator</a>
+{% endblock %}

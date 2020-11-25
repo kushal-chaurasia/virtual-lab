@@ -1,0 +1,27 @@
+
+
+
+<link class="include" rel="stylesheet" type="text/css" href="./css/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="./css/examples.min.css" />
+<link type="text/css" rel="stylesheet" href="./css/shCoreDefault.min.css" />
+<link type="text/css" rel="stylesheet" href="./css/shThemejqPlot.min.css" />
+<style type="text/css">
+		.plot {
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		#chart0 .jqplot-meterGauge-label {
+			font-size: 10pt;
+		}
+		#chart1 .jqplot-meterGauge-tick, #chart0 .jqplot-meterGauge-tic {
+		font-size: 10pt;
+		}
+                #chart2 .jqplot-meterGauge-tick, #chart0 .jqplot-meterGauge-tic {
+		font-size: 10pt;
+		}
+		grid: {
+ background: 'transparent' 
+}
+</style>
+

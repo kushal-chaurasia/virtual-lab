@@ -1,0 +1,96 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Aim </h4>
+<p>The Learner will be able to:</p>
+<ul>
+    <li>demonstrate working of PHP code.</li>
+    <li>create basic PHP scripts using proper syntax.</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<br>
+<b>1.1 Introduction</b>
+<br><br>
+<p>PHP is widely used as an open source scripting language. PHP is an acronym for Hypertext Preprocessor. PHP scripts are executed on server and the HTML result is sent back to the client (Browser).PHP can generate dynamic page content. It can work with files on the server and can be used to collect form data. PHP can send and receive cookies. It can also work with database and can be easily embedded in HTML.PHP is widely used for Web Development.</p>
+<p>PHP script generally contains HTML tags and PHP script. Every PHP script is stored with .php extension. PHP script can run on any platform (Windows, Linux,etc) and is compatible with most of the web servers (Apache,IIS,etc.). PHP has a support for wide range of databases with which one can work.</p>
+<p>To start using PHP, we need a web server (host) with PHP and MySQL support along with PHP and MySQL installed on your PC or Laptop.</p>
+<p>Any browser can be used to access the file with php code.One can access it with web server's URL and the file name at the end.(e.g. If the name of the file is first.php then to access this file locally one can use http://localhost/first.php as URL.)</p>
+<br>
+<b>1.2 Basic Syntax</b>
+<br><br>
+<p>PHP script can be placed anywhere in the document. PHP script starts with <?php and ends with?>.The script written between these two tags is parsed on the server and the plain HTML result is returned back. All php statements must end with semicolon ( ; )</p>
+<p>< ?php <br>
+    code; <br>
+    ?>
+    </p>
+<p>To run the script one needs a server enabled with PHP and a browser. PHP is loosely typed language. <br>
+    echo or print is used to print the output. <br><br>E.g.following script will print "Welcome to PHP"
+</p>
+<p>< ?php <br>
+    echo " Welcome to PHP " ; <br>
+    ?> <br><br>
+    
+    In PHP every variable starts with $ sign . The data types supported by PHP are String, Integer, Float Boolean, Array, Object etc.
+    eg. <br>
+    < ?php <br>
+    $number_1=10; <br>
+    $number_2=35.5; <br>
+    $str ="HELLO"; <br>
+    echo $number_1; <br>
+    echo $number_2; <br>
+    echo $str; <br>
+    ?> <br><br>
+    
+    Here in PHP you don't have to specify data types as in other languages like C, C++,java etc. PHP converts the variable to the proper data type depending upon the value provided. i.e. in the example given above number_1 will be integer and number_2 will be float .Variable str will be of type String.
+    </p>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Procedure</h4>
+<br>
+<p>  <b>1] Demonstration </b> <br>
+    1.Click the "Execute PHP" button and observe:<pre>
+        a. step by step execution of PHP code.
+        b.changes in HTML code and HTML page.</pre>2.Observe the location of the yellow band. It highlights the line being executed. <br>
+        3.Observe the output shown on the right hand side. <br>
+        4.Observe the html code generated during the execution at the server side, displayed below the PHP code. <br><br>
+        <b> 2]Simulator </b> <br>
+        Write the PHP script for the tasks mentioned in the experiment and click "Execute" button to verify the output.</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Step Execution</h4>
+<hr>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt; My first PHP page &lt;/h1&gt;
+
+&lt;?php
+echo "Hello World!";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %} Introduction{%endblock%}

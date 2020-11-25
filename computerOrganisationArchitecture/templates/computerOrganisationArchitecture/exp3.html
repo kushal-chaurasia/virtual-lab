@@ -1,0 +1,177 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+
+<!-- title -->
+{%block title%} Wallace Tree Adder {% endblock %}
+
+{% block theory%}
+<!-- theory content -->
+
+<h4>Design of Wallace Tree Adders</h4>
+<p>
+    There are many cases where it is desired to add more than two numbers together. The straightforward way of adding together m numbers (all n bits wide) is to add the first two, then add that sum to the next using cascading full adders. This requires a total of m − 1 additions, for a total gate delay of O(m lg n) (assuming lookahead carry adders). Instead, a tree of adders can be formed, taking only O(lg m · lg n) gate delays. <br>
+    
+    A Wallace tree adder adds together n bits to produce a sum of log2n bits. </p>
+    
+   <p> The design of a Wallace tree adder to add seven bits (W7) is illustrated below:</p>
+   <div class="image">
+    {%load static%}
+    <img  src="{%static 'computerOrganisationArchitecture/wT7-3Add.png' %}" alt="">
+</div>
+<p>An adder tree to add three 4-bit numbers is shown below:</p>
+<img  src="{%static 'computerOrganisationArchitecture/add3x4.png' %}" alt="">
+<p>An adder tree (interconnections incomplete) to add five 4-bit numbers is shown below:</p>
+<img  src="{%static 'computerOrganisationArchitecture/add5x4.png' %}" alt="">
+<pre>--->
+The above block diagrams can be used to design different wallace tree adder.</pre>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of 4 bit Wallace Tree Adder:</h4>
+<p>This is an adder with less height.</p>
+<ol>
+    <li>understanding behaviour of wallace tree adder from module designed by the student as part of the experiment an dthe working module as well</li>
+    <li>understanding the concept of reducing gate delay by using tree of adders instead of using cascaded full adders</li>
+    <li>the adder will add three 4 bit numbers    </li>
+</ol>
+<p><strong>Examining behaviour of wallace tree adder for the module designed by the student as part of the experiment (refer to the circuit diagram) <br>
+Loading data in the carry lookahead adder (refer to procedure tab for further detail and experiment manual for pin numbers)</strong></p>
+<ul>
+    <li>load the three input numbers in the adder units as:</li>
+    <ul><li>1111, 0001 and 1110</li></ul>
+</ul>
+<strong>Examining the behaviour:</strong>
+<ul>
+    <li>check output sum 1110</li>
+    <li>check final output carry</li>
+    <li>check intermediate carry bit and sum bit of the unit adders (refer to theory and circuit diagram)</li>
+    <li>probing the any port can be done by verifying the color of the wire coming out of the port</li>
+    <li>color configuration of wire for 5 valued logic supported by the simulator</li>
+    <ul>
+        <li>if value is UNKNOWN, wire color= maroon</li>
+        <li>if value is TRUE, wire color= blue</li>
+        <li>if value is FALSE, wire color= black</li>
+        <li>if value is HI IMPEDENCE, wire color= green</li>
+        <li>if value is INVALID, wire color= orange</li>
+    </ul>
+</ul>
+<strong>Examining behaviour of given wallace tree adder for the workng module: <br>
+Loading data in the wallace tree adder (refer to procedure tab for further detail and experiment manual for pin numbers) as:</strong>
+<ul>
+    <li>load the three input numbers as:</li>
+    <ul>
+        <li>A(A3 A2 A1 A0): A3=1, A2=1, A1=1, A0=1</li>
+        <li>B(B3 B2 B1 B0): B3=0, B2=0, B1=0, B0=1</li>
+        <li>C(C3 C2 C1 C0): C3=1, C2=1, C1=1, C0=0</li>
+    </ul>
+</ul>
+<strong>
+    Examining the behaviour:
+</strong>
+<ul>
+    <li>check output sum:</li>
+    <ul>
+        <li>sum(S3 S2 S1 S0): S3=1, S2=1, S1=1, S0=0</li>
+    </ul>
+</ul>
+<ul>
+    <li>check output carry:</li>
+    <ul>
+        <li>cout=1</li>
+    </ul>
+</ul>
+<p><strong>Recommended learning activities for the experiment:</strong> Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</p>
+color configuration of wire for 5 valued logic supported by the simulator:
+<ul>
+<li>if value is UNKNOWN, wire color= maroon</li>
+<li>if value is TRUE, wire color= blue</li>
+<li>if value is FALSE, wire color= black</li>
+<li>if value is HI IMPEDENCE, wire color= green</li>
+<li>if value is INVALID, wire color= orange</li> 
+</ul>
+<strong>Test Plan :</strong>
+<ol>
+    <li>Take three 4-bits number. Give proper inputs to check the identity, commutativity, associativity of addition operation with interchanging input values, setting zero(0) to one input.</li>
+</ol>
+<p>Use Display units for checking output. Try to use minimum number of components to build. The pin configuration of the canned components are shown when mouse hovered over a component.</p>
+<strong>Assignment Statements :</strong>
+<br>
+<ul>
+    <li>Adder to add seven bits</li>
+    <li>Adder to add three 4-bit numbers</li>
+    <li>Adder to add five 4-bit numbers</li>
+    <li>Adder to add seven 4-bit numbers</li>
+</ul>
+
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Design of Wallace Tree Adders:</h4>
+<strong>Procedure to perform the experiment:Design of Wallace Tree Adder</strong>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To design the circuit we need 4 full adder, 1 'RCA 4 bit' component, 12 Bit switch(to give input), 5 Bit displays(for seeing output), wires.</li>
+    <li>The pin configuration of a component is shown whenever the mouse is hovered on any canned component of the palette or press the 'show pinconfig' button. Pin numbering starts from 1 and from the bottom left corner(indicating with the circle) and increases anticlockwise.</li>
+    <li>For a full adder input is in pin-5,6,8, output sum is in pin-4 and carry is pin-1</li>
+    <li>For a 'RCA 4 bit' input A0=pin-13 A1=pin-14 A2=pin-15 A3=pin-16, B0=pin-17 B1=pin-18 B2=pin-19 B3=20, C0=21, output S0=pin-12 S1=pin-11 S2=pin-10 S3=pin-9 Cout=pin-8</li>
+    <li>Click on the full adder component(in the Adder drawer in the pallet) and then click on the position of the editor window where you want to add the component(no drag and drop, simple click will serve the purpose), likewise add 3 more full adder(from the Adder drawer in the pallet), 1 'RCA 4 bit'(from the Adder drawer in the pallet,if it is not seen scroll down in the drawer), 12 Bit switches and 5 Bit Displays(from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer).connect the Bit switches with the inputs and Bit displays component with the outputs.</li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. According to the circuit diagram connect all the components. After the connection is over click the selection tool in the pallete.</li>
+    <li>See the output, Bit switches are used to give input so that you can toggle its value with a double click and see the outputs with different inputs.</li>
+</ul>
+<img  src="{%static 'computerOrganisationArchitecture/WALLACETREE.png' %}" alt="">
+<p><strong>Components :</strong></p>
+
+<p>To build a wallace tree adder to add three 4-bit input , we need :</p>
+<ul>
+    <li>4 full adders</li>
+    <li>4-bit adder</li>
+    <li>Display units to check the outputs.</li>
+    <li>Wires to connect.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>Design of Wallace Tree Adders :</h4>
+<strong>General guideline to use the simulator for performing the experiment:</strong>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator</li>
+    <li>The simulator supports 5-valued logic</li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component</li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette</li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal</li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position</li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click</li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format</li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building</li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar</li>
+    <li>Use 'plot graph' button to see input-output wave forms</li>
+    <li>Users can save their circuits with .logic extension and reuse them</li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output</strong></li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button</strong></li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,58 @@
+dcd{% extends 'csoLab/csoLabBasic.html' %}
+<!-- title -->
+{%block title%} Virtual Memory {% endblock %}
+
+{% block introduction%}
+{% load static %}
+<!-- theory content -->
+<h4>Virtual Memory
+</h4>
+<p>Virtual Memory provides a clean address space to the processes. Also by swapping in and swapping out pages gives the
+    illusion of the availability of a large physical memory module to the users.
+</p>
+{%endblock%}
+{% block theory %}
+<!-- objective conteent -->
+<h4>Virtual Memory
+</h4>
+<p>There are different page table organizations and page replacement policies possible while implementing virtual
+    memories in the operating systems.
+</p>
+{% endblock %}
+{% block objective %}
+<!-- procedure content -->
+<h4>Virtual Memory
+</h4>
+<p>The objective of this experiment is to understand page table organizations and page replacement policies.
+</p>
+{% endblock %}
+{% block procedure %} 
+<!-- experiment content -->
+<h4>Virtual Memory
+</h4>
+<p>Procedure is also explained in the experiment.
+</p>
+{% endblock %}
+{% block experiment %} 
+<!-- software content -->
+<h4>Virtual Memory
+</h4>
+<strong>Prerequeties</strong>
+    <p><strong>- This lab requires few Software Dependencies to run the Simulations</strong></p>
+    <ul>
+        <li>Adobe Flash Plugin, Java1.7</li>
+        <li>Browsers Firefox 50 and it's below versions, internet explorer.
+        </li>
+        <li>IcedTea Plugin for Linux Operating System.
+        </li>
+    </ul>
+    <strong>- We recommend the following for the smooth running of these simulations
+    </strong>
+    <ul>
+        <li>Install Adobe Flash Plugin - This will enable you to run the experiments that need Flash support. Please follow the link to install the Flash Plugin
+        </li>
+        <li>Install VirtualBox - Virtual Labs offers a free download of a customized VirtualBox with the required pre installed all the software dependencies(Java 1.7, IcedTea Plugin and Adobe Flash Plugin). Please follow the link to download, install and use 
+        </li>
+    </ul>
+    <p>To download please cilck on the <a href="{%static 'csoLab/'%}">link</a></p>
+{% endblock %}

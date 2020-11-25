@@ -1,0 +1,110 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+<p>The objective of Parallel and Distributed Processing (PDP) Models is to demonstrate some of the features of the biological neural networks. Constraint Satisfaction (CS) Model illustrates how we attempt to build concepts or arrive at conclusions based on some limited, partial, and sometimes partially erroneous knowledge. Following are the goals of the experiment:</p>
+<ul>
+<li style="margin-left: 30px;">To illustrate how a large number of weak constraints together will evolve into a definitive conclusion.</li>
+<li style="margin-left: 30px;">To illustrate how our concepts of various types of rooms can be captured by the CS PDP model from samples of description of these rooms.</li>
+</ul>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+<h4>Example of recognition of handwritten characters</h4>
+<p>In an apparently simple task of recognition of handwritten characters, it is difficult to articulate precisely what we capture as features in the patterns of several samples of each character. But when we are presented with a new sample of a handwritten character, most of the time we have no difficulty in recognizing it correctly. It is likely that from the samples of a handwritten character we may have captured a large number of weak evidence of features in our memory, so that with a new sample as input, the memory relaxes to a state that satisfies as many constraints as possible to the maximum extent.
+</p><br>
+<h4>Constraint satisfaction model</h4>
+<p>The above idea of constraint satisfaction can be captured in a PDP model consisting of several units and connections among the units. In this model the units represent hypotheses and the connections represent the knowledge in the form of constraints between any two hypotheses. It is obvious that the knowledge cannot be precise and hence the representation of the knowledge in the form of constraints may not also be precise. So the solution being sought is to satisfy simultaneously as many constraints as possible. Note that the constraints usually are weak constraints, and hence all of them need not be satisfied fully as in the normal constrained optimization problems. The degree of satisfaction is evaluated using a goodness-of-fit function, defined in terms of the output values of the units as well as the weights on the connections between units.</p><br>
+<h4>Example of capturing the concept of the type of room from descriptors</h4>
+<p>The constraint satisfaction PDP model is illustrated here with an example of how our concepts of various types of rooms can be captured by the model from samples of description of these rooms. Let us assume that we collect data from subjects about their understanding of the following five types of rooms: Living room, kitchen, bedroom, office and bathroom. In order to elicit information from the subjects, 40 descriptors are provided to them, in terms of which each subject can be asked to give his/her view of the above room types. The descriptors are shown in the following figure.</p><br>
+<img src="{%static 'annLab/table1.png'%}" alt="table"><br><br>
+<pre><strong>Figure 1:</strong>Table showing the descriptors used in the example.
+</pre>
+<p>Each subject can be asked to mark which of these descriptors are valid for each room type. From the data collected from a number of subjects, the weights between units are computed. Here the units represent the descriptors. The output of a unit is binary, indicating whether the description is present or not. The connection weights between units are derived fiom the co-occurrence patterns of the descriptors in the responses of the subjects for all the room types. One method of deriving the weights is as follows: <br>
+<br>
+    $$ w_{ij} = -log\frac{P(x_i = 0 ~ and ~ x_j = 1) P(x_i = 1 ~ and ~ x_j = 0)}{P(x_i = 0 ~ and ~ x_j = 0)P(x_i = 1 ~ and ~ x_j = 1)} \qquad(1)$$ <br>
+    <br>
+    where \(w_{ij}\) represents the symmetric weight connecting the unit \(j\) and unit \(i\). The numerator represents the product of probabilities that the hypotheses of the units i and j are competing with each other, i.e., one unit has the value \(x_i\) = 1 and the other has the value \(x_j\) = 0. The denominator represents the product of probabilities that the hypotheses of units i and j support each other. Thus if the evidence is greater for supporting hypotheses, then the weight \(w_{ij}\) will be positive, otherwise it is negative. Note that the probabilities are replaced by the relative frequencies in the data. In addition, each unit can have a bias reflecting the prior information about the hypothesis the unit represents. In this case the bias is given by $$ b_i = -log\frac{P(x_i=0)}{P(x_i=1)} \qquad(2)$$ <br>
+    <br>
+    There can be direct evidence for a hypothesis through an external input. The corresponding input unit could be clamped indicating that the hypothesis is either always 'ON' or always 'OFF'. Other types of external input could be a graded one indicating a weak evidence. <br>
+    <br>
+    A constraint satisfaction model can be displayed by means of a Hinton diagram as shown in the following figure. Each larger square in the figure represents a unit. There are 40 units corresponding to 40 descriptors. Within the square of each unit a replica of all the 40 units are displayed as dots, each dot representing the unit in its relative position in the diagram. Around each dot, a white square indicates a positive weight connecting the unit representing the dot and the unit enclosing the dot. Thus for example, the white square on the second dot in the unit for 'ceiling' indicates that the 'walls' unit is connected to the ceiling unit with a positive weight. The size of the white square indicates the strength of the positive connection. Likewise in the last unit corresponding to 'oven', the small dark square around the last but one dot indicates that the units 'oven' and 'computer' are connected with a negative weight. There are many units which have no connections at all.</p><br><br>
+<img src="{%static 'annLab/table2.png'%}" alt="">
+<br><br>
+<pre> <strong>Figure 2:</strong> Hinton diagram for the 'rooms' example.</pre>
+<p>The model is allowed to relax by computing the next state for each unit selected at random, computing sum of its weighted inputs and thresholding the weighted sum using a hard-limiting output function. For a given external evidence, say like 'oven' and 'ceiling' in the following figure, the state of the network after each cycle is shown in the figure. After 17 cycles the model settles down to an equilibrium state closest to the given external evidence, and the state description gives a description of the concept of the room satisfying the external evidence, namely 'kitchen', in this case. Thus the PDP model clearly demonstrates the concepts of rooms captured by the weak constraints derived from the data given by the subjects. The model captures the concepts of the five room types at the equilibrium states corresponding to the description that best fits each room type. A goodness-of-fit function (g) is defined for each state (\(x_1,x_2, ...,x_N)\) , where \(x_i\) = 1 or 0, as $$ g = \sum\limits_{i,j=1}^{N}w_{ij} x_i x_j + \sum\limits_{i=1}^{N} e_i x_i + \sum\limits_{i=1}^{N} b_i x_i \qquad(3)$$ <br> 
+    <br>
+    where \(e_i\) is the external input given as output of the \(i^{th}\) unit and \(b_i\) is the bias of the unit \(i\). At each of the equilibrium states the goodness-of-fit function is maximum. The model not only captures the concepts of the room types, but it also gives an idea of their relative separation in the 40 dimensional space.</p><br><br>
+    <br>
+    <img src="{%static 'annLab/table3.png'%}" alt=""> <br><br>
+    <br>
+    <pre><strong>Figure 3:</strong>The state of the CS model after each cycle, starting with an initial state where the units 'ceiling' and 'oven' are clamped.</pre>
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+<h4>Illustration of Constraint Satisfaction Model</h4>
+<p>In this experiment, we use the PDP model called the Constraint Satisfaction Model, to illustrate how we as humans, attempt building of concepts as well as to arrive at conclusions given weak evidences. We start with a set of 40 descriptors used to characterize different room types. These descriptors can also be referred as hypotheses . Also present with the model is the relationship between these descriptors, acting as constraints, which can either be weak or strong. So eventually given a set of such hypotheses and weak or strong constraints between these, we arrive at some knowledge towards a particular room type in this example. The experiment first shows all the 40 descriptors involved in capturing knowledge for a given room type.</p><br>
+<img src="{%static 'annLab/model1.png'%}" alt="" ><br><br>
+<pre><strong>Figure 1:</strong>Experiment window showing descriptors and other buttons.
+</pre>
+<p>The constraint satisfaction model which is illustrated in this experiment is already trained. We can view the model using Hinton Diagram by clicking on the "CLICK" button on top. A new panel showing the Hinton Diagram for all the descriptors appears where 40 hypotheses have their corresponding squares with constraints between them and other hypotheses being displayed within the larger square. Moving the mouse over the squares presents their zoomed picture at the bottom of the page.</p><br>
+<img src="{%static 'annLab/model2.png'%}" alt=""><br><br>
+<pre><strong>Figure 2:</strong>Experiment panel showing the Hinton diagram for the descriptors.
+</pre>
+<p>In the above diagram we notice that each large square represents a unit. There are 40 units corresponding to 40 descriptors. Within the square of each unit a replica of all the 40 units are displayed as smaller squares or dots, each dot representing the unit in its relative position in the diagram. Around each dot, weak constraints are depicted by smaller squares in lighter gray shade. Similarly strong constraints is represented by darker gray or black color with a square of larger size. There are many units which have no connections at all.
+<br><br>
+The constraint satisfaction model is used to illustrate the ability of human beings to build concepts or arrive at conclusion based on partial and sometime erroneous knowledge. The key idea of the model is that a large number of weak constraints when put together, evolve into a definitive conclusion. To test the model, some units can be clamped or say provided a constant external bias. As shown in the figure below,we can click on the units and have these clamped.</p>
+<br>
+<img src="{%static 'annLab/model3.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 3:</strong> Testing of the model by clamping some units.
+</pre>
+<p>After clamping the model is allowed to relax by computing the next state for each unit selected at random. The state computation is done by computing sum of the weighted inputs and thresholding the weighted sum using hard-limiting output function. After we click the test network button, we find that after running through some iterations the network settles to a state where no further change in the state of descriptors is visible. And then the state description gives the description of the concept of the room satisfying the external evidence or clamping</p><br>
+<br>
+<img src="{%static 'annLab/model4.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 4:</strong> Figure showing the states of descriptors after reaching equilibrium.
+</pre>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+    <ul> 
+    <li style="margin-left: 5%;">Click on the "CLICK" button on the top to see the Hinton diagram of the descriptors.</li>
+    <li style="margin-left: 5%;">Move your mouse on various squares to see a zoomed version of the descriptor states.</li>
+    <li style="margin-left: 5%;">Observe the relationship between various descriptors being depicted by the Hinton diagram.</li>
+    <li style="margin-left: 5%;">Click on the "BACK" button on the bottom to go back to the main panel of the experiment.</li>
+    <li style="margin-left: 5%;">Click on "Click here for testing the model" button to test the model.</li>
+    <li style="margin-left: 5%;">Select a few descriptors so as to clamp them, which provides external input or external bias. The selection of the descriptors can be undone by clicking again over these.</li>
+    <li style="margin-left: 5%;">Click on "TEST" button to test the network after clamping has been done.</li>
+    <li style="margin-left: 5%;">Observe the change in the state of some of the descriptors to provide evidence towards one of the room-types.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+<strong> For source code please click <a href="{%static 'annLab/exp2.txt'%}"> here </a></strong>
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Parallel and distributed processing - II: Constraint satisfaction neural network models</h4>
+<ul>
+    <li style="margin-left: 5%;">The constraint satisfaction model has a set of weak constraints defined between a given number of descriptos which is utilized to build conclusions.</li>
+    <li style="margin-left: 5%;">The Hinton diagram presents a pictorial view of the constraints present in the model. The relation between the descriptors trained for different room types is developed using \(w_{ij}\) given in the tutorial.</li>
+    <li style="margin-left: 5%;">While testing the model when some units are clamped, rest of the units experience a change in their states according the constraints between them and the clamped states. This can be verified from the Hinton diagram.</li>
+    <li style="margin-left: 5%;">Clamping different units while testing the model results in settling of the model in different equilibrium states. These equilibrium states may correspond to either the same or different room type.</li>
+</ul>
+{% endblock %}
+
+
+{% block experimentName %} {%endblock%}

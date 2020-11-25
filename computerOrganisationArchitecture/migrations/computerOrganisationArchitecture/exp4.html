@@ -1,0 +1,235 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Synthesis Of Flip Flops {% endblock %}
+{%load static%}
+{% block theory%}
+<!-- theory content -->
+<h4>Synthesis Of Flip Flops</h4>
+<p>Till now the experiments are based only on the combinational circuits where output at any instance depends only on
+    the current input. Most of components of digital logic consists combinational circuits but they likely to have
+    memory elements too. Those type of circuits are known to be <i>sequential circuits</i> . In a sequential circuit the
+    present
+    output is not only determined by the present input but also depends on the past output. flip-flops are the simplest
+    kind of sequential circuits. A flip-flop can maintain a binary state identity which means it can act as 1-bit memory
+    cell. There are different kind of flip-flops depending on the number of inputs or the way the inputs affect the
+    states. </p>
+
+<p><strong>Basic flip-flop</strong> : A basic flip-flop circuit can be constructed using two cross-coupled NAND/NOR
+    gates shown below .
+    Each flip-flop has two outputs, Q and Q', and two inputs, set and reset. When the set input goes to 1 the Q output
+    goes to 1 and the Q' goes to 1 when reset goes to 1. But when both set, reset are 1, both Q, Q' outputs go to 0 for
+    basic flip-flop circuit with NOR gates. In basic flip-flop circuit with NAND gates, when both input go to 0, both
+    outputs go to 0 violating the fact that the outputs of the flip-flop have to be complement of each other.</p>
+<img src="{%static 'computerorganisationArchitecture/basicff.png'%}" alt="">
+
+<p>There are various different kind of flip-flops. Some of the common flip-flops are: R-S flip-flop, D flip-flop, J-K
+    flip-flop, T flip-flop etc.</p>
+<ol>
+    <li> <strong>Clocked RS flip-flop :</strong> The basic flip-flop is modified by adding some gates to the inputs so
+        that the flip-flop changes state only when the clock pulse is 1. The truth table for this type of flip-flop is
+        shown below. If R is high then reset state occurs and when S=1 then set state. However, if both the inputs are 1
+        then it violates normal operation of flip-flop. <br>
+        <center><img src="{%static 'computerorganisationArchitecture/sr.png'%}" alt=""></center>
+    </li>
+    <li> <strong>JK flip-flop:</strong> JK flip-flop is a refinement of RS flip-flop where the indeterminate state of RS
+        type is defined. Input J and K are respectively the set and reset inputs of the flip-flop. When both the inputs
+        are high then the output of the flip-flop switches to its complemented state.A clocked JK flip-flop is shown
+        below. <br>
+        <center><img src="{%static 'computerorganisationArchitecture/jkff.png'%}" alt=""></center>
+        <p>In level triggred JK flip-flops, at J=1 and K=1, a timimg problem, known as race around condition arises
+            which can be explained by the following diagram. Let the width of a clock pulse is tp and the current output
+            Q is 1. when the clock is applied, after the propagation delay, say dt, the output will toggle and now the
+            output Q will be 0. If dt is less than tp, then after dt the output Q will again toggle and become 1. Thus
+            the output will oscillate between 0 and 1 within the tp interval, so at the end of the clock pulse tp, the
+            output will be ambiguous.</p>
+        <center><img src="{%static 'computerorganisationArchitecture/race.png'%}" alt=""></center>
+        <p>Master slave JK flip-flop overcome this race around condition. The following figure depicts the circuit
+            diagram.</p>
+        <center><img src="{%static 'computerorganisationArchitecture/msjkff.png'%}" alt=""></center>
+        However, the master slave circuit, though handles race around condition, it may work improperly initially, if it
+        has inconsistent initialization. Ideally, initially the master and the slave should have the same value, but if
+        it does not, then it leads to inconsistent initialization, for which the circuit behaves improperly. Bellow is a
+        case showing the improper output for an inconsistent initialization. Here, at clock=1, the master is supposed to
+        change its state acordingly, but.......
+        <center><img src="{%static 'computerorganisationArchitecture/msjk1.png'%}" alt=""></center>
+        <center><img src="{%static 'computerorganisationArchitecture/msjkfferror0.png'%}" alt=""></center>
+        <center><img src="{%static 'computerorganisationArchitecture/msjkffnotError1.png'%}" alt=""></center>
+        The problem occured due to the inconsistent initialization in the master slave JK flip-flop can be avoided by
+        asynchronously presetting or clearing the flip-flop. The circuit diagram is shown bellow.
+        <center><img src="{%static 'computerorganisationArchitecture/msjkPreClr.png'%}" alt=""></center>
+    </li>
+
+    <li><strong>The D flip-flop: </strong>The D flip-flop is used to transfer data to the flip-flop. It is basically the
+        JK flip-flop where the the K input is inverted. The circuit diagram of the D flip-flop is shown below.
+        <center><img src="{%static 'computerorganisationArchitecture/DfromJK.png'%}" alt=""></center>
+    </li>
+    <li><strong>Tflip-flop :</strong>The T or "toggle" flip-flop changes its output on each clock edge. The truth table
+        as follows:
+        <center><img src="{%static 'computerorganisationArchitecture/Ttruth.png'%}" alt=""></center>
+    </li>
+</ol>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of synthesis of flip-flops:</h4>
+<ul>
+    <li>to understand the basic concepts of flip-flops as elementary units of sequential circuits</li>
+    <li>to understand what is race around condition and why does it occur in JK flip-flop</li>
+    <li>to know how the race around condition which occures in JK flip-flop is avoided</li>
+    <li>to understand what kind of problems may occur in master slave JK flip-flop</li>
+    <li>to know the need for master slave JK flip-flop with asynchronous preset and clear</li>
+</ul>
+<strong>Examining behaviour of synthesis of flip-flops for the working module and module designed by the student as part
+    of the experiment (refer to the circuit diagrams):</strong>
+<p>Many gate level flip-flop circuits such as JK flip-flop circuit with NAND implementation can not be simulated by the
+    standard simulation algorithm, therefore, a special case analysis technique has been developed in order to support
+    simulation. The simulator contains both behavioral and structural flip-flops. Behavioral flip-flops do not need any
+    case analysis and race around condition does not occur in the JK behavioral flip-flop. To get a feel of real
+    hardwares this experiment is designed based on the structural gate level flip-flops.</p>
+<ul>
+    <li>Check set and reset properties of RS flip-flop by seting S = 1, R = 0 and S = 0, R = 1 respectively</li>
+    <li>Simulate the JK flip-flop with NAND gate implementation without case analysis by seting J = 1, K = 0</li>
+    <li>Simulate the JK flip-flop with NAND gate implementation with case analysis by seting J = 1, K = 0 and see the
+        log to know how the unknown loops are resolved through case analysis (there is one backedge for each loop
+        mentioned in the log)</li>
+    <li>Check the behavior of D flip-flop by setting D = 1 or D = 0</li>
+    <li>Check the race around condition of JK flip-flop at J = 1, K = 1</li>
+    <li>Simulate the master slave JK flip-flop with case analysis. If if does not give valid output then the reason is
+        inconsistent initialization (refer to theory)</li>
+    <li>Simulate master slave JK flip-flop with asynchronous preset and clear without case analysis. First initialize
+        the circuit with preset = 1, clear = 0 or preset = 0, clear = 1, then examine the avoidance of race around
+        condition in master slave JK flip-flop at J = 1, K = 1</li>
+</ul>
+<p><strong>Recommended learning activities for the experiment:</strong>Leaning activities are designed in two stages, a
+    basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz
+    questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to
+    perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the
+    student, having gone through the theory, objective and procuder. By performing the experiment on the working module,
+    students can only observe the input-output behavior. Where as, performing experiments on the designed module,
+    students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to
+    perform the experiments following the given guideline to check behavior and test plans along with their own circuit
+    analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the
+    accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit
+    design experience. At any time, students can mature their knowledge base by further reading the references provided
+    for the experiment.</p>
+Color configuration of wire for 5 valued logic supported by the simulator:
+<ul>
+    <li>if value is UNKNOWN, wire color= maroon</li>
+    <li>if value is TRUE, wire color= blue</li>
+    <li>if value is FALSE, wire color= black</li>
+    <li>if value is HI IMPEDENCE, wire color= green</li>
+    <li>if value is INVALID, wire color= orange</li>
+</ul>
+<strong>Test plan:</strong>
+<ul>
+    <li>In a master slave flip-flop check when master changes its state and when slave changes its state according to
+        the master with respect to the clock</li>
+    <li>Figure out the design difference between master slave D flip-flop and master slave JK flip-flop</li>
+</ul>
+<strong>Assignment Statements :</strong>
+<ul>
+    <li>Design an edge-triggered D flip-flop
+    </li>
+    <li>Design a JK flip-flop with asynchronous preset and clear.
+    </li>
+    <li>Design a master slave D flip-flop.
+    </li>
+    <li>Design T flip-flop using JK flip-flop.
+    </li>
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<H4>Guideline to perform the experiment:Synthesis of flip-flops</H4>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.
+    </li>
+    <li>The experiment is needed to be performed on the given structural working modules of all kinds of flip-flops.
+    </li>
+    <li>The flip-flop components are in the sequential circuit drawer in the pallet. The pin configuration is shown
+        whenever the mouse is hovered on any canned component of the palette or press the 'show pinconfig' button. Pin
+        numbering starts from 1 and from the bottom left corner (indicated with the circle) and increases anticlockwise.
+    </li>
+    <li>Click on the flip-flop component in the pallet and then click on the position of the editor window where you
+        want to add the component (no drag and drop, simple click will serve the purpose), likewise add free running
+        clock, bit switches and bit displays (from Display and Input drawer of the pallet, if it is not seen scroll down
+        in the drawer)
+    </li>
+    <li>To connect any two components select the Connection menu of palette, and then click on the source terminal and
+        click on the target terminal. connect all the components, connect the clock to the clock port of the flip-flop,
+        connect bit switches to the proper input ports of the flip-flop, connect bit displayes to the proper output
+        ports of the flip-flop.
+    </li>
+    <li>To see the circuit working, click on the selection tool in the pallet then give input by double clicking on the
+        bit switch, turn on the case analysis feature in the simulator if the pin configuration of that flip-flop
+        mentions the case analysis as required, then start the clock now check behavior of the flip-flop according the
+        guideline given in the objective.
+    </li>
+</ul>
+<h4>Components :</h4>
+<strong>To build any gate level flip-flop, we need :</strong>
+<ul>
+    <li>Logic Gates.</li>
+    <li>Wires to connect.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li> <strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong></li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}
+{% block experimentName %} Synthesis of Flip Flops{%endblock%}

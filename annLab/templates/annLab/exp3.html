@@ -1,0 +1,152 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Perceptron learning</h4>
+<p>The objective of this experiment is to illustrate the concept of perceptron learning in the context of pattern classification task. Following are the goals of the experiment:</p>
+<ul>
+    <li style="margin-left: 4%;">To demonstrate the perceptron learning law.</li>
+    <li style="margin-left: 4%;">To illustrate the convergence of the weights for linearly separable classes.
+    </li>
+    <li style="margin-left: 4%;">To observe the behaviour of the neural network for two classes which are not linearly separable.</li>
+</ul>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Perceptron learning</h4><br>
+<h4>Structure of two-layer feedforward neural network</h4>
+<p>A perceptron is a model of a biological neuron. The input to a perceptron is an M-dimensional vector, and each component/dimension of the vector is scaled by a weight. The sum of weighted inputs is computed and compared against a threshold. If the weighted sum exceeds the threshold, the output of the perceptron is '1'. Otherwise, the output of the perceptron is '-1' (or '0'). The output function of a perceptron is hard-limiting function. Thus the output of the perceptron is binary in nature. The following figure illustrates a perceptron</p><br>
+<img src="{%static 'annLab/unit.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 1:</strong> Perceptron Model.</pre>
+<p>where M = number of the elements in the input vector 
+<br>
+<br>
+    A two-layer feedforward neural network with hard-limiting output function for the unit in the output layer can be used to perform the task of pattern classification. The number of units in the input layer is equal to the dimension of the input vectors. The units in the input layer are all linear units, and the input layer merely contributes to fan-out the input to each of the the output units. The output layer may consist of one or more perceptrons. The number of perceptron units in the output layer depends on the number of distinct classes in the pattern classification task. If there are only two classes, then one perceptron in the output layer is sufficient. Two perceptrons in the output layer can be used when dealing with four different classes in the pattern classification task. Here, we consider a two-class classification problem, and hence only one perceptron in the output layer.</p><br>
+<h4>Two-class pattern classification problem</h4>
+<p>Let us assume that one subset of input pattern vectors belong to one class, say, class \(A_1\), and the remaining subset of input pattern vectors belong to another class, say, class \(A_2\). Let a = \( (a_1, a_2,...,a_M) \) denote an input pattern vector. The objective in a pattern classification problem is to determine a set of weights w = \((w_1, w_2,...,w_M) \), such that the weighted sum <br>
+<br>
+    $$ \sum\limits_{i=1}^{M} w_i a_i \gt \theta, \qquad(1)$$ if \( a \) belongs to \(A_1\), and <br>
+    <br>
+    $$ \sum\limits_{i=1}^{M} w_i a_i \le \theta, \qquad(2)$$ if \( a \) belongs to \(A_2\). <br>
+    <br>
+    The dividing surface between the two classes is given by <br>
+    <br>
+    $$ \sum\limits_{i=1}^{M} w_i a_i = \theta. \qquad(3)$$ <br>
+    <br>
+    This equation represents a linear hyperplane in the \( M \)-dimensional space. For two-dimensional input vectors, this equation represents a straight line. The solution of the classification problem involves determining the weights and the threshold value, such that the resulting hyperplane acts as a dividing surface between the two classes. This is achieved by means of a learning rule, which specifies the manner in which the weights and the threshold value need to be updated.</p>
+    <br>
+    <h4>Perceptron learning law</h4>
+    <p>The goal of perceptron learning law is to systematically adjust the weights and the threshold in such a manner that a dividing surface between two classes is obtained. The perceptron learning law for a two-class pattern classification problem may be stated as follows: <br>
+<br>
+        w\((m+1) = \)w\((m) + \eta \) a, if a \(\epsilon A_1 \) and w\(^{T}(m).\)a \( \le 0, \) and <br>
+        <br>
+        w\((m+1) = \)w\((m) - \eta \) a, if a \(\epsilon A_2 \) and w\(^{T}(m).\)a \( \gt 0. \qquad(4)\) <br>
+        <br>
+        Here \( m \) denotes the index of iteration, or time step. Also, a and w are augmented input and weight vectors. That is <br>
+        <br>
+        a = \((-1, a_1,a_2,...,a_M)\), and <br>
+        <br>
+        w = \((\theta, w_1,w_2,...,w_M).\) <br>
+        <br>
+        The term \( \eta \) denotes the learning rate, and can be set to a small value (say, 0.1 to 0.5). The value of \( \eta \) can be varied in each learning step, although it is kept constant in perceptron learning. Note that the learning rule modifies the weights only when an input vector is misclassified. When an input vector is classified correctly, there is no adjustment of weights and the threshold. When presenting the input vectors to the network (any neural network in general), we use a term called epoch, which denotes one presentation of all the input pattern vectors to the network. To obtain suitable weights, the learning rule may need to be applied for more than one epoch, typically several epochs. After each epoch, it is verified whether the existing set of weights can correctly classify the input vectors. If so, then the process of updating the weights is terminated. Otherwise the process continues till a desired set of weights is obtained. Note that once a separating hypersurface is achieved, the weights are not modified.</p> <br>
+        <h4>Perceptron convergence theorem </h4>
+        <p>This theorem states that the perceptron learning law converges to a final set of weight values in a finite number of steps, if the classes are linearly separable. The proof of this theorem first assumes that there exists a set of weights which can correctly classify the input vectors. Then, a bound is obtained on the number of steps used to arrive at the optimum set of weights. This can be illustrated by the figure below, where begining intially with a set of random weight, the decision boundary finally settles as a valid classifier in finite number of steps.</p> <br>
+        <img src="{%static 'annLab/unit1.png'%}" alt=""><br>
+        <pre><strong>Figure 2:</strong> Example to illustrate the perceptron convergence in pattern classification problem.</pre>
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Perceptron learning</h4>
+<br>
+<h4>Illustration of perceptron learning for two-dimensional input</h4>
+<p>Consider two linearly separable classes, where each class consists of two-dimensional input pattern vectors. An example of two-class classification problem is shown below. The input vectors belonging to each class are shown in different colours in the following figure. The line is defined by the equation \( w_1 x + w_2 y = \theta.\) The straight line is defined by the initial values of the weights and the threshold.</p> <br>
+<img src="{%static 'annLab/graph.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 1:</strong> Initial weights and the classes to be separated.</pre><br>
+<p>After the convergence of weights, the line separates the two classes. This is shown in the following figure</p><br>
+<img src="{%static 'annLab/graph1.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 2:</strong> After the weights have converged, the final values of weights determine the line separating the classes.</pre><br>
+<h4>Convergence of weights and threshold value</h4>
+<p>The following figures show the variation of threshold \( \theta \), and the weights \( w_1 \) and \(w_2\), as functions of the iteration index. The convergence of \( \theta, w_1 \) and \( w_2 \) can be noted.</p>
+<br>
+<img src="{%static 'annLab/graph2.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 3:</strong> The variation in values of \(\theta\) with iterations as network reaches convergence.</pre><br>
+<br>
+<img src="{%static 'annLab/graph3.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 4:</strong> The variation in values of weight \(w_1\) with iterations as network reaches convergence.</pre><br>
+<img src="{%static 'annLab/graph4.png'%}" alt=""><br>
+<br>
+<pre><strong>Figure 5:</strong> The variation in values of weight \(w_2\) with iterations as network reaches convergence.</pre>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Perceptron learning</h4>
+<ul>
+    <li style="margin-left: 2%;">Select a problem type for generating two classes as 'Linearly separable' or 'Linearly inseparable'.</li>
+    <li style="margin-left: 2%;">Choose for a number of samples per class and number of iterations the perceptron network must go through.</li>
+    <li style="margin-left: 2%;">Choose a step size to move over the number of iterations for display of results for the perceptron network.</li>
+    <li style="margin-left: 2%;">Intialize the perceptron network by clicking on the 'Init perceptron' button.</li>
+    <li style="margin-left: 2%;">Click on button for display of results according to the given step size.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Perceptron learning</h4><br>
+
+
+
+
+<h4>Illustration of perceptron learning</h4>
+<form>
+        
+    <div class="form-group">
+      <label style="display: inline-block;" for="exampleFormControlSelect1">  <strong>Problem type</strong> </label>
+      <select style="display: inline-block;" class="form-control col-md-2" id="exampleFormControlSelect1">
+        <option>Linearly Seperable</option>
+        <option>Linearly Inseperable</option>
+      </select>
+    </div>
+    <div class="form-inline">
+        <label for="inlineFormInputName2">No. of samples per class:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+        <pre>  </pre>
+        <label  for="inlineFormInputName2">No. of iterations:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="iteration" placeholder="20"> 
+      </div>
+      <div class="form-inline">
+        <label for="inlineFormInputName2">Sample Step Size:</label> <pre>      </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sampleSize" placeholder="2">
+        <pre>  </pre>
+        <label  for="inlineFormInputName2">Iteration Step Size</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="iterationSize" placeholder="2"> 
+      </div>
+      <input class="btn btn-primary" type="submit" value="Init Perceptron">
+      <input class="btn btn-primary" type="submit" value="Next Sample">
+      <input class="btn btn-primary" type="submit" value="Next Iteration">
+
+    
+    
+  </form>
+
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Perceptron learning</h4>
+<ul>
+    <li style="margin-left: 2%;">For the given perceptron network, observe that the intial assignment of weights is completely random.</li>
+    <li style="margin-left: 2%;">Observe the number of iterations required for the weights to converge, i.e. to achieve classification for the given case.</li>
+    <li style="margin-left: 2%;">Repeat the experiment for different number of samples per class and observe if there exists a relation between the number of samples per class and iteration steps required to converge .</li>
+</ul>
+{% endblock %}
+{% block experimentName %} {%endblock%}

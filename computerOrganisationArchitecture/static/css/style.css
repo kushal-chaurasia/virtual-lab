@@ -1,0 +1,52 @@
+
+h1 {
+    color: white;
+    text-align: center;
+	border-style: dotted;
+}
+table,th,td,tr{
+	background-color:#ddffff;
+	border:1px  solid black;
+	text-align:center;
+}
+.cla{
+	width:230px;
+	height:50px;
+}
+.cla1{
+	width:200px;
+	height:50px;
+	text-align:left;
+}
+.img{
+	width:15px;
+	height:15px;
+}
+table{
+	width:80%;
+	height:80%;
+}
+
+p {
+	text-align: left;
+    
+}
+#para1 {
+    text-align: center;
+    color: red;
+}
+#canv{
+	width:100%;
+	height:100%;
+	background-color:white;
+}
+div{
+	padding-top:4px;
+	padding-bottom:4px;
+	text-align:left;
+	border: 0.025px solid gray;
+}
+label:hover 
+{
+background-color: #dddddd;
+}

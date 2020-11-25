@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forward Bias Silicon Diode</title>
+    <script src="{% static 'js/canvasjs.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.jqplot.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shCore.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushJScript.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushXml.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jqplot.meterGaugeRenderer.min.js '%}"></script>
+    <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pop_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diodefrwcss.css' %}">
+
+</head>
+
+<body>
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+        <div>
+            <div id="dialogboxhead"></div>
+            <div id="dialogboxbody"></div>
+            <div id="dialogboxfoot"></div>
+        </div>
+    </div>
+    <div id="whole_body"
+        style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; top:0px;height:950px; width:1160px;">
+        <div style="font-size:25px; text-align:center;padding-right:100px; height:60px"> <b> Forward Bias Silicon Diode
+            </b></div>
+        <div id="ckt_values1" style="position:relative; top:0px;left:460px; height:300px; width:400px">
+            <p>
+                <img src="{% static 'beLab/diodefrw.png' %}" id="frwdimage"
+                    style="width:400px;height:300px;position:absolute;right:130px" />
+            <div class="example-content" style="position:absolute; top:10px;right:150px;left:200px">
+                <link rel="stylesheet" type="text/css" href="{% static 'css/css_metergauge.css' %}">
+                <!------------------------------------Metergauge1(Voltmeter)-------------------------------------------------->
+                <div id="chart1" class="plot" style="position:relative;width:200px; height:110px;top:80px;right:50px">
+                </div>
+                <script src="{% static 'js/js_metergaugefrd_si.js ' %}"></script>
+
+                <!------------------------------------Metergauge2(Ammeter)---------------------------------------------------->
+                <div id="chart2" class="plot" style="position:absolute;width:250px; height:110px;right:50px;top:-50px">
+                </div>
+
+
+                <p style="position:absolute;top:150px;right:40px;font-size:15px"><b>V</b></p>
+                <p style="position:absolute;top:20px;right:215px;font-size:15px"><b>A</b></p>
+                <p style="position:absolute;top:20px;right:350px;font-size:15px"><b>R</b></p>
+            </div>
+            <p style="position:absolute;top:275px;right:490px;font-size:15px"><b>V<sub>DC</sub></b></p>
+            <input type="text" id='dc' value="" placeholder="Volt" oninput="txtchng()"
+                style="background-color:#e6f5ff;position:absolute; top:290px;  right:405px;  width:70px" readonly />
+            <input type="text" value="" id='volt' placeholder="Volt"
+                style="background-color:#e6f5ff;position:absolute; top:173px;  right:110px; width:70px" readonly />
+            <input type="text" value="" id='amp' placeholder="Ampere"
+                style="background-color:#e6f5ff;position:absolute; top:42px;  right:285px; width:70px" readonly />
+            <input type="text" value="" id="res" placeholder="Resistance" oninput="txtchnge()"
+                style="background-color:#e6f5ff;position:absolute; top:40px;  right:390px; width:90px" readonly />
+
+        </div>
+
+
+        <div id="cntrwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:20px;width:340px;height:200px;right:50px;">
+            <div id="cntrlr"
+                style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:340px;font-size: 16px;font-weight: bold;">
+                <p style="text-align:center;padding-right:210px;color:white"><b>CONTROLS</b></p>
+            </div>
+            <div id="slide" style=" position:absolute; top:70px; right:-10px; width:350px;  border-radius: 10px;">
+                &nbsp Select Diode: <select id="diode_type" onchange="setdiode()" style="width:110px;">
+                    <option value="choose" selected>Choose Diode</option>
+                    <option value="0.6">1N4001</option>
+                    <option value="0.6">1N4004</option>
+                    <option value="0.6">1N4007</option>
+                    <option value="0.5">1N4148</option>
+                    <option value="0.62">1N4448</option>
+                    <option value="0.6">1N5408</option>
+
+
+                </select> <b>V<sub>F</sub< /b> <input type="text" value="" id="diodevalue" placeholder="Value"
+                            style="background-color:#e6f5ff;position:absolute; top:0px;  right:30px; width:80px"
+                            readonly /> <br>
+                        &nbsp&nbsp DC volt : &nbsp&nbsp&nbsp <input type="range" name="inpdc" id="vdc" min="0.2" max="5"
+                            step="0.1" value="" oninput="sliderChange()" style="width:180px"> &nbsp; Volt<br>
+
+                        &nbsp&nbsp Resistance : <input type="range" name="resis" id="res1" min="100" max="2000" step="1"
+                            value="" oninput="textChange()" style="width:180px"> &nbsp; ohms<br>
+
+                        <br>
+                        <input type="button" id="add" value="Add to Table" onclick="tabled()"
+                            style="position:absolute; top:100px; width:100px;  right:250px;cursor:pointer ; display:block" />
+                        <input type="button" id="plt" value="Plot" onclick="plot()"
+                            style="position:absolute; top:100px; width:100px; right:140px;cursor:pointer; display:block " />
+
+
+                        <input type="button" id="clr" value="Clear" onclick="clearf()"
+                            style="position:absolute; top:100px; width:100px; right:30px;cursor:pointer  " />
+            </div>
+        </div>
+        <div id="msg" style="position:absolute;top:280px;right:100px;width:270px;height:90px;">
+            <p id="demo" style="color:red;"></p>
+            <p id="demos" style="color:green;"></p>
+            <input type="button" value="Check for Reverse Bias" id="reverse_si" onclick="checkreverse()"
+                style="position:absolute;left:150px;top:15px;display:none" />
+        </div>
+        <div id="description"
+            style="background-color: #3385ff;   position:absolute; top:10px; left:10px; width:307px;font-size: 16px;font-weight: bold;">
+            <div class="dropdown">
+                <p style="text-align:center;padding-right:150px;color:white"> INSTRUCTION</p>
+                <div class="dropdown-content">
+                    <ol type="1">
+                        <li>Set DC voltage to 0.2 V .</li>
+                        <li>Select the diode.</li>
+                        <li>Set the resistor.</li>
+                        <li>Voltmeter is placed parallel to Silicon diode and ammeter series with resistor.</li>
+                        <li>The positive side of battery to the P side(anode) and the negative of battery to the N
+                            side(cathode) of the diode.</li>
+                        <li>Now vary the voltage upto 5V and note the Voltmeter and Ammeter reading for particular DC
+                            voltage . </li>
+                        <li>Take the readings and note Voltmeter reading across Silicon diode and Ammeter reading.</li>
+                        <li>Plot the V-I graph and observe the change.</li>
+                        <li> Calculate the dynamic resistance of the diode. rd=&#916;V/&#916;I </li>
+                        <li>Therefore from the graph we see that the diode starts conducting when the forward bias
+                            voltage exceeds around 0.6 volts (for Si diode). This voltage is called cut-in voltage.</li>
+
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        <div id="tblwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:100px;width:305px;height:455px;left:10px">
+            <div
+                style="position:absolute; font-size:16px;background-color: #3385ff;  top:0px;left:0px; width:305px; height:50px;font-weight: bold;">
+                <p style="text-align:center;padding-right:80px;color:white"> <b> EXPERIMENTAL TABLE</b></p>
+            </div>
+            <div id="table"
+                style="background-color:#e6f5ff;position:absolute;top:50px;width:305px;height:405px; left:0px;overflow-y: auto;">
+
+                <table id="mytable" border="1">
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Forward Voltage(Volt)</th>
+                        <th>Forward Current(mAmp)</th>
+
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+        <div id="grpwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:570px;width:1050px;height:360px;left:10px">
+            <div
+                style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:1050px;font-weight: bold;">
+                <p style="text-align:center;padding-right:910px;color:white"> <b> GRAPH PLOT</b></p>
+
+                <div class="tooltip"><button id="calci" onclick="printf()"
+                        style="position:absolute;padding-right:40px; cursor:pointer;top:13px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;">
+                        <img src="{% static 'beLab/Print Filled.png' %}" alt="Save icon"
+                            style="width:20px;height:20px;top:13px;" /></button>
+                    <span class="tooltiptext">Print</span></div>
+
+            </div>
+            <div id="chartContainer" style=" position:absolute;  top:50px;  left:0px; height:300px; width:1050px;  ">
+
+            </div>
+        </div>
+
+        <!--<div align="center" style="position:absolute; top:960px; width:1160px">
+      <INPUT TYPE="button" onClick="printf()" value="Click here to print" style="cursor: pointer; text-align:center; font-size: 20px; height:40px; width:500px" >
+      <br><br></div>-->
+    </div>
+    <script src="{% static 'js/forwardbiaseddiode_si.js' %}"></script>
+
+</body>
+
+</html>

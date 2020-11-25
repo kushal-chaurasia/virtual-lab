@@ -1,0 +1,138 @@
+{% extends 'csoLab/csoLabBasic.html' %}
+<!-- title -->
+
+{%block title%} Representation of Integers and their Arithmetic {% endblock %}
+
+{% block introduction%}
+{% load static %}
+<!-- theory content -->
+<h4>Representation of Integers and their Arithmetic</h4>
+<p>ntegers are primitive data structures provided by default by almost all processors and programming languages. In this
+    lab we study the represenation of integers and the arithmetic operations on them.</p>
+<p>Please read the Lecture Notes at this <a href="{%static 'csoLab/integerRepresentation.pdf' %}" download>link</a> for
+    the necessary background to work on this experiment.</p>
+{%endblock%}
+{% block theory %}
+<!-- objective conteent -->
+<p>What does the 8-bit string 11100000 represent? It could mean 224, -96, -31 and -32 when treated
+    as an unsigned integer, sign-magnitude integer, one’s complement integer and two’s complement
+    integer respectively. Or it could be mean the ASCII character &alpha;. So what a bit string means
+    depends on the semantics or the definition we associate with it. In this write-up we shall study
+    binary representation of unsigned and signed integers which is a primitive data structure supported
+    by all modern processors.</p>
+<strong>1 Unsigned Integers</strong>
+<p>Consider the bijective function B2Uw : {0, 1}w ! {0, · · · , 2w −1} which maps w-bit binary strings
+    to unsigned integers as follows.</p>
+<img src="{%static 'csoLab/crotExp.png'%}" alt="">
+<p>For example B2U4(0101) = 5 and B2U4(1101) = 13. You can observe that the function B2Uw
+    and its inverse are efficiently computable. In other words, we can easily compute the binary
+    representation of an unsigned integer in the range of the function making it a viable representation.
+    In C-language all variables of type unsigned integers are allocated a fixed number of bytes (or
+    equivalent number of bits) for storage which is typically 4 bytes or 32 bits. You can check this by
+    running the following C-program on your machine.</p>
+<pre>#include <stdio.h>
+            main()
+            {
+            printf("Size of Unsigned Integer: %d\n", sizeof(unsigned int));
+            }</pre>
+<p>Having represented unsigned integers in binary, we would like to figure out how to perform addition
+    and multiplication operations. Let us just focus on addition operation in our discussion and the
+    relevant ideas can be applied to multiplication operations too with suitable modifications. We
+    presume that you know the algorithm to add two binary numbers as illustrated in the Figure 1
+    1. We also know the analogous algorithm for addition in the unsigned integer domain. Now
+    the beauty of the mapping function B2Uw is that it shows the isomorphic structure between the
+    unsigned integers and their binary representation with respect to the addition operation (and also
+    multiplication operation). To elaborate more on this idea let us define the w-bit addition of two
+    numbers as the regular binary addition except that we ignore the carry-out bit from the MSB if at
+    all there is one. With this definition, when we add two w-bit numbers, the result is always a w-bit
+    number. The key claim here is whether we do addition of two unsigned integers in decimal notation</p>
+<img src="{%static 'csoLab/carryOutBit.png'%}" alt="">
+<pre>Table 1: Isomorphic structure of 3-bit binary numbers and their unsigned intrepetation</pre>
+<p>which we are familiar with or we do addition of their respective w-bit binary representations, the
+    net result is just the same except for the difference in their notational representation. This claim
+    is true so far as the result of the addition operation does cause an overflow, in other words the
+    result would fit into w-bits. Consider the following Table 1 with three columns. If we want to
+    add 1 and 4, whether we carry out addition in column 2 or in column 3, the respective results
+    would fall in Row 5. However if we want to add 4 and 5, then the result wouldn’t fall in the range
+    in the column 2 and the result in the column 3 would fall in Row-1 (recall how w-bit addition
+    is defined). It can be observed though that there is isomorphism between (mod 2w) addition of
+    decimal numbers and w-bit addition of binary numbers without worrying about overflow at all
+    since it would never happen in modular arithmetic. It has to be noted here that we can use
+    any other function (preferably bijective) from the w-bit strings to unsigned numbers and create
+    a isomorphism between the decimal domain and the binary domain by appropriately defining the
+    addition operations in the binary domain. We leave it to you to ponder whether such an alternate
+    function has any utility. It is easy to note here that the addition of two w-bit unsigned numbers
+    would cause an overflow if and only if the carry-out bit is 1.</p>
+<p><strong>2 Signed Integers</strong></p>
+<pre>  1. Sign-Magnitude Representation. The mapping function here is:</pre>
+<img src="{%static 'csoLab/exp1eq02.png'%}" alt="">
+<img src="{%static 'csoLab/exp01comtent01.png'%}" alt="">
+<p>Pretty much all systems use 2’s complement representation for signed integers. We shall see the
+    rationale behind such a choice in the following discussion. First you can verfiy that among the
+    3 mapping functions only the B2Tw function corresponding to 2’s complement representation is
+    bijective. Let us stick to our definition of w-bit addition of binary numbers and we shall see that
+    there is an isomorphic structure between signed integers and their 2’s complement representation
+    with respect to addition. It has to be noted that this isomorphism holds if and only if the results of
+    addition does not cause overflow or underflow. Sign-magnitude and 1’s complement representation
+    of signed integers doesn’t carry this isomorphic structure with respect to the canonical binary
+    addition rules. It is worth noting that we can create an isomorphic structure even with these
+    representations by suitable modifying the rules of binary addition. To understand these ideas
+    consider the Table 2. For example if we add Row3 with Row4, the resulting binary number is 111
+    which lies in Row 7, whereas if we perform the addition on Sign-Magnitude numbers in Column
+    2, we get a value in Row 3 indicating the lack of isomorphic structure with respect to addition
+    between the binary and sign-magnitude representation of numbers. It can be verified that there
+    is no isomorphic structure between binary and one’s complement representation of numbers by
+    adding elements in Row 5 and Row 6. In binary addition we get an element in Row 3, whereas in
+    the one’s complement representation we get an element in Row 4 in Column 3. However it can be
+    verified that as long as there is no overflow there is a perfect isomorphism with respect to addition
+    between binary and two’s complement representation of numbers.</p>
+
+<strong>3 Unsigned versus 2’s Complement Addition</strong>
+<p>From the previous discussion it could have been noted that the rules of binary addition for both
+    Unsigned and 2’s Complement Addition is exactly the same. It means that we could use the same
+    k-bit ripple carry to add any 2 unsigned or 2’s complement numbers and we need not tell the k-bit
+    ripple adder whether we are doing signed arithmetic or unsigned arithmetic. To illustrate this point
+    further let us that I have a k-bit adder circuit with me, some of the students in the class want to
+    3
+    do 2’s complement addition and some of you may want to perform unsigned addition over k-bit
+    numbers using my k-bit adder circuit. But you don’t want to reveal me whether you are performing
+    signed or unsigned arithmetic for whatever reasons you have. It is no big deal for my k-bit adder
+    circuit as the rules of addition remains the same for both signed and unsigned numbers. However
+    there is a catch here. The catch is that overflow conditions for signed and unsigned arithmetic are
+    different.</p>
+
+
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+The objective of this experiment is to learn about representation of signed and unsigned integers. Specifically you will
+learn the advantages of using 2's complement representation of numbers for performing arithmetic over other
+representations..
+{% endblock %}
+{% block procedure %}
+<!-- experiment content -->
+Procedure is expalined in the experiment itself
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content  ye section pura copy paste mar lena asif-->
+<p>Make sure that you have following prerequisites installed to run experiment</p>
+<p>This lab requires few Software Dependencies to run the Simulations</p>
+<ol>
+    <li>Adobe Flash Plugin, Java1.7</li>
+    <li>Browsers Firefox 50 and it's below versions, internet explorer.</li>
+    <li>IcedTea Plugin for Linux Operating System.</li>
+</ol>
+<p>We recommend the following for the smooth running of these simulations</p>
+<ol>
+    <li>Install Adobe Flash Plugin - This will enable you to run the experiments that need Flash support. Please follow
+        the <a href="https://get.adobe.com/flashplayer/" target="_blank">link</a> to install the Flash Plugin</li>
+    <li>Install VirtualBox - Virtual Labs offers a free download of a customized VirtualBox with the required pre
+        installed all the software dependencies(Java 1.7, IcedTea Plugin and Adobe Flash Plugin). Please follow the <a
+            href="https://www.virtualbox.org/wiki/Downloads" target="_blank">link</a> to download, install and use
+        VirtualBox </li>
+</ol>
+<p>For stimulation please click on the <a href="{%static 'csoLab/IntegerArithmetic.swf'%}">link</a></p>
+
+{% endblock %}

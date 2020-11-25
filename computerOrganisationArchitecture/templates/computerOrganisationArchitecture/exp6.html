@@ -1,0 +1,157 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Combinational Multipliers {% endblock %}
+
+{% block theory%}
+<!-- theory content -->
+{%load static%}
+<h4>Design of Combinational Multipliers</h4>
+<p>Combinational Multipliers do multiplication of two unsigned binary numbers.Each bit of the multiplier is multiplied against the multiplicand, the product is aligned according to the position of the bit within the multiplier, and the resulting products are then summed to form the final result. Main advantage of binary multiplication is that the generation of intermediate products are simple: if the multiplier bit is a 1, the product is an appropriately shifted copy of the multiplicand; if the multiplier bit is a 0, the product is simply 0.</p>
+<p>The design of a combinational multiplier to multiply two 4-bit binary number is illustrated below:</p>
+<center><img src="{%static 'computerOrganisationArchitecture/exp6.png' %}" alt=""></center>
+If two n-bit numbers are multiplied then the output will be less than or equals to 2n bits.
+<p><strong>Some features of the multiplication scheme:</strong></p>
+<ul>
+    <li>it can be designed by unrolling the multiplier loop</li>
+    <li>instead of handling the carry out of partial product summation bit,the carry out can be sent to the next bit of the next step</li>
+    <li>this scheme of handling the carry is called carry save addition</li>
+    <li>this scheme is more regular and modular</li>
+</ul>
+<strong>Logic diagram:</strong>
+<center><img src="{%static 'computerOrganisationArchitecture/combmul (1).png' %}" alt=""></center>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of 4 bit carry lookahead adder:</h4>
+<strong>To show that it is possible to construct a 4x4 combinational multiplier from an array of AND gates, half-adders and full-adders.</strong>
+<ul>
+    <li>understanding behaviour of combinational multiplier from module designed by the student as part of the experiment</li>
+    <li>understanding the scheme implemented for the multiplication which is as follows (along with the logic diagram bellow):</li>
+    <ul>
+        <li>it can be designed by unrolling the multiplier loop</li>
+        <li>instead of handling the carry out of partial product summation bit,the carry out can be sent to the next bit of the next step</li>
+        <li>this scheme of handling the carry is called <i>carry save addition</i> </li>
+    </ul>
+    <li>The multiplier will multiply two 4 bit numbers</li>
+</ul>
+<strong>logic diagram:</strong>
+<center><img src="{%static 'computerOrganisationArchitecture/combmul (2).png' %}" alt=""></center>
+<strong>Examining behaviour of combinational multiplier for the working module and module designed by the student as part of the experiment (refer to the circuit diagram) <br>
+    Loading data in the combinational multiplier (refer to procedure tab for further detail and experiment manual for pin numbers)</strong>
+    <ul>
+        <li>load the two input numbers as:</li>
+        <ul>
+            <li>multiplicand A (A3 A2 A1 A0): A3=1, A2=1, A1=0, A0=0</li>
+            <li>multiplier B (B3 B2 B1 B0): B3=1, B2=0, B1=0, B0=1</li>
+        </ul>
+    </ul>
+    <strong>Examining the behaviour:</strong>
+    <ul>
+        <li>check output sum</li>
+        <ul><li>sum (S7 S6 S5 S4 S3 S2 S1 S0): S7=0, S6=1, S5=1, S4=0, S3=1, S2=1, S1=0, S0=0</li></ul>
+        <li>at any level check how the carry propagates to the next level</li>
+        <li>probing the carry port can be done by verifying the color of the wire coming out of the port</li>
+    </ul>
+    <P><STrong>Recommended learning activities for the experiment</STrong>Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</P>
+    <strong>color configuration of wire for 5 valued logic supported by the simulator:</strong>
+    <ul>
+        <li>if value is UNKNOWN, wire color= maroon</li>
+        <li>if value is TRUE, wire color= blue</li>
+        <li>if value is FALSE, wire color= black</li>
+        <li>if value is HI IMPEDENCE, wire color= green</li>
+        <li>if value is INVALID, wire color= orange</li>
+    </ul>
+    <strong>Test plan</strong>
+    <ul>
+        <li>Set one input to zero(0) and check the output.</li>
+        <li>Set one input to one(1) and check the output.</li>
+        <li>Give proper inputs to check the identity, commutativity, associativity of multiplication operation with interchanging input values.</li>
+    </ul>
+    <p>Use Display units for checking output. Try to use minimum number of components to build. The pin configuration of the canned components are shown when mouse hovered over a component.</p>
+    <strong>Assignment Statements :</strong> <br>
+    Create a combinational multiplier circuit to multiply two 4-bit binary numbers. Use half adders, full adders and logic gates and test it by giving proper input.
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Procedure to perform the experiment:Design of Combinational Multiplier</h4>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To design the circuit we need 8 full adders, 4 half adders, 16 AND gates, 8 bit switch (to give input,which will toggle its value with a double click), 8 bit displays (to see the output), wires.</li>
+    <li>The pin configuration of a component is shown whenever the mouse is hovered on any canned component of the palette or press the 'show pinconfig' button. Pin numbering starts from 1 and from the bottom left corner (indicated with the circle) and increases anticlockwise.</li>
+    <li>For half adder input is in pin-5,8 output sum is in pin-4 and carry is pin-1, For full adder input is in pin-5,6,8 output sum is in pin-4 and carry is in pin-1</li>
+    <li>Click on the half adder component (in the Adder drawer in the pallet) and then click on the position of the editor window where you want to add the component (no drag and drop, simple click will serve the purpose), likewise add 3 more half adders, 8 full adders (from the Adder drawer in the pallet), 16 AND gates (from Logic Gates drawer of the pallet,if it is not seen scroll down in the drawer), 8 Bit switches, 8 bit Displays (from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer)</li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. According to the circuit diagram connect all the components, connect bit switches to the input terminals. connect the output terminals to the Bit display component. After the connection is over click the selection tool in the pallete.</li>
+    <li>See the output, bit switches are used to give input so that you can toggle its value with a double click and see the outputs with different inputs.</li>
+</ul>
+<strong>Circuit diagram of Combinational Multiplier:</strong>
+<center><img src="{%static 'computerOrganisationArchitecture/cm.png' %}" alt=""></center>
+<strong>Components :</strong>
+<p>To build a Combinational Multiplier, we need :</p>
+<ul>
+    <li>16 2-input AND Gates</li>
+    <li>4 half adders</li>
+    <li>8 full adders</li>
+    <li>Display unit to show the outputs.</li>
+    <li>Wires to connect.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+
+{% endblock %}

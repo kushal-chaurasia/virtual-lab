@@ -1,0 +1,70 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Sorting using Arrays{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Sorting Algorithms
+</h4>
+<p>Sorting is a fundamental task in computing. There are several sorting algorithms developed decades ago, but new algorithms continue to appear. In this experiment, the focus is to study a few classical sorting algorithms.
+</p>
+<p>We will primarily be using arrays for our algorithms as it is simple and illustrative to do so. we will cover merge sort, insertion sort, and quick sort in this experiment.
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>The Array Data Structure
+</h4>
+<ul><li>In this framework, we now see the array as a data structure. The typical operations on this data structure are as follows:
+</li></ul>
+{% load static %}
+<img src="{%static 'dsLab/Screenshot (19).png'%}" alt="">
+<ul><li>While we are used to writing A[i] to access element i of an array A, it can be seen as the way to access the ith element in a non-object oriented programming language. The other operations are also not explicity specified when one uses languages such as C. But, when one considers purely object oriented languages, such operations are required to be supported. Similarly, in C, array creation is done by malloc() or a compile time declaration as int A[10];. However, when one looks at a data structure in terms of its operations, a create() operation is required.
+</li></ul>
+<h4>1. Sorting
+</h4>
+<li>Sorting is a fundamental operation and we shall see two sorting algorithms in this section.
+</li>
+<strong>1.1 Merge Sort
+</strong>
+<li>The idea of merge sort is to shift the onus to the combine step. To this end, we come up with the following design
+</li>
+<img src="{%static 'dsLab/Screenshot (17).png'%}" alt="">
+<li>The only non straightforward operation in the above is the last step. So let us first concentrate on this step. The job is to merge two sorted sequences. For this, we can think of comparing elements of the two sorted sequences and iteratively constructively the required sorted array. For simplicity let us assume that elements in arrays L and R each of size l + 1 and r + 1 respectively are to be merged into an array A of size l + r. The elements indexed l + 1 and r + 1 are set to 1 in L and R respectively. The following performs the merge:
+</li>
+<img src="{%static 'dsLab/Screenshot (18).png'%}" alt="">
+<strong>1.2 Quick Sort
+</strong>
+<li>Let us look at one final example of sorting algorithms along with a short proof of correctness. While merge sort can be said to be optimal in terms of its time requiement, it does use some extra space. So one question to prusue is to design a sorting algorithm that can sort in-place, i.e., without using any extra space. C. A. R. Hoare gave an algorithm based on the divide and conquer strategy called the quick sort that can sort in place. The 3 steps of the algorithm in the framework of divide and conquer are:
+</li>
+<img src="{%static 'dsLab/Screenshot (21).png'%}" alt="">
+<li>One can notice that the third step is quite trivial here. In fact, this is an example of the so called partition based algorithms. Let us look at the only non-trivial step, that of partitioning the input. The key to the partition step is to select a pivot and rearrange the elements of the array. For this the following approach is presented.
+</li>
+<img src="{%static 'dsLab/Screenshot (22).png'%}" alt="">
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Sorting Algorithms
+</h4>
+<p>At the end of this experiment, you will be able to:
+</p>
+<ul><li>Understand various sorting algorithms using arrays
+</li>
+<li>Know how to implement them in a standard programming language
+</li>
+<li>See which algorithm is better in what settings.
+</li>
+</ul>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

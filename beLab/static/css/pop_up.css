@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30 May, 2016, 4:15:44 PM
+    Author     : sukriti
+*/
+
+
+
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #BBB;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:10px; }
+#dialogbox > div > #dialogboxhead{ background: #EEE; font-size:19px; padding:10px; color:#000; }
+#dialogbox > div > #dialogboxbody{ background:#EEE; padding:20px; color:#000; }
+#dialogbox > div > #dialogboxfoot{ background: #EEE; padding:10px; text-align:right; }
+
+

@@ -1,0 +1,101 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4>
+<p>The objective in a pattern storage task is to store a given set of patterns, so that any of them can be recalled exactly, even when an approximate version of the corresponding pattern is presented to the network. Following are the goals of the experiment:</p>
+<ul>
+    <li style="margin-left: 4%;">To illustrate the state transition diagram of a Hopfield model.</li>
+    <li style="margin-left: 4%;">To understand and analyze pattern storage task using a 3-unit discrete Hopfield network model.</li>
+</ul>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4><br>
+<h4>Pattern storage network</h4>
+<p>Pattern storage is generally accomplished by a feedback network consisting of processing units with non-linear output functions. The outputs of all the processing units at any instant of time define the output state of the network at that instant. Associated with each output state is an energy, which depends on the network parameters like the weights and bias, besides the state of the network. The energy as a function of state corresponds to an energy landscape. The feedback among the units and the non-linear processing in the units may create basins of attraction in the energy landscape, when the weights satisfy certain constraints. The basins of attraction in the energy landscape tend to be the regions of stable equilibrium states. The fixed points in these regions correspond to the state of the energy minima, and they are used to store the desired patterns. These stored patterns can be recalled even with approximate patterns as inputs. The number of patterns that can be stored is called the capacity of the network. The following figures illustrates the concept of energy landscape. Figure 1(a) shows the energy landscapes with each minimum state supported by several nonminimum states around its neighbourhood. Figure 1(b) does not have any such support for the minimum states. Hence patterns can be stored if the energy landscape of the type in Figure 1(a) is realized by suitable design of the feedback network.</p><br><br>
+<img src="{%static 'annLab/gaph.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> Illustration of energy landscapes.</pre><br>
+<h4>The Hopfield Model</h4>
+<p>We use Hopfield model of a feedback network for addressing the task of pattern storage. The perceptron neuron model for the units of a feedback network is used, where the output of each unit is fed to all the other units with weights \(w_{ij}\), for all i and j. Let the output function of each of the units be bipolar (+1 or -1), so that</p>
+<p>\( (s_i) = f(x_i) = sgn(x_i) \qquad(1)\)</p>
+<p>and</p>
+<p>\(x_i = \sum\limits_{j=1}^{N} w_{ij}s_j-\theta_i \qquad(2)\)</p>
+<p>where \(\theta\) is the threshold for the unit i. Due to feedback, the state of a unit depends on the states of the other units. The update of the state of a unit can be done synchronously or asynchronously. In an asynchronous update, the updating using the random choice of a unit is continued until no further change in the states takes place for all the units. That is,</p>
+<p>\( s_i(t+1) = s_i(t),\) for all i</p>
+<p>In this situation we can say that the network activation dynamics reached a stable state.</p><br>
+<h4>Hopfield Network Algorithm to Store and Recall a Set of Bipolar Patterns</h4>
+<p>Let the network consist of N fully connected units wih each unit having hard-limiting bipolar threshold output function. Let \( a_l , l\) = 1,2, ...., L be the vectors to be stored. The vectors \(a_l\) are assumed to have bipolar components, i.e., \(a_{li}\) = ± 1, i = 1,2, ...., N.</p>
+<ol>
+    <li style="margin-left: 4%;">Assign the connection weights \begin{align} w_{ij} = \frac{1}{N}\sum\limits_{l=1}^{L}a_{li}a_{lj}, for ~ i \ne j \\ = 0, for ~ i = j, 1 \le i, j \le N \qquad(3)\\ \end{align}</li>
+    <li style="margin-left: 4%;">Initialize the network output with the given unknown input pattern a $$ s_i(0) = a_i, for ~ i = 1, 2, ....,N \qquad(4)$$ where \( s_i(0)\) is the output of the unit \(i\) at time \( t=0 \)</li>
+    <li style="margin-left: 4%;">Iterate until convergence $$ s_i(t+1) = sgn \left [\sum\limits_{j=1}^{N}w_{ij}s_j(t) \right ], for ~ i = 1, 2, ....,N \qquad(5)$$ The process is repeated until the outputs remain unchanged with further iteration. The steady outputs of the units represent the stored pattern that best matches the given input.</li><br>
+    <h4>Energy analysis and State Transition Diagram</h4>
+    <p>The energy V(s) as a function of the state s of the network describes the energy landscape in the state space. Its value always either reduces or remains the same as the state of the network changes. Assuming the threshold value of the unit i to be \( \theta_i \), the energy function is given by $$ V(s) = V = -\frac{1}{2}\sum\limits_{i}\sum\limits_{j}w_{ij} s_i s_j + \sum\limits_{i}\theta_i s_i \qquad(6)$$</p>
+    <p>The energy analysis of the Hopfield network shows that the network either remains in the same state, or moves to a state having a lower energy. This can be demonstrated by means of a state transition diagram which gives the states of the network and their energies, together with the probability of transition from one state to another.</p>
+</ol>
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4><br>
+<h4>Illustration of state transition diagram for a 3-unit feedback network</h4>
+<p>Consider a 3-unit feedback network with symmetric weights \( w_{ij} = w_{ji} \). The units have a threshold value of \( \theta_i \), i = 1, 2, 3 and a binary {0, 1} output function. A binary output function is assumed for convenience, although the conclusions are equally valid for the bipolar {-1, +1} case. The following figure shows a 3-unit feedback network. The state update for the unit \(i\) is governed by the following equation.</p>
+<p>\begin{align} s_i(t+1) = 1, if ~ \sum\limits_{j}w_{ij}s_j(t) \gt \theta_i \\ = 0, if ~ \sum\limits_{j}w_{ij}s_j(t) \le \theta_i \qquad(1)\\ \end{align}</p><br><br>
+<img src="{%static 'annLab/gaph1.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> A 3-unit feedback network with symmetric weights \(w_{ij}\),<br> threshold values \(\theta_{i}\) and the output states \(s_{i},~i = 1, 2 ,3\)</pre>
+<p>Assuming the values</p>
+<p>\( w_{12} = w_{21} = -0.5, w_{23} = w_{32} = 0.4, w_{31} = w_{13} = 0.5 \)</p>
+<p>\( \theta_1 = -0.1, \theta_2 = -0.2, and ~ \theta_3 = 0.7, \)</p>
+<p>we get the following energy values for each state.</p>
+<p>V(000) = 0.0, V(001) = 0.7, V(010) = -0.2, V(100) = -0.1, V(011) = 0.1, V(101) = 0.1, V(110) = 0.2, V(111) = 0.0</p><br>
+<p>The transition from any state to the next state can be computed using the state update equation. For example, if the current state is 000, by selecting any one unit, say unit 2, at random, we can find its next state by computing the activation value \( x_2 \) and comparing it with the threshold \(\theta_2\). Since \( x_2 (=0) \gt \theta_2 (= -0.2) \) the state of the unit 2 changes from 0 to 1. Thus, if we select this unit, there will be a transition from the state 000 to 010. Since we can select any one of the three units with equal probability, i.e., 1/3, the probability of making a transition from 000 to 010 is thus 1/3. Likewise by selecting the unit 1 for update, the network makes a transition from 000 to 100 with a probability 1/3. Selecting the unit 3 for update results in a transition from 000 to itself, since the activation \( x_3 (=0) \lt \theta_3 (=0.7).\)</p>
+<p>By computing the transition probabilities for all the states, we get the state transition diagram as shown in Fig. 2.</p><br>
+<img src="{%static 'annLab/gaph2.png'%}" alt=""><br><br>
+<pre><strong>Figure 2:</strong> Illustration of state transition diagram for a 3-unit feedback network.</pre>
+<p>Thus a Hopfield Model generates an energy landscape where states in model are associated with different energy values. Stable states are the states which lie in the bottom of this landscape or rather have minimum energies. These states can then be used for the pattern storage task. Following figures show the steps involved in the experiment to choose weights for a given hopfield model, which ascertain some chosen states to attain stability. The capacity of a Hopfield model is determined by the number of patterns being stored as well as the probability of error that can be expected in the recall of patterns. For a N-unit network; where say L patterns are to be stored, for a probability of error of recall \(P_e=0.001\), the maximum storage capacity is given by \(L_{max}/N = 0.105\)</p>
+<img src="{%static 'annLab/gaph4.png'%}" alt=""><br>
+<pre><strong>Figure 3:</strong> Choosing minimum energy states in a Hopfield 3-unit feedback network.</pre>
+<img src="{%static 'annLab/gaph3.png'%}" alt=""><br>
+<pre><strong>Figure 4:</strong> djusting weights for the Hopfield 3-unit feedback network.</pre>
+<img src="{%static 'annLab/gaph5.png'%}" alt=""><br>
+<pre><strong>Figure 5:</strong> State transition diagram with states and respective energy values in curly brackets.</pre>
+<img src="{%static 'annLab/gaph6.png'%}" alt=""><br>
+<pre><strong>Figure 6:</strong> State transition diagram with probabilities of transition in curly brackets.
+</pre>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4>
+<ul>
+    <li style="margin-left: 2%;">First choose 2 states which you intend to make as minimum energy states. Make sure of them being apart for a Hamming distance more than 1.</li>
+    <li style="margin-left: 2%;">Click on the two states and then click SUBMIT.</li>
+    <li style="margin-left: 2%;">Check out for the inequalities required to be satisfied with appropraite choice of weights and threshold values.</li>
+    <li style="margin-left: 2%;">Adjust the weights and threshold sliders \( w_{12}, w_{13}, w_{23}, \theta_{1}, \theta_{2}, \theta_{3}, \) with values in the range -1 and 1 to satisfy the inequalities.</li>
+    <li style="margin-left: 2%;">Click on DONE to submit, and then see how does the Hopfield model and energy transition diagram looks like.</li>
+    <li style="margin-left: 2%;">Move the mouse over the transition diagram to see the possible paths from higher energy state to lower energy states.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4>
+<strong>For source code please click <a href="{%static 'annLab/exp5.txt'%}" target="blank"> here </a></strong>
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Hopfield model for pattern storage task</h4>
+<ul>
+    <li style="margin-left: 4%;">The chosen states which are within a Hamming distance of 1 can't be made stable states together.</li>
+    <li style="margin-left: 4%;">For states which can be made stable, there is a set of values of weights and thresholds that satisfies the corresponding inequalities sufficing which, the model always has chosen states as ones with minimum energy.</li>
+    <li style="margin-left: 4%;">The state transition diagram generated has positive probabilities to start from any state and end up in stable states.</li>
+</ul>
+{% endblock %}
+
+
+{% block experimentName %} {%endblock%}

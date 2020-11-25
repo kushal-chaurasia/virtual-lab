@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Familiarisation with Capacitor</title>
+    <style>
+        h3 {
+            display: inline;
+            padding: 8em;
+
+        }
+
+        .content {
+            display: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .image {
+
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+
+        .oline {
+            text-decoration: overline;
+        }
+
+        pre {
+            font: bold;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Theory </span></h3>
+            </a>
+
+
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">QUIZ</span></h3>
+            </a>
+        </div>
+        {%load static%}
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+                <h4>Theory</h4>
+                <strong>Objectives of Experiment</strong>
+                <p>After the end of this module the student would be able to</p>
+                <ul>
+                    <li> Provide a definition of capacitor and name its units </li>
+                    <li> Explain how a capacitor can be constructed to give a particular value of capacitance </li>
+                    <li> Explain why a capacitor has maximum working voltage </li>
+                    <li> Determine experimentally the energy stored in a capacitor </li>
+                    <li> Identify the value and type of capacitor </li>
+                    <li> Identify the polarity of terminals </li>
+                </ul>
+                <strong>What is Capacitor?</strong>
+                <p>It is one of the passive components like resistor. Capacitor is also known as condenser. Capacitor is
+                    generally used to store the charge. The charge is stored in the form of “electrical field”.
+                    Capacitors play a major role in many electrical and electronic circuits.</p>
+                <center><img src="{% static 'beLab/i1.png'%}" alt=""></center>
+                <center>Figure 1</center>
+                <strong>Construction of a Capacitor</strong>
+                <p>The basic construction of all capacitors is of two parallel metal plates separated by an insulating
+                    material (the dielectric). An insulator is a material which is non-conducting i.e. it shows a high
+                    resistance to letting to electric used is air, other types are oil or paper. Real capacitors are
+                    made by taking thin strips of metal foil and the appropriate dielectric material and sandwiching
+                    them together.</p>
+                <center><img src="{% static 'beLab/i2.png'%}" alt=""></center>
+                <center>Figure 2</center>
+                <p>Capacitor achieve large area (thus large capacitance) by doing something tricky, such as putting a
+                    dielectric between 2 layers of metal foil and rolling it up like in this figure.</p>
+                <center><img src="{% static 'beLab/i3.png'%}" alt=""></center>
+                <center>Figure 3</center>
+                <strong>Capacitance</strong>
+                <p>A capacitor is so called because it has the capacity to store charge- just like a beaker storing a
+                    liquid. Capacitors are marked with a value which indicates their capacitance – their ability to
+                    store charge . Capacitance can be thought of as the “electrical capacity” of that body. It is
+                    measured in Farads.</p>
+                <center><img src="{% static 'beLab/i4.png'%}" alt=""></center>
+                <center>Figure 4</center>
+                <strong>Note- Maximum Working Voltage</strong>
+                <p>If the voltage across a capacitor is too high, the insulator between the plates fails to insulate and
+                    charge passes from one plate to the other . Capacitor are usually marked with the maximum working
+                    voltage to help the user avoid situation . <br>
+                    A good rule of thumb is to never place a voltage across the capacitor which exceeds about two thirds
+                    of this value, especially for alternating current circuits.</p>
+
+                <strong>Mathematical Notation</strong>
+                <ul>
+                    <li>A static description of the way a capacitor behaves would be to say <b>Q=C×V</b> , where Q is
+                        the total charge, C is a measure of how big the capacitor is and V is the voltage across it.
+                    </li>
+                    <li>A dynamic description ,ie one that changes with time would be to say <b>I=C×dV/dt</b> . This is
+                        just the time derivative of the static description .C is constant wrt time, I is the rate at
+                        which charge flows . This essentially says – the bigger the current , the faster the capacitor’s
+                        voltage changes.</li>
+                </ul>
+                <strong>Classification of Capacitors</strong> <br>
+                <img src="{% static 'beLab/t2.png'%}" alt=""> <br>
+
+                <strong>Ceramic Capacitors</strong>
+                <center><img src="{% static 'beLab/capa3.png'%}" alt=""></center>
+                <center>Figure 5</center>
+                <p>Ceramic capacitors are the most used capacitors in the electronics industry. Ceramic capacitors are
+                    fixed capacitance type capacitors and they are usually very small (in terms of both physical
+                    dimensions and capacitance). The capacitance of ceramic capacitors is usually in the range of
+                    picofarads to few micro farads (less than 10µF). They are non-polarised type capacitors and hence
+                    can be used in both DC as well as AC circuits.</p>
+                <strong>Electrolytic Capacitor</strong>
+                <center><img src="{% static 'beLab/i15.png'%}" alt=""></center>
+                <center>Figure 6</center>
+                <p>Electrolytic capacitors are polarized and they must be connected the correct way round , atleast one
+                    of their leads will be marked + or – . It is very easy to find the values of electrolytic capacitors
+                    because they are clearly printed with their capacitance and voltage rating.</p>
+                <strong>Tantalum Capacitor</strong>
+                <center><img src="{% static 'beLab/i16.png'%}" alt=""></center>
+                <center>Figure 7</center>
+                <p>Tantalum bead capacitors are polarized and have low voltage ratings like electrolytic capacitors .
+                    Usually , the “+” symbol is used to show the positive component lead . Modern tantalum bead
+                    capacitors are printed with their capacitance voltage and polarity in full. However older ones use a
+                    color – code systems which has two stripes (for the two digits ) and a spot of color for the number
+                    of zeros to give the value in uF.</p>
+                <strong>Un-polarized Capacitors- small values(upto 1uF)</strong>
+                <center><img src="{% static 'beLab/i17.png'%}" alt=""></center>
+                <center>Figure 8</center>
+                <p>The value printed but without a multiplier, so you need to use experience to work out what the
+                    multiplier should be! For example 0.1 means 0.1 pF. Sometimes the multiplier is used in place of the
+                    decimal point: For example: 4n7 means 4.7nF.</p>
+
+                <strong>Un-polarized Capacitors — Capacitor Number Code</strong>
+                <center><img src="{% static 'beLab/i18.png'%}" alt=""></center>
+                <center>Figure 9</center>
+                <p>A number code is often used on small capacitors where printing is difficult: The 1st number is the
+                    1st digit, the 2nd number is the 2nd digit, the 3rd number is the number of zeros to give the
+                    capacitance in pF. Ignore any letters - they just indicate tolerance and voltage rating. For
+                    example: 102 means 1000pF (not 102pF!) For example: 472J means 4700pF (J means 5% tolerance).</p>
+                <strong>Un-polarized Capacitors — Capacitor Color Code</strong>
+                <center><img src="{% static 'beLab/i19.png'%}" alt=""></center>
+                <center>Figure 10</center>
+
+                <strong>Capacitors in series</strong>
+                <p>Capacitors in series means two or more capacitors connected in a single line. Positive plate of the
+                    one capacitor is connected to the negative plate of the next capacitor.</p>
+                <center><img src="{% static 'beLab/capa1.png'%}" alt=""></center>
+                <center>Figure 11 </center>
+                <center><img src="{% static 'beLab/t3.png'%}" alt=""></center>
+                <p>where, <br>
+                    QTis the total charge, <br>
+                    IC is the capacitive current</p>
+                <p>When the capacitors are connected in series Charge and current is same on all the capacitors.</p>
+
+                <p> For series capacitors same quantity of electrons will flow through each capacitor because the charge
+                    on each plate is coming from the adjacent plate. So, coulomb charge is same. As current is nothing
+                    but flow of electrons, current is also same.</p>
+
+                <p> Equivalent Capacitance for two capacitors in series,</p>
+                <center><img src="{% static 'beLab/t4.png'%}" alt=""></center>
+
+                <strong>Capacitors in parallel</strong>
+                <p>When the capacitors are connected in parallel the total capacitance value is increased. There are
+                    some applications where higher capacitance values are required.</p>
+                <center><img src="{% static 'beLab/capa2.png'%}" alt=""></center>
+                <center>Figure 11</center>
+                <p>All the capacitors which are connected in parallel have the same voltage and is equal to the VT
+                    applied between the input and output terminals of the circuit.</p>
+                <center><img src="{% static 'beLab/t5.png'%}" alt=""></center>
+                <p> Equivalent Capacitance for two capacitors in parallel, </p>
+                <center><img src="{% static 'beLab/t6.png'%}" alt=""></center>
+                <strong>Function of Capacitance</strong>
+                <p>Consider a circuit set up like the one at the side. What will happen when the switch is closed? <br>
+                    The ammeter will</p>
+                <ul>
+                    <li> How a steady reading </li>
+                    <li> Show a reading of ’0’ </li>
+                    <li> Flick back and forth </li>
+                    <li> Flick on one side and come back to ‘0’ </li>
+                </ul>
+                <center><img src="{% static 'beLab/i5.png'%}" alt=""></center>
+                <center>Figure 12</center>
+                <p>Now let’s place large metal plate at each of the connectors a few millimetres apart. <br>
+                    What will happen when the switch is closed? <br>
+                    The Ammeter will</p>
+                <ul>
+                    <li> Show a steady reading </li>
+                    <li> Show a reading of ‘0’ </li>
+                    <li> Flick back and forth </li>
+                    <li> Flick on one sid and come back to ‘0’ </li>
+                </ul>
+                <center><img src="{% static 'beLab/i6.png'%}" alt=""></center>
+                <center>Figure 13</center>
+                <p>Let us extend this by placing a galvanometer on both sides of the capacitor and using a two-way
+                    switch . ,<br>
+                    What will happen when the switch is connected to ‘P’? <br>
+                    For both of the Ammeters</p>
+
+                <ul>
+                    <li> Neither moves </li>
+                    <li> Both flick briefly to left </li>
+                    <li> Both flick briefly to right </li>
+                    <li> They flick in opposite dirs </li>
+                </ul>
+                <center><img src="{% static 'beLab/i7.png'%}" alt=""></center>
+                <center>Figure 14</center>
+                <p>After moving to ‘P’ now the switch is moved to ‘O’. <br>
+                    What will happen? <br>
+                    For both of the Ammeters</p>
+                <ul>
+                    <li> Neither moves </li>
+                    <li> Both flick briefly to left </li>
+                    <li> Both flick briefly to right </li>
+                    <li> They flick in opposite dirs </li>
+                </ul>
+                <center><img src="{% static 'beLab/i7.png'%}" alt=""></center>
+                <center>Figure 15</center>
+                <p>The behaviour of the ammeter needles in the previous experiment suggests that a current flow firstly
+                    one way ,then the other as the switch is moved from P to O. So, this suggests</p>
+                <ul>
+                    <li> Equal amounts of charge flows off one plate and onto the other </li>
+                    <li> More charge flows off plate A than plate B </li>
+                    <li> More charge flows off plate B than plate A </li>
+                    <li> No charge flows at all </li>
+                </ul>
+                <center><img src="{% static 'beLab/i7.png'%}" alt=""></center>
+                <center>Figure 16</center>
+                <strong>Charging and Discharging</strong>
+                <p>We say that the capacitor is charged up when connected to P and discharged when moved to .</p>
+                <strong>Charging</strong>
+                <center><img src="{% static 'beLab/i11.png'%}" alt=""></center>
+                <center>Figure 17</center>
+                <p>The plate on the capacitor that attaches to the negative terminal of the battery accepts electrons
+                    that the battery is producing .The plate on the capacitor that attaches to the positive terminal of
+                    the battery loses electrons to the battery. Once it’s charged , the capacitor has the sam voltage as
+                    the battery.</p>
+                <strong>Charging - Question</strong>
+                <p>Here you have a battery ,light bulb and a capacitor .If they are connected – what will happen to the
+                    bulb?</p>
+                <center><img src="{% static 'beLab/i12.png'%}" alt=""></center>
+                <center>Figure 18</center>
+                <ul>
+                   <li> It will never glow </li>
+                   <li> It will glow as long as the battery is connected </li>
+                   <li> It will first glow and then keep dimming and finally turn off </li>
+                </ul>
+                <strong>Discharging</strong>
+                <center><img src="{% static 'beLab/i13.png'%}" alt=""></center>
+                <center>Figure 19</center>
+                <p>If you then remove the battery and replace it with a wire , current will flow from one plate of the capacitor to the other. The bulb will light initially and then dim as the capacitor discharges , until it is completely out.</p>
+                <p>A color code was used on polyester capacitors for many years. It is now obsolete, but of course there are many still around. The colors should be read like the resistor code, the top three color bands giving the value in pF. Ignore the 4th band (tolerance) and 5th band (voltage rating). .For example: brown, black, orange means 10000pF. Note that there are no gaps between the color bands, so 2 identical bands actually appear as a wide band. For example: wide red, yellow means 220nF.</p>
+            </div>
+
+            <div class="content" id="div2">
+                <h4>Quiz</h4>
+                <strong>Multiple choice questions:</strong>
+
+                {% for quiz in Exams %}
+                <table>
+
+                    <hr>
+                    <tr>
+                        <td>{{quiz}}</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option1" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option1}}">{{quiz.option1}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option2" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option2}}">{{quiz.option2}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option3" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option3}}">{{quiz.option3}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option4" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option4}}">{{quiz.option4}} </td>
+                    </tr>
+                    <tr>
+                        <td> <label id="correctans" class="rb">{{quiz.correctans}}</label> </td>
+                    </tr>
+                </table>
+                {% endfor %}
+                <input type="submit" value="Click for result" id="check" onclick="getAnswers();">
+                <b id="userAnswer"></b>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+        function getAnswers() {
+            document.getElementById(userAnswer).innerHTML = "";
+            var f = document.getElementsByTagName("input");
+            for (i = 0; i <= f.length; i++) {
+                if (f[i].type == "radio") {
+                    if (f[i].checked) {
+                        document.getElementById(userAnswer).innerHTML += "Q" + f[i].name + "The answer you selected is: " + f[i].value + "<br/>";
+
+                    }
+                }
+            }
+        }
+        $(document).ready(function () {
+            $("#check").click(function () {
+                $(".rb").show();
+
+            });
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

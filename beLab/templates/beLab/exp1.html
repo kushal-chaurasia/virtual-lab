@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Familiarisation with Resistor</title>
+    <style>
+        h3 {
+            display: inline;
+            padding: 8em;
+
+        }
+
+        .content {
+            display: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .image {
+
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+
+        .oline {
+            text-decoration: overline;
+        }
+
+        pre {
+            font: bold;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Theory </span></h3>
+            </a>
+
+
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">QUIZ</span></h3>
+            </a>
+        </div>
+        {%load static%}
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+                <h4>Theory</h4>
+                <strong>Objective of experiment</strong>
+                <p>At the end of the experiment the student would be able to</p>
+                <ul>
+                    <li> Explain the function and unit of Resistors </li>
+                    <li> Measure the value of a Resistor </li>
+                    <li> Measure the Tolerance of a Resistor </li>
+                    <li> Explain the types of Resistors </li>
+                </ul>
+
+                <strong>Types of resistore</strong>
+                <center><img src="{% static 'beLab/fig1.png'%}" alt=""></center>
+                <center>Figure 1</center>
+
+                <strong>Reading Value of Fixed Resistors</strong>
+                <center><img src="{% static 'beLab/fig2_1.png'%}" alt=""></center>
+                <center>Figure 2</center>
+
+                <ul>
+                    <li> Resistors are color coded as they are too small for the value to be written on them. </li>
+                    <li> There are 4 or 5 bands of color . Value of a Resistor is decoded from these band of colors.
+                    </li>
+                </ul>
+                <center><img src="{% static 'beLab/fig2.png'%}" alt=""></center>
+                <center>Figure 2.2</center>
+
+                <strong>Reading Value:Step 1</strong>
+                <ul>
+                    <li> If your resistor has four color bands ,turn the resistor so that the gold or silver band is on
+                        right hand side or the end with more bands should point left.</li>
+                </ul>
+                <center><img src="{% static 'beLab/fig3.png'%}" alt=""></center>
+                <center>Figure 3</center>
+
+                <strong>Reading Value:Step 2</strong>
+                <p>The first band is now on the left hand side. This represents the first digit .Based on the color make
+                    a note of the digit.In this case- 4 band its ‘5’ and for 5 band its ‘2’.</p>
+
+                <center><img src="{% static 'beLab/fig4.png'%}" alt=""></center>
+                <center>Figure 4</center>
+
+                <strong>Reading Value :Step 3</strong>
+                <p>The second band represents the second digit. The colors represent the same numbers as did the first
+                    digit .In this case -4 band its’6’ and for 5 band its’3’.</p>
+                <center><img src="{% static 'beLab/fig5.png'%}" alt=""></center>
+                <center>Figure 5</center>
+
+                <strong>Reading Value : Step 4</strong>
+                <p>The third band divulges how many zeros to add/divide to the first two numbers –for a 4 band Resistor
+                    . In this case – 4 band its ‘4’ zeroes to be added . So value is 560K.</p>
+
+                <center><img src="{% static 'beLab/fig6.png'%}" alt=""></center>
+                <center>Figure 6</center>
+
+                <strong>Reading Value : Step 5</strong>
+                <p>The third band denotes the 3rd digit – for a 5 band Resistor. In this case -5 band its ‘7’ . So the
+                    value of the 5 band resistor is 237 Ohms as its multipier digit is ‘0.</p>
+                <center><img src="{% static 'beLab/fig7.png'%}" alt=""></center>
+                <center>Figure 7</center>
+
+                <strong>Tolerance</strong>
+                <p>The last band denotes the tolerance . So the value of the 4 band resistor it is +/- 10% while for the
+                    5 band resistor it is +/- 1%.</p>
+                <center><img src="{% static 'beLab/fig8.png'%}" alt=""></center>
+                <center>Figure 8</center>
+                <ul>
+                    <li> Tolerance of a Resistor is also an important property to consider . </li>
+                    <li> A 100 ohm resistor with a 10 % tolerance can mean its value can be any fixed value between 90
+                        to 110 Ohms. </li>
+                    <li> A 120 Ohm resistor with a 10 % tolerance can mean its value can be any fixed value between 108
+                        and 132 Ohms. </li>
+                    <li> So there is some overlap between 100 Ohm and 120 Ohm resistance in terms of its limits. </li>
+                </ul>
+
+                <strong>Mnemonic to Remember</strong>
+                <center><img src="{% static 'beLab/fig9.png'%}" alt=""></center>
+                <center>Figure 9.1</center>
+                <center><img src="{% static 'beLab/fig9_1.png'%}" alt=""></center>
+                <center>Figure 9.2</center>
+
+                <strong>Carbon Film Resistors</strong>
+                <ul>
+                    <li> Most general purpose ,cheap resistor </li>
+                    <li> Tolerance of Resistance value is usually +/- 5% </li>
+                    <li> Power ratings of 1/8 W ,1/4 W and ½ W are usually used </li>
+                    <li> Con:Tend to be electrically noisy </li>
+                </ul>
+                <center><img src="{% static 'beLab/fig10.png'%}" alt=""></center>
+                <center>Figure 10</center>
+
+                <strong>Metal Film Resistor</strong>
+                <ul>
+                    <li>Used when higher tolerance is needed , ie more value.</li>
+                    <li>They have about +/- 0.05% tolerance</li>
+                </ul>
+                <center><img src="{% static 'beLab/fig11.png'%}" alt=""></center>
+                <center>Figure 11</center>
+
+                <strong>Wire Wound Resistors</strong>
+                <ul>
+                    <li>A wire wound resistor is made of metal resistance wire, and because of this they can be manufactured to precise values</li>
+                    <li>Also, high wattage resistors can be made by thick wire material</li>
+                    <li>Wire wound resistors in a ceramic case are called as ceramic resistors</li>
+                    <li>Wire wound resistors in a ceramic case are called as ceramic resistors</li>
+                </ul>
+
+
+            </div>
+
+            <div class="content" id="div2">
+                <h4>Quiz</h4>
+                <p>Color Code for Resistor</p>
+                <img src="{% static 'beLab/quiz1.png'%}" alt="">
+
+                <ol>
+                    <li> 
+                        <img src="{% static 'beLab/resis1.png'%}" alt=""> <br>
+                        <label for="resitance1">Enter the resistance value:</label>
+                        <input type="text" name="resitance1" id="ques1">
+                        <select name="unit" id="unit1">
+                            <option value="ohm">Ohm</option>
+                            <option value="kohm">KOhm</option>
+                        </select> <br>
+                        <label for="resitance1">Enter the tolerance +/- :</label>
+                        <input type="text" name="tolerance1" id="tol1"> <br>
+                        <button type="button" class="btn btn-info" id="check1">Check</button>
+                        <table id="answer1">
+                            
+                        </table>
+                    </li><br>
+                    <li> 
+                        <img src="{% static 'beLab/resis2.png'%}" alt=""> <br>
+                        <label for="resitance2">Enter the resistance value:</label>
+                        <input type="text" name="resitance2" id="ques2">
+                        <select name="unit" id="unit2">
+                            <option value="ohm">Ohm</option>
+                            <option value="kohm">KOhm</option>
+                        </select> <br>
+                        <label for="resitance2">Enter the tolerance +/- :</label>
+                        <input type="text" name="tolerance2" id="tol2"> <br>
+                        <button type="button" class="btn btn-info" id="check2">Check</button>
+                        <table id="answer2">
+                            
+                        </table>
+                    </li><br>
+                    <li> 
+                        <img src="{% static 'beLab/resis3.png'%}" alt=""> <br>
+                        <label for="resitance3">Enter the resistance value:</label>
+                        <input type="text" name="resitance3" id="ques3">
+                        <select name="unit3" id="unit3">
+                            <option value="ohm">Ohm</option>
+                            <option value="kohm">KOhm</option>
+                        </select> <br>
+                        <label for="resitance3">Enter the tolerance +/- :</label>
+                        <input type="text" name="tolerance3" id="tol3"> <br>
+                        <button type="button" class="btn btn-info" id="check3">Check</button>
+                        <table id="answer3">
+                            
+                        </table>
+                    </li><br>
+                    <li> 
+                        <img src="{% static 'beLab/resis4.png'%}" alt=""> <br>
+                        <label for="resitance4">Enter the resistance value:</label>
+                        <input type="text" name="resitance4" id="ques4">
+                        <select name="unit4" id="unit4">
+                            <option value="ohm">Ohm</option>
+                            <option value="kohm">KOhm</option>
+                        </select> <br>
+                        <label for="resitance4">Enter the tolerance +/- :</label>
+                        <input type="text" name="tolerance4" id="tol4"> <br>
+                        <button type="button" class="btn btn-info" id="check4">Check</button>
+                        <table id="answer4">
+                            
+                        </table>
+                    </li><br>
+                    <li> 
+                        <img src="{% static 'beLab/resis5.png'%}" alt=""> <br>
+                        <label for="resitance5">Enter the resistance value:</label>
+                        <input type="text" name="resitance5" id="ques5">
+                        <select name="unit5" id="unit5">
+                            <option value="ohm">Ohm</option>
+                            <option value="kohm">KOhm</option>
+                        </select> <br>
+                        <label for="resitance5">Enter the tolerance +/- :</label>
+                        <input type="text" name="tolerance5" id="tol5"> <br>
+                        <button type="button" class="btn btn-info" id="check5">Check</button>
+                        <table id="answer5">
+                            
+                        </table>
+                    </li>
+                </ol>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/exp1.js'%}"></script>
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

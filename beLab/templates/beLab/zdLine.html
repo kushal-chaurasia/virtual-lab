@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zener Diode - LINE Regulator</title>
+    <script src="{% static 'js/canvasjs.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.jqplot.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shCore.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushJScript.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushXml.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jqplot.meterGaugeRenderer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pop_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/znrlicss.css' %}">
+
+</head>
+
+<body>
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+        <div>
+            <div id="dialogboxhead"></div>
+            <div id="dialogboxbody"></div>
+            <div id="dialogboxfoot"></div>
+        </div>
+    </div>
+
+    <div id="whole_body"
+        style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; top:0px;height:1050px; width:1160px;">
+
+        <div style="font-size:30px; text-align:center;padding-right:100px; height:60px"> <b> Zener Diode - LINE
+                Regulator </b></div>
+        <div id="ckt_values1" style="position:relative; top:240px;left:760px; height:300px; width:400px">
+            <p>
+                <img src="{% static 'beLab/znrln.png' %}" style="width:500px;height:300px;position:absolute;right:120px" />
+            <div class="example-content" style="position:absolute; top:10px;right:150px;left:200px">
+                <link rel="stylesheet" type="text/css" href="{% static 'css/css_metergauge.css' %}">
+                <!------------------------------------Metergauge1(Voltmeter)output voltage-------------------------------------------------->
+                <div id="chart1" class="plot" style="position:relative;width:200px; height:110px;top:60px;right:45px">
+                </div>
+                <script src="{% static 'js/js_metergaugeli.js' %}"></script>
+
+                <!------------------------------------Metergauge2(Ammeter)source current----------------------------------------------------->
+                <div id="chart2" class="plot" style="position:absolute;width:250px; height:110px;right:120px;top:-60px">
+                </div>
+                <!------------------------------------Metergauge3(Ammeter)load current------------------------------------------------------>
+                <div id="chart3" class="plot" style="position:absolute;width:250px; height:110px;right:-50px;top:-60px">
+                </div>
+                <!------------------------------------Metergauge4(Ammeter)zener current------------------------------------------------------>
+                <div id="chart4" class="plot" style="position:absolute;width:250px; height:110px;right:30px;top:40px">
+                </div>
+
+
+                <p style="position:absolute;top:10px;right:285px;font-size:15px"><b>I<sub>S</sub></b></p>
+                <p style="position:absolute;top:10px;right:115px;font-size:15px"><b>I<sub>L</sub></b></p>
+                <p style="position:absolute;top:108px;right:195px;font-size:15px"><b>I<sub>Z</sub></b></p>
+                <p style="position:absolute;top:130px;right:30px;font-size:15px"><b>V<sub>o</sub></b></p>
+                <p style="position:absolute;top:-30px;right:380px;font-size:15px"><b>R<sub>S</sub></b></p>
+                <p style="position:absolute;top:145px;right:450px;font-size:15px"><b>V<sub>DC</sub></b></p>
+                <p style="position:absolute;top:165px;right:110px;font-size:15px"><b>R<sub>L</sub></b></p>
+            </div>
+
+            <input type="number" value="" id='dc' placeholder="Volt" oninput="txtchng()"
+                style="background-color:#e6f5ff;position:absolute; top:170px;  right:520px; width:70px" readonly />
+            <input type="text" value="" id='volt' placeholder="Volt"
+                style="background-color:#e6f5ff;position:absolute; top:153px;  right:105px; width:70px" readonly />
+            <input type="text" value="" id='amps' placeholder="Ampere"
+                style="background-color:#e6f5ff;position:absolute; top:33px;  right:355px; width:70px" readonly />
+            <input type="text" value="" id='ampl' placeholder="Ampere"
+                style="background-color:#e6f5ff;position:absolute; top:33px;  right:185px; width:70px" readonly />
+            <input type="text" value="" id='ampz' placeholder="Ampere"
+                style="background-color:#e6f5ff;position:absolute; top:133px;  right:265px; width:70px" readonly />
+            <input type="number" value="" id="res" placeholder="Resistance" oninput="txtchnge()"
+                style="background-color:#e6f5ff;position:absolute; top:35px;  right:480px; width:80px" readonly />
+            <input type="number" value="" id="resl" placeholder="Resistance" oninput="loadchange()"
+                style="background-color:#e6f5ff;position:absolute; top:190px;  right:170px; width:80px" readonly />
+            <input type="number" value="" id="zenrv" placeholder="ZenerVolatge" oninput="znrvchange()"
+                style="background-color:#e6f5ff;position:absolute; top:230px;  right:260px; width:80px" readonly />
+            <!--<input type="button" id="siml" value="check" onclick="check()"  style="position:absolute; top:290px; width:100px; right:150px;"/>-->
+
+
+
+        </div>
+
+
+        <div id="cntrwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:40px;width:360px;height:190px;right:250px;">
+            <div id="cntrlr"
+                style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:360px;font-size: 16px;font-weight: bold;">
+                <p style="text-align:center;padding-right:210px;color:white"><b>CONTROLS</b></p>
+            </div>
+            <div id="slide" style=" position:absolute; top:70px; right:10px; width:350px;  border-radius: 10px;">
+                &nbsp&nbsp DC volt : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input
+                    type="range" name="inpdc" id="vdc" min="0" max="30" step="0.2" value="" oninput="sliderChange()"
+                    style="width:160px"> &nbsp; Volt<br>
+                &nbsp&nbsp; Zener Diode(V<sub>Z</sub>) : <input type="range" name="znrvl" id="znrvlt" min="3.3" max="10"
+                    step="0.1" value="" oninput="znrchange()" style="width:160px"> &nbsp; Volt<br>
+                &nbsp&nbsp Resistance(R<sub>S</sub>) :&nbsp&nbsp&nbsp&nbsp<input type="range" name="resis" id="res1"
+                    min="100" max="5000" step="100" value="" oninput="textChange()" style="width:160px"> &nbsp; Ohms<br>
+                &nbsp&nbsp Resistance(R<sub>L</sub>) : &nbsp&nbsp&nbsp<input type="range" name="resis2" id="res2"
+                    min="100" max="10000" step="100" value="" oninput="tetChange()" style="width:160px"> &nbsp; Ohms<br>
+
+                <br>
+                <input type="button" id="add" value="Add to Table" onclick="tabled()"
+                    style="position:absolute; top:140px; width:100px;  right:250px;cursor:pointer " />
+                <input type="button" id="plt" value="Plot" onclick="plot()"
+                    style="position:absolute; top:140px; width:100px; right:140px;cursor:pointer " />
+                <input type="button" id="clr" value="Clear" onclick="clearf()"
+                    style="position:absolute; top:140px; width:100px; right:20px;cursor:pointer  " />
+            </div>
+        </div>
+        <div id="msg" style="position:absolute;top:40px;right:30px;width:210px;height:190px;">
+            <p id="demo" style="color:red;"></p>
+            <p id="demos" style="color:green;"></p>
+
+        </div>
+        <div id="description"
+            style="background-color: #3385ff;   position:absolute; top:40px; left:10px; width:510px;font-size: 16px;font-weight: bold;">
+            <div class="dropdown">
+                <p style="text-align:center;padding-right:150px;color:white"> INSTRUCTION</p>
+                <div class="dropdown-content">
+                    <ol type="1">
+                        <li>Set the Zener Voltage(V<sub>Z</sub>)= 5.1 v</li>
+                        <li>Set the Series Resistance (R<sub>S</sub>) = 1 k&#937;</li>
+                        <li>Set the Load Resistance (R<sub>L</sub>) = 2 k&#937;</li>
+                        <li>Vary DC voltage from 0 to 20 v.</li>
+                        <li>Voltmeter is placed parallel to load resistor and ammeter series with the series resistor.
+                        </li>
+                        <li>Choose appropriate DC voltage such that zener diode is 'on'.</li>
+                        <li>Now note the Voltmeter and Ammeter reading for various DC voltage. </li>
+                        <li>Note the Load current(I<sub>L</sub>), zener current(I<sub>Z</sub>), Output
+                            voltage(V<sub>O</sub>)</li>
+                        <li>Calculate the voltage regulation.</li>
+                        <li>Repeat the experiment for Load Resistance (R<sub>L</sub>) = 5 k&#937;</li>
+                        <!-- <li>1W D0-41 Glass Zener Diode 1N4757A, Zener voltage is 50 V.</li>-->
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div id="tblwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:150px;width:510px;height:380px;left:10px">
+            <div
+                style="position:absolute; font-size:16px;background-color: #3385ff;  top:0px;left:0px; width:510px; height:50px;font-weight: bold;">
+                <p style="text-align:center;padding-right:80px;color:white"> <b> EXPERIMENTAL TABLE</b></p>
+            </div>
+            <p style="position:absolute; font-size:20px;top:40px;left:10px;">Zener Voltage(V<sub>Z</sub>):<input
+                    type="text" id="znv" value="" size="4" readonly />V&nbsp;<br>
+                Series Resistance(R<sub>S</sub>):<input type="text" id="rs" value="" size="4" readonly />K&#937;<br>
+                Load Resistance (R<sub>L</sub>):<input type="text" id="rl" value="" size="4" readonly />K&#937;<br><br>
+            </p>
+
+            <div id="table"
+                style="background-color:#e6f5ff;position:absolute;top:150px;width:510px;height:230px; left:px;overflow-y: auto;">
+
+                <table id="mytable" border="1">
+                    <tr>
+                        <th> Serial No.</th>
+                        <th>Unregulated supply voltage(V<sub>S</sub>)<br>V</th>
+                        <th>Load Current(I<sub>L</sub>)<br>mAmp</th>
+                        <th>Zener Current(I<sub>Z</sub>)<br>mAmp</th>
+                        <th>Regulated Output Voltage(V<sub>O</sub>)<br>V</th>
+                        <th>% Voltage Regulation</th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+        <div id="grpwrap"
+            style="position:absolute;border: 2px solid #3385ff; top:650px;width:1050px;height:360px;left:10px">
+            <div
+                style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:1050px;font-weight: bold;">
+                <p style="text-align:center;padding-right:910px;color:white"> <b> GRAPH PLOT</b>
+                <div class="tooltip"><button id="calci" onclick="printf()"
+                        style="position:absolute;padding-right:40px; cursor:pointer;top:13px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;">
+                        <img src="{% static 'beLab/Print Filled.png' %}" alt="Save icon"
+                            style="width:20px;height:20px;top:13px;" /></button>
+                    <span class="tooltiptext">Print</span></div>
+
+                </p>
+            </div>
+            <div id="chartContainer" style=" position:absolute;  top:50px;  left:0px; height:300px; width:1050px;  ">
+
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="{% static 'js/znrli.js' %}"></script>
+
+</body>
+
+</html>

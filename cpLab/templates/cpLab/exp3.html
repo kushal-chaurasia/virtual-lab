@@ -1,0 +1,207 @@
+{% extends 'cpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{%load static%}
+
+{% block introduction%}
+<!-- introduction content -->
+<h4>Introduction</h4>
+<hr>
+<p>A computer program can be thought of as a sequence of instructions which are followed by a computer to solve a problem. However, the sequence in which they are written and the sequence in which they are executed may not be the same. If the execution of every program was sequential, it would run exactly the same way each time. Hence, to write programs of greater complexity, which can take decisions based on user input or values of variables, we need a decision making mechanism which can alter the sequential order of execution of statements. The order of execution of statements in a program is called Control Flow (or flow of control).</p>
+<p>An example where we need to alter the sequential flow of control is when we want a set of instructions to be executed in one situation, and an entirely different set of instructions in another situation. A real life example of this sort of "decision-making" could be: "If the traffic light is green, keep moving;if yellow, then wait; if red, then stop". In the case of programmming, "decision-making" essentially means deciding from which statement the execution should be resumed. This decision about where the execution should be resumed is made based on the value of a variable or an expression.</p>
+<p>The if construct excecutes a set of instructions only if a condition is true. A switching construct allows decision-making based on the state of a variable or an expression. Its purpose is to allow the value of a variable or an expression to control the flow of program execution via a multiway branch.Constructs like these can be placed inside another to create more complex flow of control. This enclosing of structures into one another is called nesting. These constructs are known as conditionals because they alter the flow of control based on a condition.</p>
+<p>Apart from this, there is another class of constructs called loops, which can be used to repeat a set of instructions. This repetition can be done a fixed number of times or until some specific condition is met. Just like the conditionals, the loops can also be nested. Loops and conditionals can also be nested inside each other.</p>
+<p>In this lab, we shall see the working of looping constructs.</p>
+{%endblock%}
+
+{% block Theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<hr>
+<p>In order to understand the working of looping constructs, it is important to understand the term block. A group of code statements that are associated and intended to be executed as a unit is referred to as a block. In C, the beginning of a block of code is denoted by writing a set of statements with in curly braces. It is not necessary to place a semicolon after the end of a block. Blocks can be left empty. A block and can be written inside another block of statements, in such a case the former block is said to be nesting inside the other block.</p>
+<p>A loop is a construct that instructs the computer to repeatedly execute a certain block of code until a certain condition is met or for a certain fixed number of times. Every such repetition is called an iteration. Break statement can be used to exit a looping construct and a Continue statement can used to start another iteration at any point. A looping construct typically has three sections:</p>
+<ol>
+    <li style="margin-left: 3%;">An Initialization part where variables are initialized before looping is started. These are executed only once.</li>
+    <li style="margin-left: 3%;">A Test expression which determines when to exit the looping construct.</li>
+    <li style="margin-left: 3%;">An update section where variables are updated before the next iteration of the loop.</li>
+</ol>
+<p>The following are the most commonly used looping constructs used in C programming:</p> 
+<p><b>For Loop</b> <br>
+     In a for loop, the initialization, test expression and update expressions sections are written together in a single line :</p>
+<pre><strong>
+    for(initialization; test expression; update statements) {
+    statements1;
+    }
+</strong></pre> 
+<p>This improves the readability of the construct. The initialization expression is executed only once and is immediately followed by checking of the test expression. Hence, it is an entry controlled loop. If the test expression is false, then the construct is exited. So, it is possible that the statements1 may not get executed even once. If the test expression is true then statements1 are executed and it is followed by the execution of the update statements. Now, the test expression is evaluted again to check whether the loop should be exited. If not, the whole process is repeated, starting from the execution of statements1.
+</p>
+<p>The sequence of execution of statements is:</p>
+<ol>
+    <li>Initialization</li>
+    <li>Test Expression</li>
+    <li>Block Statements</li>
+    <li>Update statements</li>
+    <li>Test Expression</li>
+    <li>...</li>
+</ol>
+<p>Everytime when the test expression is evaluated, if it becomes false, then the loop is exited. This image shows the steps taken for this.</p>
+<img src="{%static 'annLab/circle.png'%}" alt="">
+<p> <b>While loop</b>
+    <br>While loop is another entry controlled loop. It works in a similar way as a for loop the only difference is that the initialization statements, test expression and the update statements are not written together. In fact, the update statements are written along with the block statements. The looping is terminated only when the test expression becomes false.
+</p>
+<pre><strong>
+    initialization;
+    while(test expression){
+            statements1;
+            update statements;
+        }
+    </strong></pre>
+<p>The sequence of execution of statements is:</p>
+<ol>
+    <li>Initialization</li>
+    <li>Test Expression</li>
+    <li>Block Statements</li>
+    <li>Update statements</li>
+    <li>Test Expression</li>
+    <li>...</li>
+</ol>
+<p>Everytime when the test expression is evaluated, if it becomes false, then the loop is exited.</p>
+<br><br>
+
+<p> <b>Do-while loop </b></p>
+<p>The the block statements in the for and while loops may not get executed at all because the test condition is checked before the execution. The Do-while loops ensure that the block statements are executed at least once, because in this the test expression is checked after doing one execution of the loop body. As usual the update statements come before the test condition loop. The following is the syntax of Do-while loops:</p>
+<pre><strong> 
+    do{
+    statements1;
+    update statements;
+}while(test expression);
+</strong></pre><br>
+<p>The sequence of execution of statements is:</p>
+<ol>
+    <li>Initialization</li>
+    <li>Block Statements</li>
+    <li>Update statements</li>
+    <li>Test Expression</li>
+    <li>Block Statements</li>
+    <li>Update statements</li>
+    <li>Test Expression</li>
+    <li>...</li>
+</ol>
+<p>Everytime when the test expression is evaluated, if it becomes false, then the loop is exited.</p>
+<br><br>
+<p>Important</p>
+<ol>
+    <li>Any loop can be exited at anytime by using a break statement.</li>
+    <li>Next iteration of the loop can be started at anypoint by using the continue statement.</li>
+</ol>
+{% endblock %}
+
+{% block Objective %}
+<!-- objective content -->
+<h4>Objective</h4>
+<hr>
+<ol>
+    <li> To learn how decision making is done while programming.</li>
+    <li> To learn about the various advanced constructs used for control flow in order to achieve repetition of instructions.</li>
+</ol>
+<br><br>
+<h4>Manual</h4>
+<hr>
+<p>Here we shall see how various looping constructs can be used to find the factorial of a positive integer.
+<br>In the other part of the experiment, we shall see how nesting of loops can be done to create a pattern of any size that looks like a pyramid.</p>
+<br><br>
+<h4>Procedure</h4>
+<hr>
+<p>Procedure for the experiment is as follows.</p>
+<ol>
+    <li>Choose experiment type by pressing the "Switch experiment" button on the bottom left.</li>
+<br>
+    <strong>Experiment 1:</strong>
+    <br><br>
+<li style="margin-left: 4%;">Select the looping construct with which you want to solve the problem.</li>
+<li style="margin-left: 4%;">Enter the number for which factorial has to be calculated and press OK.</li>
+<li style="margin-left: 4%;">Press Start to start the experiment.</li>
+<li style="margin-left: 4%;">Click Next to get a step by step execution of the code.</li>
+</ol> <br>
+    <strong style="margin-left: 3%;">Experiment 2:</strong> 
+<ol>
+    <br>
+<li style="margin-left: 4%;">Enter the height of pyramid and press OK.</li>
+<li style="margin-left: 4%;">Press Start to start the experiment.</li>
+<li style="margin-left: 4%;">Click Next to get a step by step execution of the code.</li>
+</ol>
+{% endblock %}
+
+{% block code %}
+<!-- coding content -->
+<h4>Step Execution</h4>
+<hr>
+<b>For loop</b>
+<pre><strong>
+    int main(){
+         int p;
+         int fact=1;
+         if(p==0)
+         {
+          return 1;
+         }
+         for(int i=p;i>=1;i--)
+         {
+           fact=fact*i;
+         }
+         return fact;
+        }
+    </strong></pre>
+<br><br>
+<b>While loop</b>
+<pre><strong>
+    int main(){
+         int p;
+         int fact=1;
+         if(p==0)
+         {
+           return 1;
+         }
+         while (i>=1)
+         {
+          fact=fact*i;
+          i--;
+         }
+         return fact;
+        }
+    </strong></pre>
+<br><br>
+<b>Do-while loop</b>
+<pre><strong>
+    int main(){
+         int p;
+         int fact=1;
+         int i=p;
+         if(p==0)
+         {
+          return 1;
+          }
+         do
+         {
+          fact=fact*i;
+           i--;
+          }while(i>=1);
+        }
+</strong></pre>
+<br><br>
+<h4>Code Output</h4>
+<hr>
+<pre><strong>
+    Local variables
+    <hr>
+    i:
+    fact:
+</strong></pre>
+{% endblock %}
+
+{% block lab %}
+<!--  leave this space blank compiler will come here -->
+{% endblock %}
+
+{% block experimentName %}Advanced Control Flow {%endblock%}

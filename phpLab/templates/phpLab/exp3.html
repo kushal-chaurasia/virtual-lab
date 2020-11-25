@@ -1,0 +1,109 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Switch Case</h4>
+<hr>
+<h4>Aim</h4>
+<p>The aim of this experiment is to understand the concept of multiway decision control construct in PHP and its use in PHP scripts. <br>
+    The Learner will be able</p>
+    <ul>
+        <li>explain the syntactic structure of switch-case statement in php script.</li>
+        <li>apply multiway decision control construct in PHP script.</li>
+    </ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Switch Case</h4>
+<hr>
+<h5>Theory</h5>
+<br>
+<b>1.1 Introduction</b>
+<br><br>
+<pre>
+    The switch statement is a multiway decision statement that tests whether the value of an expression(or variable) matches against list of case values and branches accordingly.
+  The switch statement is used to execute any one block of statements out of multiple blocks based on the value of the expression provided as condition for switch statement.
+</pre>
+<b>1.2 Basic Syntax</b>
+<br>
+<p>
+    switch(expression) <br>
+{ <br>
+case value-1 : <br>
+statements ; <br>
+break; <br>
+case value-2 : <br>
+statements ; <br>
+break; <br>
+case value-3 : <br>
+statements ; <br>
+break; <br>
+.... <br>
+.... <br>
+default : <br>
+statements; <br>
+} <br>
+The expression is an integer expression or character. If the case matches the expression value, the execution starts at that case. The 'break' is provided to avoid the execution of next case which also causes the exit from the switch. <br>
+The 'default' is an optional case. If none of the cases match, default block will be executed. Cases and default clause can occur in any order. The 'break' statement is optional , as two or more case labels may refer to the same block of statements.
+</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Swith Case</h4>
+<hr>
+<h5>Procedure</h5>
+<br>
+<b>1] Demonstration</b> 
+<p>
+1.Click the “Execute PHP” button and observe the step by step execution. <br>
+2.Observe the location of the yellow band. It highlights the line being executed. <br>
+3.Once yellow band stops moving, enter the value of x and y. <br>
+4.Select the operation which you want to perform. <br>
+5.Click on "Calculate" button and observe the output shown on the right hand side.
+</p>
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Switch Case</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;?php
+$favcolor = "red";
+
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+?&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+{% endblock %}
+
+{% block experimentName %}Switch Case{%endblock%}

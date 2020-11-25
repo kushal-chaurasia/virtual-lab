@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohms Law</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pop_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ohmslw1css.css' %}">
+    <script src="{% static 'js/canvasjs.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.jqplot.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shCore.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushJScript.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushXml.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jqplot.meterGaugeRenderer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
+</head>
+
+<body>
+    <div id="dialogoverlay"></div>
+        <div id="dialogbox">
+            <div>
+                <div id="dialogboxhead"></div>
+                <div id="dialogboxbody"></div>
+                <div id="dialogboxfoot"></div>
+            </div>
+        </div>
+        <div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; top:0px;height:800px; width:1075px;">
+            <div style="font-size:30px; text-align:center;padding-right:100px; height:60px"> <b> Ohm's Law </b></div>
+            <div id="ckt_values1" style="position:relative; top:0px;left:400px; height:300px; width:400px">
+                <p>
+                    <img src ="{% static 'beLab/ohmsl.png'%}" style="width:350px;height:250px;position:absolute;right:90px" /> 
+                <div class="example-content" style="position:absolute; top:10px;right:150px;left:200px">
+                    <link rel="stylesheet" type="text/css" href="{% static 'css/css_metergauge.css' %}">
+                    <!------------------------------------Metergauge1(Voltmeter)-------------------------------------------------->
+                    <div id="chart1" class="plot" style="position:relative;width:200px; height:110px;top:-60px;right:170px"></div>
+                    <script src="{% static 'js/js_metergauge.js' %}"></script>
+                    <!--<input type="number" name="r1" value="0" id="dc">-->
+                    <!--<input type="button" value="Simulate" onclick="perform()">-->
+                    <!------------------------------------Metergauge2(Ammeter)---------------------------------------------------->
+                    <div id="chart2" class="plot" style="position:absolute;width:250px; height:110px;right:100px;top:90px"></div>
+                    <!-- <script src="C:\Users\sukriti\ohmslaw\js\jquery_files\js_metergauge1.js"></script>-->
+                    <!--<input type="number" name="r1" value="0" id="amp">-->
+                    <!--<input type="button" value="Simulate" onclick="perform1()">-->
+
+                    <p style="position:absolute;top:10px;right:170px;font-size:15px"><b>V</b></p>
+                    <p style="position:absolute;top:160px;right:270px;font-size:15px"><b>A</b></p>
+                    <p style="position:absolute;top:80px;right:150px;font-size:15px"><b>R</b></p>
+                </div>	
+                <p style="position:absolute;top:235px;right:330px;font-size:15px"><b>V<sub>DC</sub></b></p>
+                <input type="text" value=""  id='dc'  min="0" max="30" step="2"  placeholder="Volt" oninput="txtchng()"  style="background-color:#e6f5ff;position:absolute; top:250px;  right:250px; width:70px" readonly/>
+                <input type="text" value="" id ='volt' placeholder="Volt"  style="background-color:#e6f5ff;position:absolute; top:32px;  right:230px; width:70px" readonly/>
+                <input type="text" value="" id='amp' placeholder="Ampere"  style="background-color:#e6f5ff;position:absolute; top:182px;  right:335px; width:70px" readonly/>
+                <input type ="text" value="" id="res"  min="1" max="100" step="1"  placeholder="Resistance" oninput="txtchnge()"  style="background-color:#e6f5ff;position:absolute; top:100px;  right:220px; width:90px"readonly />
+                <!--   <input type="button" id="siml" value="check" onclick="check()"  style="position:absolute; top:210px; width:100px; right:40px;"/>-->
+
+            </div>
+
+
+            <div id="cntrwrap" style="position:absolute;border: 2px solid #3385ff; top:20px;width:350px;height:150px;right:12px;">
+
+                <div id="cntrlr" style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:350px;font-size: 16px;font-weight: bold;"><p style="text-align:center;padding-right:210px;color:white"><b>CONTROLS</b></p> 
+                </div>
+                <!--   <div class="dropdown">  <img id="info_0" src="./image/icon.png" alt="info">
+                       <div class="dropdown-content">
+                        <ol type="1">
+                            INSTRUCTION:-
+                            <li>Set the Resistance Value .</li>
+                            <li>Set DC voltage to 20 V .</li>
+                            <li>Voltmeter is placed parallel to resistor and ammeter series with resistor.</li>
+                            <li>Now note the Voltmeter and Ammeter reading for DC voltage 20 V.  </li>
+                            <li>Increase the DC voltage by 2 factor and note Voltmeter and Ammeter Readings. Keeping resistance value constant</li>
+                            <li>Plot the V-I graph to verify Ohm's Law</li>
+                            <li>Repeat step 2 to 6 for another set of resistance value. </li>
+                            <li>V versus I graph is  a straight line.</li>
+                            <li>Therefore from the graph we see that the resistance do adhere to Ohm’s law. Thus resistance is said to be an Ohmic device.</li>
+                        </ol> 
+
+                       </div></div>-->
+
+
+
+                <div id="slide" style=" position:absolute; top:70px; right:0px; width:350px;  border-radius: 10px;">
+
+                    &nbsp&nbsp DC volt : &nbsp&nbsp&nbsp <input type="range" name="inpdc" id="vdc" min="0" max="30" step="1" value=""  oninput="sliderChange()" style="width:180px;"> &nbsp; Volt<br>	
+                    &nbsp&nbsp Resistance : <input type="range" name="resis" id="res1" min="1" max="100" step="1" value="" oninput="textChange()" style="width:180px">  Kohms<br>
+                    <!--&nbsp&nbsp Voltmeter :  <input type="range" name="v1" id="v1" min="20" max="28" step="2" value="" onchange="volt.value=this.value; " style=" width:280px">&nbsp mAmp<br>
+                    &nbsp&nbsp Ammeter  :  <input type="range" name="amp1" id="amp1" min="0.17" max="8.17" step="2" value="" onchange="amp.value=this.value; " style=" width:280px"><br>-->
+                    <br>	
+                    <input type="button" id="add" value="Add to Table" onclick="tabled()" style="position:absolute; top:100px; width:100px;  right:250px;cursor:pointer; "/>  
+                    <input type="button" id="plt" value="Plot" onclick="plot()" style="position:absolute; top:100px; width:100px; right:140px;cursor:pointer; "/>  
+                    <input type="button" id="clr" value="Clear" onclick="clearf()" style="position:absolute; top:100px; width:100px; right:30px;cursor:pointer;  "/>
+                </div>
+            </div>
+            <div id="msg" style="position:absolute;top:250px;right:100px;width:270px;height:150px;">
+                <p id="demo" style="color:red;"></p>
+                <p id="demos" style="color:green;"></p>
+
+            </div>
+            <div id="description" style="background-color: #3385ff;   position:absolute; top:10px; left:10px; width:307px;font-size: 16px;font-weight: bold;">
+
+
+                <div class="dropdown">
+                    <p style="text-align:center;padding-right:150px;color:white"> INSTRUCTION</p>
+                    <div class="dropdown-content">
+                        <ol type="1">
+                            <li>Set the Resistance Value(1 Kohm - 100 Kohm).</li>
+                            <li>Set DC voltage(0-30 V).</li>
+                            <li>Voltmeter is placed parallel to resistor and ammeter in series with resistor.</li>
+                            <li>Now note the Voltmeter and Ammeter reading for DC voltage.  </li>
+                            <li>Increase the DC voltage by 2 factor and note Voltmeter and Ammeter Readings. Keeping resistance value constant</li>
+                            <li>Plot the V-I graph to verify Ohm's Law</li>
+                            <li>Repeat step 2 to 6 for another set of resistance value. </li>
+                            <li>V versus I graph is  a straight line.</li>
+                            <li>Therefore from the graph we see that the resistance do adhere to Ohm’s law. Thus resistance is said to be an Ohmic device.</li>
+
+                        </ol> 
+
+                    </div>
+                </div>
+            </div>
+            <div id="tblwrap" style="position:absolute;border: 2px solid #3385ff; top:100px;width:305px;height:290px;left:10px">
+                <div style="position:absolute; font-size:16px;background-color: #3385ff;  top:0px;left:0px; width:305px; height:50px;font-weight: bold;"><p style="text-align:center;padding-right:80px;color:white"> <b> EXPERIMENTAL TABLE</b></p>
+                </div>
+                <p style="position:absolute; font-size:20px;top:40px;left:10px;">Resistance:&nbsp;<input type="text" id="rs" value="" size="4" readonly />K&#937;</p><br><br>
+
+                <div id="table" style="background-color:#e6f5ff;position:absolute;top:100px;width:305px;height:190px; left:0px;overflow-y: auto;">
+
+                    <table id="mytable" border="1" >                    
+                        <tr>
+                            <th>Serial No.</th>
+                            <th>Voltage(Volt)<br>V</th>
+                            <th>Current(milliAmpere)<br>mA</th>
+                            <!-- <th>Resistance(KOhm)</th>-->
+                        </tr>                   
+
+                    </table>
+                </div>
+            </div>
+
+            <div id="grpwrap" style="position:absolute;border: 2px solid #3385ff; top:420px;width:1050px;height:360px;left:10px">
+                <div style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:1050px;font-weight: bold;"><p> <b style="text-align:center;padding-right:910px;color:white"> GRAPH PLOT</b></p>
+                    <div class="tooltip" ><button id="calci"  onclick="printf()" style="position:absolute;padding-right:40px; cursor:pointer;top:13px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;">
+                            <img src="{% static 'beLab/Print Filled.png' %}" alt="Save icon" style="width:20px;height:20px;top:13px;"/></button> 
+                        <span class="tooltiptext">Print</span></div>
+
+
+                    <!--<p id="prnt" onClick="printf()" style="text-align:right;padding-left:910;top:-10px;display:none; color:black">PRINT</p>--></div>
+                <div id="chartContainer" style="position:absolute;  top:50px;  left:0px; height:300px; width:1050px;">
+
+                </div>
+            </div>
+
+            <!-- <div align="center" style="position:absolute; top:830px; width:1160px">
+                 <INPUT TYPE="text" onClick="printf()" value="Print" style="cursor: pointer; text-align:center; font-size: 20px; height:40px; width:500px"  >
+                 <br><br></div>-->
+
+        </div>
+
+        <script src="{% static 'js/vrf.js' %}"></script>
+</body>
+
+</html>

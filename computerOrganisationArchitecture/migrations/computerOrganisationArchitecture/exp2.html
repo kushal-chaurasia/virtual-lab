@@ -1,0 +1,205 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Design of Carry Lookahead Adders {% endblock %}
+
+
+
+<!-- theory content -->
+{% block theory%}
+<h4> Design of Carry Lookahead Adders </h4>
+
+<p> To reduce the computation time, there are faster ways to add two binary numbers by using carry lookahead adders.
+    They work by creating two signals P and G known to be <strong>Carry Propagator</strong> and <strong>Carry
+        Generator</strong> . The carry propagator is propagated to the next level whereas the carry generator is used to
+    generate the output carry ,regardless of input carry. The block diagram of a 4-bit Carry Lookahead Adder is shown
+    here below -</p>
+<div class="image">
+    {%load static%}
+    <img src="{%static 'computerOrganisationArchitecture/carrylookahead.png' %}" alt="">
+</div>
+<p>The number of gate levels for the carry propagation can be found from the circuit of full adder. The signal from
+    input carry Cin to output carry Cout requires an AND gate and an OR gate, which constitutes two gate levels. So if
+    there are four full adders in the parallel adder, the output carry C5 would have 2 X 4 = 8 gate levels from C1 to
+    C5. For an n-bit parallel adder, there are 2n gate levels to propagate through.</p>
+<p>Design Issues :</p>
+<p>The corresponding boolean expressions are given here to construct a carry lookahead adder. In the carry-lookahead
+    circuit we ned to generate the two signals carry propagator(P) and carry generator(G),</p>
+<strong>Pi = Ai ⊕ Bi</strong>
+<strong>Gi = Ai · Bi</strong>
+<p>The output sum and carry can be expressed as</p>
+<strong>Sumi = Pi ⊕ Ci</strong><br>
+<strong>Ci+1 = Gi + ( Pi · Ci)</strong>
+<p>Having these we could design the circuit. We can now write the Boolean function for the carry output of each stage
+    and substitute for each Ci its value from the previous equations:</p>
+<strong>C1 = G0 + P0 · C0</strong><br>
+<strong> C2 = G1 + P1 · C1 = G1 + P1 · G0 + P1 · P0 · C0</strong><br>
+<strong>C3 = G2 + P2 · C2 = G2 P2 · G1 + P2 · P1 · G0 + P2 · P1 · P0 · C0</strong><br>
+<strong>C4 = G3 + P3 · C3 = G3 P3 · G2 P3 · P2 · G1 + P3 · P2 · P1 · G0 + P3 · P2 · P1 · P0 · C0</strong>
+{%endblock%}
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of 4 bit carry lookahead adder:</h4>
+<p>It computes the carries parallely thus greatly speeding up the computation.</p>
+<ol>
+    <li>understanding behaviour of carry lookahead adder from module designed by the student as part of the experiment
+    </li>
+    <li>understanding the concept of reducing computation time with respect of ripple carry adder by using carry
+        generate and propagate functions</li>
+    <li>the adder wil add two 4 bit numbers</li>
+</ol>
+<strong>Examining behaviour of carry lookahead adder for the module designed by the student as part of the experiment
+    (refer to the circuit diagram) <br>
+    Loading data in the carry lookahead adder (refer to procedure tab for further detail and experiment manual for pin
+    numbers)
+</strong>
+
+<ul>
+    <li>load the two input numbers in the adder units as:</li>
+    <ul>
+        <li>1111 and 0001</li>
+    </ul>
+
+</ul>
+<strong>Examining the carry generate and propagate function behaviour:</strong>
+<ul>
+    <li>check output sum 0000</li>
+    <li>check final output carry 1</li>
+    <li>check intermediate carry bit and sum bit of the unit adders and verify the values of carry generate and
+        propagate function (refer to theory)</li>
+    <li>probing the any port can be done by verifying the color of the wire coming out of the port</li>
+</ul>
+<p><strong>Recommended learning activities for the experiment:</strong> Leaning activities are designed in two stages, a
+    basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz
+    questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to
+    perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the
+    student, having gone through the theory, objective and procuder. By performing the experiment on the working module,
+    students can only observe the input-output behavior. Where as, performing experiments on the designed module,
+    students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to
+    perform the experiments following the given guideline to check behavior and test plans along with their own circuit
+    analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the
+    accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit
+    design experience. At any time, students can mature their knowledge base by further reading the references provided
+    for the experiment.</p>
+<ul>
+    <li>color configuration of wire for 5 valued logic supported by the simulator:</li>
+    <ul>
+        <li>if value is UNKNOWN, wire color= maroon</li>
+        <li>if value is TRUE, wire color= blue</li>
+        <li>if value is FALSE, wire color= black</li>
+        <li>if value is HI IMPEDENCE, wire color= green</li>
+        <li>if value is INVALID, wire color= orange</li>
+    </ul>
+</ul>
+<strong>Test plan:</strong>
+<ol>
+    <li>Set one input to zero(0) and check the output.</li>
+    <li>Set one input to all one and another as 0001 in carry lookahead adder.</li>
+    <li>Set one input to all one and another as 0001 in carry lookahead adder.</li>
+</ol>
+Use Display units for checking output. Try to use minimum number of components to build. The pin configuration of the
+canned components are shown when mouse hovered over a component. <br>
+<strong>Assignment Statements :</strong>
+<ol>
+    <li>Design a 4-bit carry lookahead adder circuit using half adders and full adders and test it by giving proper
+        input.</li>
+    <li>Design a 16-bit carry lookahead adder circuit using half adders and full adders and test it by giving proper
+        input.</li>
+</ol>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Design of Carry Lookahead Adders :</h4>
+<strong>Procedure to perform the experiment:Design of Carry Lookahead Adders</strong>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To design the circuit we need 7 half adder, 3 OR gate, 1 V+(to give 1 as input), 3 Digital display(2 for seeing
+        input and 1 for seeing output sum), 1 Bit display(to see the carry output), wires.</li>
+    <li>The pin configuration of a component is shown whenever the mouse is hovered on any canned component of the
+        palette or press the 'show pinconfig' button. Pin numbering starts from 1 and from the bottom left
+        corner(indicating with the circle) and increases anticlockwise.</li>
+    <li>For half adder input is in pin-5,8 output sum is in pin-4 and carry is pin-1</li>
+    <li>Click on the half adder component(in the Adder drawer in the pallet) and then click on the position of the
+        editor window where you want to add the component(no drag and drop, simple click will serve the purpose),
+        likewise add 6 more full adders(from the Adder drawer in the pallet), 3 OR gates(from Logic Gates drawer in the
+        pallete), 1 V+, 3 digital display and 1 bit Displays(from Display and Input drawer of the pallet,if it is not
+        seen scroll down in the drawer)</li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and
+        click on the target terminal. According to the circuit diagram connect all the components, connect V+ to the
+        upper input terminals of 2 digital displays according to you input. connect the OR gates according to the
+        diagram shown in the screenshot connect the pin-1 of the half adder which will give the final carry output.
+        connet the sum(pin-4) of those adders to the terminals of the third digital display which will give output sum.
+        After the connection is over click the selection tool in the pallete.</li>
+    <li>See the output, in the screenshot diagram we have given the value 0011(3) and 0111(7) so get 10 as sum and 0 as
+        carry.you can also use many bit switches instead of V+ to give input and by double clicking those bit switches
+        can give different values and check the result.</li>
+</ul>
+<strong>Circuit diagram of Carry Lookahead Adder:</strong>
+<div class="image">
+    {%load static%}
+    <img src="{%static 'computerOrganisationArchitecture/circuitdiagram.png' %}" alt="">
+</div>
+<strong>Components :</strong>
+<p>The components needed to create 4 bit carry lookahead adder is listed here -</p>
+<ul>
+    <li>7 half-adders: 4 to create the look adder circuit, and 3 to evaluate Si and Pi · Ci</li>
+    <li>3 OR gates to generate the next level carry Ci+1</li>
+    <li>wires to connect</li>
+    <li>LED display to obtain the output</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator</li>
+    <li>The simulator supports 5-valued logic</li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click
+        on the position of the canvas where you want to add the component</li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left
+        toolbar or whenever the mouse is hovered on any canned component of palette</li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and
+        then click on the the target terminal</li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired
+        position</li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click</li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click</li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital
+        format</li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of
+        circuit building</li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the
+        given 'set clock' button in the left toolbar</li>
+    <li>Use 'plot graph' button to see input-output wave forms</li>
+    <li>Users can save their circuits with .logic extension and reuse them</li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output</strong></li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of
+            the whole circuit. Then there is no need to again press the 'simulate' button</strong></li>
+</ul>
+{% endblock %}
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/rippleCaryyAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}
+
+{% block experimentName %}Carry Lookahead Adders{%endblock%}
+
+

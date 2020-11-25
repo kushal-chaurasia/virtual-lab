@@ -1,0 +1,109 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>While Loop</h4>
+<hr>
+<h4>Aim</h4>
+<strong>The aim of the experiment is to understand the working of While loop and use it in PHP script considering its suitability.</strong> <br>
+<p>Learner will be able to:</p>
+<ul>
+    <li>apply the basic syntax of while loop.</li>
+    <li>write simple PHP programs with while loop.</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>While Loop</h4>
+<hr>
+<h4>Theory</h4>
+<p>
+   <b>1.1 Introduction</b> <br>
+
+PHP provides looping constructs which are helpful in executing one or more statements repetitively till some condition is satisfied. In short for repetitive execution of block of code, these constructs can be used. PHP provides looping constructs like while, do-while, for , for each . <br>
+The basic format of while statement is : <br>
+while(condition) <br>
+{ <br>
+one or more statements to be executed; <br>
+} <br>
+Here the condition is checked first. If it is true(non zero) then the statement(s) inside the loop is/are executed. This execution is repeated till the condition is true. <br>
+Like while, the for loop is another entry-controlled looping construct. The basic syntax for statement is
+for( initialization; test condition; updation ) <br>
+{ <br>
+one or more statements to be executed; <br>
+} <br>
+is equivalent to <br>
+initialization; <br>
+while(test_condition) <br>
+{ <br>
+One or more statements ; <br>
+Updation; <br>
+} <br>
+Initialization part initializes the counter variables, the condition to be checked is written in the test condition part. If condition is true(non-zero), the code is executed otherwise not. The updation of the counter is done in the last part. Initialization takes place only once at the start of the loop. <br><br>
+
+ <b>1.2 Example of ‘while’</b><br>
+To calculate the sum of n numbers stored in an array : <br>
+$num = 10; <br>
+$sum = 0; <br>
+$count =0; <br>
+$a= array(10,20,30,40,50,60,70,80,90,100) <br>
+while ($count < $num ) <br>
+{ <br>
+$sum=$sum + a[$count] ; <br>
+$count=$count + 1; <br>
+} <br>
+echo “Sum=” + $sum; <br>
+?> <br>
+</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>While Loop</h4>
+<hr>
+<h4>Procedure</h4>
+<b>1] Demonstration</b>
+<p>
+    Click the "Execute PHP" button and observe the step by step execution. <br>
+Observe the location of the yellow band. It highlights the line being executed. <br>
+Once yellow band stops moving,Enter the number of terms of Fibonacci Series in the textbox provided. <br>
+Click on the "Calculate" button and observe the output shown on the right hand side. <br>
+</p>
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>While Loop</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php  
+$x = 1;
+ 
+while($x &lt;= 5) {
+  echo "The number is: $x <br>";
+  $x++;
+} 
+?&gt;  
+
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %}While Loop {%endblock%}

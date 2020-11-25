@@ -1,0 +1,138 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Cookies Handling</h4>
+<hr>
+<h4>Aim</h4>
+<p>The aim of this experiment is to understand the concept of cookies and use them for developing web pages using PHP. <br>
+    The Learner will be able to:</p>
+    <ul>
+        <li>identify the real life problems where the use of cookies in PHP script be more suitable and worthy.</li>
+        <li>write and execute PHP programs to set and retrieve cookies for various purposes.</li>
+        <li>describe the script at server and client side for cookies.</li>
+    </ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Cookies Handling</h4>
+<hr>
+<h4>Theory</h4>
+<b>1.1 Introduction</b>
+<p>Cookies are the text files stored on the client computer and they are used for tracking purpose. Cookies contain session specific user information like username, password, etc. PHP transparently supports HTTP cookies. <br>
+    There are three steps involved in identifying returning users: <br>
+    Server script sends a set of cookies to the browser. For example name, age, or identification number etc. <br>
+    The browser stores this information on local machine for future use. <br>
+    Next time when browser sends any request to web server then the browser sends cookies information to the server and server uses that information to identify the user.</p>
+<b>1.2 Creating a Cookie</b>
+<p>Cookies can be set using the setcookie() function in PHP. As cookies are part of the HTTP header, setcookie() function must be called before any output is sent to the browser. Prototype for setcookie() is as follows: <br>
+    setcookie(name, value,.....) <br>
+    Only name is required parameter and other parameters are optional.</p>
+    <b>1.3 Retrieving a Cookie</b>
+<p>You can retrieve the value of cookie using <br>
+    $_COOKIE($cookie_name) <br>
+    If you want to check if the cookie is set, the function used is isset() <br>
+    isset($_COOKIE[$cookie_name]) <br>
+    Any cookie sent to server from the client will automatically be turned into a PHP variable just like GET and POST method data, depending on the register_globals and variables_order configuration variables. <br>
+    The $_COOKIE, auto-global array will always be set with any cookie sent from the client. <br>
+    HTTP_COOKIE_VARS is also set in earlier versions of PHP when the track_vars configuration variable is set.</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Cookies Handling</h4>
+<hr>
+<h4>Procedure</h4>
+<b>1] Setting cookie</b>
+<p>1. Click the Corresponding button in PHP frame to see PHP code. <br>
+    2. Click the "Execute PHP" button and observe the step by step execution. <br>
+    3. Observe the location of the yellow band. It highlights the line being executed. <br>
+    4. Once yellow band stops moving, observe output of the code at the right side and corresponding html code at the bottom of the page. <br>
+    5. Click the "Set Cookie" button to see the PHP program for creating and setting cookie. <br>
+    6. Enter the cookie name and its value in the text boxes on the HTML Page. <br>
+    7. Click "Set Cookie" button on the HTML page, observe the output. <br>
+    8. To Retrieve the CookieClick on "Retrieve Cookie" button to see PHP code. Click "Execute PHP " button. <br>
+    9. Click the "Retrieve Username" / "Retrieve All" button on the HTML page and observe the output. <br>
+    10. Repeat step 5. <br>
+    11. Enter the cookie name in the text boxes on the HTML Page. <br>
+    12. Click on "Retrieve Cookie" on the html page, observe the output. <br>
+    13. Repeat step 5.</p>
+    <p><strong>Note:</strong>You should first set the cookie and then retrieve the same.</p>
+    <b>2] Simulator</b>
+    <p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Cookies Handling</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+    &lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml" &gt;
+
+&lt;head&gt;
+
+&lt;meta charset="utf-8" /&gt;
+
+&lt;title&gt;Introduction to PHP&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt; This program helps in understanding the Cookies&lt;/h1&gt;
+
+&lt;form name=formSubmit method="post" action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"&gt;
+
+&lt;table&gt;
+
+&lt;tr&gt;&lt;td&gt; Enter Cookie name&lt;/td&gt;&lt;td&gt; &lt;input type=text name=cname value= "&lt;?php echo isset($_POST['cname']) ? $_POST['cname'] : ''; ?&gt;" &gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt; Enter Cookie value&lt;/td&gt;&lt;td&gt; &lt;input type=text name=cvalue value= "&lt;?php echo isset($_POST['cvalue']) ? $_POST['cvalue'] : ''; ?&gt;" &gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt; &lt;td&gt;&lt;input type = submit value = Set Cookie&gt;&lt;/input&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;/form&gt;
+
+&lt;?php
+
+if( count($_POST)=0> && isset($_POST["cname"]) && isset($_POST["cvalue"]) )
+
+{$cookie_name = $_POST["cname"];
+
+$cookie_value = $_POST["cvalue"];
+
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+if(!isset($_COOKIE[$cookie_name]))
+
+{ echo "Cookie named " . $cookie_name . " is not set!"; }
+
+else
+
+{ echo "Cookie " . $cookie_name . " is set!&lt;br&gt;";
+
+echo "Value is: " . $_COOKIE[$cookie_name]; }
+
+}
+
+?&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</strong></pre>
+{% endblock %}
+
+{% block experimentName %}Cookies Handling {%endblock%}

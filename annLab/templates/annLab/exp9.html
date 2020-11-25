@@ -1,0 +1,115 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4>
+<p>The objective of this experiment is to demonstrate the use of Hopfield models for solving optimization problems. The main issue in solving optimization problems using neural networks is mapping of the problem to a neural network architecture. This experiment demonstrates how an optimization problem such as the graph bipartition problem, can be mapped on to an Hopfield model (feedback neural network).</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4><br>
+<h4>Graph bipartition problem</h4>
+<p>The problem illustrated here is the graph bipartition problem, using Hopfield model to solve it. The problem is to partition a given graph of \(N\) nodes equally, as shown in the following figure, such that the connectivity (measured in the terms of the number of links) between the two partitioned graphs is minimum.</p><br>
+<img src="{%static 'annLab/we.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> Graph bipartition problem</pre>
+<p>The problem can be mapped onto a Hopfield network, in which each bipolar unit corresponds to a node in the graph, with the state \(s_i = +1\) representing the node in one half and state \(s_i = -1\) representing the nodes in the other half. Let state \(c_{ij} = 1\) if the nodes i and j are connected and \(c_{ij} = 0\) if the nodes are not connected. Thus the cost term \(c_{ij}s_i s_j\) contributes to a non-zero value only if the nodes are connected. We have \(c_{ij}s_i s_j = +1\) if the nodes are in the same partition, and \(c_{ij}s_i s_j = -1\) if they are in different partitions. For equal division of the nodes \(\sum\limits_{j} s_i=0\). Therefore the cost term with equality constraint is given by</p>
+<p style="margin-left: 5%;">\( E = -\frac{1}{2}\)\(\sum\limits_{i,j}c_{ij}s_i s_j + \frac{\alpha}{2} [\sum\limits_{i}s_i]^2 \qquad(1)\)</p>
+<p>where the positive constant \(\alpha\) is used to indicate the relative strengths of the two terms in the energy function. Due to conflicting requirements of the two terms, there will be several minima in the energy function. The cost functions E can be written in the Hopfield energy form as</p>
+<p style="margin-left: 5%;">\( E = -\frac{1}{2}\)\( \sum\limits_{ij}w_{ij}s_i s_j + \frac{N\alpha}{2} \qquad(2)\)</p>
+<p>where \(w_{ij} = c_{ij}- \alpha\). The term \(N\alpha/2\) is to take care of the term corresponding to \(i=j\), since \(w_{ii} = 0\) for a Hopfield Model.</p>
+
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4>
+<p>The Hopfield model for the solution of graph bipartition problem is discussed here. While performing this experiment it is necessary to understand the issues associated with annealing of Hopfield model.</p><br>
+<img src="{%static 'annLab/we1.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> Illustration of graph with 4 nodes before annealing.</pre>
+<p>Figure 1 illustrates a graph with 4 nodes before the process of annealing. Figure 2 shows the input graph and the bipartitioned graph.</p><br>
+<img src="{%static 'annLab/we2.png'%}" alt=""><br><br>
+<pre><strong>Figure 2:</strong> Illustration of graph with 4 nodes after annealing.</pre>
+<p>We see that even if there exists a solution through annealing, it need not lead to the optimum solution of the bipartition. The graph still is not divided in parts containing equal number of nodes as illustrated in Figure 2.</p><br><br>
+<img src="{%static 'annLab/we3.png'%}" alt=""><br><br>
+<pre><strong>Figure 3:</strong> Illustration of graph with 14 nodes before annealing.</pre>
+<p>Figuew 3 illustrates a graph with 14 nodes before the process of annealing. Figure 4 shows the input graph and the bipartitioned graph.</p><br><br>
+<img src="{%static 'annLab/we4.png'%}" alt=""><br><br>
+<pre><strong>Figure 4:</strong> Illustration of graph with 14 nodes after annealing.</pre>
+<p>We see that in the case of more number of nodes, annealing leads to the optimum solution of the bipartition. The graph still is now divided in parts containing equal number of nodes as illustrated in Fig. 4.</p>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4><br>
+<h4>For the graph bipartition problem</h4>
+<ol>
+    <li style="margin-left: 4%;">First select a graph type, how many nodes it has to contain.</li>
+    <li style="margin-left: 4%;">Select the number of nodes and number of edges, and then mention nodes sharing the edges</li>
+    <li style="margin-left: 4%;">Give the value of \(\alpha\) and \(\delta T\) (decrement in temperature) to be used. \(\delta T\) is the temprature gradient controlling annealing process helping the network to settle down (Refer to Artificial Neural Networks virtual lab, Experiment 6).</li>
+    <li style="margin-left: 4%;">Press 'Init' to generate the required graph. Observe the graph generated.</li>
+    <li style="margin-left: 4%;">Click on 'Anneal' to the initiated Hopfield and then observe the output.</li>
+</ol>
+
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4><br>
+<h6>Graph bipartition problem</h6><br>
+<form >
+  <div class="form-inline">
+    <label class="my-1 mr-4" for="graph">Select a graph:</label>
+    <select class="custom-select my-1 mr-sm-4" id="graph">
+      <option value="1">Sample graph 1:4 nodes </option>
+      <option value="2">Sample graph 2:6 nodes</option>
+      <option value="3">Sample graph 5:12 nodes</option>
+      <option value="4">Sample graph 6:14 nodes</option>
+      <option value="5">Sample graph 7:16 nodes</option>
+      <option value="6">Create your own graph</option>
+    </select>
+  </div>
+  <div class="form-inline">
+    <label for="inlineFormInputName2">No. of nodes:</label> <pre>    </pre>
+    <input type="text" class="form-control mb-2 mr-s-2" id="sample" placeholder="20">
+    </div>
+    <div class="form-inline">
+      <label for="inlineFormInputName2">No. of edges</label> <pre>    </pre>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+      </div>
+      <div class="form-inline">
+        <label for="inlineFormInputName2">Edges:</label> <pre>          </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+        </div>
+        <div class="form-inline">
+          <label for="inlineFormInputName2">Alpha:</label> <pre>         </pre>
+          <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+          </div>
+          <div class="form-inline">
+            <label for="inlineFormInputName2">DeltaT:</label> <pre>        </pre>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+            </div>
+            <button type="button" class="btn btn-secondary">Init</button>
+            <button type="button" class="btn btn-secondary">Reset</button>
+      
+  </form>
+  
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+
+<h4 style="color: cadetblue;">Hopfield models for solution to optimization problems</h4>
+<ol>
+    <li style="margin-left: 3%;">Observe the connected graph has been partitioned into required spaces with the minimum number of connections in between.</li>
+    <li style="margin-left: 3%;">Observe the effect of changing the parameters \(\alpha\) and \(\delta T\) for the annealing schedule.</li>
+    <li style="margin-left: 3%;">Vary the number of nodes and edges and observe if there exists any relation between \(\delta T\) and number of nodes/edges.</li>
+</ol>
+{% endblock %}
+
+{% block experimentName %}
+
+{%endblock%}

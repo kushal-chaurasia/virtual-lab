@@ -1,0 +1,109 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Quine - Mc Clusky Algorithm {% endblock %}
+
+{% block theory%}
+<!-- theory content -->
+{% load static%}
+<h4>Quine - Mc Clusky Algorithm</h4>
+<p>The Quine – McCluskey algorithm is a method used for minimization of boolean functions that was developed by
+W.V.Quine and extended by Edward J.McCluskey.</p>
+<p>The minimization of Boolean expressions using K-maps is usually limited to a maximization of six variables. The Quine
+    – McCluskey method also known as the Tabular method is a more systematic method of minimizing expression of even
+    larger number of variables. This is suitable for hand computation as well as computation by machine.</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of Quine - Mc Clusky Algorithm</h4>
+<ul>
+    <li>Tabular Method Compute all prime implicants</li>
+    <li>Find a minimum expression for Boolean functions</li>
+    <li>No visualization of prime implicants Can be programmed and implemented in a computer</li>
+    
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Procedure to perform the experiment:Quinn - Mc Clusky Algorithm</h4>
+<p>There are 4 main steps in the Quine-McCluskey algorithm:</p>
+<ul>
+    <li>Generate Prime Implicants</li>
+    <li>Construct Prime Implicant Table</li>
+    <li>Reduce Prime Implicant Table
+        <ul>
+            <li>Remove Essential Prime Implicants</li>
+            <li>Row Dominance</li>
+            <li>Column Dominance</li>
+        </ul>
+    </li>
+    <li>Solve Prime Implicant Table</li>
+</ul>
+<strong>Example #1:</strong>
+<p>F(A; B; C; D) =m(0;2;5;6;7;8;10;12;13;14;15)</p>
+<strong>Step 1: Generate Prime Implicants</strong>
+<p>List all the minterms.Arrange all minterms in group of the same number of 1s in their binary representation in column</p>
+<center><img src="{% static 'computerOrganisationArchitecture/q1.png' %}" alt=""></center>
+<p>A check (✓) is written next to every minterm which can combined with another</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/q2.png' %}" alt=""></center> <br>
+
+<center><img src="{% static 'computerOrganisationArchitecture/q3.png' %}" alt=""></center>
+<strong>Combine Pairs of Products from Column II</strong> <br>
+<p>A check (✓) is written next to every product which can combined with another product.</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/q4.png' %}" alt=""></center>
+
+<p>Column III contains a number of duplicate entries,e.g.(0,2,8,10) and (0,8,2,10). Duplicate entries appear because a product in Column III can be formed in several ways. For example, (0,2,8,10) is formed by combining products (0,2) and (8,10) from Column II, and (0,8,2,10) (the same product) is formed by combining products (0,8) and (2,10).</p> 
+
+<strong>Step 2: Construct Prime Implicant Table.</strong>
+
+<center><img src="{% static 'computerOrganisationArchitecture/q5.png' %}" alt=""></center>
+
+<strong>Step 3: Reduce Prime Implicant Table. <br> Iteration #1.</strong>
+<ul>
+    <li><strong>Remove Primary Essential Prime Implicants</strong>
+        <center><img src="{% static 'computerOrganisationArchitecture/q6.png' %}" alt=""></center>
+        * * indicates a secondary essential prime implicant ◦ indicates a distinguished row
+    </li>
+    <li><strong>Row Dominance</strong>
+        <center><img src="{% static 'computerOrganisationArchitecture/q7.png' %}" alt=""></center>
+    </li>
+    <li><strong>(iii) Column Dominance</strong>
+        <center><img src="{% static 'computerOrganisationArchitecture/q8.png' %}" alt=""></center>
+    </li>
+   
+</ul>
+<strong>Iteration #2.</strong>
+<ul>
+    <li><strong>Remove Secondary Essential Prime Implicants</strong></li>
+    <center><img src="{% static 'computerOrganisationArchitecture/q9.png' %}" alt=""></center>
+</ul>
+<p> <strong>Step 4:</strong>  Solve Prime Implicant Table. No other rows remain to be covered, so no further steps are required. Therefore, the minimum-cost solution consists of the primary and secondary essential prime implicants <br> B'D' , BD, CD' and AD' <br>
+
+    F= B'D' + BD + CD'+ AD'</p>
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>Quine - Mc Clusky Algorithm:</h4>
+<ul>
+    <li>Go to the simulator Tab.</li>
+    <li>Select number of variables from dropdown list. (Note: you can select from variables ranging from 1 to 8)</li>
+    <li>Select Yes or No to allow dontcare</li>
+    <li>Select Yes or No to show result</li>
+    <li>After that, below you can observe a table with 0’s filled based on no. of variables.</li>
+    <li>Change value of the cell by clicking on it from 0 to 1 or don’t care (X).</li>
+    <li>After your cell selection in the table, it will automatically selects & shows the possible combinations of 1’s as Pairs, Quads or Octacts.</li>
+    <li>The result for your function is shown below after the solving steps.</li>
+</ul>
+
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="/computerOrganisationArchitecture/simulator2"> Click here to go to simulator</a>
+
+{% endblock %}

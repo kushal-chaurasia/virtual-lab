@@ -1,0 +1,92 @@
+{% extends 'cpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{%load static%}
+
+{% block introduction%}
+<!-- introduction content -->
+<h4>Introduction</h4>
+<hr>
+<p>Sometimes solving a big problem may require us to solve smaller problems of similar nature. For example, computing the xth number in the fibonacci sequence may require us to find the x-1th and the x-2th numbers in the sequence. If we are able to break the main problem into smaller instances of the same problem again and again, so that eventually the smaller problems become trivial, then we can use the solutions to the trivial problems to progressively build bigger solutions. Consequently, we can reach the solution of our main problem. This concept when used in coding is called recursion.</p>
+<p>For writing a recursive code for a problem, we simply call a function inside the definition of the same function. Thus the definition of GNU (the source of much free software) is said to be recursive because GNU stands for 'GNU's Not Unix', i.e. GNU is part of the definition of GNU! Or maybe two mirrors placed parallely! The nested images are a form of infinite recursion.</p>
+
+{%endblock%}
+
+{% block Theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<hr>
+<p>Recursion simply means applying a function as a part of the definition of that same function. Suppose we have to find the factorial of a number. The mathematical factorial function is defined as being the product of all the numbers up to and including the number, and the factorial of 1 is 1. Thinking about this, we see that another way to express this is that the factorial of N is equal to N times the factorial of (N-1). <br>
+    Thus:</p>
+    <pre><strong>
+        1! = 1 2! = 1 x 2 = 1! x 2 3! = 1 x 2 x 3 = 2! x 3 = 6 --- --- N! = 1 x 2 x 3 x .... (N-2) x (N-1) x N = (N-1)! x N
+    </strong></pre>
+    <p>So we can express this as:</p>
+    <pre><strong>
+        factorial(n): if n == 1: return 1 else: return n * factorial(n-1)
+    </strong></pre>
+    <p>The important thing to remember when creating a recursive function is to give an 'end-conditions' or the 'base cases'. We don't want the function to keep calling itself forever, do we? Somehow, it should know when to stop. So, we give it a base case. Like here the base case is for n=1. The key to making this work is that there must be a terminating condition such that the function branches to a non-recursive solution at some point.</p>
+    <p>Hence a feasible recursive solution will have the following two properties:</p>
+    <ol>
+        <li>A simple base case (or cases), and</li>
+        <li>A set of rules which reduce all other cases toward the base case.</li>
+    </ol>
+{% endblock %}
+
+{% block Objective %}
+<!-- objective content -->
+<h4>Objective</h4>
+<hr>
+<ol>
+    <li>To understand that some problems can be broken down into smaller similar problems.</li>
+    <li>To solve such problems using recursive procedures.</li>
+</ol>
+<br><br>
+<h4>Manual</h4>
+<hr>
+<p>Experiments will show you how to solve the classical puzzle of Towers of Hanoi through recursion.</p>
+<br><br>
+<h4>Procedure</h4>
+<hr>
+<ol>
+    <li>Select the value of N (values must me greater than 1 and less than or equal to 5).</li>
+    <li>Press next to see the execution of the code.</li>
+    <li>Relavant line in the code is shown here.</li>
+    <li>The output of the code is shown in the right.</li>
+</ol>
+{% endblock %}
+
+{% block code %}
+<!-- coding content -->
+<h4>Step Execution</h4>
+<hr>
+<pre><strong>
+    void main () {
+        int N;
+        scanf ( " %d ", &N );
+        hanoi( 1, 2, 3, N );
+        }
+        
+        void hanoi ( int S, int D, int T, int n ) {
+        if( n == 1 ) {
+        printf( "Move from tower %d --> %d", S, D );
+        return ; }
+        hanoi ( S, T, D, n-1 );
+        printf( "Move from tower %d --> %d", S, D );
+        hanoi( T, D, S, n-1 );
+        return ;
+        }
+</strong></pre>
+<br><br>
+<h4>Code Output</h4>
+<hr>
+<img src="{%static 'annLab/poll.png'%}" alt="">
+
+{% endblock %}
+
+{% block lab %}
+<!--  leave this space blank compiler will come here -->
+{% endblock %}
+
+{% block experimentName %}Recursion {%endblock%}

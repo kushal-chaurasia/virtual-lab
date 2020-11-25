@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>{%block title%} {% endblock %}</title>
+    <style>
+        
+      
+        h3 {
+            display: inline;
+            padding: 13px;
+        }
+
+        .content {
+            display: none;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    </style>
+    {% block style %} {% endblock %}
+    <script src="{% static 'js/exp2.js' %}"></script>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+
+    <!-- page nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Introduction </span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">List Of Experiment</span></h3>
+            </a>
+            <a class="link" href="#" rel="div3">
+                <h3><span class="badge badge-info">Target Students</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div4">
+                <h3><span class="badge badge-info">Objective</span></h3>
+            </a>
+            <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Prerequesties</span></h3>
+            </a>
+
+
+            <a class="link" href="#" rel="div6">
+                <h3><span class="badge badge-info">Feedback</span></h3>
+            </a>
+        </div>
+
+        <!-- Page content -->
+        <section>
+            <div class="content" id="div1">
+                <h4>Software Engineering</h4>
+                <p>Software engineering is an engineering branch associated with development of software product using
+                    well-defined scientific principles, methods and procedures. The outcome of software engineering is
+                    an efficient and reliable software product. <br>
+
+                    Software project management has wider scope than software engineering process as it involves
+                    communication, pre and post delivery support etc. <br>
+
+                    This tutorial should provide you basic understanding of software product, software design and
+                    development process, software project management and design complexities etc. At the end of the
+                    tutorial you should be equipped with well understanding of software engineering concepts.</p>
+                <p>This lab attempts to provide basic concepts to the students on a wide range of topics including
+                    Requirements analysis, ER modeling, identification of domain classes, use-case diagrams and
+                    designing a test suite. Ample illustrations and simulations are used to reinforce one's
+                    understanding. Once the concepts are clear, a set of exercises given on the concerned topics would
+                    help the students to evaluate themselves and their progress of learning. The main focus is to enable
+                    the students to interact with the "virtual" teacher in an effective and efficient manner compared to
+                    how they would do in a real lab on the subject.</p>
+            </div>
+
+            <div class="content" id="div2">
+                <h1><span class="badge badge-primary">List of Experiments</span></h1>
+                <ul>
+                    <li><a href="/seLab/experiment1">
+                            <h4><span class="badge badge-info">Identifying the Requirements from Problem
+                                    Statements</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment2">
+                            <h4><span class="badge badge-info">Estimation of Project Metrics</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment3">
+                            <h4><span class="badge badge-info">Modeling UML Use Case Diagrams and Capturing Use Case
+                                    Scenarios</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment4">
+                            <h4><span class="badge badge-info">E-R Modeling from the Problem Statements</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment5">
+                            <h4><span class="badge badge-info">Identifying Domain Classes from the Problem
+                                    Statements</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment6">
+                            <h4><span class="badge badge-info">Statechart and Activity Modeling</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment7">
+                            <h4><span class="badge badge-info">Modeling UML Class Diagrams and Sequence diagrams</span>
+                            </h4>
+                        </a></li>
+
+                    <li><a href="/seLab/experiment8">
+                            <h4><span class="badge badge-info">Modeling Data Flow Diagrams</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment9">
+                            <h4><span class="badge badge-info">Estimation of Test Coverage Metrics and Structural
+                                    Complexity</span></h4>
+                        </a></li>
+                    <li><a href="/seLab/experiment10">
+                            <h4><span class="badge badge-info">Designing Test Suites</span></h4>
+                        </a></li>
+
+
+                </ul>
+            </div>
+
+            <div class="content" id="div3">
+                <h4>Software Engineering</h4>
+                <ul>
+                    <li>Senior undergraduate students</li>
+                    <li>Postgraduate students</li>
+                    <li>Research scholars</li>
+                </ul>
+
+            </div>
+
+            <div class="content" id="div4">
+                <h4>Software Engineering</h4>
+                <strong>The Software Engineering Virtual Lab has been developed by keeping in mind the following
+                    objectives:</strong>
+                <ul>
+                    <li>To impart state-of-the-art knowledge on Software Engineering and UML in an interactive manner
+                        through the Web
+                    </li>
+                    <li>Present case studies to demonstrate the practical applications of different concepts
+                    </li>
+                    <li>Provide a scope to the students where they can solve small, real life problems
+                    </li>
+                </ul>
+                All the while it is intended to present Software Engineering as an interesting subject to the students
+                where learning and fun can go alongside.
+
+
+            </div>
+
+            <div class="content" id="div5">
+                <h4>Artificial Neural Networks</h4>
+                <strong>Course requirements</strong>
+                <ul>
+                    <li>None</li>
+                </ul>
+                <strong>Software compatibilty</strong>
+                <ul>
+                    <li>Operating system: Linux, Windows 7, Mac OS 10.6</li>
+                    <li>Browser: Firefox 3+, Safari, Opera, Chrome</li>
+                    <li>Browser: Firefox 3+, Safari, Opera, Chrome</li>
+                </ul>
+                <strong>Hardware requirements (minimum)</strong>
+                <ul>
+                    <li>CPU: 1 GHz</li>
+                    <li>Memory: 1 GB</li>
+                </ul>
+            </div>
+
+
+            <div class="content " id="div6">
+                feedback form comes here
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+    </script>
+</body>
+
+</html>

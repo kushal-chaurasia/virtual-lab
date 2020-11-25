@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<body>
+{% load static %}
+<script>
+var ip1,ip2,ip3,ip4;
+var countclass
+function result(){
+	
+	 document.getElementById("Result1").innerHTML = "" ; 
+	 document.getElementById("Result2").innerHTML = "" ; 
+	 document.getElementById("Result3").innerHTML = "" ; 
+	 document.getElementById("Result4").innerHTML = "" ; 
+	 document.getElementById("Result5").innerHTML = "" ; 
+	 document.getElementById("Result6").innerHTML = "" ; 
+	
+	var pc1i = ["0","0","0","0"];
+	var pc2i = ["0","0","0","0"];
+	var pc3i = ["0","0","0","0"];
+	var pc1s = ["0","0","0","0"];
+	var pc2s = ["0","0","0","0"];
+	var pc3s = ["0","0","0","0"];
+	var di = ["0","0","0","0"];
+	var ds = ["0","0","0","0"];
+	
+pc1i[0] = document.getElementById("pc1i1").value;
+pc1i[1] = document.getElementById("pc1i2").value;
+pc1i[2] = document.getElementById("pc1i3").value;
+pc1i[3] = document.getElementById("pc1i4").value;
+
+pc2i[0] = document.getElementById("pc2i1").value;
+pc2i[1] = document.getElementById("pc2i2").value;
+pc2i[2] = document.getElementById("pc2i3").value;
+pc2i[3] = document.getElementById("pc2i4").value;
+
+pc3i[0] = document.getElementById("pc3i1").value;
+pc3i[1] = document.getElementById("pc3i2").value;
+pc3i[2] = document.getElementById("pc3i3").value;
+pc3i[3] = document.getElementById("pc3i4").value;
+
+pc1s[0] = document.getElementById("pc1s1").value;
+pc1s[1] = document.getElementById("pc1s2").value;
+pc1s[2] = document.getElementById("pc1s3").value;
+pc1s[3] = document.getElementById("pc1s4").value;
+
+pc2s[0] = document.getElementById("pc2s1").value;
+pc2s[1] = document.getElementById("pc2s2").value;
+pc2s[2] = document.getElementById("pc2s3").value;
+pc2s[3] = document.getElementById("pc2s4").value;
+
+pc3s[0] = document.getElementById("pc3s1").value;
+pc3s[1] = document.getElementById("pc3s2").value;
+pc3s[2] = document.getElementById("pc3s3").value;
+pc3s[3] = document.getElementById("pc3s4").value;
+
+di[0] = ip1 ;
+di[1] = ip2 ;
+di[2] = ip3 ;
+di[3] = ip4 ;
+
+ds[0] = s1 ;
+ds[1] = s2 ;
+ds[2] = s3 ;
+ds[3] = s4 ;
+
+
+pc1counter = 0 ;
+pc2counter = 0 ;
+pc3counter = 0 ;
+
+
+	var i ;
+	if(countclass == 3){
+		count = 4;
+		for(i = 0 ; i < 3 ; i++)
+        	{
+        	  if(di[i] == pc1i[i] && ds[i] == pc1s[i]) 
+        	  	  {
+        	  	  	  pc1counter++;
+        	  	  }
+        	  	  
+        	  if(di[i] == pc2i[i] && ds[i] == pc2s[i]) 
+        	  	  {
+        	  	  	  pc2counter++;
+        	  	  }
+        	  	
+        	  if(di[i] == pc3i[i] && ds[i] == pc3s[i]) 
+        	  	  {
+        	  	  	  pc3counter++;
+        	  	  }	  
+        	}
+        	// && pc1i[3] != 0
+        	if(pc1i[3] != pc2i[3] &&pc1i[3] != pc3i[3] && pc1s[3] == 0 && pc1i[3] != 0 && pc1i[3] <= 255 && pc1i[3] >= 1)
+        		pc1counter++;
+        	if(pc2i[3] != pc1i[3] &&pc2i[3] != pc3i[3] && pc2s[3] == 0 && pc2i[3] != 0 && pc2i[3] <= 255 && pc2i[3] >= 1)
+        		pc2counter++;
+        	if(pc3i[3] != pc1i[3] &&pc3i[3] != pc2i[3] && pc3s[3] == 0 && pc3i[3] != 0 && pc3i[3] <= 255 && pc3i[3] >= 1)
+        		pc3counter++;
+        
+        	
+          if(pc1counter < count){
+      document.getElementById("Result1").innerHTML = "PC 1 NOT in Network" ;     	   
+       	   }else{
+       	  document.getElementById("Result2").innerHTML = "PC 1 in Network" ; 
+          }
+       	   if(pc2counter < count)
+       	   { 
+       	 document.getElementById("Result3").innerHTML = "PC 2 NOT in Network" ; 
+       	   }
+       	    else
+    document.getElementById("Result4").innerHTML = "PC 2 in Network" ; 
+          
+       	   if(pc3counter < count)
+       	   {
+       	    document.getElementById("Result5").innerHTML = "PC 3 NOT in Network" ; 
+       	   }
+       	   else
+       	  document.getElementById("Result6").innerHTML = "PC 3 in Network" ; 
+ 
+	}
+	
+	if(countclass == 2){
+		count = 3 ;
+		for(i = 0 ; i < 2 ; i++)
+        	{
+        	  if(di[i] == pc1i[i] && ds[i] == pc1s[i]) 
+        	  	  {
+        	  	  	  pc1counter++;
+        	  	  }
+        	  	  
+        	  if(di[i] == pc2i[i] && ds[i] == pc2s[i]) 
+        	  	  {
+        	  	  	  pc2counter++;
+        	  	  }
+        	  	
+        	  if(di[i] == pc3i[i] && ds[i] == pc3s[i]) 
+        	  	  {
+        	  	  	  pc3counter++;
+        	  	  }	  
+        	}
+        	// && pc1i[3] != 0
+        	if(pc1i[3] != pc2i[3]  &&pc1i[3] != pc3i[3] && pc1s[3] == 0&& pc1s[2] == 0 && pc1i[3] <= 255 && pc1i[3] >= 1 &&  pc1i[2] <= 255 && pc1i[2] >=0  )
+        		pc1counter++;
+        	else { 
+        		if(pc1i[3] == pc2i[3] && pc1s[3] == 0 && pc1s[2] == 0 && pc1i[3] <= 255 && pc1i[3] >= 1 &&  pc1i[2] <= 255 && pc1i[2] >= 0 )
+        		{
+        		   if(pc1i[2] != pc2i[2] ) 
+        		   	   {
+        		         
+        		   	   if(pc1i[3] == pc3i[3])
+        			   {
+        			if( pc1i[2] != pc3i[2])
+        				{
+        					pc1counter++;
+        				}
+        			   }
+        			else
+        				{
+        					pc1counter++;
+        				}
+        		   	   	   
+        		   	   }
+        		}
+        		
+        		if(pc1i[3] == pc3i[3] && pc1s[3] == 0&& pc1s[2] == 0 && pc1i[3] <= 255 && pc1i[3] >= 1 &&  pc1i[2] <= 255 && pc1i[2] >= 0 )
+        			{
+        			if( pc1i[2] != pc3i[2])
+        				{
+        				if(pc1i[3] == pc2i[3] )
+        		        {
+        		   if(pc1i[2] != pc2i[2] ) 
+        		   	     {
+        		   	   	   pc1counter++;
+        				}
+        				}
+        				else
+        				{
+        					pc1counter++;
+        				}
+        					
+        				}
+        			}
+        	}
+        	if(pc2i[3] != pc1i[3] &&pc2i[3] != pc3i[3] && pc2s[3] == 0&& pc2s[2] == 0 && pc2i[3] <= 255 && pc2i[3] >= 1 &&  pc2i[2] <= 255 && pc2i[2] >= 0  )
+        		pc2counter++;
+        	else { 
+        		if(pc1i[3] == pc2i[3]  && pc2s[3] == 0&& pc2s[2] == 0 && pc2i[3] <= 255 && pc2i[3] >= 1 &&  pc2i[2] <= 255 && pc2i[2] >= 0)
+        		{
+        		   if(pc1i[2] != pc2i[2] ) 
+        		   	   {
+        		         
+        		   	   if(pc2i[3] == pc3i[3])
+        			   {
+        			if( pc2i[2] != pc3i[2])
+        				{
+        					pc2counter++;
+        				}
+        			   }
+        			else
+        				{
+        					pc2counter++;
+        				}
+        		   	   	   
+        		   	   }
+        		}
+        		
+        		if(pc2i[3] == pc3i[3] && pc2s[3] == 0&& pc2s[2] == 0 && pc2i[3] <= 255 && pc2i[3] >= 1 &&  pc2i[2] <= 255 && pc2i[2] >= 0 )
+        			{
+        			if( pc2i[2] != pc3i[2])
+        				{
+        				if(pc1i[3] == pc2i[3] )
+        		        {
+        		   if(pc1i[2] != pc2i[2] ) 
+        		   	     {
+        		   	   	   pc2counter++;
+        				}
+        				}
+        				else
+        				{
+        					pc2counter++;
+        				}
+        					
+        				}
+        			}
+        	}
+        	if(pc3i[3] != pc1i[3] &&pc3i[3] != pc2i[3] && pc3s[3] == 0&& pc3s[2] == 0 && pc3i[3] <= 255 && pc3i[3] >= 1 &&  pc3i[2] <= 255 && pc3i[2] >= 0 )
+        		pc3counter++;
+        	else { 
+        		if(pc3i[3] == pc2i[3] )
+        		{
+        		   if(pc3i[2] != pc2i[2] && pc3s[3] == 0&& pc3s[2] == 0 && pc3i[3] <= 255 && pc3i[3] >= 1 &&  pc3i[2] <= 255 && pc3i[2] >= 0) 
+        		   	   {
+        		         
+        		   	   if(pc1i[3] == pc3i[3])
+        			   {
+        			if( pc1i[2] != pc3i[2])
+        				{
+        					pc3counter++;
+        				}
+        			   }
+        			else
+        				{
+        					pc3counter++;
+        				}
+        		   	   	   
+        		   	   }
+        		}
+        		
+        		if(pc1i[3] == pc3i[3] && pc3s[3] == 0&& pc3s[2] == 0 && pc3i[3] <= 255 && pc3i[3] >= 1 &&  pc3i[2] <= 255 && pc3i[2] >= 0)
+        			{
+        			if( pc1i[2] != pc3i[2])
+        				{
+        				if(pc3i[3] == pc2i[3] )
+        		        {
+        		   if(pc3i[2] != pc2i[2] ) 
+        		   	     {
+        		   	   	   pc3counter++;
+        				}
+        				}
+        				else
+        				{
+        					pc3counter++;
+        				}
+        					
+        				}
+        			}
+        	}
+        
+        	
+        if(pc1counter < count){
+      document.getElementById("Result1").innerHTML = "PC 1 NOT in Network" ;     	   
+       	   }else{
+       	  document.getElementById("Result2").innerHTML = "PC 1 in Network" ; 
+          }
+       	   if(pc2counter < count)
+       	   { 
+       	 document.getElementById("Result3").innerHTML = "PC 2 NOT in Network" ; 
+       	   }
+       	    else
+    document.getElementById("Result4").innerHTML = "PC 2 in Network" ; 
+          
+       	   if(pc3counter < count)
+       	   {
+       	    document.getElementById("Result5").innerHTML = "PC 3 NOT in Network" ; 
+       	   }
+       	   else
+       	  document.getElementById("Result6").innerHTML = "PC 3 in Network" ; 
+
+
+		
+	}
+	
+	if(countclass == 1){
+		//-----------------------------------------------------------------------------------------------
+		 
+		 if(pc1s[0] == ds[0] && pc1s[1] == ds[1] && pc1s[2] == ds[2] && pc1s[3] == ds[3] )
+		 	 pc1counter ++;
+		 if(pc2s[0] == ds[0] && pc2s[1] == ds[1] && pc2s[2] == ds[2] && pc2s[3] == ds[3] )
+		 	 pc2counter ++;
+		 if(pc3s[0] == ds[0] && pc3s[1] == ds[1] && pc3s[2] == ds[2] && pc3s[3] == ds[3] )
+		 	 pc3counter ++;
+		
+		 
+		 if(pc1i[0] == di[0] && pc1i[3] !=0)
+		 	 {
+		 	    if(pc1i[3] != pc2i[3] && pc1i[3] != pc3i[3])
+		 	    	{  
+		 	    	 pc1counter = pc1counter + 2 ;
+		 	    	 
+		 	    	}
+		 	    else
+		 	    	{
+		 	    	   if(pc1i[3] == pc2i[3])
+		 	    	   	   {
+		 	    	   	     if(pc1i[2] == pc2i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc1i[1] == pc2i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc1counter = pc1counter - 1;
+		 	    	   	     	   	      pc2counter = pc2counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc1counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc1counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc1counter ++;   
+		 	    	
+		 	    	
+		 	    	 if(pc1i[3] == pc3i[3])
+		 	    	   	   {
+		 	    	   	     if(pc1i[2] == pc3i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc1i[1] == pc3i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc1counter = pc1counter - 1;
+		 	    	   	     	   	      pc3counter = pc3counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc1counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc1counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc1counter ++;   
+		 	    	}
+
+		 	 }
+        	else
+        		pc1counter -- ;
+        	
+        	
+        	
+        	
+		 if(pc2i[0] == di[0] && pc2i[3] !=0)
+		 	 {
+		 	    if(pc1i[3] != pc2i[3] && pc2i[3] != pc3i[3])
+		 	    	{  
+		 	    	 pc2counter = pc2counter + 2 ;
+		 	    	 
+		 	    	}
+		 	    else
+		 	    	{
+		 	    	   if(pc1i[3] == pc2i[3])
+		 	    	   	   {
+		 	    	   	     if(pc1i[2] == pc2i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc1i[1] == pc2i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc1counter = pc1counter - 1;
+		 	    	   	     	   	      pc2counter = pc2counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc2counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc2counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc2counter ++;   
+		 	    	
+		 	    	
+		 	    	 if(pc2i[3] == pc3i[3])
+		 	    	   	   {
+		 	    	   	     if(pc2i[2] == pc3i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc2i[1] == pc3i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc2counter = pc2counter - 1;
+		 	    	   	     	   	      pc3counter = pc3counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc2counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc2counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc2counter ++;   
+		 	    	}
+
+		 	 }
+        	else
+        		pc2counter -- ;        	
+        	
+        	
+        
+		 if(pc3i[0] == di[0] && pc3i[3] !=0)
+		 	 {
+		 	    if(pc1i[3] != pc3i[3] && pc2i[3] != pc3i[3])
+		 	    	{  
+		 	    	 pc3counter = pc3counter + 2 ;
+		 	    	 
+		 	    	}
+		 	    else
+		 	    	{
+		 	    	   if(pc1i[3] == pc3i[3])
+		 	    	   	   {
+		 	    	   	     if(pc1i[2] == pc3i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc1i[1] == pc3i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc1counter = pc1counter - 1;
+		 	    	   	     	   	      pc3counter = pc3counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc3counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc3counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc3counter ++;   
+		 	    	
+		 	    	
+		 	    	 if(pc2i[3] == pc3i[3])
+		 	    	   	   {
+		 	    	   	     if(pc2i[2] == pc3i[2])
+		 	    	   	     	 {
+		 	    	   	     	   if(pc2i[1] == pc3i[1])
+		 	    	   	     	   	   {
+		 	    	   	     	   	      pc2counter = pc2counter - 1;
+		 	    	   	     	   	      pc3counter = pc3counter - 1;
+		 	    	   	     	   	   }
+		 	    	   	     	   	else
+		 	    	   	     	       pc3counter ++;	   	   
+		 	    	   	     	 }
+		 	    	   	    else
+		 	    	   	       pc3counter ++;
+		 	    	   	   }
+		 	    	   else
+		 	    	   	 pc3counter ++;   
+		 	    	}
+
+		 	 }
+        	else
+        		pc3counter -- ;        	
+        	
+        	
+        	
+          
+		  if(pc1counter == 3){
+          	    document.getElementById("Result2").innerHTML = "PC 1 in Network" ; 
+     	   
+       	   }else{
+         	 document.getElementById("Result1").innerHTML = "PC 1 NOT in Network" ;     
+          }
+       	   if(pc2counter == 3)
+       	   { 
+         	  document.getElementById("Result4").innerHTML = "PC 2 in Network" ;
+       	   	 }
+       	    else
+     document.getElementById("Result3").innerHTML = "PC 2 NOT in Network" ; 
+       	   
+          
+       	   if(pc3counter == 3)
+       	   {
+       	   document.getElementById("Result6").innerHTML = "PC 3 in Network" ; 
+       	   	   }
+       	   else
+       	   document.getElementById("Result5").innerHTML = "PC 3 NOT in Network" ; 
+       	  
+		
+		//-----------------------------------------------------------------------------------------------
+	}
+	
+}//closing function evaluate()
+
+
+
+function chooseoption() {
+	
+	var yourSelect = document.getElementById( "class" );
+		
+    if(yourSelect.options[ yourSelect.selectedIndex ].value == 1)
+   	   {
+   	   	    var max = 223 ;
+   	   	    var min = 192 ;
+   	   	 ip1 = Math.floor(Math.random() * (max - min + 1) + min);
+   	   	 ip2 = Math.floor((Math.random() * 224) + 1);
+   	   	 ip3 = Math.floor((Math.random() * 224) + 1);
+   	   	 ip4 = 0;
+   	   	 
+   	   	 s1 =255 ;
+   	   	 s2 =255 ;
+   	   	 s3 =255 ;
+   	   	 s4 =0 ;
+   	    countclass = 3 ; 
+   	   	 
+   	   document.getElementById("Question").innerHTML = "Give IP Addresses for the following Computers with a Network id "+ip1+"."+ip2+"."+ip3+"."+ip4+" in Class C";
+   	 
+   	   }
+    if(yourSelect.options[ yourSelect.selectedIndex ].value == 2)
+   	   {
+            var max = 191 ;
+   	   	    var min = 128 ;
+   	   	 ip1 = Math.floor(Math.random() * (max - min + 1) + min);;
+   	   	 ip2 = Math.floor((Math.random() * 224) + 1);
+   	   	 ip3 = 0
+   	   	 ip4 = 0;
+   	   	 
+   	   	 s1 =255 ;
+   	   	 s2 =255 ;
+   	   	 s3 =0 ;
+   	   	 s4 =0 ;
+   	    countclass = 2 ; 
+   	   	 
+   	   	   
+   	   	   document.getElementById("Question").innerHTML = "Give IP Addresses for the following Computers with a Network id "+ip1+"."+ip2+"."+ip3+"."+ip4+" in Class B";
+   	   }
+   	       if(yourSelect.options[ yourSelect.selectedIndex ].value == 3)
+   	   {
+   	     var max = 126 ;
+   	   	    var min = 1 ;
+   	   	 ip1 = Math.floor(Math.random() * (max - min + 1) + min);;
+   	   	 ip2 = 0;
+   	   	 ip3 = 0;
+   	   	 ip4 = 0;
+   	   	 
+   	   	 s1 =255 ;
+   	   	 s2 =0 ;
+   	   	 s3 =0 ;
+   	   	 s4 =0 ;
+   	    countclass = 1 ; 
+   	   	 
+   	   	   
+   	   	   document.getElementById("Question").innerHTML = "Give IP Addresses for the following Computers with a Network id "+ip1+"."+ip2+"."+ip3+"."+ip4+" in Class A";
+   	   	   
+   	   }
+   	   
+   	   //Math.floor(Math.random() * (max - min + 1) + min);
+}//closing function chooseoption()
+
+function evaluate(){
+ document.getElementById("Result").innerHTML = "Missed if";
+	
+	
+}//closing function evaluate()
+
+
+</script>
+
+<br>
+<center><H1> <b> IPV4 Addressing</b> </H1></center>
+
+<h3>Choose the Class in which the Ip addressing is to be done 
+<select  name = "selected" id='class'>
+  <option value ='1'>C Class</option>
+  <option value='2'>B Class</option>
+  <option value='3'>A Class</option>
+</select>
+<button onclick="chooseoption()">Submit</button>
+</h3>
+
+<fieldset>
+
+<center><b><h3 id="Question"></h3></b></center>
+
+<center>
+PC 1:<img src="{% static 'fncLab/pc.jpeg' %}" alt="Pc1" style="width:50px;height:50px;">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+PC 2:<img src="{% static 'fncLab/pc.jpeg' %}" alt="Pc2" style="width:50px;height:50px;">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+PC 3:<img src="{% static 'fncLab/pc.jpeg' %}" alt="Pc3" style="width:50px;height:50px;"><br>
+IPv4 Address:
+<input  name="pc1i1" id="pc1i1" size="3">
+<input  name="pc1i2" id="pc1i2" size="3">
+<input  name="pc1i3" id="pc1i3" size="3">
+<input  name="pc1i4" id="pc1i4" size="3">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+IPv4 Address:
+<input  name="pc2i1"  id="pc2i1" size="3">
+<input  name="pc2i2"  id="pc2i2" size="3">
+<input  name="pc2i3"  id="pc2i3" size="3">
+<input  name="pc2i4"  id="pc2i4" size="3">
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+IPv4 Address:
+<input  name="pc3i1"  id="pc3i1" size="3">
+<input  name="pc3i2"  id="pc3i2" size="3">
+<input  name="pc3i3"  id="pc3i3" size="3">
+<input  name="pc3i4"  id="pc3i4" size="3">
+
+<!------------------------------------------------->
+
+
+<br>
+Subnet Mask :
+<input  name="pc1s1" id="pc1s1" size="3">
+<input  name="pc1s2" id="pc1s2" size="3">
+<input  name="pc1s3" id="pc1s3" size="3">
+<input  name="pc1s4" id="pc1s4" size="3">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Subnet Mask :
+<input  name="pc2s1"  id="pc2s1" size="3">
+<input  name="pc2s2"  id="pc2s2" size="3">
+<input  name="pc2s3"  id="pc2s3" size="3">
+<input  name="pc2s4"  id="pc2s4" size="3">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Subnet Mask :
+<input  name="pc3s1"  id="pc3s1" size="3">
+<input  name="pc3s2"  id="pc3s2" size="3">
+<input  name="pc3s3"  id="pc3s3" size="3">
+<input  name="pc3s4"  id="pc3s4" size="3">
+<br><br>
+<!------------------------------------------------->
+</center>
+
+<center> <button onclick="result()">EVALUATE</button> </center>
+</fieldset>
+
+<center><b><h3 id="Result1" style = color:red></h3></b></center>
+<center><b><h3 id="Result2" style = color:green></h3></b></center>
+<center><b><h3 id="Result3" style = color:red></h3></b></center>
+<center><b><h3 id="Result4" style = color:green></h3></b></center>
+<center><b><h3 id="Result5" style = color:red></h3></b></center>
+<center><b><h3 id="Result6" style = color:green></h3></b></center>
+</body>
+</html>

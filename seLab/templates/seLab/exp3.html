@@ -1,0 +1,378 @@
+{% extends 'seLab/basic.html' %}
+
+{%block title%} UML Use Case {% endblock %}
+
+{% block style %}
+
+
+{%endblock%}
+
+{%load static%}
+
+{% block introduction %}
+<!-- theory introduction -->
+<H4>Introduction</H4>
+<p>Use case diagram is a platform that can provide a common understanding for the end-users, developers and the domain
+    experts. It is used to capture the basic functionality i.e. use cases, and the users of those available
+    functionality, i.e. actors, from a given problem statement.</p>
+<p>In this experiment, we will learn how use cases and actors can be captured and how different use cases are related in
+    a system.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Objectives</h4>
+
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>How to identify different actors and use cases from a given problem statement</li>
+    <li>How to associate use cases with different types of relationships</li>
+    <li>How to draw a use-case diagram</li>
+</ul>
+<hr>
+<h5>Use case diagrams</h5>
+
+<p>Use case diagrams belong to the category of behavioural diagram of UML diagrams. Use case diagrams aim to present a
+    graphical overview of the functionality provided by the system. It consists of a set of actions (referred to as use
+    cases) that the concerned system can perform, one or more actors, and dependencies among them.</p>
+
+<strong>Actor</strong>
+
+<p>An actor can be defined as [1] an object or set of objects, external to the system, which interacts with the system
+    to get some meaningful work done. Actors could be human, devices, or even other systems. <br>
+
+    For example, consider the case where a customer withdraws cash from an ATM. Here, customer is a human actor. <br>
+
+    Actors can be classified as below [2], [i] :</p>
+
+<ul>
+    <li><strong>Primary actor: </strong>They are principal users of the system, who fulfill their goal by availing some
+        service from the system. For example, a customer uses an ATM to withdraw cash when he needs it. A customer is
+        the primary actor here.</li>
+    <li><strong>Supporting actor:</strong>They render some kind of service to the system. "Bank representatives", who
+        replenishes the stock of cash, is such an example. It may be noted that replenishing stock of cash in an ATM is
+        not the prime functionality of an ATM.</li>
+</ul>
+<p>In a use case diagram primary actors are usually drawn on the top left side of the diagram.</p>
+
+<strong>Use Case</strong>
+
+<p>A use case is simply [1] a functionality provided by a system. <br>
+
+    Continuing with the example of the ATM, withdraw cash is a functionality that the ATM provides. Therefore, this is a
+    use case. Other possible use cases includes, check balance, change PIN, and so on.
+    <br>
+    Use cases include both successful and unsuccessful scenarios of user interactions with the system. For example,
+    authentication of a customer by the ATM would fail if he enters wrong PIN. In such case, an error message is
+    displayed on the screen of the ATM.</p>
+
+<strong>Subject</strong>
+<p>Subject is simply [iii] the system under consideration. Use cases apply to a subject. For example, an ATM is a
+    subject, having multiple use cases, and multiple actors interact with it. However, one should be careful of external
+    systems interacting with the subject as actors.</p>
+
+<h5>Graphical Representation</h5>
+<p>An actor is represented by a stick figure and name of the actor is written below it. A use case is depicted by an
+    ellipse and name of the use case is written inside it. The subject is shown by drawing a rectangle. Label for the
+    system could be put inside it. Use cases are drawn inside the rectangle, and actors are drawn outside the rectangle,
+    as shown in figure - 01.</p>
+
+<center><img src="{% static 'seLab/use_case_1(2).png'%}" alt=""></center>
+<pre>Figure - 01: A use case diagram for a book store</pre>
+<strong>Association between Actors and Use Cases</strong>
+<p>A use case is triggered by an actor. Actors and use cases are connected through binary associations indicating that
+    the two communicates through message passing.</p>
+
+<p>An actor must be associated with at least one use case. Similarly, a given use case must be associated with at least
+    one actor. Association among the actors are usually not shown. However, one can depict the class hierarchy among
+    actors. </p>
+<strong>Use Case Relationships</strong>
+<p>Three types of relationships exist among use cases:</p>
+<ul>
+    <li>Include relationship</li>
+    <li>Extend relationship</li>
+    <li>Use case generalization</li>
+</ul>
+<strong>Include Relationship</strong>
+<p>Include relationships are used to depict common behaviour that are shared by multiple use cases. This could be
+    considered analogous to writing functions in a program in order to avoid repetition of writing the same code. Such a
+    function would be called from different points within the program.</p>
+
+<strong>Example</strong>
+<p>For example, consider an email application. A user can send a new mail, reply to an email he has received, or forward
+    an email. However, in each of these three cases, the user must be logged in to perform those actions. Thus, we could
+    have a login use case, which is included by compose mail, reply, and forward email use cases. The relationship is
+    shown in figure - 02.</p>
+
+<center><img src="{% static 'seLab/use_case_include.png'%}" alt=""></center>
+<strong style="font-size: small;">Notation</strong>
+<p>Include relationship is depicted by a dashed arrow with a «include» stereotype from the including use case to the
+    included use case.
+</p>
+<strong>Extend Relationship</strong>
+<p>Use case extensions are used used to depict any variation to an existing use case. They are used to the specify the
+    changes required when any assumption made by the existing use case becomes false [iv, v].</p>
+<h6>Example</h6>
+<p>For example, consider an email application. A user can send a new mail, reply to an email he has received, or forward
+    an email. However, in each of these three cases, the user must be logged in to perform those actions. Thus, we could
+    have a login use case, which is included by compose mail, reply, and forward email use cases. The relationship is
+    shown in figure - 02.</p>
+
+<center><img src="{% static 'seLab/use_case_include (1).png'%}" alt=""></center>
+<strong style="font-size: small;">Notation</strong>
+<p>Extend relationship is depicted by a dashed arrow with a «extend» stereotype from the extending use case to the
+    extended use case.</p>
+<strong>Generalization Relationship</strong>
+<p>Generalization relationship are used to represent the inheritance between use cases. A derived use case specializes
+    some functionality it has already inherited from the base use case.</p>
+<h6>Example</h6>
+<p>To illustrate this, consider a graphical application that allows users to draw polygons. We could have a use case
+    draw polygon. Now, rectangle is a particular instance of polygon having four sides at right angles to each other.
+    So, the use case draw rectangle inherits the properties of the use case draw polygon and overrides it's drawing
+    method. This is an example of generalization relationship. Similarly, a generalization relationship exists between
+    draw rectangle and draw square use cases. The relationship has been illustrated in figure - 04.</p>
+<center><img src="{% static 'seLab/use_case_generalize.png'%}" alt=""></center>
+<pre>Figure - 04: Generalization relationship among use cases</pre>
+<strong style="font-size: small;">Notation</strong>
+<p>Generalization relationship is depicted by a solid arrow from the specialized (derived) use case to the more
+    generalized (base) use case.</p>
+<strong>Identifying Actors</strong>
+<p>Given a problem statement, the actors could be identified by asking the following questions [2]:</p>
+<ul>
+    <li>Who gets most of the benefits from the system? (The answer would lead to the identification of the primary
+        actor)</li>
+    <li>Who keeps the system working? (This will help to identify a list of potential users)</li>
+    <li>What other software / hardware does the system interact with?</li>
+    <li>Any interface (interaction) between the concerned system and any other system?</li>
+</ul>
+
+<strong>Identifying Use cases</strong>
+
+<p>Once the primary and secondary actors have been identified, we have to find out their goals i.e. what are the
+    functionality they can obtain from the system. Any use case name should start with a verb like, "Check balance".</p>
+
+<strong>Guidelines for drawing Use Case diagrams</strong>
+<p>Following general guidelines could be kept in mind while trying to draw a use case diagram [1]:</p>
+
+<ul>
+    <li>Determine the system boundary</li>
+    <li>Ensure that individual actors have well-defined purpose</li>
+    <li>Use cases identified should let some meaningful work done by the actors</li>
+    <li>Associate the actors and use cases -- there shouldn't be any actor or use case floating without any connection
+    </li>
+    <li>Use include relationship to encapsulate common behaviour among use cases , if any</li>
+</ul>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- simulation content -->
+<h4>From the following problem statement, identify the actors and use cases</h4>
+<p>An automated teller machine (ATM) lets customers to withdraw cash anytime from anywhere without requiring involvement
+    of any banking clerk or representative. Customer must insert his ATM card into he machine and authenticate himself
+    by typing in his personal identification number (PIN). He cannot avail any of the facilities if the PIN entered is
+    wrong. Authenticated customers can also change their PIN. They can deposit cash to their account with the bank. Also
+    they can transfer funds to any other account. The ATM also provides options to the user to pay electricity or phone
+    bill. Everyday morning the stock of cash in the ATM machine is replenished by a representative from the bank. Also,
+    if the machine stops working, then it is fixed by a maintenance guy.</p>
+{% endblock %}
+
+{% block caseStudy %}
+<!-- case study content -->
+<h4># 1 : A Library Information System for SE VLabs Institute</h4>
+<hr>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of
+    Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number
+    of employees who work on different projects undertaken by the institution.</p>
+<p>As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library
+    Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to
+    borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend
+    the date of his borrowing if no other booking for that particular book has been made. For the library staff, this
+    system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and
+    complete control over the system, can enter a new record into the system when a new book has been purchased, or
+    remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search
+    books online. However, issuing or returning books is restricted to valid users (members) of LIS only.</p>
+<p>The final deliverable would a web application (using the recent HTML 5), which should run only within the institute
+    LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential
+    information (eg., passwords) is stored in plain text.</p>
+<hr>
+<hr>
+<p>From the given problem statement we can identify a list of actors and use cases as shown in tables 1 & 2
+    respectively. We assign an identifier to each use case, which we would be using to map from the software
+    requirements identified earlier.</p>
+
+<center><img src="{% static 'seLab/t08.png'%}" alt=""></center>
+<p>Before presenting the details of individual use cases, let us do a mapping from requirements specifications to use
+    cases. A list of functional requirements can be found in the table 1. For each such requirements, we identify the
+    use case(s) that helps to achieve the requirement. This mapping is shown in table 3. Please note that we would be
+    mapping only functional requirements into use cases. A method to deal with non-functional requirements could be
+    found in [vi].</p>
+<center><img src="{% static 'seLab/t09.png'%}" alt=""></center>
+<p>Now let us deal with the inner details of a few use cases and the actors with whom they are associated. Table 4 shows
+    the details of the "User login" use case using a template presented in table 1 in [v].</p>
+<center><img src="{% static 'seLab/t10.png'%}" alt=""></center>
+<p>The above use case lets an already registered member of the LIS to login to the system and possible use it's various
+    features. If the user provides a correct pair of (<user_id>, <password>) then he can access his home page. However,
+            if login credentials are incorrect, an error message is displayed to him. Figure 1 shows its pictorial
+            representation.</p>
+<center><img src="{% static 'seLab/user_login.png'%}" alt=""> </center>
+<center>Figure 1: Use case diagram showing "New user registration" use case</center>
+<p>
+    The above figure also depicts extension of a use case. "Answer security question" is not a use case by itself, and
+    is not invoked in a "normal" flow. However, when a member is trying to login, and provides incorrect (user_id,
+        password) for three consecutive times, he is asked the security question that was set during registration. If
+            user can answer the question correctly, the password is send to his email address. However, if the user
+            fails to answer the security question correctly, his account is temporarily blocked. Details of the
+            concerned use case extension is shown in table 5.</p>
+
+<center><img src="{% static 'seLab/t11.png'%}" alt=""></center>
+<p>The details of the "Issue book" use case is shown in table 6.</p>
+<center><img src="{% static 'seLab/t12.png'%}" alt=""></center>
+<p>In order to issue a book, the availability of the book has to be checked. Also, the system needs to verify whether another book could be issued to the current user. These are shown in figure 2 by the «include» relationship among the use cases. The maximum # of books that can be issued to a user depends on whether he is a student or a professor. So, "Verify issue count" is a general use case, which has been specialized by "Verify student issue count" and "Verify professor issue count" use cases. These have been represented by the "generalization" relationship in figure 2.</p>
+<center><img src="{% static 'seLab/issue_book.png'%}" alt=""></center>
+<center>Figure 2: Use case diagram showing "Issue book" use case</center>
+<hr>
+
+
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4> Steps for conducting the experiment</h4>
+<strong>General Instructions</strong>
+<p>Follow are the steps to be followed in general to perform the experiments</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Solve the given list of exercises</li>
+</ul>
+{% endblock %}
+
+{% block excercise %}
+<!-- excercise content -->
+<a class="excercise relTable" href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise relTable" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+<div class="cont" id="ex01">
+    <strong>Draw a use case diagram for the following problem</strong>
+    <p>Consider a library, where a member can perform two operations: issue book and return it. A book is issued to a member only after verifying his credentials. Draw a use case diagram for the problem.</p>
+<strong>Learning Objectives:</strong>
+<ul>
+    <li>Identify the actors and use cases</li>
+    <li>Associate the use cases with the actors by drawing a simple use case diagram</li>
+</ul>
+
+</div>
+<div class="cont" id="ex02">
+    div 2
+</div>
+<div id="excerciseTable" style="display: none;">
+    <!-- table 1 -->
+<table>
+    <strong>Table #1: Add actors</strong>
+<tr>
+    <th style="width: 18em;">Actor</th>
+    <th> Add</th>
+</tr>
+<tr>
+    <td><input type="text" class="form-control" placeholder="Name of Actor" id="actor"></td>
+    <td><button type="button" class="btn btn-info" id="addActor">Add</button></td>
+</tr>
+</table>
+<br>
+<table>
+    <strong>Table #2: Add use cases</strong>
+<tr>
+    <th style="width: 18em;">Use Case</th>
+    <th> Add</th>
+</tr>
+<tr>
+    <td><input type="text" class="form-control" placeholder="Use Case" id="useCase"></td>
+    <td><button type="button" class="btn btn-info" id="addCase">Add</button></td>
+</tr>
+</table>
+<br>
+<table>
+    <strong>Table #3: Add relationship</strong>
+    <tr>
+        <th>From Actor / Use Case</th>
+        <th>Relationship</th>
+        <th>To Actor / Use Case</th>
+        <th>Label</th>
+        <th>Add</th>
+    </tr>
+    <tr>
+        <td>
+            <select class="actorAndcase" id="actorList">
+                <option value=""></option>
+            </select>
+        </td>
+        <td>
+            <select id="relation" >
+                <option value="association"> Association</option>
+                <option value="generalization">Generalization</option>
+                <option value="includ"> Include</option>
+                <option value="extent"> Extend</option>
+              
+            </select>
+        </td>
+        <td>
+            <select class="actorAndcase" id="caseList">
+                <option value=""></option>
+            </select>
+        </td>
+        <td>
+            <input type="text" class="form-control" placeholder="Label" id="lable">
+        </td>
+        <td>
+            <button type="button" class="btn btn-info" id="lastStep">Add</button>
+        </td>
+    </tr>
+</table>
+
+<br>
+<table>
+<strong>Table #4: List of actors and use cases</strong>
+<tr>
+    <th>Actor</th>
+    <th> Use Case</th>
+</tr>
+<tr>
+    <td><span id="actorData"></span>
+        
+    </td>
+    <td><span id="caseData">  </span>
+        
+    </td>
+</tr>
+
+</table>
+
+<br>
+<table>
+    <strong>Table #5: List of relationships</strong>
+    <tr>
+        <th>From Actor / Use Case</th>
+        <th>Relationship</th>
+        <th>To Actor / Use Case</th>
+        <th>Label</th>
+        <th>Remove</th>
+    </tr>
+    <tr>
+        <td id="finalFrom"></td>
+        <td id="finalRelation"></td>
+        <td id="finalTO"></td>
+        <td id="lableData"></td>
+        <td></td>
+    </tr>
+</table>
+</div>
+<script src="{% static 'js/exp3.js' %}"></script>
+{% endblock %}

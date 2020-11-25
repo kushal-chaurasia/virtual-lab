@@ -1,0 +1,104 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4>
+<p>The objective of this experiment is to illustrate the problem of false minima in the energy landscape and the concept of probabilistic update in Hopfield model to overcome the effect of false minima. <br>
+    Following are the goals of the experiment: 
+</p>
+<ul>
+    <li style="margin-left: 4%;">To understand the problem of error in recall of a desired pattern in a Hopfield Model.</li>
+    <li style="margin-left: 4%;">To illustrate the concept of probabilistic update in Hopfield model and the effect of temperature parameter on the probabilistic update of states.</li>
+</ul>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4><br>
+<h4>Problem of false minima</h4>
+<p>It is possible to design (determine a set of weights) a Hopfield model with energy minima at desired states of the model, which correspond to stable states of the network, provided these states are representable in the network. <br>But for a given set of weights, there may be more than the desired number of stable states (energy minima). Some of them correspond to desired patterns and the rest of the stable states correspond to false minima in the energy landscape. The presence of such additional stable states may result in recalling a pattern not present in the set of desired patterns.
+<br>
+<br>
+The errors in recall due to the false minima can be reduced by the following methods:
+<ol>
+    <li style="margin-left: 3%;">Designing the minima in such a way that the given patterns correspond to the lowest energy minima in the energy landscape of the network.</li>
+    <li style="margin-left: 3%;">Using probabilistic (stochastic) update for the state for each unit, instead of the deterministic update of the states of the units as dictated by the activation value and the ouput function.</li>
+</ol>
+</p><br>
+<h4>Stochastic Update</h4>
+<p>Error in pattern recall due to the presence of false minima can be reduced significantly using suitable activation dynamics. Let us assume that we are able to determine weights in such a way that the desired patterns are stored at the lowest energy minima. The activation dynamics can be modified so that initially the network can move even to a state with higher energy from the current state, and then settle down to a nearest deep energy minimum. Its possible to realize a transition to a higher energy state from the lower energy state using stochastic update for each unit, instead of the deterministic update of the output function in the Hopfield Model. In the stochastic update model, the transition from one state to another, is expressed in probabilistic terms, i.e., probability of firing is greater than 0.5, if activation value exceeds the threshold and the probability of firing is less than 0.5, if the activation value is below the threshold value. <br><br>
+    The output function is still a nonlinear function, either hard limiting or a sigmoid semilinear function.
+<br><br>
+We can see that the probability function depends on a parameter called temperature (T). For T=0, the update is actually deterministic. But as the temperature is increased, the probability of firing increases rapidly when the activation value exceeds the threshold.
+<br><br>
+Figure 1 shows the probability function and the output function of a given unit.
+</p><br><br>
+<img src="{%static 'annLab/d1.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> Illustration of output function \( f(x) \) and probability of firing function \( p(1/x) \) for state update.
+</pre>
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4>
+<h4>Illustration of stochastic update of Hopfield model and probabilistic transitions</h4>
+<p>For the illustration, let us consider a three unit Hopfield model. At temperature T=0, the state update reduces to deterministic case. But as with increase in the temperature parameter value, the activation dynamics become stochastic in nature. The probability of firing keeps changing with change in the temperature according to the given probability function. For nonzero values of the temperature, there is a tendency to jump to states having higher energy values. As T approaches infinity, the state update no longer depends on the activation values, and hence \( \Delta V \le 0\) is no longer true, where V is the energy.
+</p>
+<p>The following diagram (Figure 1) illustrates the behaviour of the state 010 at T=0 temperature.</p><br>
+<img src="{%static 'annLab/d2.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> State transition diagram for T = 0</pre> 
+<p>If the temperature is increased to T = 0.3, the state transition diagram is as shown in the Figure 2. It can be seen that there is nonzero probability of transition from a given state to a state having higher energy.</p><br>
+<img src="{%static 'annLab/d3.png'%}" alt=""><br><br>
+<pre><strong>Figure 2:</strong> State transition diagram for T = 0.3</pre>
+<p>The probability of transition to higher energy state increases as the value of the temperature parameter is increased further, as shown in Figure 3 for T = 1.0 .</p><br>
+<img src="{%static 'annLab/d4.png'%}" alt=""><br><br>
+<pre><strong>Figure 3:</strong> State transition diagram for T = 1.0</pre>
+<h4>Simulated Annealing</h4>
+<p>For the 3-unit network, the stationary probability distribution of states for a given temperature is obtained using the equation </p>
+<p>\( p_{i}(t+1) = \sum\limits_{j}p_{j}(t)p(i/j), ~ for ~ i = 0,1,2, ..., 7 \)
+</p> 
+<p>  where \( p_{i}(t) \) is the probability of the state \(i\) at time t and \( p(i/j) \) is the transition probability from state \(j\) to state \(i\) for a given temperature. Starting with equal probabilities for all the states \( p_{i}(0) = \frac{1}{8}, ~ i = 0,1, ..., 7,~ \) the above equation converges to stationary probability distribution after a few iterations. At that stage, the value of T is decreased according to some annealing schedule, until the value of T is close to zero. The resulting state transition probabilities for different iterations and at different temperatures of the annealing schedule can be seen in the table in second part of experiment. Note that at T = 0, there are only a few states which have nonzero probabilities and all other states have zero probability. The distribution of the nonzero probabilities are inversely related to the energy of those states according to Boltzmann-Gibb's law. The table illustrates the principle of simulated annealing for overwriting the effects of false minima. It is important to note that while performing the annealing of the network, we always slowly lower the temperature.</p><br>
+<img src="{%static 'annLab/d.png'%}" alt=""><br><br>
+<pre><strong>Figure 4:</strong> Initial state of annealing schedule at temperature T = 1.0</pre><br>
+<img src="{%static 'annLab/d5.png'%}" alt=""><br><br>
+<pre><strong>Figure 5:</strong> State of annealing schedules after running through for a couple of temperature values.</pre><br>
+<img src="{%static 'annLab/d6.png'%}" alt=""><br><br>
+<pre><strong>Figure 6:</strong> Final annealing state for T = 0</pre>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4>
+<ul>
+    <li style="margin-left: 3%;">Ensure that the temperature pointer is set to zero intially.</li>
+    <li style="margin-left: 3%;">Move the mouse cursor over the states in the state transition diagram to find the possible transition from each state.</li>
+    <li style="margin-left: 3%;">Increase the temperature by clicking at some place on temperature bar.</li>
+    <li style="margin-left: 3%;">Move the mouse cursor again over the states in the state transition diagram, and note the change in the nature of the transition to stochastic update.</li>
+    <li style="margin-left: 3%;">Keep increasing and decreasing the temperature, and check the change in probability of transition to states with higher energy in the table provided in the experiment panel.</li>
+    <li style="margin-left: 3%;">Click on the "Click Here to View the Annealing Schedule" button to go to next panel.</li>
+    <li style="margin-left: 3%;">Make sure that the temprature of the bar is at 1.0, observe the values obtained for one run of the schedule.</li>
+    <li style="margin-left: 3%;">Click on successive lower values of temprature on the bar to lower the temprature from 1.0 to 0.0 .</li>
+    <li style="margin-left: 3%;">Observe the change in the state probabilities in the table provided.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4>
+<strong>For source code please click <a href="{%static 'annLab/exp6.txt'%}"> here </a></strong>
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Hopfield model with stochastic update</h4>
+<ul>
+    <li style="margin-left: 3%;">Take any state in the state transition diagram and observe the change in the probabilities of transition with change in temperature.</li>
+    <li style="margin-left: 3%;">Observe the trend of probability with temperature while transiting to a state with higher energy.</li>
+    <li style="margin-left: 3%;">Try annealing schedule for a couple of times with different set of temparatures, see whether the states settle to similar probabilities or different.</li>
+</ul>
+{% endblock %}
+
+
+{% block experimentName %} {%endblock%}

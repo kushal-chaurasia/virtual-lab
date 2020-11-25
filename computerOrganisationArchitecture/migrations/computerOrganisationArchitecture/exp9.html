@@ -1,0 +1,186 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Memory Design {% endblock %}
+
+{% block theory%}
+<!-- theory content -->
+{% load static %}
+
+<strong>Design of Memory</strong>
+<p>A memory unit is a collection of storage cells together with associated circuits needed to transform insformation in and out of the device. Memory cells which can be accessed for information transfer to or from any desired random location is called random access memory(RAM). The block diagram of a memory unit-</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/memory.png' %}" alt=""></center>
+
+<p><strong>Internal Construction: </strong>The internal construction of a random-access memory of m words with n bits per word consists of m*n binary storage cells and associated decoding circuits for selecting individual words. The binary cell is the basic building block of a memory unit.</p>
+
+<h4>RAM Design:</h4>
+<strong>Design of a RAM cell :</strong>
+<p>The binary cell has three inputs and one output. The select input enables the cell for reading or writing and the reda/write input determines the cell operation when it is selected. A 1 in the read/write input provides the read operation by forming a path from the flip-flop to the output terminal. A 0 in the read/write input provides the write operation by forming a path from the input terminal to the flip-flop. the logic diagram is-</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/ramcell.png' %}" alt=""></center>
+
+<h4>Design of a 4X4 RAM :</h4>
+<p>The logical construction of a small RAM 4X3 is shown below. It consists of 4 words of 3 bits each and has a total of 12 binary cells. Each block labeled BC represents the binary cell with its 3 inputs and 1 output. The block diagram of a binary cell-</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/ram3.png' %}" alt=""></center>
+
+<p>A memory with 4 words needs two address lines. The two address inputs go through a 2*4 decoder to select one of the four words. The decoder is enabled with the memory enable input. When the memory enable is 0, all outputs of the decoder are 0 and none of the memory words are selected. With the memory enable at 1, one of the four words is selected, dictated by the value in the two address lines. Once a word has been selected, the read/write input determines the operation. the logic diagram is-</p>
+
+<center><img src="{% static 'computerOrganisationArchitecture/4_3RAM.png' %}" alt=""></center>
+
+<strong>Design Issues :</strong>
+<p>A basic RAM cell has been provided here as a component which can be used to design larger memory units. An IC memory consisting of 4 words each having 3 bits has been aslo provided.</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of memory design(single bit RAM cell):</h4>
+<p>To design memory units and understand how it operates during read and write operation.</p>
+<ul>
+    <li>understanding behaviour of memory from working module and the module designed by the student as part of the experiment</li>
+    <li>designing an memory for given parameter</li>
+</ul>
+<strong>Examining behaviour of memory for the working module and module designed by the student as part of the experiment (refer to the circuit diagram): <br>
+examining the write behaviour:</strong>
+<ul>
+    <li>initialization (refer to experiment manual for pin numbers):
+        <ul>
+            <li>select=1</li>
+            <li>R/W'=0</li>
+        </ul>
+    </li>
+    <li>Loading data in the memory (refer to procedure tab for further detail and experiment manual for pin numbers):
+        <ul>
+            <li>input(i/p)=1</li>
+        </ul>
+    </li>
+    <strong>examining the read behaviour:</strong>
+    <li>initialization (refer to experiment manual for pin numbers)<ul>
+        <li>select=1</li>
+        <li>R/W'=1</li>
+    </ul></li>
+    <li>check output<ul>
+        <li>output(o/p)=1</li>
+        <li>it will give the value which was previously written</li>
+    </ul></li>
+</ul>
+<p><strong>Recommended learning activities for the experiment:</strong>Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment.</p>
+<strong>color configuration of wire for 5 valued logic supported by the simulator:</strong>
+<ul>
+    <li>if value is UNKNOWN, wire color= maroon</li>
+    <li>if value is TRUE, wire color= blue</li>
+    <li>if value is FALSE, wire color= black</li>
+    <li>if value is HI IMPEDENCE, wire color= green</li>
+    <li>if value is INVALID, wire color= orange</li>
+</ul>
+<strong>the single bit RAM cell can be used to design large memory</strong>
+<ul>
+    <li>refer to the theory and circuit diagram for designing 4X3 RAM</li>
+    <li>the behaviour can be checked as above mentioned procedure</li>
+</ul>
+<strong>Test plan:</strong>
+<ul>
+    <li>Do some read operation by properly setting the R/W', memory enable then give input and check the output.</li>
+    <li>Do some write operation by properly setting the R/W', memory enable then give input and check the output.</li>
+    <li>Do some read operation without setting the memory enable but properly setting the R/W' then give input and check the output.</li>
+</ul>
+Use Display units for checking output. Try to use minimum number of components to build. The pin configuration of the canned components are shown when mouse hovered over a component. <br>
+<strong>Assignment Statements :</strong>
+<ul>
+    <li>Design a binary RAM cell using a S-R flipflop, AND gates, NOT gates having select, read/write, input, output and test it by giving proper input.</li>
+    <li>Design a 4X3 RAM memory which will have 4 words each of 3 bits using binary RAM cells, decoder with enable, OR gates and test it by giving proper input.</li>
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<strong>Procedure to perform the experiment:Design of 4X3 RAM memory:</strong>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.</li>
+    <li>To design the circuit we need 12 binary RAM cell, 9 OR gate, 7 bit switch (to give input,which will toggle its value with a double click), 3 bit display (to see the output), wires.</li>
+    <li>The pin configuration of a component is shown whenever the mouse is hovered on any canned component of the palette or press the 'show pinconfig' button. Pin numbering starts from 1 and from the bottom left corner (indicated with the circle) and increases anticlockwise.</li>
+    <li>For a binary RAM cell input is in pin-5, output is in pin-4 and select is pin-8, Read/Write is in pin-6, for read operation give 1 input to Read/Write pin. For write operation give 0 input to Read/Write pin.</li>
+    <li>For a 'decoder with enable', input A is in pin-6, B is in pin-5, output D0 is in pin-4, D1 is in pin-3, D2 is in pin-2, D3 is in pin-1 and Enable is in pin-8</li>
+    <li>Click on the 'decoder with enable' component (in the Other Components drawer in the pallet) and then click on the position of the editor window where you want to add the component (no drag and drop, simple click will serve the purpose), likewise add 12 binary RAM cell (from the Other Components drawer in the pallet), 9 OR gates (from Logic Gates drawer in the pallete), 7 bit switches (which will toggle its value with a double click), 3 bit displays (from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer)</li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. According to the circuit diagram connect all the components, connect 2 bit switches to the inputs of the 'decoder with enable' (which will act as address input), 1 bit switch to the enable pin of the 'decoder with enable' (which will act as memory enable input), connect a bit switch to the Read/Write(R/W') line, 3 bit switches to the data inputs line, 3 bit displays to the data output line and OR gates according to the diagram shown in the circuit diagram. after athe connection is over click the selection tool in the pallete.</li>
+    <li>To see the circuit working, Do some read or write operation by properly setting the R/W', memory enable then give input and check the output. suppose you give, R/W'=1, memory enable=1, address input=01, data input=101, then it will be a read operation and you will not see 101 as output, it will store 101 in the word-1. now again set, R/W'=0, memory enable=1, address input=01, then it will be a write operation and you will see 101 as the content of word-1 on the output display.</li>
+</ul>
+<strong>Circuit diagram of 4X3 RAM memory:</strong>
+
+<center><img src="{% static 'computerOrganisationArchitecture/ic.png' %}" alt=""></center>
+
+<h5>Components</h5>
+
+<strong>To build a RAM Cell, we need :</strong>
+<ul>
+    <li>AND Gate(2 input)-6</li>
+    <li>NOT Gate-2</li>
+    <li>RS Flip Flop-1</li>
+</ul>
+
+<strong>To build a 4X3 RAM, we need :</strong>
+<ul>
+    <li>OR Gate(2 input)-11</li>
+    <li>RAM Cell-12</li>
+    <li>2X4 Decoder with Enable-1</li>
+</ul>
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+{% endblock %}

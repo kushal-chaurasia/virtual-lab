@@ -1,0 +1,50 @@
+//.dropdown {
+    //    position: relative;
+    //     display: inline-block;
+    //  }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border:2px solid #3385ff;;
+        min-width: 450px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+
+    }
+    
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 80px;
+        background-color: #f9f9f9;/*#ffff80;#555;*/
+        border:2px solid #3385ff;  
+
+        color: #555; /*#fff;*/
+        text-align: center;
+        // padding: 5px 0;
+        // border-radius: 6px;
+
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        top: 60%;
+        left: 80%;
+        margin-left: 20px;
+
+        /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 3;
+    }

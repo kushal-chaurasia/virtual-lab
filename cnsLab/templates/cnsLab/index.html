@@ -1,0 +1,269 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>IPv4 Addressing</title>
+    <style>
+       
+        h3 {
+            display: inline;
+            padding: 1.46em;
+        
+        }
+
+        .content {
+            display: none;
+        }
+        p{
+            text-align: justify;
+        }
+        .image{
+            
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+        .oline{
+            text-decoration: overline;
+        }
+        pre{
+            font: bold;
+        }
+        li{
+            text-align: justify;
+        }
+        label{
+            display: none;
+            font-weight: bold;
+        
+        }
+       
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Aim </span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">Theory</span></h3>
+            </a>
+            <a class="link" href="#" rel="div3">
+                <h3><span class="badge badge-info">Procedure</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div4">
+                <h3><span class="badge badge-info">Simulation</span></h3>
+            </a>
+            <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Test</span></h3>
+            </a>
+            <a class="link" href="#" rel="div6">
+                <h3><span class="badge badge-info">Feedback</span></h3>
+            </a>
+           
+        </div>
+
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+               <h4>Aim</h4>
+              <p>To understand the encryption of a message using Caesar Cipher in a secure message exchange.</p>
+            </div>
+
+            <div class="content" id="div2">
+                <h4>Theory</h4>
+                <p><strong>Cryptography Algorithm: </strong> cryptographic algorithms are used to transfer electronic data over the internet so that no third-party is able to read the data. The strength of the code is judged according to four parameters confidentiality, Integrity, Non – repudiation and authentication.</p>
+                <center><img src="{% static 'cnsLab/Capture1.png'%}" alt=""></center>
+
+                <p><strong>Caesar Cipher Cryptography: </strong> The Caesar Cipher, also known as a shift cipher, is one of the oldest and simplest forms of encrypting a message. It is a type of substitution cipher where each letter in the original message (which in cryptography is called the plaintext) is replaced with a letter corresponding to a certain number of letters shifted up or down in the alphabet. As shown in fig1 given below for each letter of the alphabet, you would take its position in the alphabet, say 3 for the letter 'A', and shift it by the key number. If we had a key of +3, that 'A' would be shifted down to an 'D' - and that same process would be applied to every letter in the plaintext. In this way, a message that initially was quite readable, ends up in a form that cannot be understood at a simple glance.</p>
+                <center><img src="{% static 'cnsLab/download.jpg'%}" alt=""></center>
+                <p><strong>The Caesar Cipher can be expressed in a more mathematical form as follows:</strong> In plain terms, this means that the encryption of a letter x is equal to a shift of x + n, where n is the number of letters shifted. The result of the process is then taken under modulo division, essentially meaning that if a letter is shifted past the end of the alphabet, it wraps around to the beginning</p>
+
+            </div>
+
+
+            <div class="content" id="div3">
+                <h4>Procedure</h4>
+                <p>During encrypting a message an input is considered as plain text. On plain text we apply the key using a specific key length ( K = 0,1,2, 3….n). Key value must be any positive natural number. Based on the value of the key, each letter of the plain text is shifted to the Kth position using the formula E= (X+ n) mod 26 to get the cipher text. X is plaintext letter and n is the value of key, modulus is taken for value 26 because there are total 26 letter in English alphabet. Cipher text is considered as the text generated from plain text after the shifting the plain text letters Kth position. These shifted letters are unable to interpret in form a meaningful message and due to this it helps during the secure message exchange between the sender and receiver.</p>
+
+                <strong>How to Perform Simulation:</strong>
+                <ul>
+                    <li>Enter the plain text that you want to encrypt in the input text.</li>
+                    <li>Enter a valid key in the key box.</li>
+                    <li>Think and solve manually and enter the result in guess cipher text box.</li>
+                    <li>Hit submit.</li>
+                    <li>Simulator will display your answer is right or wrong.
+                        <ul>
+                            <li>If your answer is correct you can practice using reset.</li>
+                            <li>If your answer is wrong, you can use hint and re-enter the guessed cipher text or can see the solution.</li>
+                        </ul>
+                    </li>
+                    <li>By practicing on simulator you can easily learn Caesar Cipher algorithm.</li>
+                </ul>
+
+            </div>
+
+            <div class="content" id="div4">
+                <h4>Simulation</h4>
+
+                <center><h5>Encryption of Message: Caeser Cipher Method</h5></center>
+                <form action="/cnsLab/encrpyText" method="get"  class="form-inline">
+                    <label for="text" class="mx-3"> Enter the input text</label>
+                    <input type="text" class="form-control " name="text" placeholder="Enter text" id="text">
+
+                    <label for="keyValue" class="mx-3"> Enter the key</label>
+                    <input type="text" class="form-control " name="keyvalue" placeholder="Enter text" id="keyvalue">
+
+                    <label for="text" class="mx-3"> Guess cipher text</label>
+                    <input type="text" class="form-control" name="cipherText" placeholder="Enter text" id="cipherText">
+                   \
+                   
+                   <button type="submit" class="btn btn-info" style="margin: auto; margin-top: 1em;">Evaluate</button>  
+                   
+
+                </form>
+               
+                
+            </div>
+
+            <div class="content " id="div5">
+                 
+                <center>
+                    <h4>Quizes</h4>
+                </center>
+                {% block experimentName %} {%endblock%}
+                <strong>Multiple choice questions:</strong>
+                
+                {% for quiz in Exams %}
+                <table>
+                    
+                    <hr>
+                    <tr>
+                        <td>{{quiz}}</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option1" class="rb"  name = "{{quiz.id}}" value="{{quiz.option1}}">{{quiz.option1}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option2" class="rb" name = "{{quiz.id}}" value="{{quiz.option2}}">{{quiz.option2}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option3" class="rb" name = "{{quiz.id}}" value="{{quiz.option3}}">{{quiz.option3}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option4" class="rb" name = "{{quiz.id}}" value="{{quiz.option4}}">{{quiz.option4}} </td>
+                    </tr>
+                    <tr>
+                        <td> <label id="correctans" class="rb">{{quiz.correctans}}</label> </td>
+                    </tr>
+                </table>       
+                 {% endfor %} 
+                <input type="submit" value="Click for result" id="check" onclick="getAnswers();">
+                <b id="userAnswer"></b>
+                
+            </div>
+            
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+
+        function getAnswers(){
+            document.getElementById(userAnswer).innerHTML = "";
+            var f = document.getElementsByTagName("input");
+            for(i=0;i<=f.length;i++)
+            {
+                if(f[i].type=="radio")
+                {
+                    if(f[i].checked)
+                    {
+                        document.getElementById(userAnswer).innerHTML += "Q" + f[i].name+"The answer you selected is: " +f[i].value+ "<br/>";
+
+                    }
+                }
+            }
+        }
+        $ (document).ready(function(){
+            $("#check").click(function(){
+            $(".rb").show();
+           
+        });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Recursive Function</h4>
+<hr>
+<h4>Aim</h4>
+<p>
+    The aim of this experiment is to understand the concept of recursive function and use it in PHP scripts. <br>
+The Learner will be able to:
+</p>
+<ul>
+    <li>identify the role of client and server while working with recursive functions</li>
+    <li>interpret the output of the given program with probable HTML code generated at client side.</li>
+    <li>write PHP scripts with appropriate use of recursive function.</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Recursive Function</h4>
+<hr>
+<h4>Theory</h4>
+<b>1.1 Introduction</b>
+<p>
+    A function can call another function or the function itself. If the function calls itself it is called Recursive function . To avoid infinite looping, while writing recursive functions one needs to add an end condition. <br>
+<br>
+function calc($var) <br>
+{ <br>
+…. <br>
+} <br>
+function fun($arg) <br>
+{ 
+<pre><strong>
+if (small($arg))        //end condition
+  return calc($arg); 
+else
+…..
+  return fun($arg1);    //recursive call
+</strong></pre>
+} <br>
+In the above example function calc() is iterative and function fun() is recursive.For recursive functions, equivalent iterative function can be written and vice versa. For every recursive call, separate memory allocation is required to switch over to next recursive call. This is not needed in its iterative implementation. But writing functions using recursion is more easier.
+</p>
+<b>1.2 Example</b>
+<p>
+    To display a number of terms in the fibonacci series. Let $num be the index of the fibonacci number in the series <br><br>
+
+function fibo($num) <br>
+{ 
+    <pre><strong>
+if ($num==1 || $num==2)
+    return $num;
+else
+    return fibo($ num-1) + fibo($num-2));
+</strong></pre>
+}
+</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Recursive Function</h4>
+<hr>
+<h4>Procedure</h4>
+<br>
+<b>1] Demonstration</b>
+<p>
+    1. Click the "Execute PHP" button and observe the step by step execution. <br>
+2. Observe the location of the yellow band. It highlights the line being executed. <br>
+3. Once yellow band stops moving,Enter the value in the textbox to calculate the Factorial. <br>
+4. Click the "Calculate" button. <br>
+5. Observe the output shown on the right hand side.
+</p>
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Recursive Function</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;?php declare(strict_types=1); // strict requirement ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5,10) . "<br>";
+echo "7 + 13 = " . sum(7,13) . "<br>";
+echo "2 + 4 = " . sum(2,4);
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %}Recursive Function {%endblock%}

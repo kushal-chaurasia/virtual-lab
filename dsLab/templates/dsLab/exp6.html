@@ -1,0 +1,60 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Expression Trees{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Expression Trees
+</h4>
+<p>In this experiment, we will use binary trees to represent expressions. This is useful to Generating code for expressions which is an important part of compilers. Expression trees can also be used to check for correctness of expressions. Therefore, while we can evaluate expressions without resorting to using trees, using trees helps us in further processing of expressions.
+</p>
+<p>Here we will see another way of storing an expression, in the form of a tree, called the expression tree. An expression tree makes it easy to visualize the expression and evaluate it. An expression tree for an expression with only unary or binary operators is a binary tree where the leaf nodes are the operands and the internal nodes are the operators. We will also look at three types of tree traversals, which gives the three forms of writing an expression (Infix, Postfix and Prefix).
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Expression Trees
+</h4>
+<p>To generate an expression tree, given an expression, we first convert the expression to its postfix form. From the postfix expression, we read one symbol at a time from left to right. If the current symbol is an operand, then we push a tree of one node consisting of the operator onto a stack. If the symbol is an operator, then we pop two trees from the stack and create a tree with the root containing the operator and the result of the pop operations as the right and the left subtrees in that order. The resulting tree is again pushed onto the stack. When we have read all the symbols, the equivalent expression tree is the only element in the stack and a pop operation would give us the tree. The following example illustrates the algorithm. Let the postfix expression be a b + f - c d * e + /.
+</p>
+<ul><li>When we first read 'a' and 'b' in that order and create two trees containing a single node 'a' and 'b' respectively.
+</li>
+<li>These trees are then pushed on to the stack in that order.
+</li>
+<li>When we encounter the '+' operator, we pop two trees from the stack, creating a tree with '+' as the root and the two trees as the right and the left childs respectively.
+</li>
+<li>On reading the operand 'f', we create a tree with 'f' as a single node and push it on to the stack.
+</li>
+<li>On reading a '-' we create the tree with '-' as the root and the two previously created trees as its children and push the new tree onto the stack.
+</li>
+<li>Similarly, on reading 'c' and 'd', the stack has three trees; '-' and two new trees corresponding to nodes 'c' and 'd'.
+</li>
+<li>On reading a '*', the stack has two trees; '-' and a new tree consisting of '*' as the root and 'c' and 'd' as its children.
+</li>
+<li>Continuing further, we create the tree with '+' as the root. On reading the last '/', the final tree is created.
+</li></ul>
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Expression Trees
+</h4>
+<p>At the end of this experiment, you will be able to:
+</p>
+<ul><li>Know how to construct expression trees
+</li>
+<li>Know how to evaluate an expression using the tree.
+</li>
+</ul>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

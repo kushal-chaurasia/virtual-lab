@@ -1,0 +1,136 @@
+{% extends 'cpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{%load static%}
+
+{% block introduction%}
+<!-- introduction content -->
+<h4>Introduction</h4>
+<hr>
+<p>Every time a variable is declared, some bytes are allocated to that variable depending on its datatype. For example, int takes 4 bytes, a char takes only one byte. Arrays allow allocation of even larger number of storage space or "bytes". Each of these bytes has a distinct address in the main memory. Pointer is a datatype which can store this address. Hence a pointer can serve as a "reference" to the data contained other variables. This has some useful applications, most importantly, allowing users to modify data from within a function without needing to make a copy of the data, and also allowing the user to make "linked" data structures.</p>
+{%endblock%}
+
+{% block Theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<hr>
+<p>A pointer is a programming language data type which can store memory addresses of other variables. A pointer variable corresponding to any data type can be declared by using * before the name of the pointer.</p>
+<pre><strong>
+    int *pointer1_1,*pointer2_i, var_i=5;
+</strong></pre>
+<p>This would declare 2 integer pointers meant to store references(memory address) to variables of integer data type. Note that var_i is just a normal integer variable. Alternatively, pointers can also be declared as:
+</p>
+<pre><strong>
+    int* pointer1_1,pointer2_i;
+            int var_i=5;
+</strong></pre>
+<p>The & operator can be used with any variable to get its memory address. So, writing</p>
+<pre><strong>
+    pointer1_i=&var_i;
+</strong></pre>
+<p>would assign the memory address of var_i to pointer1_i.</p>
+<h5 style="margin-left: 5%;">Figure explaining the working of the statement: a=&b;</h5>
+<img src="{%static 'annLab/storage.png'%}" alt=""> 
+<br>
+<p>The * operator is used to access the values stored at a given address. So, writing</p>
+<pre><strong>
+    printf("%d\n",*pointer1_i);
+</strong></pre>
+<p>would print 5 on the console. This process of accessing the value stored at a given position is known as dereferencing a pointer. Similarly, to store references to character or float variables one can define char or float type pointers.</p>
+<p>A pointer can be used to allocate memory in the runtime using the malloc() function, defined in stdlib.h, by doing dynamic memory allocation. Writing</p>
+<pre><strong>
+    int *ptr=(int *)malloc(20*(sizeof(int));
+</strong></pre>
+<p>will allocate a space 20 integer variables and store the address of the first byte in ptr. An array, infact, is just a constant pointer to which allocation is done automatically. Hence, writing</p>
+<pre><strong>
+    int arr[100];
+</strong></pre>
+<p>is equivalent to writing</p>
+<pre><strong>
+    const int* arr=(int *)malloc(100*sizeof(int));
+</strong></pre>
+<p>So, writing *arr will give the value stored at arr[0].</p>
+<p>Arithmatical operations like addition and subtraction can be performed to a pointer. The nature of these arithmatic operations is what distinguishes an integer pointer from, say, a character pointer, which otherwise just store memory addresses for another variable. Adding one to an interger pointer makes to point to the next integer, and hence, it skips 4 bytes. Adding one to a character pointer makes it to point to the next character, and hence, it skips only 1 byte. Hence, for the array arr, writing arr[3] is equivalent to writing *(arr+3). Both refer to the value stored in the 4th cell of the array.</p>
+{% endblock %}
+
+{% block Objective %}
+<!-- objective content -->
+<h4>Objective</h4>
+<hr>
+<ol>
+    <li>To understand the concept of memory adddress associated with every variable.</li>
+    <li>To understand pointer referencing and dereferencing.</li>
+    <li>To understand how pointers are useful in dynamic allocation of memory.</li>
+</ol>
+<br><br>
+<h4>Manual</h4>
+<hr>
+<p>In this lab you will learn the basic concepts of pointers and addresses. You will also understand the process of memory allocation and passing in reference.</p>
+<br><br>
+<h4>Procedure</h4>
+<hr>
+<b>Call By Value</b>
+<ol>
+    <li>Press start to start the experiment.</li>
+    <li>Press next to see the execution of the code.</li>
+    <li>Relavant line in the code is shown here.</li>
+    <li>The output of the code is shown in the right.</li>
+</ol>
+<br>
+<b>Call By Reference</b>
+<ol>
+    <li>Press start to start the experiment.</li>
+    <li>Press next to see the execution of the code.</li>
+    <li>The output of the code is shown in the right.</li>
+    <li>You can stop the code using stop button.</li>
+</ol>
+{% endblock %}
+
+{% block code %}
+<!-- coding content -->
+<h4>Program Code</h4>
+<hr>
+<b>call by value :</b>
+<pre><strong>
+    #include<stdio.h>
+        void main(){
+         int A = 10;
+         printf("Value of A is %d\n",A);
+         printf("Address of A is %d\n",&A);
+         int *P
+         P = &A;
+         printf("Value of P is %d\n",P);
+         printf("Address of P is %d\n",&P);
+         printf("Value at the address in P is %d\n",*P);
+         *P = 20;
+         printf("New Value of A is %d\n",A);
+        }
+</strong></pre>
+<br><br>
+<b>call by reference :</b>
+<pre><strong>
+    #include<stdio.h>
+        void main(){
+         int A = 5, B = 9;
+         printf('Value of A is %d\n',A);
+         printf('Value of B is %d\n',B);
+         swap( &A , &B );
+         printf('Value of A after swapping is %d\n',A);
+         printf('Value of B after swapping is %d\n',B);
+        }
+           
+        void swap( int *Pa , int *Pb){
+         int temp = *Pa;
+         *Pa = *Pb;
+         *Pb = temp;
+        }       
+</strong></pre>
+
+{% endblock %}
+
+{% block lab %}
+<!--  leave this space blank compiler will come here -->
+{% endblock %}
+
+{% block experimentName %}Pointers {%endblock%}

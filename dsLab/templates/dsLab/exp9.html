@@ -1,0 +1,105 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Minimum Spanning Trees{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Spanning Trees in Graphs</h4>
+<p>In this experiment, we will see a famous problem in graphs, finding the Minimum Spanning Tree. Let G = (V, E, W) be a
+    weighted graph. Find a subgraph G' of G that is connected and has the smallest cost, where cost is defined as the
+    sum of the edge weights of all edges in G'. Observe that if G' has a cycle, we can remove one of the edges along a
+    cycle and still the resultant graph will remain connected and has smaller cost than G'. Hence, G' cannot be have a
+    cycle and as it has to be connected, G' must be a tree. We define G' as a spanning subgraph of G iff V(G) = V(G')
+    and a spanning subgraph that is also a tree is called a spanning tree of G. Our aim is to find a spanning tree of G
+    that has the least cost and such a spanning tree is called as minimum spanning tree (MST) of G.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Spanning Trees in Graphs</h4>
+<p>Lets look at a simple method to find the MST of a given graph G. We start with a spanning graph of G with no edges
+    initially and keep adding edges one by one. As we want to minimize the total cost, we should prefer to add edges
+    with smaller weights first, but should not add edges that create cycles. This method of greedily picking the edges
+    to form a MST is called the Kruskal's algorithm, and is described below.</p>
+<b>Algorithm Kruskals(G)</b>
+<p>sort the edges of G in increasing order of weight as e1, e2, ..., em</p>
+
+<p>i = 1; E(T) = Φ<br>
+    while |E(T)| < n-1 do <br>
+        if E(T) ∪ ei does not have a cycle then <br>
+        E(T) = E(T) ∪ ei <br>
+        end-if <br>
+        i = i + 1; <br>
+        end-while <br>
+        <strong>End-Kruskals</strong>
+        <p>We still need to implement the cycle checker. The simplest way to do this is as follows. Suppose we want to
+            check if adding a edge (u,v) can create a cycle or not. Before adding the edge (u,v), perform a depth first
+            search (DFS) starting from v to see if the vertex u can be reached from v. If it can be reached, then adding
+            (u,v) will create a cycle. The time taken for DFS is O(m+n) and for a tree m = O(n), so the running time is
+            O(n). In the worst case, we need to try all m edges, so the running time of Kruskal's algorithms if we use a
+            simple cycle checker is O(mn). Using some advanced datastructures, we can bring down the running time to O(m
+            log n). We will now look at a much simpler solution with smaller runtime, using basic data structures.</p>
+
+        <p>In this approach, we maintain a single tree T at any time. In each iteration, T is extended by adding one
+            vertex v not in T and one edge from v to some vertex in T. Starting from a tree of one node, this process is
+            repeated (n-1) times. For each vertex v in G, there must be at least one edge in any MST. Considering the
+            edge of the smallest weight is useful as it can decrease the cost of the spanning tree. So, for any vertex
+            v, the edge with the least weight among all edges having one of its end points as v, is always contanied in
+            any MST of G. Let T is a subtree of some MST of an undirected weighted graph T. Consider edges (u,v) in G
+            such that u is in T and v is not in T. Of all such edges, let e = (x,y) be the edge with the smallest
+            weight. Then T ∩ {e} is also a subtree of some MST of G. This suggests an incemental method of constructing
+            a MST. This algorithm is called Prim's algorithm, and is described below.</p>
+
+        <strong>Algorithm Prims(G,v)</strong>
+        <p>Add v to T; <br>
+            While T has less than n − 1 edges do <br>
+            w = vertex s.t. (v,w) has the smallest weight amongst edges with one endpoint in T and another not in T.<br>
+            Add (v,w) to T. <br>
+            end-while <br>
+            <b>End-Prims</b>
+            <br>
+        <p>The only thing left is to efficiently find the vertex w in the above algorithm. For this purpose, we
+            associate a key to every vertex and key[v] is the smallest weight of edges with v as one endpoint and
+            another in the current tree T. A key[v] changes only when some vertex is added to T and also vertex with the
+            smallest key[v] is the one to be added to T. When a vertex is added to T, only its neighboring vertices may
+            have to update their keys. Therefore, we can maintain a heap of vertices with their key[] values and perform
+            the above algorithm as follows.</p>
+        <b>Algorithm Prims_heap(G, u)</b>
+        <p>for each vertex v do key[v] = ∞<br>
+            key[u] = 0; <br>
+            Add all vertices to a heap H. <br>
+            While T has less than n-1 edges do <br>
+            v = deleteMin(); <br>
+            Add v to T via uv s.t. u is in T <br>
+            For each neighbor w of v do <br>
+            if W(vw) > key[w] then DecreaseKey(w) <br>
+            end-for <br>
+            end-while <br>
+            <b>End-Prims_heap</b>
+        <p><span style="text-decoration: underline;">Runtime</span>: Each vertex is deleted once from the heap. Each
+            DeleteMin() takes O(log n) time. So, this accounts for a time of O(n log n). Each edge may result in one
+            call to DecreaseKey(). Over m edges, this accounts for a time of O(m log n). Total time = O((n+m)log n).</p>
+
+        {% endblock %}
+
+        {% block objective %}
+        <!-- objective content -->
+        <h4>Spanning Trees in Graphs</h4>
+        <p>At the end of this experiment, you will be able to:</p>
+        <ul>
+            <li>Know the concept of spanning trees and minimum spanning trees</li>
+            <li>Understand algorithmic approaches to finding minimum spanning trees in graphs</li>
+            <li>Understand the data structures required to efficeintly implement algorithms for minimum spanning trees.
+            </li>
+        </ul>
+        {% endblock %}
+
+        {% block simulation %}
+        <!-- experiment content -->
+        {% endblock %}
+
+        {% block code %}
+        <!-- leave this place as compiler  content comes here -->
+        {% endblock %}
+
+        {% block experimentName %} {%endblock%}

@@ -1,0 +1,123 @@
+{% extends 'annLab/basic.html' %}
+
+{%block title%} {% endblock %}
+{% block tutorial%}
+<!-- theory content -->
+<h4 style="color: cadetblue;">Solution of optimization problems</h4>
+<p>The objective of this experiment is to provide a suboptimal solution to the Travelling Salesman Problem (TSP), using the properties of self-organization feature maps (SOM). The focus is:</p>
+<ul>
+    <li style="margin-left: 3%;">To illustrate the principle of self-organization for addressing the travelling salesman problem</li>
+    <li style="margin-left: 3%;">To observe the suboptimal nature of the solution provided by SOM</li>
+    <li style="margin-left: 3%;">To study the effect of structure of SOM on the solution</li>
+</ul>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+{% load static %}
+<h4 style="color: cadetblue;">Solution of optimization problems</h4><br>
+<h4>Description of self-organizing feature map</h4>
+<p>Self-organizing map (SOM) was proposed by T. Kohonen [Kohonen, 1982a], and it provides a way of visualizing data. In particular, high dimensional data can be reduced to lower dimensions using SOM. The map also helps in grouping similar data together. Thus the map helps in visualizing the concept of clustering by grouping data with similar characteristics. A SOM attempts to cluster the training data by detecting similarity between data points/ feature vectors. The map does not require external supervision, and hence represents an unsupervised way of learning.</p>
+<h4>Architecture of SOM</h4>
+<p>In a self-organizing map, the input is represented by an \(M\)-dimensional feature vector. The output layer consists of \(N\) units, where the units are arranged in the form of a grid. Each unit is a neuron/node. Each dimension of the input feature vector is associated with a unit/neuron in the input layer. A weight vector is associated with a unit/node/neuron in the output layer, and the dimension of this weight vector is same as that of the input feature vector. The map operates in two modes, namely, training and mapping. The process of training helps to build the map using (a large number of) input feature vectors, which are also known as training examples. The process of mapping a new input feature vector automatically identifies the region in the output whose neighbourhood units have similar properties.</p><br>
+<img src="{%static 'annLab/q.png'%}" alt=""><br><br>
+<pre><strong>Figure 1:</strong> Architecture of SOM</pre>
+<h4>Algorithm for learning</h4>
+<p>The training of SOM is based on the principle of competitive learning (Refer experiment 7, Artificial Neural Networks virtual labs). A training example is a set of inputs with some given number of nodes. Initially weights in the SOM network are assigned randomly. When a training example is presented to the network, Euclidean distances between the training feature vector and all the weight vectors are computed. The neuron in the output unit for which the distance is found minumum is said to fire. Which mean that the weights of this neuron and the neurons close to it in the SOM network are adjusted towards the input vector. The magnitude of the adjustment decreases with time and with distance of other neurons from the fired neuron.  A neighborhood function is defined to specify the neurons whose weight vectors are updated along with that of the fired neuron. The region of the neighborhood function  is broad initially, and the region shrinks gradually with successive iterations. This process is repeated for each input vector for a  number of iterations. The SOM associates the output nodes with groups or patterns in the input data set.</p>
+<p>Let us consider an \(N\)-unit output layer and \(M\)-dimensional input feature vectors. The following sequence of steps is involved in the learning process, i.e., the process of updating the weights.</p>
+<ol>
+    <li style="margin-left: 2%;">Initialize the weights from \(M\) inputs to the \(N\) output units to small random values. Initialize the size of the neighbourhood region.</li>
+    <li style="margin-left: 2%;">Present a new input feature vector.</li>
+    <li style="margin-left: 2%;">Compute the distance between the input feature vector the weight vector associated with each neuron.</li>
+    <li style="margin-left: 2%;">Select the neuron k which minimizes the distance.</li>
+    <li style="margin-left: 2%;">Update the weight vector associated with neuron k, and also the weight vectors associated with neurons in the neighbourhood of neuron k.</li>
+    <li style="margin-left: 2%;">Repeat steps 2 through 5 for all inputs, several times.</li>
+</ol>
+<h4>Mapping using a test feature vector</h4>
+<p>During mapping again, there will be one winning neuron, the neuron whose weight vector lies closest to the input vector. This will be determined by calculating the Euclidean distance between input vector and all the weight vectors. And then the test feature vector will be said to fire the winning neuron. The updation of weights for rest of the cycles follow the same algorithm as above.</p>
+{% endblock %}
+
+{% block Illustration %}
+<!-- procedure content -->
+<h4 style="color: cadetblue;">Solution of optimization problems</h4><br>
+<h4>Application of SOM to travelling salesman problem</h4>
+<p>Let us consider a SOM  network with 1000 neurons in the output layer, for the travelling salesman problem of 100 cities. The 2-dimensional input represents the coordinate values of a city. The units in the output layer are arranged (indexed) along a closed curve or ring. The weights vectors corresponding to adjacent units are joined in the weight space. In the following demonstration, the plots show the coordinates of the cities (marked by symbol 'x')  and the weight vectors (marked by symbol 'o'). The initialization of weight vectors along the rim of a ring is known as elastic ring approach in feature mapping. Plots show the closed path after 500, 1000 and 10000 iterations, respectively. Some of the cities may not be visited, which indicates the suboptimal nature of the algorithm.</p>
+<h5>For 100 cities and a SOM with 1000 neurons in the output layer</h5>
+<br><br>
+<pre><strong>Figure 1:</strong> Kohonen's self-organization feature map for TSP for 100 cities and 1000 units in the output</pre><br>
+<h4>Effect of varying the number of units in output layer of SOM</h4><br>
+<p>For the travelling salesman problem of 50 cities, we consider SOM networks with different number of units/nodes in the output layer. In the following demonstration, the plots show the coordinates of the cities (marked in black)  and the weight vectors (marked in red).  Plots show the closed path after 50, 100, 200 and 300 units in the output layer of SOM. Some of the cities may not be visited, which indicates the suboptimal nature of the algorithm.</p>
+<h4>For 50 cities</h4><br>
+<pre><strong>Figure 2:</strong> Illustration of sub-optimal nature of the algorithm</pre>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4 style="color: cadetblue;">Solution of optimization problems</h4>
+<ul>
+    <li style="margin-left: 4%;">Choose the number of input units to intialize the SOM. In this case, the input vector represents the coordinates of a city. So the input dimension is 2.</li>
+    <li style="margin-left: 4%;">Choose the number K of nodes/neurons in the output layer. If N denotes the number of cities, then K should be greater than or equal to N.</li>
+    <li style="margin-left: 4%;">Choose over the total number of iterations the SOM will go through. Each iteration involves adjustment of weights for all the neurons.</li>
+    <li style="margin-left: 4%;">Choose the step size for iteration results display purpose for number of cities i.e. units in the output network. Also choose the iteration step size for generation of output.</li>
+    <li style="margin-left: 4%;">Click on 'Next city' button or the 'Next Itern' button to run simulations.
+    </li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Solution of optimization problems</h4>
+<br>
+<h6> <strong> Self-organizing map for addressing travelling salesman problem </strong></h6><br>
+<form>
+        
+    <div class="form-inline">
+        <label for="inlineFormInputName2">No. of cities:</label> <pre>  </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sample" placeholder="20">
+        </div>
+
+      <div class="form-inline">
+        <label for="inlineFormInputName2">No. of Nodes:</label> <pre>  </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sampleSize" placeholder="40">
+      </div>
+
+      <div class="form-inline">
+        <label for="inlineFormInputName2">No. of Iterations:</label> <pre>  </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sampleSize" placeholder="20">
+      </div>
+     
+      <div class="form-inline">
+        <label for="inlineFormInputName2">City Step Size:</label> <pre>  </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sampleSize" placeholder="1">
+      </div>
+
+      <div class="form-inline">
+        <label for="inlineFormInputName2">Itern Step Size:</label> <pre>  </pre>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="sampleSize" placeholder="1">
+      </div>
+      <a class="btn btn-secondary" href="#" role="button">Init SOM</a>
+      <button class="btn btn-secondary" type="submit">Next city</button>
+      <input class="btn btn-secondary" type="button" value="Next Itern"> 
+<br><br>
+    <ol>
+        <li> City locations are indicated by blue stars.</li>
+        <li> Two-dimensional weight vectors are indicated by numbers.</li>
+        <li>The city chosen for current iteration is shown using a red star symbol.</li>
+        <li> The two plots show the weight vectors, before and after the adjustment of weights for a given city.</li>
+    </ol>
+  </form>
+{% endblock %}
+
+{% block observation %}
+<!-- software content -->
+<h4 style="color: cadetblue;">Solution of optimization problems</h4>
+<ul>
+    <li style="margin-left: 5%;">Observe the behaviour of the SOM network as a function of number of iterations. As the number of iterations increases, the weights of the SOM network align closer to the coordinates of the cities. Let us consider a SOM network with K-unit output layer and a 2-unit input layer. In this case, K=100 and N=30 (i.e., 30 cities and 100 neurons in the output layer). The 2-dimensional input represents the coordinate values of a city. The units in the output layer are arranged along a closed curve. The  weights vectors corresponding to adjacent units are joined to form a closed curve. In the following figure, plot (a) shows the coordinates of the cities (marked by symbol 'x')  and the weight vectors (marked by symbol 'o'). The initialization of weight vectors along the rim of a ring is known as elastic ring approach in feature mapping. Plots (b), (c) and (d) show the closed path after 200, 500 and 1000 iterations, respectively. Note that some of the cities may not be visited.</li>
+<br>
+ <center><img src="{%static 'annLab/q1.png'%}" alt=""></center><br>
+<li style="margin-left: 5%;">Observe the output of the network for different number of cities. Start from a small number of cities (such as 10), and go up to a large number of cities (such as 100 or more). Note that the solution provided by SOM is suboptimal, in the sense that coordinates of some cities may not be covered by the weights of the network. Observe this behaviour for varying number of cities.</li><br>
+<li style="margin-left: 5%;">The variation of neighbourhood function for different iterations needs to be scheduled. A larger neighbourhood function is used initially, and the size of the neighbourhood is reduced progressively. The effect of this change can be observed.</li>
+</ul>
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

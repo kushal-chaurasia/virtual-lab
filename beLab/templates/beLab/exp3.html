@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Familiarisation with Resistor</title>
+    <style>
+        h3 {
+            display: inline;
+            padding: 8em;
+
+        }
+
+        .content {
+            display: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .image {
+
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+
+        .oline {
+            text-decoration: overline;
+        }
+
+        pre {
+            font: bold;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Theory </span></h3>
+            </a>
+
+
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">QUIZ</span></h3>
+            </a>
+        </div>
+        {%load static%}
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+                <h4>Theory</h4>
+                <strong>Objectives Of Experiment</strong>
+                <p>At the end of the module, the student would be able to</p>
+                <ul>
+                    <li> Explain Function of Inductor </li>
+                    <li> Explain the factors influencing inductance </li>
+                </ul>
+                <strong>Function of an Inductor</strong>
+                <p>The function of a valve is to control the amount of fluid that flows through a pipe.</p>
+                <center><img src="{% static 'beLab/i1 (1).png'%}" alt=""></center>
+                <center>Figure 1</center>
+                <p>In an electronic circuit, the resistor is used to control the amount of current that flows through a
+                    conductor</p>
+                <center><img src="{% static 'beLab/i2 (1).png'%}" alt=""></center>
+                <center>Figure 2</center>
+                <p>Mother device that controls the current is the inductor .</p>
+                <center><img src="{% static 'beLab/i3 (1).png'%}" alt=""></center>
+                <center>Figure 3</center>
+                <p>However unlike the resistor that affects the current uniformly at all times, the inductor only
+                    affects currents when thy are changing in value.
+                </p>
+                <strong>Similarity with Capacitor</strong>
+                <ul>
+                    <li> Rate of change of voltage in a capacitor depends upon the current through it </li>
+                    <li> Rate of change of current in an inductor depends upon the voltage applied across it. </li>
+                    <li> Like capacitive current , inductive current is not simply proportional to voltage </li>
+                    <li> Unlike the situation in a resistor, the power associated with inductive current (V times I) is
+                        not
+                        turned into heat but is stored as energy in the inductor’s magnetic field. </li>
+                </ul>
+
+                <strong>Equation of an Inductor</strong>
+                <p>V= L* dl / dt</p>
+                <ul>
+                    <li> L is the inductance and is measured in henry. </li>
+                    <li> Putting a voltage across an inductor causes the current to rise as a ramp </li>
+                    <li> 1 volt across 1 henry produces a current that increases at 1 amp per second </li>
+                </ul>
+                <strong>Structure of an Inductor</strong>
+                <center><img src="{% static 'beLab/i4 (1).png'%}" alt=""></center>
+                <center>Figure 4</center>
+                <p>It consists of a wire wound as a coil around a core. The core may consist of a air filled hollow tube
+                    or solid material.</p>
+                <strong>Inductance</strong>
+                <p>The amount of inductance in henries a coil has, is determined by the following factors -</p>
+                <ul>
+                    <li> No of turns of wire wound around the coil </li>
+                    <li> Cross sectional area of the coil </li>
+                    <li> The material type of the coil </li>
+                    <li> The Length of the coil </li>
+                </ul>
+                <center><img src="{% static 'beLab/ind.png'%}" alt=""></center>
+                <center>Figure 5</center>
+                <strong>Test Question</strong>
+                <ul>
+                    <li>If the number of turns of coil around an inductor is increased ( doubles ), how will the
+                        inductance change ?
+                        <center><img src="{% static 'beLab/i5 (1).png'%}" alt=""></center>
+                        <center>Figure 6</center>
+                        <ul>
+                            <li>increase</li>
+                            <li>decrese</li>
+                            <li>will not change</li>
+                        </ul>
+                    </li>
+                    <li>If the distance between the turns of coil around an inductor is increased ( doubles ), how will
+                        the inductance change ?
+                        <center><img src="{% static 'beLab/i6 (1).png'%}" alt=""></center>
+                        <center>Figure 7</center>
+                        <ul>
+                            <li>increase</li>
+                            <li>decrese</li>
+                            <li>will not change</li>
+                        </ul>
+                    </li>
+                    <li>
+                        IF the diameter of the coil around an inductor is increased(doubles),how will the inductance
+                        change?
+                        <center><img src="{% static 'beLab/i7 (1).png'%}" alt=""></center>
+                        <center>Figure 8</center>
+                        <ul>
+                            <li>increase</li>
+                            <li>decrese</li>
+                            <li>will not change</li>
+                        </ul>
+                    </li>
+                </ul>
+                <strong>Inductive Kick</strong>
+                <P>An Inductive is capable of producing a momentary voltage that is much higher than the voltage of th
+                    power source that supplied the current to create its magnetic field . This temporary voltage is
+                    called an inductive kick.</P>
+                <center><img src="{% static 'beLab/i8.png'%}" alt=""></center>
+                <center>Figure 9</center>
+                <P>Example of applications of inductive devices to provide an inductive kick is a Combustion Engine ignition system that creates the spark across the gap of the spark plug.</P>
+
+            </div>
+
+            <div class="content" id="div2">
+                <h4>Quiz</h4>
+                <strong>Multiple choice questions:</strong>
+
+                {% for quiz in Exams %}
+                <table>
+
+                    <hr>
+                    <tr>
+                        <td>{{quiz}}</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option1" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option1}}">{{quiz.option1}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option2" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option2}}">{{quiz.option2}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option3" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option3}}">{{quiz.option3}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option4" class="rb" name="{{quiz.id}}"
+                                value="{{quiz.option4}}">{{quiz.option4}} </td>
+                    </tr>
+                    <tr>
+                        <td> <label id="correctans" class="rb">{{quiz.correctans}}</label> </td>
+                    </tr>
+                </table>
+                {% endfor %}
+                <input type="submit" value="Click for result" id="check" onclick="getAnswers();">
+                <b id="userAnswer"></b>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+        function getAnswers() {
+            document.getElementById(userAnswer).innerHTML = "";
+            var f = document.getElementsByTagName("input");
+            for (i = 0; i <= f.length; i++) {
+                if (f[i].type == "radio") {
+                    if (f[i].checked) {
+                        document.getElementById(userAnswer).innerHTML += "Q" + f[i].name + "The answer you selected is: " + f[i].value + "<br/>";
+
+                    }
+                }
+            }
+        }
+        $(document).ready(function () {
+            $("#check").click(function () {
+                $(".rb").show();
+
+            });
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Do While Loop</h4>
+<hr>
+<h4>Aim</h4>
+<p>
+    The aim of this experiment is to understand the working of do-while loop and its use in PHP scripts. <br>
+The learner will able to write php scripts with looping construct do-while in PHP.
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Do While Loop</h4>
+<hr>
+<h4>Theory</h4>
+<p>
+    <b>1.1 Introduction </b><br>
+    The while and for loop constructs tests the termination condition at the top. However the do..while construct tests the termination condition at the bottom after passing through all the statements provided in the body of the loop. <br>
+    The syntax for the do... while is <br>
+    do <br>
+    { <br>
+    one or more statements to be executed; <br>
+    } while(test_condition); <br>
+    <br>
+    Here in this construct first the statement(s) is/are executed and then condition is checked. If the condition is true(non-zero) the statements inside the loop are executed again otherwise not. As condition is checked at the end of the iteration, this loop is also called as exit-controlled loop. Thus the body of the loop is always executed at least once.
+</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Do While Loop</h4>
+<hr>
+<h4>Procedure</h4>
+<b>1] Demonstration</b>
+<ol>
+    <li>Click the "Execute PHP" button and observe the step by step execution.</li>
+    <li>Observe the location of the yellow band. It highlights the line being executed.</li>
+    <li>Once yellow band stops moving,Enter the value of x and y to calculate xy.</li>
+    <li>Click on the "Calculate" button and observe the output shown on the right hand side.</li>
+</ol> 
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Do While Loop</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php 
+$x = 1;
+
+do {
+  echo "The number is: $x <br>";
+  $x++;
+} while ($x &lt;= 5);
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+{% endblock %}
+
+{% block experimentName %}Do While Loop {%endblock%}

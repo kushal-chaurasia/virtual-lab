@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quine McCluskey algorithm</title>
+    <link rel="stylesheet" href="{% static 'simulator2.css' %}">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    
+    
+    <script src="{% static 'js/google-analytics.js' %}" type="text/javascript"></script>  
+    <script src="{% static 'js/block.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/simulator2.js'%}"></script>
+    <script src="{% static 'js/qmc.js' %}"></script>
+
+    <script>
+        var qmc;
+          function run() {
+            qmc = new QuineMcCluskey("myQmcDisplay", 3, 0);
+            qmc.init();
+          }
+          
+          function colsChanged() {
+            var d = document.getElementById("select_cols_id").value;
+            qmc.setNoOfVars(d);
+          } 
+          
+          function dontCareChanged() {
+            var d = document.getElementById("select_dontCare").value;
+            qmc.allowDontCares(d);
+          } 
+        </script>
+        
+        
+    
+</head>
+
+<body onload="run()">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/stream">Stream</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contactus">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/aboutus">About Us</a>
+              </li>
+          </ul>
+         
+        </div>
+      </nav>
+    
+    <div class="container">
+
+
+
+
+        <h1>Quine McCluskey algorithm </h1>
+
+    <p>The function that is minimized can be entered via a truth table that represents the function  <span class="qmcMathFont"><i>y</i>&nbsp;=&nbsp;f(<i>x</i><sub><small>n</small></sub>,...,<i>x</i><sub><small>1</small></sub>, <i>x</i><sub><small>0</small></sub>)</span>.
+    You can manually edit this function by clicking on the gray elements in the <span class="qmcMathFont"><i>y</i></span> column. Alternatively, you can generate a random function by pressing the "Random example" button.</p>
+    <p>
+      <button type="button" onclick="qmc.genRandom();">Random example</button> <br>
+      Number of input variables:
+      <select onchange="colsChanged();" id="select_cols_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected="">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="7">8</option>
+      </select> &nbsp;&nbsp;&nbsp;&nbsp; Allow Don’t-Care:
+      <select onchange="dontCareChanged();" id="select_dontCare">
+        <option value="0" selected="">no</option>
+        <option value="1">Yes</option>
+      </select>  
+    </p>
+      <div id="myQmcDisplay"> 
+	  </div>
+    
+      <p><strong>Legend:</strong> <br>
+        Don't-care: ×<br> 
+        Implicant (non prime): →  <br> 
+        Prime implicant: ✓  <br>
+        Essential prime implicant: <span style="color:green;">●</span><br>
+        Prime implicant but covers only don't-care: (×) <br>
+      </p>
+
+
+        
+    <a  href="/computerOrganisationArchitecture/qMcA">Move to Experiment</a>
+
+    </div>
+
+    
+</body>
+
+</html>

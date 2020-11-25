@@ -1,0 +1,83 @@
+{% extends 'csoLab/csoLabBasic.html' %}
+<!-- title -->
+{%block title%} ARM Assembly Language Programming - 2 {% endblock %}
+{% block introduction%}
+<!-- theory content -->
+<h4>Implementing Procedures using ARM ISA
+</h4>
+<p>Procedures allows a user to define his/her own operation to act upon primitive or user defined data types. Further it
+    allows modular development of programs enabling software readability, maintainability and efficiency also.
+</p>
+{%endblock%}
+{% block theory %}
+<!-- objective conteent -->
+<h4>Implementing Procedures using ARM ISA
+</h4>
+<p>To implement procedure abstraction we need to address the following questions:
+</p>
+<ul>
+    <li>How to pass parameters?
+    </li>
+    <li>How to return values?
+    </li>
+    <li>How to call the procedure and return back to the calling procedure?
+    </li>
+</ul>
+<p>We can use the registers to pass parameters and return values back and forth between the caller and callee
+    procedures. ARM provides the Branch and Link (BL) Instruction to call procedures. Unlike x86 architecture the return
+    address is not stored on the stack, it is stored in the link register, R14. Code examples are given as a part of the
+    simulator itself.
+</p>
+{% endblock %}
+{% block objective %}
+<!-- procedure content -->
+<h4>Implementing Procedures using ARM ISA
+</h4>
+<p>The following are the objectives of this series of assignments.
+</p>
+<ul>
+    <li>Learn Parameter and Return Value passing mechanism
+    </li>
+    <li>Using stack to pass parameters and store other state information.
+    </li>
+    <li>Know the distinction between a leaf and non-lead procedure.
+    </li>
+</ul>
+{% endblock %}
+{% block procedure %}
+<!-- experiment content -->
+<h4>Implementing Procedures using ARM ISA
+</h4>
+<p>Procedure is explained in the Simulation.
+</p>
+{% endblock %}
+{% load static%}
+{% block experiment %}
+<!-- software content -->
+<h4>Implementing Procedures using ARM ISA
+</h4>
+<strong>Prerequeties</strong>
+<p><strong>- This lab requires few Software Dependencies to run the Simulations</strong></p>
+<ul>
+    <li>Adobe Flash Plugin, Java1.7</li>
+    <li>Browsers Firefox 50 and it's below versions, internet explorer.
+    </li>
+    <li>IcedTea Plugin for Linux Operating System.
+    </li>
+</ul>
+<strong>- We recommend the following for the smooth running of these simulations
+</strong>
+<ul>
+    <li>Install Adobe Flash Plugin - This will enable you to run the experiments that need Flash support.
+        Please follow
+        the link to install the Flash Plugin
+    </li>
+    <li>Install VirtualBox - Virtual Labs offers a free download of a customized VirtualBox with the
+        required pre
+        installed all the software dependencies(Java 1.7, IcedTea Plugin and Adobe Flash Plugin). Please
+        follow the link
+        to download, install and use
+    </li>
+</ul>
+<p>To download please cilck on the <a href="{%static 'csoLab/ArmSimulator(1).jar'%}" download>link</a></p>
+{% endblock %}

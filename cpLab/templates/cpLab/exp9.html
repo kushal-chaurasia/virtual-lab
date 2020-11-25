@@ -1,0 +1,93 @@
+
+{% extends 'cpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{%load static%}
+
+{% block introduction%}
+<!-- introduction content -->
+<h4>Introduction</h4>
+<hr>
+<p>Evaluating an expression is one of the most common tasks in programming. For example a+b+c is an expression. Here + is an operator. The variables a, b and c are operands. The value of the expression is the sum of a, b and c. An expression may be often evaluated to assign a variable a new value or to verify the truthfulness of a test condition. For example the operator can be unary(Ex: ~,++ etc.), binary(Ex: +,* etc.) or ternary (Ex: (a>b)?p:q)</p>
+<p>Examples of expressions:</p>
+<ol>
+    <li>To compute the area of a triangle from base b and height h <br>
+        Area=1/2.0*base*height <br>
+        Note that this expression will be evaluated left to right, that is the division opeartor will be <br> evaluated, followed by two multiplication operators. The 2.0 is used to make sure that the division is carried out as a floating point operation.</li>
+    <li>To compute the area of a triangle from the three sides, a, b and c <br>
+        s=(a+b+c)/2.0 <br>
+        area = s*(s-a)*(s-b)*(s-c) <br>
+        Here area is calculated in two steps. The first step, s is computed from the three sides a, b and c. Note that, the paranthesis is used so that evaluation within the paranthesis <br> takes first. Without paranthesis, we would have obtained the value of s as sum of a, b and half of c. Similarly, paranthesis are very important in evaluating the second expression.</li>
+    <li>To find the nth term of an arithmetic progression, we can use the following expression <br>
+        tn= a+(n-1)*d <br>
+        where a is the first term and d is the common difference. <br>
+        Here also, the use of paranthesis has helped us in evaluating the expression the way we need it.</li>
+</ol>
+<p>An expression used in a computer program is very similar to an algebraic expression and when many operators are specified in an expression, then the evaluation takes place according to the precedence of operators.The order of the precedence is given by a <a href="http://cse02-iiith.vlabs.ac.in/exp10/table.html" style="color: #A52A2A;"> table of precedence.</a> </p>
+<p>A paranthesis can be used to override the precedence of operators and force the evalutation of a sub-expression within an expression. Expression is evaluated according to assosciativity of the operator. The assosciativity of the operator is a property that determines how operators of the same precedence are grouped in the absence of paranthesis. The objective in evaluating an expression is to consider the precedence and aasosciativity of the individual operators and compute the value of the sub-expressions.</p>
+{%endblock%}
+
+{% block Theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<hr>
+<p>Evaluating an expression involves repeatedly solving the sub-expressions in the lowest level paranthesis and substituting its value to solve the bigger expression. If an expression or sub-expression does not have a paranthesis, then we can directly compute its value based on the precedence and assosciativity of the operators present in the expression. That is, the sub expression involving operator with higher precedence is evaluated before other sub-expressions. The following table gives the precedence order of all the operators:
+</p>
+<a href="http://cse02-iiith.vlabs.ac.in/exp10/table.html" style="color: #A52A2A;"> Table of precedence (click here)</a> 
+<br> <br>
+<p>Operators can be broadly categorized as:</p>
+<ol>
+    <li>Arithmetic Operators: These operators are used for arithmetic operations like addition,subtraction and multiplication. Ex: DIVISION(/),MODULUS OR REMAINDER (%)</li>
+    <li>Relational Operators: These operators are typically used for comparison of two operands.Ex: GREATER THAN(>),GREATER THAN OR EQUAL TO(>=) etc.</li>
+    <li>Logical Operators: These operators are used for conducting logical operations like AND,OR. Ex: LOGICAL AND( && ),LOGICAL OR (||) etc.</li>
+    <li>Bitwise Operators: These operators are used to perform operations on bits. Ex: BITWISE AND( & ), BITWISE OR ( | ) etc.</li>
+</ol>
+{% endblock %}
+
+{% block Objective %}
+<!-- objective content -->
+<h4>Objective</h4>
+<hr>
+<ol>
+    <li>To learn about different types of operators.</li>
+    <li>To learn about the precedence of the operators.</li>
+    <li>To learn how to evaluate an expression.</li>
+</ol>
+<br><br>
+<h4>Manual</h4>
+<hr>
+<p>Here we shall see the step by step evaluation of mathematical expressions.</p>
+<br><br>
+<h4>Procedure</h4>
+<hr>
+<p>Procedure for the experiment is as follows.</p>
+<ol>
+    <li>Select the type of operators and the datatype you want to work upon from the top most bar.</li>
+    <li>You can edit the values of variables by pressing the edit button.</li>
+    <li>Select an expression prototype from the menu.</li>
+    <li>You can also edit this expression.</li>
+    <li>You can also edit this expression.</li>
+    <li>Press Next to see the step by step evaluation of the selected expression in the central panel and the corresponding reasoning in the right panel.</li>
+    <li>Press stop if you want to abort the experiment and start over.</li>
+</ol>
+{% endblock %}
+
+{% block code %}
+<!-- coding content -->
+<h4>Evaluation Flow of Expression</h4>
+<hr>
+<b>operator - arithmetic</b>
+<br><br>
+<img src="{%static 'annLab/pix.png'%}" alt="">
+<br><br>
+<h4>Code Output</h4>
+<hr>
+<img src="{%static 'annLab/pix1.png'%}" alt="">
+{% endblock %}
+
+{% block lab %}
+<!--  leave this space blank compiler will come here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

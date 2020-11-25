@@ -1,0 +1,197 @@
+{% extends 'beLab/basic.html'%}
+
+{%block title%} Ohm's Law {% endblock %}
+
+{% load static %}
+{% block tutorial %}
+<!-- theory content -->
+<h4>Theory</h4>
+<strong>Objectives</strong>
+<p>At the end of the experiment, the student would be able to</p>
+<ul>
+    <li> Explain Ohm's Law </li>
+    <li> Explain Ohm's Law for Resistance in series </li>
+    <li> Explain Ohm's Law for Resistance in parallel </li>
+    <li> Explain Non Ohmic Device </li>
+    <li> Measure and confirm Ohms Law </li>
+</ul>
+<strong>Ohm's Law</strong>
+<ul>
+    <li>The law states that the current through a conductor between two points is directly proportional to the voltage
+        across the two points. Such a conductor is characterized by its ‘Resistance’ – R measured in Ohms.</li>
+    <li>
+        <b><i style="font-size: larger;">V=I×R</i></b>
+        <ul>
+            <li> V is the Voltage in Volts across the conductor. </li>
+            <li> I is the current in Amperes through the conductor. </li>
+            <li> Voltage(V) is directly proportional to current i.e V=I×R. </li>
+            <li> Resistance(R) in inversely proportional to current(I) i.e I=VR </li>
+        </ul>
+    </li>
+</ul>
+<center><img src="{% static 'beLab/ohmtr.png' %}" alt=""></center>
+<center>Figure 1: Ohm's Law triangle</center>
+<strong>NOTE:</strong>
+<p>From the above figure, the equation may be represented by a triangle known as Ohm's Law triangle, where V (voltage)
+    is placed on the top section, the I (current) is placed to the left section, and the R (resistance) is placed to the
+    right. The line that divides the left and right sections indicates multiplication, and the divider between the top
+    and bottom sections indicates division. <br>
+    Therefore equations derived from Ohm's law triangle are-
+</p>
+<center><img src="{% static 'beLab/f1.png' %}" alt=""></center>
+<strong>Explaination of Ohm's Law</strong>
+<center><img src="{% static 'beLab/ohmt2.png' %}" alt=""></center>
+<center>Figure 2: Current through resistor</center>
+
+<p>From the circuit:</p>
+<p>The voltage across resistor is equal to source voltage:</p>
+<center><img src="{% static 'beLab/f2 .png' %}" alt=""></center>
+<p>The current through the resistance is given by:</p>
+<center><img src="{% static 'beLab/f3.png' %}" alt=""></center>
+<strong>Explaination of Ohm's Law for Resistance in series</strong>
+<p>Series circuits are sometimes called current-coupled or daisy chain-coupled. The current in a series circuit goes
+    through every component in the circuit. Therefore, all of the components in a series connection carry the same
+    current. There is only one path in a series circuit in which the current can flow.</p>
+<img src="{% static 'beLab/f4.png' %}" alt="">
+<center><img src="{% static 'beLab/ohmt3.png' %}" alt=""></center>
+<center>Figure 3: Series resistors</center>
+<img src="{% static 'beLab/f5.png' %}" alt="">
+<p>In a series circuit, the current through each of the resistors is the same, and the voltage across the circuit is the
+    sum of the voltages across each resistor.</p>
+<strong>Explaination of Ohm's Law for Resistance in parallel</strong>
+<p>If two or more components are connected in parallel they have the same potential difference (voltage) across their
+    ends. The potential differences across the components are the same in magnitude, and they also have identical
+    polarities. The same voltage is applicable to all circuit components connected in parallel. The total current is the
+    sum of the currents through the individual components, in accordance with Kirchhoff’s current law.</p>
+<img src="{% static 'beLab/f6.png' %}" alt="">
+<center><img src="{% static 'beLab/ohmt4.png' %}" alt=""></center>
+<center>Figure 3: Series resistors</center>
+<img src="{% static 'beLab/f7.png' %}" alt="">
+<p>In a parallel circuit, the voltage across each of the resistors is the same, and the total current is the sum of the
+    currents through each resistor.</p>
+<strong>Explaination of Non Ohmic Device</strong>
+<p>A Non ohmic device is a device that does not obey Ohm's Law i.e. the resistance is not constant, but changes in a way
+    that depends on the voltage across it.The device is said to be non-Ohmic. In this case V versus I graph is not a
+    straight line, but has some curvy shape. Such devices do not have a constant value of resistance and the resistance
+    is called dynamic resistance because it is constantly changing.Examples of such devices are tungsten filament
+    (bulb), diode,thermistor etc.</p>
+<center><img src="{% static 'beLab/ohmtnhm.png' %}" alt=""></center>
+<center>Figure 5: Non Ohmic Device</center>
+<strong>Note</strong>
+<ul>
+    <li>Ohms Law is a very useful law but it only applies to devices that behave like resistors – ie – I is simply
+        proportional to V.</li>
+    <li>Ohms Law describes one possible relationship between V and I in a component, but there are others, like
+        <ul>
+            <li>Capacitors ( I proportional to rate of change of V )</li>
+            <li>Diodes ( I flows in only 1 direction )</li>
+            <li>Thermistors ( Temperature dependent resistors )</li>
+        </ul>
+    </li>
+</ul>
+
+{%endblock%}
+{% block procedure %}
+<!-- objective conteent -->
+<h4>Procedure</h4>
+<strong>Experiment</strong>
+<ul>
+    <li>Let us go through the experiment of confirming Ohms Law.
+        <ul>
+            <li> Set DC voltage(0-30 V). </li>
+            <li> Set the Resistance Value(1 Kohm - 100 Kohm) . </li>
+            <li> Voltmeter is placed parallel to resistor and ammeter series with resistor. </li>
+            <li> Now note the Voltmeter and Ammeter reading for DC voltage. </li>
+            <li> Increase the DC voltage by 2 factor and note Voltmeter and Ammeter Readings. Keep resistance value
+                constant </li>
+            <li> Plot the V-I graph to verify Ohm's Law. </li>
+            <li> Repeat step 2 to 6 for another set of resistance value. </li>
+            <li> V versus I graph is a straight line. </li>
+            <li> Therefore from the graph we see that the resistance do adhere to Ohm’s law. Thus resistance is said to
+                be an
+                Ohmic device. </li>
+            <center><img src="{% static 'beLab/ohmsl_pr.png' %}" alt=""></center>
+            <center>Figure 1</center>
+
+        </ul>
+    </li>
+    <li>Let us go through the experiment of confirming Ohms Law with Resistance in series.
+        <ul>
+            <li> Set DC voltage(0-30 V). </li>
+            <li> Here resistance are kept in series. Set the resistance R1(1 Kohm - 100 Kohm) value and set resistance
+                R2(5 -
+                15 Kohm). </li>
+            <li> Voltmeter is placed parallel with resistor and ammeter series with resistor. </li>
+            <li> Now note the Voltmeter and Ammeter reading for DC voltage. </li>
+            <li> Increase the DC voltage by 2 factor and note Voltmeter and Ammeter Readings. Keeping resistance value
+                constant </li>
+            <li> Plot the V-I graph to verify Ohm's Law </li>
+            <li> Repeat step 2 to 6 for another set of resistance value. </li>
+        </ul>
+        <center><img src="{% static 'beLab/ohmssrs_pr.png' %}" alt=""></center>
+        <center>Figure 2</center>
+    </li>
+    <li>Let us go through the experiment of confirming Ohms Law with Resistance in parallel.
+        <ul>
+            <li> Set DC voltage(0-30 V). </li>
+            <li> Here Resistances are kept parallelly. Set the resistance R1 (100 ohm- 2 kohm) value and set resistance
+                R2(1
+                -30 kohm). </li>
+            <li> Voltmeter is placed parallel to resistor and ammeter series with resistor. </li>
+            <li> Now note the Voltmeter and Ammeter reading for DC voltage. </li>
+            <li> Increase the DC voltage by 2 factor and note Voltmeter and Ammeter Readings. Keeping Resistance value
+                constant </li>
+            <li> Plot the V-I graph to verify Ohm's Law. </li>
+            <li> Repeat step 2 to 6 for another set of resistance value. </li>
+        </ul>
+        <center><img src="{% static 'beLab/ohmsprl_pr.png' %}" alt=""></center>
+        <center>Figure 3</center>
+    </li>
+</ul>
+<strong>Exploratory Experiment</strong>
+<p>Let us go through the experiment of confirming Non Ohmic Device.</p>
+<ul>
+    <li> Set DC voltage to 5 V .</li>
+    <li> Use the resistor of 100K ohms and a diode.</li>
+    <li> Voltmeter is placed parallel to Silicon diode and ammeter series with resistor.</li>
+    <li> Now note the Voltmeter and Ammeter reading for DC voltage 5V.</li>
+    <li> Decrease the Resistance as 75K, 51K, 24K and 10K Ohms and take the readings and note Voltmeter reading across
+    </li>
+    <li> Silicon diode and Ammeter reading.</li>
+    <li> Plot the V-I graph and observe the change.</li>
+    <li> The Change is not simply proportional. V versus I graph is not a straight line.</li>
+    <li> Therefore from the graph we see that the diode does not adhere to Ohms law.Thus diode is said to be non-Ohmic
+        device.</li>
+</ul>
+<center><img src="{% static 'beLab/ohmsnhm_pr.png' %}" alt=""></center>
+<center>Figure 4</center>
+
+{% endblock %}
+
+{% block simulation %} 
+
+<h4>Click on the followings tab to redirect to simulation</h4>
+
+<a href="/beLab/ohmsLaw1" target= "blank">
+    <h4><span class="badge badge-info">Ohm's Law</span></h4>
+</a>
+
+<a href="ohmsLaw2" target="blank">
+    <h4><span class="badge badge-info">Ohm's Law (draw circuit)</span></h4>
+</a>
+
+<a href="ohmsLaw3" target="blank">
+    <h4><span class="badge badge-info">Ohm's Law for resistance in series</span></h4>
+</a>
+
+<a href="ohmsLaw4" target="blank">
+    <h4><span class="badge badge-info">Ohm's Law for resistance in parallel</span></h4>
+</a>
+
+<a href="ohmsLaw5" target="blank">
+    <h4><span class="badge badge-info">Verifying Non Ohmic device: Diode</span></h4>
+</a>
+<a href="#" target= "blank">
+</a>
+
+ {% endblock %}

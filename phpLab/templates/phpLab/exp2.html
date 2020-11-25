@@ -1,0 +1,108 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>If Statement</h4>
+<hr>
+<h4>Aim</h4>
+<p>The aim of this experiment is to understand the concept of if statement and use 'if ' statement in simple PHP scripts. <br>
+    The Learner will be able to</p>
+    <ul>
+        <li>explain control flow in PHP programming.</li>
+        <li>create php scripts using the decision making constructs.</li>
+    </ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>If Statement</h4>
+<hr>
+<h4>Theory</h4> <br>
+<b>1.1 Introduction</b>
+<p>In the PHP script, one can change the order of sequence of execution. Like other programming languages, PHP also provides Control Flow Structures or Statements. PHP provides Conditional Flow Control statements such as if, if...else , if...else ..if and switch statement.</p>
+<br>
+<b>1.2 If Statement</b>
+<p>The syntax for if statements is: <br>
+    if(test_expression ) <br>
+    { <br>
+    One or more statements; <br>
+    } <br><br>
+    
+    If the expression is true then one or more statements in if block will be executed.Further, if statement can be nested i.e. we can put if statement within another if statement.</p>
+<br>
+<b>1.3 If... Else Statement</b>
+<p>The syntax for if... else statement is: <br>
+    if(test_expression ) <br>
+    { <br>
+    One or more statements; } <br>
+    else <br>
+    { One or more statements; } <br><br>
+    
+    If the expression is true then one or more statements written within the if block will be executed otherwise those of else block will be executed. If multiple conditions are present then this can be further extended as: <br>
+    if(test_expression ) <br>
+    { One or more statements; <br>
+    } <br>
+    else if(expression){ <br>
+    One or more statements; } else{ <br>
+    One or more statements; <br>
+    }</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>If Statement</h4>
+<hr>
+<h4>Procedure</h4>
+<br>
+<b>Array Procedure <br>
+1] Demonstration</b>
+<p>1.Click the "Execute PHP" button and observe: <br><br>
+
+    a. step by step execution of PHP code. <br>
+    
+    b.changes in HTML code and HTML page. <br><br>
+    
+    2.Observe the location of the yellow band. It highlights the line being executed. <br><br>
+    
+    3.Once yellow band stops moving,select any one radio button. <br><br>
+    
+    4.Click on "OK" button. <br><br>
+    
+    5.Observe the output shown on the right hand side. <br><br>
+    
+    6.Observe the html code generated during the execution at the server side, displayed below the PHP code.</p> 
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click "Execute" button to verify the output.</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Step Execution</h4>
+<hr>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+$t = date("H");
+
+if ($t &lt; "20") {
+  echo "Have a good day!";
+}
+?&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %} If Statement{%endblock%}

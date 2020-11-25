@@ -1,0 +1,245 @@
+{% extends 'csoLab/csoLabBasic.html' %}
+<!-- title -->
+{%block title%} MIPS Assembly Language Programming - 1 {% endblock %}
+{% block introduction%}
+<!-- theory content -->
+<h4>MIPS Assembly Language Programming
+</h4>
+<p>A High Level Programming Language like C provides abstractions to program an underlying computing system. The
+    following is a broad classification of various abstractions.
+</p>
+<br>
+<ul>
+    <li> <strong>Data Abstractions:</strong> data abstraction provide certain primitive data types like int, float, char
+        etc. and a mechanism (like
+        structures, arrays etc.) to hierarchilaly compose the primitive data types to create new abstract data types.
+    </li>
+    <li><strong>Data Processing Abstractions:</strong> data processing abstraction provide operations (like addition,
+        multiplication, comparison etc.) which act on
+        the primitive data types which can again be composed to act on user-defined data types.
+    </li>
+    <li><strong>Control abstractions:</strong> control abstraction include language features like
+        conditional/unconditional goto, if-then-else, for-loop,
+        while-loop etc. A language which doesn't support at least one these Control Abstractions will not be Turing
+        Complete which means there exists certain functions which are not computable using the language features alone.
+    </li>
+    <li><strong>More abstraction:</strong> procedure allows a user to define his/her own operation to act upon primitive
+        or user defined data types.
+        Further it allows modular development of programs enabling software readability, maintainability and efficiency
+        also.
+    </li>
+    <li>Object-oriented languages like C++ and Java provide features like classes, inheritance, polymorphism etc.
+        Similary different langugages can provide different sets of abstraction depending upon their design philosophy
+        and utility.
+    </li>
+</ul>
+<p>In this assignment and in the next few we shall learn how to implement these High Level Language Abstractions in the
+    Assembly Language. There are 2 sets of assignments corresponding to MIPS and ARM Instruction Set Architectures
+    (ISAs). Both MIPS and ARM ISA follow RISC philosophy.
+</p>
+{%endblock%}
+{% block theory %}
+<!-- objective conteent -->
+<h4>MIPS Assembly Language Programming
+</h4>
+<p>There are several versions of the MIPS ISA and the one which we will be making use of in our assignments is a subset
+    of MIPS32 Release 3. In particular our simulator supports only the MIPS CPU core instructions and these instructions
+    are sufficient to do all the assignments. Please refer the document MIPS Architecure For Programmers, Volume I-A:
+    Introduction to the MIPS 32 Architecture for more details.
+</p>
+{%load static%}
+<img src="{%static 'csoLab/Screenshot (36).png'%}" alt="">
+<strong>Structure of an Assembly Language Program
+</strong>
+<p>Every assembly language program contains a Text Section (also called as Code Section) and an optional Data Section.
+    In the Data Section we allocate memory to various program variables using Assembly Language Directives and in the
+    Text Section we wrtie the assembly code which is a sequence of assembly language instructions to manipulate the data
+    items declared in the Data Section. In High Level Programming Languages, a Compiler takes care of memory allocation
+    to program variables by using the variable declarations like int a, b[10];, whereas in assembly the programmer has
+    to do it explic;itly with the assistance of the assembler. The following is a sample MIPS program evaluating the
+    expression varc = vara + varb where variables vara, varb and varc are integer.
+<p>
+    {%load static%}
+    <img src="{%static 'csoLab/Screenshot (37).png'%}" alt="">
+    <br>
+    <strong>Writing if-then-else Code in MIPS
+    </strong>
+<p>The following are the different kinds of Control-Abstractions provided by almost all high-level languages.
+</p>
+<li>goto statements.
+</li>
+<li>if-then-else statements
+</li>
+<li>Loop Constructs - do-while, for loops etc.
+</li>
+<br>
+<p>All though any one of these Control Statements are sufficient to compute any function, a control statement in one
+    form could be more appropriate in a particular situation than the others. For example, we could prefer a for-loop
+    over a while-loop while iterating over array elements.
+
+    MIPS ISA provides pc-relative conditional and unconditional branch instructions. Whereas the jump instructions use
+    absolute addressing mode. Unlike other ISAs MIPS does not have a Condition Code register. So the MIPS ISA does not
+    have CMP (compare) like instructions. MIPS ISA have branch delay slots and branch likely delay slots. The following
+    is an example of how to convert an if-then-else construct into MIPS assembly.
+</p>
+{%load static%}
+<img src="{%static 'csoLab/Screenshot (38).png'%}" alt="">
+<br>
+<strong>Implementing Loop Structures in MIPS ISA
+</strong>
+<p>Loops are an important form of control abstraction for programming. We have various kinds of loops like for,
+    do-while, repeat-until etc. and each of these forms are suitable for a particular programming purpose. Any loop can
+    be implemented using conditional and unconditional branch statements.
+</p>
+<p>The following is an example of a code segment illustrating how to translate loop structures into MIPS Assembly
+</p>
+{%load static%}
+<img src="{%static 'csoLab/Screenshot (39).png'%}" alt="">
+{% endblock %}
+{% block objective %}
+<!-- procedure content -->
+<h4>MIPS Assembly Language Programming
+</h4>
+<p>The following are the objectives of this series of assignments.
+</p>
+<ul>
+    <li>Introduce the Structure of an Assembly Language Program: Data and Text Sections.
+    </li>
+    <li>Introduce Assembly Directives to allocate memory in the Data Section.
+    </li>
+    <li>Introduce the idea that MIPS is a Load-Store Architecture and data has to be moved to registers before any
+        operations can be performed on them.
+    </li>
+    <li>Difference between Signed and Unsigned Arithmetic.
+    </li>
+    <li>What if there are program constants whose size is greater than 16 bits?
+    </li>
+    <li>How to convert a complex expression into an Assembly Program evaluating that expression?
+    </li>
+    <li>How to translate if-then-else statements into Assembly?
+    </li>
+    <li>How to write loops in Assembly?
+    </li>
+    <ul>
+        {% endblock %}
+        {% block procedure %}
+        <!-- experiment content -->
+        <h4>MIPS Assembly Language Programming
+        </h4>
+        <p>Write MIPS Assembly Language Programs computing the following expressions or program segments.
+        </p>
+        <ul>
+            <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized
+                to values 10, 20, 30 and 40 respectively.
+                <p>a = (b + c) - (d + e)
+                </p>
+            </li>
+            <li>Variables are of type signed integers and half-word sized."" Variables b, c, d and e are initialized to
+                values -10, 20, 30 and -40 respectively.
+            </li>
+            <p>a = (b + c) - (d + e)
+            </p>
+            <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized
+                to values 10, 20, 30 and 40 respectively.
+            </li>
+            <p>b = a + 256 .
+            </p>
+            <p>c = b - 0xfffff
+            </p>
+            <p>a = (b + c) - (d + e + 0xffffe)
+            </p>
+            <li>Dot Product of two signed half-word sized integer array vectors A and B each of dimension 5. The
+                resultant dot-product value should reside in the register $r1 by the end of computation.
+            </li>
+            <li>A and B are two unsigned word-sized integer array vectors each of size dimension 5. Compute the
+                following expression.
+            </li>
+            <p>CONV = A[0] * B[4] + A[1] * B[3] + A[2] * B[2] + A[3] * B[1] + A[4] * B[0]
+            </p>
+            <p>Write MIPS Assembly Language Programs equivalent to the following C-code fragements.
+            </p>
+            <ul>
+                <li>
+                    <pre>if ( a < b) {         // a and b are signed integers
+    c = a - b;
+ }</pre>
+                </li>
+                <li>
+                    <pre>if ( a < b) {         // a and b are signed integers
+      c = a - b;
+ }</pre>
+                </li>
+                <li>
+                    <pre>if ( a < -1234) {         // a is a signed integer
+      a = 4 * a ;              
+       }          
+       else {          
+       a = a/4;             
+        }         
+                 </pre>
+                </li>
+                <li>
+                    <pre>if ( a < b ) {         // a, b, c are unsigned integer
+     if ( a < c) {               
+     min = a;                  
+     }               
+     else { min = b < c ? b : c; }               
+     }            
+     else {            
+     min = b < c ? b : c               
+     }            </pre>
+                </li>
+            </ul>
+            <p>Write MIPS Assembly Language Programs equivalent to the following C-code fragments..
+            </p>
+            <ul>
+                <li>
+                    <pre>sqrsum = 0;
+for( i = 0 ; i < 100; ++i)                
+    sqrsum = sqrsum + a[i] * a[i];                
+                </pre>
+                </li>
+                <li>
+                    <pre>convsum = 0;
+for ( i = 0, j = 99; i <100; ++i, --j )                
+    convsum += a[i] * b[j] ;</pre>
+                </li>
+
+                <li>
+                    <pre>sum = 0;
+for( i = 0 ; i < 100; ++i) 
+    for( j = 0; j < 100; ++j) 
+      sum = sum + a[i, j] ;                                          
+                </pre>
+                </li>
+            </ul>
+            {% endblock %}
+            {% block experiment %}
+            <!-- software content -->
+            <h4>MIPS Assembly Language Programming
+            </h4>
+            <strong>Prerequeties</strong>
+            <p><strong>- This lab requires few Software Dependencies to run the Simulations</strong></p>
+            <ul>
+                <li>Adobe Flash Plugin, Java1.7</li>
+                <li>Browsers Firefox 50 and it's below versions, internet explorer.
+                </li>
+                <li>IcedTea Plugin for Linux Operating System.
+                </li>
+            </ul>
+            <strong>- We recommend the following for the smooth running of these simulations
+            </strong>
+            <ul>
+                <li>Install Adobe Flash Plugin - This will enable you to run the experiments that need Flash support.
+                    Please follow
+                    the link to install the Flash Plugin
+                </li>
+                <li>Install VirtualBox - Virtual Labs offers a free download of a customized VirtualBox with the
+                    required pre
+                    installed all the software dependencies(Java 1.7, IcedTea Plugin and Adobe Flash Plugin). Please
+                    follow the link
+                    to download, install and use
+                </li>
+            </ul>
+            <p>Please cilck on the <a href="{%static 'csoLab/MIPSSimulator.jar'%}" download>link</a> to download</p>
+            {% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'dsLab/basic.html' %}
+
+{%block title%}Shortest Paths in Graphs{% endblock %}
+
+{% block introduction %}
+<!-- introduction content -->
+<h4>Shortest Paths in Graphs</h4>
+<p>In this experiment, we look at the weighted version of Breadth First Search (BFS). In BFS, we have measured ds(v) in
+    terms of number of edges in the path from the starting vertex s to v. This is equivalent to assuming that each edge
+    in the graph has equal (unit) weight. Here we consider a more general setting, where we are given a weighted graph G
+    = (V, E, W) with a weight function W : E −> R. A typical example is Road networks, where junctions can be treated as
+    vertices and roads as edges with distance as its corresponding weights. A typical problem is to find the shortest
+    distance between two junctions u and v, where the distance is the sum of weights of edges along a u --- v path.
+</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+
+<h4>Shortest Paths in Graphs</h4>
+<strong>Bellman-Ford</strong>
+<p>Lets look at a simple method, by extending the approach used in BFS. We define ds(v) as the minimum cost of a path
+    from s to v. Initially ds(v) = ∞ for all vertices v except s, and ds(s) = 0. Recall that in BFS, we say a node is
+    finished if it is in the queue. If we directly enqueue all the neighbors v of a vertex u in to the queue and mark
+    them as finished, it may not work for this weighted version. There can be another path from u to v with more number
+    of edges but with smaller cost. So, we may have to change ds(v) while v is still in queue. If you consider the same
+    argument using paths with more edges but with smaller cost, even this may not work. We may need to update ds(v) even
+    when v is not in queue and can do so as long as there are changes to some ds(v). This suggests that we need not have
+    a queue and as there are only a finite number of edges in any shortest path, the updations will stop eventually.
+    This is the Bellman-Ford single source shortest path algorithm and is descibed below.</p>
+<b>Algorithm Bellman-Ford(G,S)</b>
+for all vertices v do <br>
+ds(v) = ∞; from(v) = NIL; <br>
+end-for <br>
+for n-1 iterations do <br>
+for each edge (v,w) do <br>
+if ds(w) > ds(v) + W(v,w) then <br>
+ds(w) = ds(v) + W(v,w); from(w) = v; <br>
+end-if <br>
+end-for <br>
+end-for <br>
+<b>End-Bellman-Ford</b>
+<br>
+<p>The algorithm requires O(mn) time, where n is the number of vertices and m is the number of edges. For each of the
+    n-1 iterations, we consider each edge once.</p>
+<strong>Dijkstra</strong>
+<p>The time taken by the Bellman-Ford algorithm is too high because of repeatedly considering edges and updating ds(v)
+    possibly many times. We need to know when to stop updating ds(v) for a vertex v and we will now see a method which
+    captures this and improves the runtime. A vertex v is done, when no further shorter path can be found to it from s
+    i.e., when ds(v) can no longer decrease. We consider a few vertices, say S, are done. A vertex with the smallest ds
+    value among the vertices in V(G) \ S can no longer improve its ds value. This is because, any more change would
+    involved using at least one more additional edge. This suggests that the vertex with the smallest ds value can be
+    moved to the set S. Initially, only the starting vertex s is in the set S and we incrementally populate S with more
+    vertices. We can proceed iteratively and in each iteration, move a vertex with the least ds value to set S. When we
+    move a vertex v to S, the neighbors of v may find a better path from s, so we have to update ds(w) for neighbors w
+    of v, if necessary. The only steps left to take care is, finding a vertex in V(G) \ S that has the least ds value.
+    Also, we have to update the ds values of vertices in V(G) \ S if needed. This is very similar to Prims algorithm for
+    finding a Minimum Spanning Tree, except that the costs ds are added with the edge weights for updation. We can use a
+    Binary Heap here. This is the Dijkstras single source shortest path algorithm and is described below.</p>
+<strong>Algorithm Dijkstra(G,s)</strong>
+<p> for all vertices v do <br>
+    ds(v) = infin;; from(v) = NIL; <br>
+    end-for <br>
+    ds(s) = 0; <br>
+    S = Φ <br>
+    for n iterations do <br>
+    v = the vertex with the least ds() value among V \ S; <br>
+    Add v to S <br>
+    for each neighbor w of v in V \ S do <br>
+    d(w) = min { d(w), d(v) + W(v,w) } <br>
+    end-for <br>
+    end-for <br>
+    <b>End-Dijkstra</b>
+    <br>
+<p>We will analyze the algorithm when using a binary heap. A binary heap is built out of the n nodesa and there are n
+    DeleteMin() operations and at most m DecreaseKey() operations. Each DeleteMin() takes O(log n) time and each
+    DecreaseKey() operation takes O(log n) time. So, the total time is O((n+m)log n).</p>
+
+{% endblock %}
+
+{% block objective %}
+<!-- objective content -->
+<h4>Shortest Paths in Graphs</h4>
+<p>At the end of this experiment, you will be able to:</p>
+<ul>
+    <li>Understand what a shortest path is</li>
+    <li>Perform Bellman-Ford single source shortest path on a graph</li>
+    <li>Perform Dijkstra single source shortest path on a graph</li>
+</ul>
+{% endblock %}
+<h4>Graph Traversals</h4>
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+{% endblock %}
+
+{% block experimentName %} {%endblock%}

@@ -1,0 +1,192 @@
+{% extends 'computerOrganisationArchitecture/exp1basic.html' %}
+<!-- title -->
+{%block title%} Registers and Counter {% endblock %}
+{% load static %}
+{% block theory%}
+<!-- theory content -->
+<h4>Design of Registers and Counters</h4>
+<p>In a sequential circuit the present output is determined by both the present input and the past output. In order to receive the past output some kind of memory element can be used. The memory element commonly used in the sequential circuits are time-delay devices. The block diagram of the sequential circuit-</p>
+<center><img src="{%static 'computerOrganisationArchitecture/seq.gif'%}" alt=""></center>
+<p>A circuit with flip-flops is considered a sequential circuit even in the absence of combinational logic. Circuits that include flip-flops are usually classified by the function they perform. Two such circuits are registers and counters:</p>
+<ul>
+    <li><STrong>Register </STrong> is a group of flip-flops. Its basic function is to hold information within a digital system so as to make it available to the logic units during the computing process.</li>
+    <li><STrong>Counter </STrong> is essentially a register that goes through a predetermined sequence of states.
+        There are various different kind of <strong>Flip-Flops</strong> . Some of the common flip-flops are: R-S Flip-Flop, D Flip-Flop, J-K Flip-Flop, T Flip-Flop. The block diagram of different flip-flops are shown here -</li>
+</ul>
+<center><img src="{%static 'computerOrganisationArchitecture/ff.gif'%}" alt=""></center>
+
+<p><strong>RS flipflop</strong> If R is high then reset state occurs and when S=1 set state.the both cannot be high simultaneouly. this input combination is avoided.</p>
+<p><strong>JK flipflop</strong>  If J and K are both low then no change occurs. If J and K are both high at the clock edge then the output will toggle from one state to the other.</p>
+<center><img src="{%static 'computerOrganisationArchitecture/jk3.gif'%}" alt=""></center>
+<p><strong>D flipflop </strong>The D flip-flop tracks the input, making transitions with match those of the input D. It is used as data store.</p>
+<p><strong>Tflipflop</strong>The T or "toggle" flip-flop changes its output on each clock edge,</p>
+<strong>Types of Registers:</strong>
+<ul>
+    <li><strong>4-bit Serial-in Serial-out</strong><br>
+        <p>4 bit serial-in serial-out register accepts digital data serially that is one bit at the time on one line. It produces the stored information on its output also in serial form. This is a shift register, as The binary number is "Shifted" one bit at time from one flip flop to the next. The block diagram is-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/shiftregsiso.gif'%}" alt=""></center>
+    </li>
+    <li><strong>4-bit Serial-in Parallel-out</strong><br>
+        <p>In serial-in parallel-out register the data are loaded serially and read out in parallel. The block diagram is-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/shiftregsipo.gif'%}" alt=""></center>
+    </li>
+    <li><strong>4-bit Parallel-in Serial-out</strong><br>
+        <p>In parallel-in serial out register the bits are entered simultaneously into their respective stages on parallel-lines, rather than on a bit-by-bit basis on one line as with serial data inputs and output is read out out parallaly. The block diagram is-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/SHIFTREGPISO.gif'%}" alt=""></center>
+    </li>
+    <li><strong>4-bit Parallel-in Parallel-out</strong><br>
+        <p>In parallel-in parallel out register the data is loaded in parallel and shifted out serially. The block diagram is-
+
+        </p>
+        <center><img src="{%static 'computerOrganisationArchitecture/shiftregpipo.gif'%}" alt=""></center>
+    </li>
+</ul>
+
+<strong>Types of Counters:</strong>
+<ul>
+    <li><strong>4-bit Synchronous Binary Counter</strong><br>
+        <p>A counter is a sequential circuit that moves through a predefined sequence of states upon applying of clock pulses. The sequence of states may follow the binary number sequence or an arbitrary manner (no sequence). The simplest example of a counter is the binary counter which follows the binary number sequence. An n-bit binary counter contains n flip-flops and can count binary numbers from 0 to (2n -1)(up counter which is incremental, if it counts decrementally it is then down counter). logic diagram of 4 bit synchronous counter-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/synchronousc.gif'%}" alt=""></center>
+    </li>
+    <li><strong>4-bit Synchronous Ring Counter</strong><br>
+        <p>If the output of a shift register is fed back to the input. a ring counter results. The data pattern contained within the shift register will recirculate as long as clock pulses are applied. logic diagram of synchronous ring counter-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/RINGCOUNTER1.gif'%}" alt=""></center>
+        Timing diagram:
+        <center><img src="{%static 'computerOrganisationArchitecture/rc3.png'%}" alt=""></center>
+    </li>
+    <li><strong4-bit Synchronous Johnson Counter></strong><br>
+        <p>If the complement output of a ring counter is fed back to the input instead of the true output, a Johnson counter results. This "reversed" feedback connection has a profound effect upon the behavior of the otherwise similar circuits. Recirculating a single 1 around a ring counter divides the input clock by a factor equal to the number of stages. Whereas, a Johnson counter divides by a factor equal to twice the number of stages. logic diagram of synchronous Johnson counter-</p>
+        <center><img src="{%static 'computerOrganisationArchitecture/JOHNSONCOUNTER.gif'%}" alt=""></center>
+        Timing Diagram-
+        <center><img src="{%static 'computerOrganisationArchitecture/jhnsn2.png'%}" alt=""></center>
+    </li>
+</ul>
+<strong>Design Issues :</strong><br>
+<p>The four different types of flip-flops are supplied here. One can easily build any register or counter using those flip-flop and different logic gates. But the clock input is under development, so it is not possible now to build any register or counter completely.</p>
+{%endblock%}
+
+{% block objective %}
+<!-- objective conteent -->
+<h4>Objective of designing registers:</h4>
+<ul>
+    <li>to understand the shifting of data</li>
+    <li>to examine the behavior of different modes of data input and data output(serial-in serial-out, serial-in parallel-out, parallel-in serial out,parallel-in parallel-out)</li>
+    <li>to make use of shift register in data transfer</li>
+    <li>developing skills in the designing and testing of sequential logic circuits</li>
+    <li>developing skills in analysing timing signals</li>
+</ul>
+<h4>Objective of designing counters:</h4>
+<ul>
+    <li>understanding the concept of counting upto certain limiting value and returning back to the start state from final state</li>
+    <li>understanding the generation of timing sequences to control operations in a digital system</li>
+    <li>developing skills in the design and testing of counters for given timing sequences</li>
+    <li>developing skills in generating timing signals</li>
+</ul>
+<p> <strong> Recommended learning activities for the experiment:</strong> Leaning activities are designed in two stages, a basic stage and an advanced stage. Accomplishment of each stage can be self-evaluated through the given set of quiz questions consisting of multiple type and subjective type questions. In the basic stage, it is recommended to perform the experiment firstly, on the given encapsulated working module, secondly, on the module designed by the student, having gone through the theory, objective and procuder. By performing the experiment on the working module, students can only observe the input-output behavior. Where as, performing experiments on the designed module, students can do circuit analysis, error analysis in addition with the input-output behavior. It is recommended to perform the experiments following the given guideline to check behavior and test plans along with their own circuit analysis. Then students are recommended to move on to the advanced stage. The advanced stage includes the accomplishment of the given assignments which will provide deeper understanding of the topic with innovative circuit design experience. At any time, students can mature their knowledge base by further reading the references provided for the experiment. </p>
+Color configuration of wire for 5 valued logic supported by the simulator:
+<ul>
+    <li>if value is UNKNOWN, wire color= maroon</li>
+    <li>if value is TRUE, wire color= blue</li>
+    <li>if value is FALSE, wire color= black</li>
+    <li>if value is HI IMPEDENCE, wire color= green</li>
+    <li>if value is INVALID, wire color= orange</li>
+</ul>
+<strong>Test plan:</strong>
+<ul>
+    <li>Give input and free running clock to the shift register as 10101 and check whether after 5 clock operation register output is set or not.</li>
+    <li>Take a mod-6 counter. use free running clock and check whether after 6 clock operation register output is set or not.</li>
+</ul>
+<p>Use Display units for checking output. Try to use minimum number of components to build. use free running clock input to the flip-flop. The pin configuration of the canned components are shown when mouse hovered over a component or by using 'show pinconfig'button.</p>
+<strong>Assignment Statements :</strong>
+<ul>
+    <li>Design 4-bit synchronous up and down counter.</li>
+    <li>Design a 5-bit Shift Registers using the flip-flops and check the output.</li>
+    <li>Design a 5-bit ring counter and a johnson counter.</li>
+    <li>Design a mod-6 counter.</li>
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Design of Registers and Counterss:</h4>
+<strong>Guideline to perform the experiment:Designing 4 bit shift register(serial in serial out)</strong>
+<ul>
+    <li>Start the simulator as directed.This simulator supports 5-valued logic.
+    </li>
+    <li>To design a 4 bit shift register (right shift), we need 4 MSD flipflop, 1 free running clock, 1 Bit switch (which will act as input to the left most flipflop), 4 Bit display(to see the output of individual flipflops so that the shifting can be seen with the clock input), wires.</li>
+    <li>The MSD flipflop component is in the sequential circuit drawer in the pallet. The pin configuration is shown whenever the mouse is hovered on any canned component of the palette or press the 'show pinconfig' button. Pin numbering starts from 1 and from the bottom left corner(indicating with the circle) and increases anticlockwise.</li>
+    <li>For MSD flipflop input is in pin-5, output(Q) is in pin-4, clock is in pin-8</li>
+    <li>click on the MSD flipflop component in the pallet and then click on the position of the editor window where you want to add the component(no drag and drop, simple click will serve the purpose), likewise add 4 MSD flipflops, 1 free running clock, 1 Bit switche and 4 bit Displayes(from Display and Input drawer of the pallet,if it is not seen scroll down in the drawer)</li>
+    <li>To connect any two components select the Connection menu of Palette, and then click on the Source terminal and click on the target terminal. connect all the components, connect the clock to the pin-8 of all the MSD flipflops, connect a bit switch to the pin-5(Q) of the left most MSD flipflop, connect 4 bit displayes to the pin-4 of 4 MSD flipflops, connect the Q output of the previous flipflop to the D(pin-5) input of the next flipflop.</li>
+    <li>To see the circuit working, click on the Selection tool in the pallet then give input by double clicking on the bit switch, to the left most D flipflop at pi-5(let it be 1), start the clock now check the output and see how the 1 is shifting from left to right.</li>
+</ul>
+<strong>Components :</strong>
+<p>To build any register or counters, we need </p>
+<ul>
+    <li>Flip-Flop</li>
+    <li>Logic Gate</li>
+    <li>Wires to connect</li>
+</ul>
+In case of counters the number of flip-flops depends on the number of different states in the counter.
+
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>General guideline to use the simulator for performing the experiment:</h4>
+<ul>
+    <li>Start the simulator as directed. For more detail please refer to the manual for using the simulator
+    </li>
+    <li>The simulator supports 5-valued logic
+    </li>
+    <li>To add the logic components to the editor or canvas (where you build the circuit) select any component and click on the position of the canvas where you want to add the component
+    </li>
+    <li>The pin configuration is shown when you select the component and press the 'show pinconfig' button in the left toolbar or whenever the mouse is hovered on any canned component of palette
+    </li>
+    <li>To connect any two components select the connection tool of palette, and then click on the source terminal and then click on the the target terminal
+    </li>
+    <li>To move any component select the component using the selection tool and drag the component to the desired position
+    </li>
+    <li>To give a toggle input to the circuit, use 'Bit Switch' which will toggle its value with a double click
+    </li>
+    <li>Use 'Bit Display' component to see any single bit value. 'Digital Display' will show the output in digital format
+    </li>
+    <li>undo/redo, delete, zoom in/zoom out, and other functionalities have been given in the top toolbar for ease of circuit building
+    </li>
+    <li>Use start/stop clock pulse to start or stop the clock input of the circuit. Clock period can be set from the given 'set clock' button in the left toolbar
+    </li>
+    <li>Use 'plot graph' button to see input-output wave forms
+    </li>
+    <li>Users can save their circuits with .logic extension and reuse them
+    </li>
+    <li><strong>After building the circuit press the simulate button in the top toolbar to get the output
+    </strong> </li>
+    <li><strong>If the circuit contains a clock pulse input, then the 'start clock' button will start the simulation of the whole circuit. Then there is no need to again press the 'simulate' button
+    </strong> </li>
+</ul>
+{% endblock %}
+
+{% block software %}
+<!-- software content -->
+<a href="{%static 'computerOrganisationArchitecture/wallanceTreeAdder.jar' %}" download>Click here to download the 64
+    bit version of simulator</a>
+<p>PATH needs to be set:</p>
+<ul>
+    <li>Java runtime environment is needed (may get from<a href="https://www.java.com/en/" target="_blank">
+            java.com)</a> </li>
+    <li>Install downloaded jre</li>
+    <li>Right click on My Computer/This PC</li>
+    <li>Select Properties</li>
+    <li>Select Advanced System Settings</li>
+    <li>Select Advanced tab</li>
+    <li>Select Environment Variables</li>
+    <li>Select Path under System Variables</li>
+    <li>Click on Edit button</li>
+    <li>In Variable value editor paste this at the start of the line <br>
+        C:\Program Files\Java\< jdk_version>\bin;</li>
+    <li>Click Ok then Ok again</li>
+</ul>
+
+{% endblock %}
+{% block experimentName %} Registers and Counters{%endblock%}

@@ -1,0 +1,267 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>IPv4 Addressing</title>
+    <style>
+       
+        h3 {
+            display: inline;
+            padding: 1.46em;
+        
+        }
+
+        .content {
+            display: none;
+        }
+        p{
+            text-align: justify;
+        }
+        .image{
+            
+            margin: auto;
+            display: block;
+            margin: auto;
+
+        }
+        .oline{
+            text-decoration: overline;
+        }
+        pre{
+            font: bold;
+        }
+        li{
+            text-align: justify;
+        }
+        label{
+            display: none;
+            font-weight: bold;
+        
+        }
+       
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contactus">Contact Us</a>
+                </li>
+                <a class="nav-link" href="/aboutus">About Us</a>
+                <li class="nav-item">
+            </ul>
+            </li>
+        </div>
+
+    </nav>
+    <br>
+    <!-- experiment nav bar -->
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Aim </span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">Theory</span></h3>
+            </a>
+            <a class="link" href="#" rel="div3">
+                <h3><span class="badge badge-info">Procedure</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div4">
+                <h3><span class="badge badge-info">Simulation</span></h3>
+            </a>
+            <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Test</span></h3>
+            </a>
+            <a class="link" href="#" rel="div6">
+                <h3><span class="badge badge-info">Feedback</span></h3>
+            </a>
+           
+        </div>
+
+        <!-- experiment content -->
+        <section>
+            <div class="content" id="div1">
+               <h4>Aim</h4>
+               <p>To give IP Address of different classes in given Network id.</p>
+               <p>The goal of the experiment is to make user learn the concept of IP Addressing and let them manually set up IP address in the given netork and check for the same.</p>
+            </div>
+
+            <div class="content" id="div2">
+                <h4>Theory</h4>
+                <p>IP addresses enable computers to communicate by providing unique identifiers for the computer itself and for the network over which it is located. An IP address is a 32 bit value that contains a network identifier(net -id) and a host identifier (host-id).
+                    The network administrators need to assign IP addresses to the system on their network. This address needs to be a unique one. All the computers on a particular subnet will have the same network identifier but different host identifiers. The Internet Assigned Numbers Authority (IANA) assigns network identifiers to avoid any duplication of addresses.
+                    Host Identifier Network Identifier 32 bits <br>
+                    The 32 bit IPv4 address is grouped into groups of eight bits, separated by dots. Each 8 bit group is then converted into its equivalent binary number. Thus each octet (8bit) can take value from 0 to 255. The IPv4 in the dotted decimal notation can range from 0.0.0.0 to 255.255.255.255. <br>
+                    IPv4 Address are classified into 5 types as follows:</p>
+                    <ul>
+                        <li> Class A</li>
+                        <li> Class B</li>
+                        <li> Class C</li>
+                        <li> Class D</li>
+                        <li> Class E</li>
+                    </ul>
+                    <strong>Class A</strong>
+                    <p>The first bit of the first octet is always set to 0 (zero). Thus the first octet ranges from 1-127 i.e. <br>
+                        00000000 - 01111111 <br>
+                        1-127 <br>
+                        Class A addresses only include IP starting from 1.x.x.x to 126.x.x.x only. The IP range 127.x.x.x is reserved for loopback IP addresses. The default subnet mask for class Class A IP address is 255.0.0.0 which implies that Class A addressing can have 126 networks and 167777214 hosts. Class A IP address format is thus : 0NNNNNNN.HHHHHHHH.HHHHHHHH.HHHHHHHH</p>
+
+                    <strong>Class B</strong>
+                    <p>An IP address which belongs to class B has the first two bits in the first octet set to 10, i.e. <br>
+                        10000000 - 10111111 <br>
+                        128 - 191 <br>
+                        Class B IP Addresses range from 128.0.x.x to 191.255.x.x. The default subnet mask for Class B is 255.255.x.x. Class B has 16384 Network addresses and 65534 Host addresses. Class B IP addresses format is: 10NNNNNN.NNNNNNNN.HHHHHHHH.HHHHHHHH</p>
+
+                    <strong>Class C</strong>
+                    <p>The first octet of Class C IP address has its first 3 bits set to 110,that is:
+                        11000000 - 11011111 <br> 
+                        192 - 223 <br>
+                        Class C IP addresses range from 192.0.0.x to 223.255.255.x. The default subnet mask for Class C is 255.255.255.x. Class C gives 2097152 Network addresses and 254 Host addresses. Class C IP address format is : 110NNNNN.NNNNNNNN.NNNNNNNN.HHHHHHHH</p>
+            </div>
+
+
+            <div class="content" id="div3">
+                <h4>Procedure</h4>
+                <ul>
+                    <li> The aim is to Give IP Addresses to the PCs. </li>
+                    <li> To perform the experiment follow the below steps. </li>
+                    <li> A choice list would be given defining the Classes. </li>
+                    <li> The user has to select the class in which they choose to give IP Addresses. </li>
+                    <li> After that a Network ID would be given and the user has to enter the IP Addresses according to the Network ID. </li>
+                    <li> Click on submit to test whether the IP address given to PCs make them into Network or not. </li>
+                </ul>
+
+            </div>
+
+            <div class="content" id="div4">
+                <h4>Simulation</h4>
+                <a href="simulation" target="blanks"> Click here to visit simulation page</a>
+                
+            </div>
+
+            <div class="content " id="div5">
+                 
+                <center>
+                    <h4>Quizes</h4>
+                </center>
+                {% block experimentName %} {%endblock%}
+                <strong>Multiple choice questions:</strong>
+                
+                {% for quiz in Exams %}
+                <table>
+                    
+                    <hr>
+                    <tr>
+                        <td>{{quiz}}</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option1" class="rb"  name = "{{quiz.id}}" value="{{quiz.option1}}">{{quiz.option1}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option2" class="rb" name = "{{quiz.id}}" value="{{quiz.option2}}">{{quiz.option2}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option3" class="rb" name = "{{quiz.id}}" value="{{quiz.option3}}">{{quiz.option3}} </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="radio" id="option4" class="rb" name = "{{quiz.id}}" value="{{quiz.option4}}">{{quiz.option4}} </td>
+                    </tr>
+                    <tr>
+                        <td> <label id="correctans" class="rb">{{quiz.correctans}}</label> </td>
+                    </tr>
+                </table>       
+                 {% endfor %} 
+                <input type="submit" value="Click for result" id="check" onclick="getAnswers();">
+                <b id="userAnswer"></b>
+                
+            </div>
+            
+
+        </section>
+
+    </div>
+
+    <!-- jquery for functionality of page -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+
+
+
+        $('.link').click(function (e) {
+            e.preventDefault();
+            var content = $(this).attr('rel');
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.content').hide();
+            $('#' + content).show();
+        });
+
+        function getAnswers(){
+            document.getElementById(userAnswer).innerHTML = "";
+            var f = document.getElementsByTagName("input");
+            for(i=0;i<=f.length;i++)
+            {
+                if(f[i].type=="radio")
+                {
+                    if(f[i].checked)
+                    {
+                        document.getElementById(userAnswer).innerHTML += "Q" + f[i].name+"The answer you selected is: " +f[i].value+ "<br/>";
+
+                    }
+                }
+            }
+        }
+        $ (document).ready(function(){
+            $("#check").click(function(){
+            $(".rb").show();
+           
+        });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

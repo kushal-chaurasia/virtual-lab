@@ -1,0 +1,178 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Date Function</h4>
+<hr>
+<h4>Aim</h4>
+<b>The aim of this experiment is to understand the date function and to learn various options to display date and time in PHP.</b>
+<p>The Learner will be able to:</p>
+<ul>
+<li>identify the role of client and server while working with date function</li>
+<li>interpret the output of the given program with probable HTML code generated at client side.</li>
+<li>write PHP script for various date and time formats to use them for the tasks like online transaction processing</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Date Function</h4>
+<hr>
+<h4>Theory</h4>
+<b>1.1 Introduction</b>
+<p>Date and Time functions allow to retrieve the date and time from the server where PHP script is running in different formats.</p>
+<b>1.2 Date () function</b>
+<p>Description <br>
+    string date (format [, timestamp]); <br>
+    The function returns a string according to the given format string using given integer timestamp or the current time if no timestamp is given. The timestamp is optional.</p>
+<b>1.3 Format:</b>
+<p>It is a string which is formed with predefined date constants that can be used to get desired output. <br>
+<br>
+    The number of options are available for format. Some of them are listed below: <br>
+    For Week <br>
+    W:(01 - 52) Week of the year <br>
+   <strong> For Month </strong> <br>
+    F:(January - December) Month, full word <br>
+    M:(Jan - Dec) Three letter version of the month<br>
+    n:(1 - 12) Month, numerical without leading zeros<br>
+    m - (01 - 12) Month, numerical with leading zeros<br>
+    t - (28 - 31) Number of days in the month<br>
+   <strong> For Year </strong><br>
+    L - (1 or 0) Whether it is (1) or is not (0) leap year <br>
+    Y - (2008) Four digit representation of the year <br>
+    y - (08) Two digit representation of the year <br>
+   <strong>For Day </strong> <br>
+    d:(01 - 31) Day of the month with leading zeros <br>
+    D:(Mon - Sun) Three letter version of the day of the week <br>
+    j:(1 - 31) Day of the month without leading zeros <br>
+    l: (lowercase 'L') - (Sunday - Saturday) Day of the week, full word <br>
+    For Timezone <br>
+    e:(e.g. GMT, America/Denver) Full timezone identifier <br>
+    <strong> For Time </strong> <br>
+    a: (am or pm) Lowercase ante meridiem or post meridiem <br>
+    A:(AM or PM) Uppercase ante meridiem or post meridiem <br>
+    B:(000 - 999) Swatch internet time <br>
+    g:(1 - 12) 12-hour format of the hour, without leading zeros <br>
+    h:(01 - 12) 12-hour format of the hour, with leading zeros <br>
+    G:(0 - 23) 24-hour format of the hour, without leading zeros <br>
+    H:(00 - 23) 24-hour format of the hour, with leading zeros <br>
+    i:(00 - 59) Minutes with leading zeros <br>
+    s:(00 - 59) Seconds with leading zeros <br>
+    u:(e.g. 54321) Milliseconds <br> <br>
+<b>1.4 Time</b> <br>
+    timestamp - [optional] $integer default: time (), returns current Unix timestamp. <br>
+    The function time () returns the current time measured in number of seconds since January 1 1970 00:00:00 GMT. This is called as the Unix Epoch. <br>
+    Along with these basic functions, PHP also provides lot of built-in functions which are related to Date and Time. Few of them are checkdate (), date_add (), date_sub (), getdate (), timezone_identifiers_list ,etc.
+</p>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Date Function</h4>
+<hr>
+<h4>Procedure</h4>
+<b>1] Demostration</b>
+<p>Click the "Execute PHP" button and observe the step by step execution. <br>
+    Observe the location of the yellow band. It highlights the line being executed. <br>
+    Once yellow band stops moving, observe output of html page at the right side and corresponding code at the bottom of the page. <br>
+    Select the required option on HTML page and click the “Display” button. <br>
+    Observe the output shown on the right hand side.</p>
+    <b>2] Simulator</b>
+    <p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Date Function</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+    &lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Introduction to PHP&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt; This program helps in understanding Date functions &lt;/h1&gt;
+
+&lt;form name=formSubmit method="post" action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"&gt;
+
+&lt;table&gt;
+
+&lt;tr&gt;&lt;td&gt; Select the Function : &lt;/td&gt;
+
+&lt;td&gt&lt;&lt;select name=DateFun&gt;
+
+&lt;option value= 1 &lt;?php echo (isset($_POST["DateFun"]) && $_POST["DateFun"] == "1") ? ' selected="selected" ': "" ;?&gt; &gt;Today's Date&lt;/option&gt;
+
+&lt;option value= 2 &lt;?php echo (isset($_POST["DateFun"]) && $_POST["DateFun"] == "2") ? ' selected="selected" ': "" ;?&gt; &gt;Today's Day&lt;/option&gt;
+
+&lt;option value= 3 &lt;?php echo (isset($_POST["DateFun"]) && $_POST["DateFun"] == "3") ? ' selected="selected" ': "" ;?&gt; &gt;Current Time&lt;/option&gt;
+
+&lt;option value= 4 &lt;?php echo (isset($_POST["DateFun"]) && $_POST["DateFun"] == "4") ? ' selected="selected" ': "" ;?&gt; &gt;Month &lt;/option&gt;
+
+&lt;option value= 5 &lt;?php echo (isset($_POST["DateFun"]) && $_POST["DateFun"] == "5") ? ' selected="selected" ': "" ;?&gt; &gt;Year &lt;/option&gt;
+
+&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt; &lt;td&gt;&lt;input type=submit value=Display&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;/form&gt;
+
+&lt;?php
+
+if( count($_POST) &gt; 0 )
+
+{
+
+$varDate = $_POST["DateFun"];
+
+if($varDate == 1)
+
+echo " &lt;h2&gt;Date is : ".date("Y.m.d")."&lt;/h2&gt;";
+
+else if($varDate == 2)
+
+echo " &lt;h2&gt;Today's day : ".date("D")."&lt;/h2&gt;";
+
+else if($varDate == 3)
+
+echo " &lt;h2&gt;Time is : ".date("H:i:sa")."&lt;/h2&gt;";
+
+else if($varDate == 4)
+
+echo " &lt;h2&gt;
+Month is : ".date("F")."&lt;/h2&gt;";
+
+else if($varDate == 5)
+
+echo " &lt;h2&gt;Year is : ".date("Y")."&lt;/h2&gt;";
+
+}
+
+?&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</strong></pre>
+
+{% endblock %}
+
+{% block experimentName %}Date Function {%endblock%}

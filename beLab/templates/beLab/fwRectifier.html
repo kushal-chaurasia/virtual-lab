@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Wave Rectifier</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fullwvoscilloscope_ver2.css' %}">
+
+    <!---------MathJax------------------->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <!------------calculator----------------------------------------->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/virtualc.css' %}">
+    <script type="text/javascript" src="{% static 'js/virtualc.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script-->
+    
+    <script src="{% static 'js/jquery.knob.min.js' %}"></script>
+    <script src="{% static 'js/fullwvoscilloscope_knob_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwvoscilloscope_axis_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwvoscilloscope_sinewv_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwaverect_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwvrecboth_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwvgrnd_ver2.js' %}"></script>
+    <script src="{% static 'js/fullwvpeakcurrent.js' %}"></script>
+</head>
+
+<body>
+    <div class="wholebody" >
+        <div style="font-size:30px; text-align:center;padding-right:100px; height:60px">  <b>Full Wave Rectifier </b></div>
+       <div id="description" >
+           <div class="dropdown">
+               <p style="text-align:center;padding-right:350px;color:white"> INSTRUCTION</p>
+               <div class="dropdown-content">
+                   <ol type="1">
+                     <li>Set the  resistor \(R_L\).</li>                          
+                       <li>Click on 'ON' button to start the experiment.</li>
+                       <li>Click on 'Sine Wave' button to generate input waveform </li>
+                       <li>Click on 'Oscilloscope' button to get the rectified output. </li>
+                       <li>Vary the Amplitude, Frequency, volt/div  using the controllers.</li> 
+                       <li>Click on "Dual" button to observe both the waveform.</li>
+                       <li>Channel 1 shows the input sine waveform, Channel 2 shows the output rectified  waveform. </li>
+                       <li>Calculate the Ripple Factor.Theoretical Ripple Factor= 0.483.</li>
+                       
+                   </ol> 
+               </div>
+           </div>
+       </div>
+     
+
+<div id="grpwrap" >
+           
+           <div style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:600px;font-weight: bold;"><p style="text-align:center;padding-right:370px;color:white"> <b> OSCILLOSCOPE</b></p>
+           </div>  
+          
+               <div class="canvas2d-view" id="canvas2d-view" >
+
+                   <center><canvas id="mycanvas" width="430" height="350" style="border:1px solid black;top:40px;">
+                       </canvas>  </center>
+               </div>
+               <!--  <output id="out"></output>-->
+               <div class="lowerleftsection">
+                    
+                   <input type="button" id="chhn1" value="Channel 1" onclick="chnlo()" disabled="true" />
+                   <input type="button" id="chhn2" value="Channel 2" onclick="chnlt()" disabled="true" />
+                   <input type="button" id="grnd" value="Ground" onclick="grnds()" disabled="true"/>
+                   <input type="button" id="dual" value="Dual" onclick="bthd()"  disabled="true"/>
+
+                   <input type="button" id="onff" onclick="mainswt()" value="On" style="position:relative;
+float:right;
+right:20px;
+top:140px;
+width:60px;
+cursor:pointer;
+text-align: center;
+border-radius: 10px;
+box-shadow: 0 2px #999;" />
+                   <div id="knob-container-fng">
+                       <!------frequency-knob-container------------>
+                       <div id="frequency-knob-container-fng">
+                           <input type="text" id="fq-knob-fng"  value="1000" readOnly=false oninput="freqfng()">
+                           <label>Frequency(Hz)</label>
+                       </div>
+
+                       <!-----------amplitude-knob-container---------------->
+                       <div id="amplitude-knob-container-fng">
+                           <input type="text" id="amp-knob-fng" readOnly=false  value="1" oninput="ampfng()">
+                           <label>Amplitude(Volt)</label>
+                       </div>
+
+                   </div>  <!--------------- end of .knob-container-fng----------------------->
+
+               </div><!--------------- end of .lowerleftsection----------------------->
+   
+</div><!--------------- end of .graphSection----------------------->
+       
+               <div id="circuitsection">
+                   <div style="position:absolute; font-size:16px; top:0px;right:0px;  height:50px;background-color:#3385ff;  width:530px;font-weight: bold;"><p style="text-align:center;padding-right:390px;color:white"> <b> CIRCUIT </b></p></div>
+
+           <div id="circuit">
+                   <p>
+                  <img src ="{% static 'beLab/fullwvr.png' %}" style="width:400px;height:300px;position:absolute;right:70px" />   
+
+                   <input type="button" id="sinecrv" value="Sine Wave" onclick="drawsine()"  disabled=true style="position:absolute;right:420px;top:195px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;">
+                   <input type="button" id="rectifiedop" value="Oscilloscope" onclick="drawhlfrectifier()" disabled=true style="position:absolute;right:50px;top:206px;cursor:pointer;text-align: center;border-radius: 5px;box-shadow: 0 2px #999;">
+                   <input type="range" orient="vertical" id="resistor" min="100" max="1000" step='100' value="0" oninput="reschange()" ><label id="r">\(R_L\)</label>
+                   <input type="text" id="restr" placeholder="Resistance" readonly >  <label id="resohm">Ohms</label>
+
+               </p>
+               </div><!--------------- end of .circuit----------------------->
+               </div> <!--------------- end of .circuitSection----------------------->
+<div id="controller" >
+ <div id="cntrlr" style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:530px;font-size: 16px;font-weight: bold;"><p style="text-align:center;padding-right:370px;color:white"><b>CONTROLS</b></p></div>
+          
+               <div class="middlerightmiddle">
+                   <div id="knob-container-amp">
+                       <!-----------amplitude-knob-container1(volt/div)---------------->
+                      
+                       <div id="amplitude-knob-container1">
+                           <input type="text" id="amp-knob1" value="1" readOnly=false oninput="amp1pdiv()">
+                           <label>Volt(V)/div</label><br>
+                           
+                       </div>
+                        
+                       <!-----------amplitude-knob-container2(volt/div)-------------->
+                       <div id="amplitude-knob-container2">
+                           <input type="text" id="amp-knob2"  value="1" readOnly=false oninput="amp2pdiv()" >
+                           <label>Volt(V)/div</label>
+                       </div>
+                   </div><!--------------- end of .knob-container-amp----------------------->
+
+                   <input type="range" orient="vertical" id="positiony1" min="-2" max="2" value="0" oninput="posiy1chnge()"  style="cursor:pointer;">  <label id="positnlabely1">Position-Y</label><label id="positnlabelch1">Channel 1</label>
+                   <input type="range" orient="vertical" id="positiony2" min="-2" max="2"  value="0" oninput="posiy2chnge()" style="cursor:pointer;">  <label id="positnlabely2">Position-Y</label><label id="positnlabelch2">Channel 2</label>
+                   <div class="middlerightsectiondivide"></div>
+
+               </div> <!--------------- end of .middlerightmiddle----------------------->
+              <div class="middlerightupper">
+                   <input  type="range"  id="positionx" min="-360" max="360" step="90"  value="0" oninput="posix2chnge()"  style="cursor:pointer;">
+                   <label id="positnlabelx">Position-X</label>
+
+                   <!-- -----knob---------- -->
+                   <div id="knob-container">
+                       <!------frequency-knob-container(time(ms)/div)------------>
+                       <div id="frequency-knob-container">
+                           <input type="text" id="fq-knob"  value="0.1"  readOnly=false oninput="timepdiv()">
+                           <label>Time(ms)/div</label>
+                       </div>
+                   </div><!--------------- end of .knob-container----------------------->
+
+               </div> <!--------------- end of .middlerightupper--------------------->
+           </div>  <!--------------- end of .controllSection----------------------->
+       <div id="calcln" >
+           <div style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:600px;font-size: 16px;font-weight: bold;">
+               <p style="text-align:center;padding-right:360px;color:white"> <b> CALCULATION</b></p>
+               <div class="tooltip" ><button id="calci"  onclick="calcul()" style="position:absolute;padding-right:40px; cursor:pointer;top:11px;right:20px;width:20px;height:20px;border:none; background-color:#3385ff;">
+                       <img src="{% static 'beLab/Calculator.png'%}" alt="Save icon" style="width:20px;height:20px;top:11px;"/></button> 
+                   <span class="tooltiptext">Calculator</span></div></div>
+           <div style=" position:absolute;  top:50px;  left:0px; height:190px; width:520px;">
+              <br>
+               &nbsp; &nbsp;  \(V_{rms}= \frac{V_m}{\sqrt{2}}\), \(V_m\) is the peak voltage<br><br>
+               &nbsp; &nbsp; \(V_{dc}= \frac{2 \times V_m} {&#960;}\)<br><br>
+               &nbsp; &nbsp; Ripple Factor=\(\frac{V_{ac}}{V_{dc}}\) \(\quad\)Since,  \(V_{ac}=\sqrt{(V^2_{rms}-V^2_{dc})}\)<br><br>
+               &nbsp; &nbsp; Peak Current:<input type="text" id="pkcrt" placeholder="Peak Current" readonly >  <label id="currmamp">mA</label><br>
+           </div>
+       </div>    <!--------------- end of .calcln----------------------->
+   </div><!--------------- end of .wholebody----------------------->
+  
+  <script>
+      $('canvas').data('readonly', false);
+       </script>
+   
+   
+  
+   
+    <!--------------------------------- calculator --------------------------------------------->
+   <div id="calculator" >
+       <div class="bttncls" id="close" >
+           <button type="button"  onclick="ok()" style="width:20px;right:-50px;top:25px;height:25px;border:none;background-color:white;cursor:pointer">
+               <img src="{% static 'beLab/Close Window.png' %}" alt="Save icon" style="width:30px;height:30px"/>
+           </button></div>
+
+       <div class="box" id="hide">
+           <div class="display"><input type="text" readonly size="17" id="d"></div>
+           <div class="keys">
+               <p>
+
+
+                   <input type="button" class="button pink"  value="&#8730;" onclick="Root('sq')">
+                   <input type="button" class="button pink"  value="&#8731;" onclick="Root('cu')">
+                   <!--  <input type="button" class="button pink"  value="n&#8730;" onclick="Root('n')">-->
+                   <input type="button" class="button pink"  value="x2" onclick="Power('sq')">
+                   <input type="button" class="button pink"  value="x3" onclick="Power('cu')">
+                   <!--  <input type="button" class="button pink"  value="\(x^n\)" onclick="Power('n')">-->
+
+               </p>
+               <p>
+                   <input type="button" class="button pink"  value="sinr" onclick="TrigFunc('sin')">  
+                   <input type="button" class="button pink"  value="cosr" onclick="TrigFunc('cos')">  
+                   <input type="button" class="button pink"  value="tanr" onclick="TrigFunc('tan')">  
+                   <input type="button" class="button pink"  value="/" onclick='v("/")'>  
+
+               </p>
+               <p><input type="button" class="button black" value="7" onclick='v("7")'>
+                   <input type="button"  class="button black" value="8" onclick='v("8")'>
+                   <input type="button" class="button black" value="9" onclick='v("9")'>
+                   <input type="button" class="button pink" value="*" onclick='v("*")'>
+               </p>
+
+               <p><input type="button" class="button black" value="4" onclick='v("4")'>
+                   <input type="button" class="button black" value="5" onclick='v("5")'>
+                   <input type="button" class="button black" value="6"  onclick='v("6")'>
+                   <input type="button"  class="button pink" value="-" onclick='v("-")'>
+               </p>
+
+               <p><input type="button" class="button black"  value="1" onclick='v("1")'>
+                   <input type="button" class="button black" value="2" onclick='v("2")'>
+                   <input type="button" class="button black" value="3" onclick='v("3")'>
+                   <input type="button" class="button pink" value="+" onclick='v("+")'>
+               </p>
+
+               <p><input type="button" class="button black"  value="0" onclick='v("0")'>
+                   <input type="button" class="button black" value="." onclick='v(".")'>
+                   <input type="button" class="button black" value="C" onclick='del("")'>
+                   <input type="button"  class="button orange" value="=" onclick='eqls()'>
+               </p>
+           </div>
+       </div>
+   </div>
+</body>
+
+</html>

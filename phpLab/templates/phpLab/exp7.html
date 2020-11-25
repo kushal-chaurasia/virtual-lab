@@ -1,0 +1,93 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Array Associative</h4>
+<hr>
+<h4>Aim</h4>
+<p>The aim of this experiment is to understand the concept of associative arrays and use it in PHP script. <br>
+    The Learner will be able to:</p>
+    <ul>
+        <li>declare and use associative array in PHP script.</li>
+        <li>write php script for the tasks where associative arrays are useful.</li>
+    </ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Array Associative</h4>
+<hr>
+<h4>Theory</h4><br>
+<b>1.1 Introduction</b> 
+<p>Associative array is also called as an array with keys.The syntax for creating an array is <br>
+    array( <br>
+    key1 => value1,<br>
+    key2 => value2,<br>
+    key3 => value3,<br>
+    …); <br>
+    The key can be string. <br>
+    e.g. $student= array("SE" =>120,"TE" => 125 ,"BE" =>100); <br>
+    Here string is used as an index of the array. The classes (SE, TE, BE) of students are associated with the number of students of each class in the college. <br>
+    For example, to print the number of students in class “TE”, the following statement will be used: <br>
+    echo $student["TE"] ; <br>
+    This will print 125 .</p>
+    <b>1.2 For Each Loop</b>
+    <p>To print the values and scan through the associative array foreach loop can be used. <br>
+        The basic syntax of foreach loop is : <br>
+        foreach (array_expression as $value) <br>
+        statement; <br>
+        Or <br>
+        foreach (array_expression as $ key=>$ value) <br>
+        statement; <br>
+        For example, to print the values of the array "student" (created above), foreach statement can be used as shown below: <br>
+        foreach ($student as $s => $s_value) <br>
+        echo $ s." ".$ s_value ."&lt;br&gt;";
+        </p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Array Associative</h4>
+<hr>
+<h4>Procedure</h4> <br>
+<b>1] Demonstration</b>
+<ol>
+    <li> Click the "Execute PHP" button and observe the step by step execution. </li>
+    <li> Observe the location of the yellow band. It highlights the line being executed.</li>
+    <li> Observe the output shown on the right hand side.</li>
+</ol>
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Array Associative</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach($age as $x => $x_value) {
+  echo "Key=" . $x . ", Value=" . $x_value;
+  echo "<br>";
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</strong></pre>
+{% endblock %}
+
+{% block experimentName %}Array Associative {%endblock%}

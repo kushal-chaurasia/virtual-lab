@@ -1,0 +1,79 @@
+{% extends 'homeBasic.html' %}
+<!-- title -->
+{% block title %} Streams  {%endblock%}
+<!-- css -->
+{% block css %}
+.flex-container {
+    display: flex;
+    padding: 30px;
+    
+  }
+  .stream{
+      margin: 20px;
+      padding: 10px;
+  }
+{% endblock %}
+
+<!-- body -->
+{% block body %}
+<!-- loading static -->
+
+<div class="container">
+    <!-- top row -->
+    {%load static%}
+    <div class="flex-container">
+        <div class="stream">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'image/mechanical.jpg' %}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Mechanical Engineering</h5>
+                  
+                  <a href="mechanical" class="btn btn-primary">Go To Lab</a>
+                </div>
+              </div>
+        </div>
+        <div class="stream">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'image/civil.jpg' %}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Civil Engineering</h5>
+                  
+                  <a href="civil" class="btn btn-primary">Go To Lab</a>
+                </div>
+              </div>
+        </div>
+        <div class="stream">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'image/electrical.jpg' %}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Electrical Engineering</h5>
+                  
+                  <a href="electrical" class="btn btn-primary">Go To Lab</a>
+                </div>
+              </div>
+        </div>
+      </div>
+      <!-- bottom row -->
+      <div class="flex-container">
+        <div class="stream">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'image/computer.jpg' %}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Computer Science</h5>
+                  <a href="computer" class="btn btn-primary">Go To Lab</a>
+                </div>
+              </div>
+        </div>
+        <div class="stream">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'image/electronic.jpg' %}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Electronics Engineering</h5>
+                  <a href="electronic" class="btn btn-primary">Go To Lab</a>
+                </div>
+              </div>
+        </div>
+        
+      </div>
+</div>
+{%endblock%}

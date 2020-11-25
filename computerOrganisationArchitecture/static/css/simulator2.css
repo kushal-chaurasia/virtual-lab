@@ -1,0 +1,17 @@
+table,th,td,tr{
+	background-color:#ddffff;
+	border:1px  solid black;
+	text-align:center;
+}
+.qmcTableLabelDiv{display:inline-block;}
+      .qmcTableResultDiv{display:block;}
+      .qmcTableClass {display:inline-table; margin:20px; font-size: 18pt; line-height: 22px; padding:0px; border-collapse: collapse; border-spacing:0; font-family:"Times New Roman",Georgia,Serif; border: none;}
+      .qmcHeaderX {background-color:lightblue;}
+      .qmcHeaderY {background-color:lightblue;}
+      .qmcPrimItem {background-color:#cccccc;}
+      .qmcBit {border: 1px solid black; padding:0px; min-width:30px; text-align:center;}
+      .qmcBitRes {border-left: 1px solid black; border-right: 1px solid black; border-top:none; border-bottom:none; padding:0px; min-width:100px; text-align:left;}
+      .qmcBitY {background-color:#cccccc;}
+      .qmcIndent {margin-left:20px;}
+      .qmcMathFont{font-family:"Times New Roman",Georgia,Serif;}
+      .qmcTdNoBorder{white-space:nowrap;}

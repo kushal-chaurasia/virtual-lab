@@ -1,0 +1,98 @@
+{% extends 'cpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{%load static%}
+
+{% block introduction%}
+<!-- introduction content -->
+<h4>Introduction</h4>
+<hr>
+<p>A variable of a certain data type such as int or char can store only one element of that data type. An array, on the other hand, can store multiple elements of a fixed data type. An array, thus, allows a programmer to address a collection of similar elements by a single name, while also allowing him to address each of the elements by their index in the array.</p>
+<p>Can we create a collection of data elements of various data types and refer to this collection by a single name? The answer to this question is 'yes' and this is possible by the use of structures. A structure allows you to make a collection of various elements of different data types and refer to them by a single name. A structure can contain arrays as well. Hence, a structure in some sense acts like a new data type which has multiple components of various other data types. So, it is possible to make an array of structure variables also.</p>
+{%endblock%}
+
+{% block Theory %}
+<!-- theory conteent -->
+<h4>Theory</h4>
+<hr>
+<p>Arrays are used to store large sets of data and manipulate them but the disadvantage is that all the elements stored in an array are to be of the same data type. When we need a collection of different data items of different data types, such as integer, float etc., we can use a structure. Structure can be seen as datatype composed of different datatypes. For example, suppose you want to store information about students enrolling in a university. Then, you may naturally want to store information like Student Name, Roll Number, Gender, Batch, etc. Ofcourse, you can create separate arrays for storing each of these quantities, but notice that for each student this diverse data is highly related. So, using a structre to pack these data entries into a single variables would be a good choice. In this case we can define the structure as,</p>
+<pre><strong>
+    struct student_record{
+        char Name[100];
+        int Roll;
+        char gender;
+        char Stream[100];
+        };
+</strong></pre>
+<p>This definition will practically create a new datatype students_record having a 2 character arrays, one integer and one character. So, in the main function one can define variables of this new compound datatype as,</p>
+<pre><strong>
+    student_record student1, student2;
+</strong></pre>
+<p>You can even define an array of structure variables like,</p>
+<pre><strong>
+    students_record students[100];
+</strong></pre>
+<p>Now, the individual elements of a structure variable can be addressed by the dot(.) operator. For example, the variable student1 can initialized using the following statements:</p>
+<pre><strong>
+    strcpy(student1.Name,"Abc");
+    student1.Roll=24;
+    student1.gender='m';
+    strcpy(student1.Stream,"Computer Science");
+</strong></pre>
+<p>An interesting thing to note is that the memory allocation for the whole structure is done contigously. So, size of one variable of type student_record is 100+4+1+100=205 bytes. And, if r1 and r2 are two variables of the structure struct_record, then writing r1=r2 is equivalent to copying the data in 205 bytes corresponding to r2 and copying them into r1.</p>
+{% endblock %}
+
+{% block Objective %}
+<!-- objective content -->
+<h4>Objective</h4>
+<hr>
+<ol>
+    <li>To understand how to use structures as a compund datatype.</li>
+    <li>To be able to design structures according to your requirement.</li>
+    <li>To understand when structures are better datastructures than arrays.</li>
+</ol>
+<br><br>
+<h4>Manual</h4>
+<hr>
+<p>In this experiment you will understand how to define structures according to problem requirements. You will also do operations on structure elements.</p>
+<br><br>
+<h4>Procedure</h4>
+<hr>
+<ol>
+    <li>Press start to start the experiment and select a value of N.</li>
+    <li>Press next to see the execution of the code</li>
+    <li>Relavant line in the code is shown here</li>
+    <li>The output of the code is shown in the right</li>
+</ol>
+
+{% endblock %}
+
+{% block code %}
+<!-- coding content -->
+<h4>Definition of Account</h4>
+<hr>
+<pre><strong>
+    struct account{
+
+    };
+</strong></pre>
+<br><br>
+<h4>Solution</h4>
+<hr>
+<pre><strong>
+    struct account{
+         char type[10];
+         char holder[30];
+         char branch[20];
+         char no[10];
+         unsigned int bal;
+        };
+</strong></pre>
+{% endblock %}
+
+{% block lab %}
+<!--  leave this space blank compiler will come here -->
+{% endblock %}
+
+{% block experimentName %}Structures {%endblock%}

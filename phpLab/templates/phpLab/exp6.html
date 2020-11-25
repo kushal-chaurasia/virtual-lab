@@ -1,0 +1,91 @@
+{% extends 'phpLab/basic.html' %}
+
+{%block title%} {% endblock %}
+
+{% block aim %}
+<!-- aim content -->
+<h4>Array</h4>
+<hr>
+<h4>Aim</h4>
+<b>The aim of this experiment is to understand the concept of an array and its use in various applications in PHP.</b>
+<p>The Learner will be able to:,</p>
+<ul>
+    <li>explain the syntax of arrays and the way of accessing the array elements in php script and resulting HTML page.</li>
+    <li>write PHP scripts for the small application using array</li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Array</h4>
+<hr>
+<h4>Theory</h4> <br>
+<p>
+    <b>1.1 Introduction</b> <br>
+
+We learnt from previous experiments that a variable can hold only one value at a time. To store more than one value of same data type with single variable name , we use an array. Array is a collection of key value pairs. <br> In PHP an array is created by using array() function. <br>
+e.g. $arr = array(); <br>
+This creates an empty array. Three elements can be stored separately in the array as shown below: <br>
+$arr[0]=10; <br>
+$arr[1]=20; <br>
+$arr[2]=30; <br>
+Alternatively,the above array can be created by using function array() as shown below: <br>
+$arr = array(10,20,30); <br>
+PHP supports array with numeric index values and the index starts with a value 0. An array element can be accessed by using array_name[key] syntax. e.g. $arr[1]=20; <br>
+here '1' is the index value that refers to the element 20. 1.2 Multidimensional arrays <br>
+Each element of the multidimensional array is another array. To store marks and roll numbers of two students, the array can be defined as shown below: $marks=array( array(1,67,89,78), array(2,78,90,77) ); PHP provides variety of built-in functions related to Array. Some of the Primitive operations on array provided by PHP are mentioned below: <br>
+count() returns the number of elements stored in an array. <br>
+sort() sorts array in ascending order. <br>
+rsort() sorts array in descending order. <br>
+array_search() searches the array for given key and returns the key value if successful. <br>
+array_reverse() returns the array elements in reverse order. 
+</p>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Array</h4>
+<hr>
+<h4>Procedure</h4> <br>
+<b>1] Demonstration</b>
+<p>
+    Click the "Execute PHP" button and observe the step by step execution. <br>
+Observe the location of the yellow band. It highlights the line being executed. <br>
+Observe the output shown on the right hand side. 
+</p>
+<b>2] Simulator</b>
+<p>Write the PHP script for the tasks mentioned in the experiment and click on "Execute" button to verify the output.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- experiment content -->
+{% endblock %}
+
+{% block code %}
+<!-- leave this place as compiler  content comes here -->
+<h4>Array</h4>
+<hr>
+<h4>Step Execution</h4>
+<pre><strong>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+$cars = array("Volvo", "BMW", "Toyota");
+sort($cars);
+
+$clength = count($cars);
+for($x = 0; $x &lt; $clength; $x++) {
+  echo $cars[$x];
+  echo "<br>";
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</strong></pre>
+{% endblock %}
+
+{% block experimentName %}Array {%endblock%}

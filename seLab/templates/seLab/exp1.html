@@ -1,0 +1,215 @@
+{% extends 'seLab/basic.html' %}
+
+{%block title%}Requirements from Problem Statements {% endblock %}
+
+{% block style %}
+.cont{
+    display: none;
+}
+{% endblock %}
+{%load static%}
+
+{% block introduction %}
+<!-- theory introduction -->
+<h4>Introduction</h4>
+<p>Requirements identification is the first step of any software development project. Until the requirements of a client have been clearly identified, and verified, no other task (design, coding, testing) could begin. Usually business analysts having domain knowledge on the subject matter discuss with clients and decide what features are to be implemented. <br>
+
+    In this experiment we will learn how to identify functional and non-functional requirements from a given problem statement. Functional and non-functional requirements are the primary components of a Software Requirements Specification.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Objectives</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Identify ambiguities, inconsistencies and incompleteness from a requirements specification</li>
+    <li>Identify and state functional requirements</li>
+    <li>Identify and state non-functional requirements</li>
+</ul>
+<strong>Requirements</strong>
+
+<p>Sommerville defines "requirement" [1] as a specification of what should be implemented. Requirements specify how the target system should behave. It specifies what to do, but not how to do. Requirements engineering refers to the process of understanding what a customer expects from the system to be developed, and to document them in a standard and easily readable and understandable format. This documentation will serve as reference for the subsequent design, implementation and verification of the system. <br>
+
+    It is necessary and important that before we start planning, design and implementation of the software system for our client, we are clear about it's requirements. If we don't have a clear vision of what is to be developed and what all features are expected, there would be serious problems, and customer dissatisfaction as well.</p>
+
+    <strong>Characteristics of Requirements</strong>
+    <p>Requirements gathered for any new system to be developed should exhibit the following three properties:</p>
+    <ul>
+        <li><strong>Unambiguity: </strong> There should not be any ambiguity what a system to be developed should do. For example, consider you are developing a web application for your client. The client requires that enough number of people should be able to access the application simultaneously. What's the "enough number of people"? That could mean 10 to you, but, perhaps, 100 to the client. There's an ambiguity.</li>
+        <li><strong>Consistency:</strong> To illustrate this, consider the automation of a nuclear plant. Suppose one of the clients say that it the radiation level inside the plant exceeds R1, all reactors should be shut down. However, another person from the client side suggests that the threshold radiation level should be R2. Thus, there is an inconsistency between the two end users regarding what they consider as threshold level of radiation</li>
+        <li><strong>Completeness: </strong> A particular requirement for a system should specify what the system should do and also what it should not. For example, consider a software to be developed for ATM. If a customer enters an amount greater than the maximum permissible withdrawal amount, the ATM should display an error message, and it should not dispense any cash.</li>
+    </ul>
+<strong>Categorization of Requirements</strong>
+<p>Based on the target audience or subject matter, requirements can be classified into different types, as stated below:</p>
+<ul>
+    <li><strong>User requirements:</strong>They are written in natural language so that both customers can verify their requirements have been correctly identified</li>
+    <li><strong>System requirements: </strong>They are written involving technical terms and/or specifications, and are meant for the development or testing teams</li>
+</ul>
+<p>Requirements can be classified into two groups based on what they describe:</p>
+
+<ul>
+    <li><strong>Functional requirements (FRs): </strong>These describe the functionality of a system -- how a system should react to a particular set of inputs and what should be the corresponding output.</li>
+    <li><strong>Non-functional requirements (NFRs): </strong>They are not directly related what functionalities are expected from the system. However, NFRs could typically define how the system should behave under certain situations. For example, a NFR could say that the system should work with 128MB RAM. Under such condition, a NFR could be more critical than a FR.</li>
+</ul>
+
+<p>Non-functional requirements could be further classified into different types like:</p>
+
+<ul>
+    <li><strong>Product requirements:</strong>   For example, a specification that the web application should use only plain HTML, and no frames</li>
+    <li><strong>Performance requirements:</strong>   For example, the system should remain available 24x7</li>
+    <li><strong>Organizational requirements:</strong>   The development process should comply to SEI CMM level 4</li>
+</ul>
+
+<h5>Functional Requirements</h5>
+
+<strong>Identifying Functional Requirements</strong>
+<p>Given a problem statement, the functional requirements could be identified by focusing on the following points:</p>
+<ul>
+    <li>Identify the high level functional requirements simply from the conceptual understanding of the problem. For example, a Library Management System, apart from anything else, should be able to issue and return books.</li>
+    <li>Identify the cases where an end user gets some meaningful work done by using the system. For example, in a digital library a user might use the "Search Book" functionality to obtain information about the books of his interest.</li>
+    <li>If we consider the system as a black box, there would be some inputs to it, and some output in return. This black box defines the functionalities of the system. For example, to search for a book, user gives title of the book as input and get the book details and location as the output.</li>
+    <li>Any high level requirement identified could have different sub-requirements. For example, "Issue Book" module could behave differently for different class of users, or for a particular user who has issued the book thrice consecutively.</li>
+</ul>
+<h5>Preparing Software Requirements Specifications</h5>
+
+<p>Once all possible FRs and non-FRs have been identified, which are complete, consistent, and non-ambiguous, the Software Requirements Specification (SRS) is to be prepared. IEEE provides a template [iv], also available here, which could be used for this purpose. The SRS is prepared by the service provider, and verified by its client. This document serves as a legal agreement between the client and the service provider. Once the concerned system has been developed and deployed, and a proposed feature was not found to be present in the system, the client can point this out from the SRS. Also, if after delivery, the client says a new feature is required, which was not mentioned in the SRS, the service provider can again point to the SRS. The scope of the current experiment, however, doesn't cover writing a SRS.</p>
+{% endblock %}
+
+{% block simulation %}
+<!-- simulation content -->
+
+<strong>We show here how to extract functional requirements when a problem statement is given. The case under study is a online voting system.</strong>
+
+<p>Internet has led to discussion of e-democracy and online voting. Many peoples think that the internet could replace representative democracy, enabling everyone to vote on everything and anything by online voting .Online voting could reduce cost and make voting more convenient. This type of voting can be done for e-democracy, or it may be used for finalizing a solution, if many alternatives are present. Online voting make’s use of authentication, hence it needs security, and the system must be able to address obtaining, marking, delivering and counting ballots via computer. Advantage of online voting is it could increase voter turnout because of convenience, and it helps to reduce fraud voting.</p>
+{% endblock %}
+
+{% block caseStudy %}
+<!-- case study content -->
+<h4>Case Study</h4>
+<hr>
+<strong># 1 : A Library Information System for SE VLabs Institute</strong>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number of employees who work on different projects undertaken by the institution. <br>
+
+    As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend the date of his borrowing if no other booking for that particular book has been made. For the library staff, this system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and complete control over the system, can enter a new record into the system when a new book has been purchased, or remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search books online. However, issuing or returning books is restricted to valid users (members) of LIS only. <br>
+    
+    The final deliverable would a web application (using the recent HTML 5), which should run only within the institute LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential information (eg., passwords) is stored in plain text.</p>
+    <hr>
+    <hr>
+    <strong>Identification of functional requirements</strong>
+    <p>The above problem statement gives a brief description of the proposed system. From the above, even without doing any deep analysis, we might easily identify some of the basic functionality of the system:</p>
+    <ul>
+        <li><strong>New user registration:</strong> Any member of the institute who wishes to avail the facilities of the library has to register himself with the Library Information System. On successful registration, a user ID and password would be provided to the member. He has to use this credentials for any future transaction in LIS.</li>
+        <li><strong>Search book:</strong>  Any member of LIS can avail this facility to check whether any particular book is present in the institute's library. A book could be searched by its:
+         <ul>
+             <li>Title</li>
+             <li>Authors name</li>
+             <li>Publisher's name</li>
+         </ul>
+        </li>
+        <li><strong>User login: </strong>  A registered user of LIS can login to the system by providing his employee ID and password as set by him while registering. After successful login, "Home" page for the user is shown from where he can access the different functionalities of LIS: search book, issue book, return book, reissue book. Any employee ID not registered with LIS cannot access the "Home" page -- a login failure message would be shown to him, and the login dialog would appear again. This same thing happens when any registered user types in his password wrong. However, if incorrect password has been provided for three time consecutively, the security question for the user (specified while registering) with an input box to answer it are also shown. If the user can answer the security question correctly, a new password would be sent to his email address. In case the user fails to answer the security question correctly, his LIS account would be blocked. He needs to contact with the administrator to make it active again.</li>
+        <li><strong>Issue book: </strong>Any member of LIS can issue a book against his account provided that:
+        <ul>
+            <li>The book is available in the library i.e. could be found by searching for it in LIS</li>
+            <li>No other member has currently issued the book</li>
+            <li>Current user has not issued the maximum number of books that can</li>
+        </ul>
+        If the above conditions are met, the book is issued to the member. <br>
+        Note that this FR would remain <b>incomplete</b>  if the "maximum number of books that can be issued to a member" is not defined. We assume that this number has been set to four for students and research scholars, and to ten for professors. <br>
+        Once a book has been successfully issued, the user account is updated to reflect the same.
+        </li>
+        <li><strong>Return book:</strong> A book is issued for a finite time, which we assume to be a period of 20 days. That is, a book once issued should be returned within the next 20 days by the corresponding member of LIS. After successful return of a book, the user account is updated to reflect the same.</li>
+        <li><strong>Reissue book:</strong> Any member who has issued a book might find that his requirement is not over by 20 days. In that case, he might choose to reissue the book, and get the permission to keep it for another 20 days. However, a member can reissue any book at most twice, after which he has to return it. Once a book has been successfully reissued, the user account is updated to reflect the information.</li>
+    </ul>
+    <p>In a similar way we can list other functionality offered by the system as well. However, certain features might not be evident directly from the problem system, but which, nevertheless, are required. One such functionality is "User Verification". The LIS should be able to judge between a registered and non-registered member. Most of the functionality would be available to a registered member. The "New User Registration" would, however, be available to non-members. Moreover, an already registered user shouldn't be allowed to register himself once again.</p>
+    <p>Having identified the (major) functional requirements, we assign an identifier to each of them [v] for future reference and verification. Following table shows the list:</p>
+
+   <center><img src="{% static 'seLab/seExp01.png'%}" alt=""></center> 
+   <strong>Identification of non-functional requirements</strong>
+   <p>Having talked about functional requirements, let's try to identify a few non-functional requirements.</p>
+    <ul>
+        <li><strong>Performance Requirements:</strong>
+        <ul>
+            <li>This system should remain accessible 24x7</li>
+            <li>At least 50 users should be able to access the system altogether at any given time</li>
+        </ul>
+        </li>
+        <li><strong>Security Requirements:</strong>
+        <ul>
+            <li>This system should be accessible only within the institute LAN</li>
+            <li>The database of LIS should not store any password in plain text -- a hashed value has to be stored</li>
+        </ul>
+        </li>
+        <li><strong>Software Quality Attributes</strong></li>
+        <li><strong>Database Requirements</strong></li>
+        <li><strong>Design Constraints</strong>
+        <ul>
+            <li>The LIS has to be developed as a web application, which should work with Firefox 5, Internet Explorer 8, Google Chrome 12, Opera 10   </li>
+            <li>The system should be developed using HTML 5</li>
+        </ul>
+        </li>
+    </ul>
+    Once all the functional and non-functional requirements have been identified, they are documented formally in SRS, which then serves as a legal agreement.
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Steps for conducting the experiment</h4>
+<strong>General Instructions</strong> <br>
+Follow are the steps to be followed in general to perform the experiments in Software Engineering Lab.
+
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Solve the given list of exercises</li>
+</ul>
+
+<strong>Experiment Specific Instructions</strong> <br>
+<p>Following are the instructions specifically for this experiment:</p>
+
+<ul>
+    <li>From the given problem statement, try to figure out if there's any inconsistency with the requirement specification</li>
+    <li>Also, try to determine what are the functional and non-functional requirements are</li>
+    <li>Select the check boxes accordingly, and then click on the 'Submit' button</li>
+</ul>
+{% endblock %}
+
+{% block excercise %}
+<!-- excercise content -->
+<strong>Consider the problem statement for an "Online Auction System" to be developed:</strong>
+<p>New users can register to the system through an online process. By registering a user agrees to abide by different pre-defined terms and conditions as specified by the system. Any registered user can access the different features of the system authorized to him / her, after he authenticates himself through the login screen. An authenticated user can put items in the system for auction. Authenticated users users can place bid for an item. Once the auction is over, the item will be sold to the user placing the maximum bid. Payments are to be made by third party payment services, which, of course, is guaranteed to be secure. The user selling the item will be responsible for it's shipping. If the seller thinks he's getting a good price, he can, however, sell the item at any point of time to the maximum bidder available.</p>
+
+
+<a class="excercise" href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+<section>
+    <div class="cont" id="ex01">
+        <br>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScA2KOlO8K9vBZhFHkWEaZB1F_oBycJwgcB0lqlHa5fLuwfQg/viewform?embedded=true" width="1040" height="1022" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+    <div class="cont" id="ex02">
+        <br>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc-FX6qaaINZ6uFfkT0BCuO8Xtha5O-PHiP7XIv27ghetGVZQ/viewform?embedded=true" width="1040" height="1022" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+</section>
+{% endblock %}
+
+
+{%block script%} 
+
+$('.excercise').click(function (e) {
+    e.preventDefault();
+    var content = $(this).attr('rel');
+    $('.active').removeClass('active');
+    $(this).addClass('active');
+    $('.cont').hide();
+    $('#' + content).show();
+});
+{%endblock%}
+

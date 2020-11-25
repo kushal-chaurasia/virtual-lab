@@ -1,0 +1,704 @@
+{% extends 'seLab/basic.html' %}
+
+{%block title%} Estimation of Project Metrics {% endblock %}
+
+{% block style %}
+/* space for adding css */
+
+th{
+border: 2px solid black;
+width: 8em;
+background: #107175;
+color: white;
+}
+td{
+border: 2px solid black;
+}
+.subHead{
+width: 8em;
+
+}
+.tContent{
+width: 24em;
+}
+.cont{
+display: none;
+}
+{%load static%}
+
+
+{% endblock %}
+{% block introduction %}
+<!-- theory introduction -->
+<h4>Introduction</h4>
+<p>After gathering the entire requirements specific to software project usually we need to think about different
+    solution strategy for the project. Expert business analysts are analyzing their benefits and as well as their
+    shortcomings by means of cost, time and resources require to develop it. <br>
+
+    In this experiment, we will learn how to estimate cost, effort and duration for a software project, and then select
+    one solution approach which will be found suitable to fulfill the organizational goal.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Objectives</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Categorize projects using COCOMO, and estimate effort and development time required for a project</li>
+    <li>Estimate the program complexity and effort required to recreate it using Halstead's metrics</li>
+</ul>
+
+<strong>Project Estimation Techniques</strong>
+<p>A software project is not just about writing a few hundred lines of source code to achieve a particular objective.
+    The scope of a software project is comparatively quite large, and such a project could take several years to
+    complete. However, the phrase "quite large" could only give some (possibly vague) qualitative information. As in any
+    other science and engineering discipline, one would be interested to measure how complex a project is. One of the
+    major activities of the project planning phase, therefore, is to estimate various project parameters in order to
+    take proper decisions. Some important project parameters that are estimated include:</p>
+
+<ul>
+    <li><strong>Project size: </strong>What would be the size of the code written say, in number of lines, files,
+        modules?</li>
+    <li><strong>Cost: </strong> How much would it cost to develop a software? A software may be just pieces of code, but
+        one has to pay to the managers, developers, and other project personnel.</li>
+    <li><strong>Duration: </strong> How long would it be before the software is delivered to the clients?</li>
+    <li><strong>Effort: </strong> How much effort from the team members would be required to create the software?</li>
+</ul>
+<p>In this experiment we will focus on two methods for estimating project metrics: COCOMO and Halstead's method.</p>
+
+<strong>COCOMO</strong>
+<p>COCOMO (Constructive Cost Model) was proposed by Boehm. According to him, there could be three categories of software
+    projects: organic, semidetached, and embedded. The classification is done considering the characteristics of the
+    software, the development team and environment. These product classes typically correspond to application, utility
+    and system programs, respectively. Data processing programs could be considered as application programs. Compilers,
+    linkers, are examples of utility programs. Operating systems, real-time system programs are examples of system
+    programs. One could easily apprehend that it would take much more time and effort to develop an OS than an
+    attendance management system.</p>
+
+<p>The concept of organic, semidetached, and embedded systems are described below.</p>
+
+<ul>
+    <li><strong>Organic: </strong> A development project is said to be of organic type, if
+        <ul>
+            <li>The project deals with developing a well understood application</li>
+            <li>The development team is small</li>
+            <li>The team members have prior experience in working with similar types of projects</li>
+        </ul>
+    </li>
+    <li><strong>Semidetached: </strong> A development project can be categorized as semidetached type, if
+        <ul>
+            <li>The team consists of some experienced as well as inexperienced staff</li>
+            <li>Team members may have some experience on the type of system to be developed</li>
+        </ul>
+    </li>
+    <li><strong>Embedded: </strong> Embedded type of development project are those, which
+        <ul>
+            <li>Aims to develop a software strongly related to machine hardware</li>
+            <li>Team size is usually large</li>
+        </ul>
+    </li>
+</ul>
+<p>Boehm suggested that estimation of project parameters should be done through three stages: Basic COCOMO, Intermediate
+    COCOMO, and Complete COCOMO.</p>
+
+<strong>Basic COCOMO Model</strong>
+
+<p>The basic COCOMO model helps to obtain a rough estimate of the project parameters. It estimates effort and time
+    required for development in the following way:</p>
+
+<pre>                                       Effort = a * (KDSI)b PM
+                                      Tdev = 2.5 * (Effort)c Months</pre>
+
+<p>where</p>
+<ul>
+    <li>KDSI is the estimated size of the software expressed in Kilo Delivered Source Instructions</li>
+    <li>a, b, c are constants determined by the category of software project</li>
+    <li>Effort denotes the total effort required for the software development, expressed in person months (PMs)</li>
+    <li>Tdev denotes the estimated time required to develop the software (expressed in months)</li>
+</ul>
+<p>The value of the constants a, b, c are given below:</p>
+<center><img src="{% static 'seLab/t02.png'%}" alt=""></center>
+
+<strong>Intermediate COCOMO Model </strong>
+<p>The basic COCOMO model considers that effort and development time depends only on the size of the software. However,
+    in real life there are many other project parameters that influence the development process. The intermediate COCOMO
+    take those other factors into consideration by defining a set of 15 cost drivers (multipliers) as shown in the table
+    below [i]. Thus, any project that makes use of modern programming practices would have lower estimates in terms of
+    effort and cost. Each of the 15 such attributes can be rated on a six-point scale ranging from "very low" to "extra
+    high" in their relative order of importance. Each attribute has an effort multiplier fixed as per the rating. The
+    product of effort multipliers of all the 15 attributes gives the <b>Effort Adjustment Factor (EAF)</b> </p>
+
+<center><img src="{% static 'seLab/t01.png'%}" alt=""></center>
+
+<pre>EAF is used to refine the estimates obtained by basic COCOMO as follows:
+
+                Effort|corrected = Effort * EAF
+                Tdev|corrected = 2.5 * (Effort| corrected) c
+    </pre>
+
+<strong>Complete COCOMO Model</strong>
+
+<p>Both the basic and intermediate COCOMO models consider a software to be a single homogeneous entity -- an assumption,
+    which is rarely true. In fact, many real life applications are made up of several smaller sub-systems. (One might
+    not even develop all the sub-systems -- just use the available services). The complete COCOMO model takes these
+    factors into account to provide a far more accurate estimate of project metrics.</p>
+<p>To illustrate this, consider a very popular distributed application: the ticket booking system of the Indian
+    Railways. There are computerized ticket counters in most of the railway stations of our country. Tickets can be
+    booked / cancelled from any such counter. Reservations for future tickets, cancellation of reserved tickets could
+    also be performed. On a high level, the ticket booking system has three main components:</p>
+<ul>
+    <li>Database</li>
+    <li>Graphical User Interface (GUI)</li>
+    <li>Networking facilities</li>
+</ul>
+<p>Among these, development of the GUI is considered as an organic project type; the database module could be considered
+    as a semi-detached software. The networking module can be considered as an embedded software. To obtain a realistic
+    cost, one should estimate the costs for each component separately, and then add it up.</p>
+
+<strong>Advantages of COCOMO</strong>
+<p>COCOMO is a simple model, and should help one to understand the concept of project metrics estimation.</p>
+
+<strong>Drawbacks of COCOMO</strong>
+<p>COCOMO uses KDSI, which is not a proper measure of a program's size. Indeed, estimating the size of a software is a
+    difficult task, and any slight miscalculation could cause a large deviation in subsequent project estimates.
+    Moreover, COCOMO was proposed in 1981 keeping the waterfall model of project life cycle in mind [2]. It fails to
+    address other popular approaches like prototype, incremental, spiral, agile models. Moreover, in present day a
+    software project may not necessarily consist of coding of every bit of functionality. Rather, existing software
+    components are often used and glued together towards the development of a new software. COCOMO is not suitable in
+    such cases.</p>
+
+<strong>Halstead's Complexity Metrics</strong>
+<p>Halstead took a linguistic approach to determine the complexity of a program. According to him, a computer program
+    consists of a collection of different operands and operators. The definition of operands and operators could,
+    however, vary from one person to another and one programming language to other. Operands are usually the
+    implementation variables or constants -- something upon which an operation could be performed. Operators are those
+    symbols that affects the value of operands. Halstead's metrics are computed based on the operators and operands used
+    in a computer program. Any given program has the following four parameters:</p>
+<ul>
+    <li><strong>n1: </strong> Number of unique operators used in the program</li>
+    <li><strong>n2:</strong> Number of unique operands used in the program</li>
+    <li><strong>N1: </strong> Total number of operators used in the program</li>
+    <li><strong>N2: </strong> Total number of operators used in the program</li>
+</ul>
+Using the above parameters one compute the following metrics:
+<ul>
+    <li><strong>Program Length: </strong> Using the above parameters one compute the following metrics:</li>
+    <li><strong>Program Vocabulary: </strong> n = n1 + n2</li>
+    <li><strong>Volume: </strong> V = N * lg n</li>
+    <li><strong>Difficulty: </strong> D = (n1 * N2) / (2 * n2)</li>
+    <li><strong>Effort: </strong> E = D * V</li>
+    <li><strong>Time to implement: </strong>T = E / 18 (in seconds) [vi]</li>
+</ul>
+<p>The program volume V is the minimum number of bits needed to encode the program. It represents the size of the
+    program while taking into account the programming language. <br>
+    The difficulty metric indicates how difficult a program is to write or understand. <br>
+    Effort denotes the "mental effort" required to develop the software, or to recreate the same in another programming
+    language [iv].</p>
+
+{% endblock %}
+
+
+{% block simulation %}
+<!-- simulation content -->
+<h4>Using Basic COCOMO model to estimate project parameters</h4>
+<p>Use the simulator on the right hand side to understand how project type and size affects the different parameters
+    estimated.</p>
+
+<strong>Quick glance at the formulae:</strong>
+<ul>
+    <li><strong>Effort: </strong> a * (Size) * b person-month</li>
+    <li><strong>Time for development:</strong> 2.5 * (Effort) * c month</li>
+</ul>
+<!-- organic simulator -->
+<table>
+    <tr>
+        <th>Project Type</th>
+        <th>a</th>
+        <th>b</th>
+        <th>c</th>
+    </tr>
+    <br>
+    <tr>
+        <td>Organic</td>
+        <td>2.4</td>
+        <td>1.05</td>
+        <td>0.38</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="subHead">Project size (in KLOC)</td>
+        <td class="tContent">
+            <input type="range" min="2" max="50" value="3" class="form-control-range" id="myRange" step="1">
+            <span id="output"></span>
+
+    </tr>
+    <tr>
+        <td>Effort (in PM)</td>
+        <td><span id="effort"></span></td>
+    </tr>
+    <tr>
+        <td>Tdev (in month)</td>
+        <td><span id="time"></span></td>
+    </tr>
+    <tr>
+        <td># of developers</td>
+        <td><span id="dev"></span></td>
+    </tr>
+</table>
+
+<!-- semi detached simulator -->
+<table>
+    <tr>
+        <th>Project Type</th>
+        <th>a</th>
+        <th>b</th>
+        <th>c</th>
+    </tr>
+    <br>
+    <tr>
+        <td>Semi-detached</td>
+        <td>3</td>
+        <td>1.12</td>
+        <td>0.35</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="subHead">Project size (in KLOC)</td>
+        <td class="tContent">
+            <input type="range" min="50" max="300" value="70" class="form-control-range" id="semi">
+            <span id="semiOut"></span>
+
+    </tr>
+    <tr>
+        <td>Effort (in PM)</td>
+        <td><span id="semiEffort"></span></td>
+    </tr>
+    <tr>
+        <td>Tdev (in month)</td>
+        <td><span id="semiTime"></span></td>
+    </tr>
+    <tr>
+        <td># of developers</td>
+        <td><span id="semiDev"></span></td>
+    </tr>
+</table>
+
+<!-- embeded simulator -->
+<table>
+    <tr>
+        <th>Project Type</th>
+        <th>a</th>
+        <th>b</th>
+        <th>c</th>
+    </tr>
+    <br>
+    <tr>
+        <td>Embedded</td>
+        <td>3.6</td>
+        <td>1.2</td>
+        <td>0.32</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="subHead">Project size (in KLOC)</td>
+        <td class="tContent">
+            <input type="range" min="300" max="500" value="300" class="form-control-range" id="embed">
+            <span id="embedOut"></span>
+
+    </tr>
+    <tr>
+        <td>Effort (in PM)</td>
+        <td><span id="embedEffort"></span></td>
+    </tr>
+    <tr>
+        <td>Tdev (in month)</td>
+        <td><span id="embedTime"></span></td>
+    </tr>
+    <tr>
+        <td># of developers</td>
+        <td><span id="embedDev"></span></td>
+    </tr>
+</table>
+
+{% endblock %}
+
+{% block caseStudy %}
+<!-- case study content -->
+<h4>Case Study</h4>
+<hr>
+<strong># 1 : A Library Information System for SE VLabs Institute</strong>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of
+    Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number
+    of employees who work on different projects undertaken by the institution. </p>
+
+<p> As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library
+    Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to
+    borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend
+    the date of his borrowing if no other booking for that particular book has been made. For the library staff, this
+    system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and
+    complete control over the system, can enter a new record into the system when a new book has been purchased, or
+    remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search
+    books online. However, issuing or returning books is restricted to valid users (members) of LIS only. </p>
+
+<p> The final deliverable would a web application (using the recent HTML 5), which should run only within the institute
+    LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential
+    information (eg., passwords) is stored in plain text.</p>
+<hr>
+<hr>
+<p>The SE VLabs Institute has a IT management team of it's own. This team has been given the task to execute the Library
+    Information System project. The team consists of a few experts from industry, and a batch of highly qualified
+    engineers experienced with design and implementation of information systems. It is planned that the current project
+    will be undertaken by a small team consisting of one expert and few engineers. Actual team composition would be
+    determined in a later stage.</p>
+<p>Using COCOMO and based on the team size (small) and experience (high), the concerned project could be categorized as
+    "organic". The experts, based on their prior experience, suggested that the project size could roughly be around 10
+    KLOC. This would serve as the basis for estimation of different project parameters using basic COCOMO, as shown
+    below:</p>
+<pre>
+        <img src="{% static 'seLab/t03.png'%}" alt="">
+    
+    </pre>
+<p>So, the project is supposed to be complete by nine months. However, estimations using basic COCOMO are largely
+    idealistic. Let us refine them using intermediate COCOMO. Before doing so we determine the Effort Adjustment Factor
+    (EAF) by assigning approprite weight to each of the following attributes.</p>
+<center> <img src="{% static 'seLab/t04.png'%}" alt=""></center>
+<p>The cells with yellow backgrounds highlight our choice of weight for each of the cost drivers. EAF is determined by
+    multiplying all the chosen weights. So, we get</p>
+<pre> EAF = 0.53 (approx)</pre>
+<p>Using this EAF value we refine our estimates from basic COCOMO as shown below</p>
+<img src="{% static 'seLab/t05.png'%}" alt="">
+<p>After refining our estimates it seems that seven months would likely be sufficient for completion of this project.
+    This is still a rough estimate since we have not taken the underlying components of the software into consideration.
+    Complete COCOMO model considers such parameters to give a more realistic estimate.</p>
+<hr>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Steps for conducting the experiment</h4>
+<strong>General Instructions</strong>
+<p>Follow are the steps to be followed in general to perform the experiments</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the quiz section to judge your understanding (optional, but recommended)</li>
+    <li> Solve the given list of exercises</li>
+</ul>
+{% endblock %}
+
+{% block excercise %}
+<!-- excercise content -->
+<a class="excercise" href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+<a class="excercise" href="#" rel="ex03">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 03</span></h4>
+</a>
+<br>
+<section>
+    <div class="cont" id="ex01">
+        <br>
+        <p>Select 1 Considering your immense expertise in software development, The Absolute Beginners Inc. has recently
+            allotted you a mega project. The goal of the project is to create a database of all Hindi films released
+            since 2000. The software would allow one to generate a list of top ten hit films, top ten flop films, best
+            comedy films, and so on. Using your prior experience you have decided the approximate sizes of each module
+            of the software as follows:</p>
+        <ul>
+            <li>Data entry (0.9 KDSI)</li>
+            <li>Data update (0.7 KDSI)</li>
+            <li>Query (0.9 KDSI)</li>
+            <li>Report generation and display (2 KDSI)</li>
+        </ul>
+
+        <p>Also take into consideration the following cost drivers with their ratings:</p>
+        <ul>
+            <li>Storage constraints (Low) </li>
+            <li>Experience in developing similar software (High)</li>
+            <li>Programming capabilities of the developers (High)</li>
+            <li>Application of software engineering methods (High)</li>
+            <li>Use of software tools (High)</li>
+        </ul>
+        <p>(All other cost drivers have nominal rating).</p>
+
+        <strong>Now answer the following:</strong>
+
+        <ul>
+            <li>Applying intermediate COCOMO estimate the minimum size of the team you would require to develop this
+                system</li>
+            <li>Assuming that your client would pay Rs. 50,000 per month of development, how much would be the likely
+                billing?</li>
+        </ul>
+
+        <strong>Learning Objectives:</strong>
+
+        <ul>
+            <li>Identify type of a project as per COCOMO</li>
+            <li>Prepare an estimate of required effort and cost</li>
+        </ul>
+
+        <strong>Limitations:</strong> Values presented here are arbitrary and doesn't relate to real life
+
+        <p> <b>Note:</b> The above example has been adapted from COCOMO (Constructive Cost Model), Seminar on Software
+            Cost Estimation WS 2002 / 2003, presented by Nancy Merlo – Schett.</p>
+
+        <hr>
+
+        <table>
+            <tr>
+                <th>Project Type</th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+            </tr>
+            <br>
+            <tr>
+                <td>Organic</td>
+                <td>2.4</td>
+                <td>1.05</td>
+                <td>0.38</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Project size (in KDSI)</td>
+                <td style="width:18.4em;"> <input type="text" class="form-control" placeholder="Project size"
+                        id="organicKDSI">
+                </td>
+            </tr>
+            <tr>
+                <td>Effort (in PM)</td>
+                <td style="width:18.4em;"><span id="organicEPM"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev (in month)</td>
+                <td style="width:18.4em;"><span id="organicTime"></span></td>
+            </tr>
+            <tr>
+                <td>Effort Adjustment Factor (EAF)</td>
+                <td style="width:18.4em;"><input type="text" class="form-control" placeholder="Effort Adjustment Factor"
+                        id="organicEAF"></td>
+            </tr>
+            <tr>
+                <td>Effort|corrected (in PM)</td>
+                <td style="width:18.4em;"><span id="organicEffortCorrect"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev|corrected (in month)</td>
+                <td style="width:18.4em;"><span id="organicTimeCorrect"></span></td>
+            </tr>
+            <tr>
+                <td># of developers</td>
+                <td style="width:18.4em;"><span id="organicDev"></span></td>
+            </tr>
+
+        </table>
+        <input type="button" value="Calculate" onclick="organic();">
+        <br>
+        <hr>
+
+
+        <!-- second excercise -->
+
+        <table>
+            <tr>
+                <th>Project Type</th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+            </tr>
+            <br>
+            <tr>
+                <td>Semi-Detached</td>
+                <td>3</td>
+                <td>1.12</td>
+                <td>0.35</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Project size (in KDSI)</td>
+                <td style="width:18.4em;">
+                    <input type="text" class="form-control" placeholder="Project size"
+                    id="saKDSI">
+                </td>
+            </tr>
+            <tr>
+                <td>Effort (in PM)</td>
+                <td style="width:18.4em;"><span id="saEffort"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev (in month)</td>
+                <td style="width:18.4em;"><span id="saTime"></span></td>
+            </tr>
+            <tr>
+                <td>Effort Adjustment Factor (EAF)</td>
+                <td style="width:18.4em;"><input type="text" class="form-control" placeholder="Effort Adjustment Factor"
+                    id="saEAF"></td>
+            </tr>
+            <tr>
+                <td>Effort|corrected (in PM)</td>
+                <td style="width:18.4em;"><span id="saEffortCorrect"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev|corrected (in month)</td>
+                <td style="width:18.4em;"><span id="saTimeCorrect"></span></td>
+            </tr>
+            <tr>
+                <td># of developers</td>
+                <td style="width:18.4em;"><span id="saDev"></span></td>
+            </tr>
+        </table>
+        <input type="button" value="Calculate" onclick="semiAttached();">
+<br>
+<hr>
+
+        <!-- third one -->
+
+        <table>
+            <tr>
+                <th>Project Type</th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+            </tr>
+            <br>
+            <tr>
+                <td>Embedded</td>
+                <td>3.6</td>
+                <td>1.15</td>
+                <td>0.32</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Project size (in KDSI)</td>
+                <td style="width: 18.4em;"> 
+                    <input type="text" class="form-control" placeholder="Enter KDSI"
+                    id="embdKDSI">
+                </td>
+            </tr>
+            <tr>
+                <td>Effort (in PM)</td>
+                <td style="width:18.4em;"><span id="embdEffort"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev (in month)</td>
+                <td style="width:18.4em;"><span id="embdTime"></span></td>
+            </tr>
+            <tr>
+                <td>Effort Adjustment Factor (EAF)</td>
+                <td style="width:18.4em;">
+                    <input type="text" class="form-control" placeholder="Effort Adjustment Factor"
+                    id="embdEAF">
+                </td>
+            </tr>
+            <tr>
+                <td>Effort|corrected (in PM)</td>
+                <td style="width:18.4em;"><span id="embdEffortCorrect"></span></td>
+            </tr>
+            <tr>
+                <td>Tdev|corrected (in month)</td>
+                <td style="width:18.4em;"><span id="embdTimeCorrect"></span></td>
+            </tr>
+            <tr>
+                <td># of developers</td>
+                <td style="width:18.4em;"><span id="embdDev"></span></td>
+            </tr>
+        </table>
+
+        <input type="button" value="Calculate" onclick="embed();">
+
+    </div>
+
+    <div class="cont" id="ex02">
+        <br>
+        <strong>Identify the unique operators and operands from the following snippet of code:</strong>
+        <img src="{% static 'seLab/t06.png' %}" alt="">
+
+        <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSed8Mmn2_GVJcEAtBlmZm_0ovXb-smbPn9ukf23udsFhb0clw/viewform?embedded=true"
+            width="1040" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+
+
+    <div class="cont" id="ex03">
+        <br>
+        <p>The Absolute Beginners Inc. is again at your door! This time their demand is, however, simple. They have a C
+            program, which computes the area of a circle (code shown below). They want it to be rewritten in Java.</p>
+
+        <center><img src="{% static 'seLab/t07.png'%}" alt=""></center>
+        <p>Using Halstead's metrics estimate the effort required to recreate this program.</p>
+        <strong>Learning Objectives:</strong>
+        <p>Determining estimated effort using Halstead's metrics</p>
+
+        <hr>
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Total # of operators</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Total # of operands</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Total # of unique operators</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Total # of unique operands</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Program length</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Program vocabulary</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Volume</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Difficulty</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Effort</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Time to implement (in seconds)</td>
+                <td></td>
+            </tr>
+        </table>
+        <input type="button" value="Calculate" ">
+    </div>
+
+
+</section>
+
+
+<script src="{% static 'js/exp2excercise.js' %}"></script>
+<script src="{% static 'js/exp2.js' %}"></script>
+
+{% endblock %}
+
+{%block script%}
+
+{%endblock%}

@@ -1,0 +1,232 @@
+{% extends 'heLab/experimentBasic.html' %}
+<!-- title -->
+{%block title%} Design and Implementation of Various Arithmetic Circuits {% endblock %}
+
+{% load static %}
+
+{% block aim%}
+<!-- aim content -->
+<h4>Design and Simulate Various Code Converters
+</h4>
+<p><strong>Aim :</strong> To Design and Simulate binary to gray , gray to binary , BCD to Excess 3, Excess 3 to BCD code
+    converters
+</p>
+<strong>Pre-Requisites
+</strong>
+<ul>
+    <li> Knowledge of number system
+
+    </li>
+    <li> NI LabVIEW tool
+
+    </li>
+</ul>
+<br>
+<strong>Objective:-
+</strong>
+<ul>
+    <li> To understand different codes.
+
+    </li>
+    <li> To understand different codes.
+
+    </li>
+    <li> To simulate various code converters.
+
+    </li>
+    <li> To understand the importance of code converters in real life applications.
+
+    </li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- theory conteent -->
+<h4>Design and Simulate Various Code Converters
+</h4>
+<strong>Theory</strong>
+<br>
+<strong>Counters
+</strong>
+<p><strong>Binary Codes:
+    </strong></p>
+<p>A symbolic representation of data/ information is called code. The base or radix of the binary number is 2. Hence, it
+    has two independent symbols. The symbols used are 0 and 1. A binary digit is called as a bit. A binary number
+    consists of sequence of bits, each of which is either a 0 or 1. Each bit carries a weight based on its position
+    relative to the binary point. The weight of each bit position is one power of 2 greater than the weight of the
+    position to its immediate right. e. g. of binary number is 100011 which is equivalent to decimal number 35.
+</p>
+<br>
+<strong>BCD Codes:
+</strong>
+<p>Numeric codes represent numeric information i.e. only numbers as a series of 0’s and 1’s. Numeric codes used to
+    represent decimal digits are called Binary Coded Decimal (BCD) codes. A BCD code is one, in which the digits of a
+    decimal number are encoded-one at a time into group of four binary digits. There are a large number of BCD codes in
+    order to represent decimal digits0, 1, 2,……9, it is necessary to use a sequence of at least four binary digits. Such
+    a sequence of binary digits which represents a decimal digit is called code word.
+</p>
+<br>
+<strong>Gray Codes:
+</strong>
+<p>It is a non-weighted code; therefore, it is not a suitable for arithmetic operations. It is a cyclic code because
+    successive code words in this code differ in one bit position only i.e. it is a unit distance code.
+</p>
+<br>
+<p>Applications of Gray Code:
+</p>
+<ul>
+    <li> In instrumentation and data acquisition system where linear or angular displacement is measured.
+    </li>
+    <li> In shaft encoders, input-output devices, A/D converters and the other peripheral equipment.
+    </li>
+</ul>
+<br>
+<strong>Excess-3 code:
+</strong>
+<p>It is a non-weighted code. It is also a self-complementing BCD code used in decimal arithmetic units. . The Excess-3
+    code for the decimal number is performed in the same manner as BCD except that decimal number 3 is added to the each
+    decimal unit before encoding it to binary.
+</p>
+<br>
+<strong>Code Converters:
+</strong>
+<p>The availability of a large variety of codes for the same discrete elements of information results in the use of
+    different codes by different digital systems. It is some time necessary to use the output of one system as the input
+    to the other. The conversion circuit must be inserted between the two systems if each uses different codes for the
+    same information. Thus a code converter is a circuit that makes the two systems compatible even though each uses the
+    different code.
+</p>
+<br>
+<strong>Binary to gray code:
+</strong>
+<br>
+<p>Truth Table:
+</p>
+<img src="{%static 'heLab/Screenshot (47).png'%}" alt="">
+<br>
+<strong> Binary to Gray:
+</strong>
+<br>
+<br>
+<p>
+    <strong>Equations:
+    </strong></p>
+<img src="{%static 'heLab/Screenshot (48).png'%}" alt="">
+<br>
+<br>
+<p><strong>Diagram:</strong> Logic diagram for Binary to Gray Convertor is given below:
+</p>
+<br>
+<center><img src="{%static 'heLab/Screenshot (49).png'%}" alt=""></center>
+<p>Gray to Binary:
+</p>
+<br>
+<center><img src="{%static 'heLab/Screenshot (50).png'%}" alt=""></center>
+<strong>Equations:
+</strong>
+<br>
+<img src="{%static 'heLab/Screenshot (51).png'%}" alt="">
+<br>
+<br>
+<br>
+<strong>Diagram:
+</strong>
+<br>
+<br>
+<center><img src="{%static 'heLab/Screenshot (52).png'%}" alt=""></center>
+<br>
+<strong>BCD to Excess-3:
+</strong>
+<br>
+<br>
+<p>To convert from binary code A to binary code B, the input lines must supply the bit combination of elements as
+    specified by code A and the output lines must generate the corresponding bit combination of code B. A combinational
+    circuit performs this transformation by means of logic gates. As we want to design 4-bit code, we must use four
+    input variables and four output variables. Designate the four input binary variables by the symbols A,B,C,D, and the
+    four output variables by w, x, y, and z. The truth table relating the input and output variables is as shown. A
+    two-level logic diagram may be obtained directly from the Boolean expressions derived by the maps. The expressions
+    obtained may be manipulated for the purpose of using common gates for two or more outputs. This manipulation
+    illustrates flexibility obtained with multiple-output systems when implemented with three or more levels of gates.
+</p>
+<center><img src="{%static 'heLab/Screenshot (53).png'%}" alt=""></center>
+<br>
+<strong> Equations:
+</strong>
+<br>
+<br>
+<p>z = D
+</p>
+<p>y = CD+C’D’=CD(C+D)’</p>
+<p>x = B’C+B’D+BC’D’= B’(C+D) +BC’D’</p>
+<p>x = B’(C+D) +B(C+D)’</p>
+<p>w = A+BC+BD=A+B(C+D)</p>
+<br>
+<strong>Diagram:
+</strong>
+<br>
+<br>
+<p>Logic Diagram for BCD to Excess-3 Code Converter
+</p>
+<center><img src="{%static 'heLab/Screenshot (54).png'%}" alt=""></center>
+{% endblock %}
+
+{% block procedure %}
+<!-- procedure content -->
+<h4>Design and Simulate Various Code Converters
+</h4>
+<ul>
+    <li> Select appropriate code converter from tab menu.
+    </li>
+    <li> Run / execute the simulation by pressing the run button and observe the output of code converters on the output
+        LED.
+    </li>
+    <li> Repeat the procedure for different inputs and note down the corresponding outputs.
+    </li>
+</ul>
+{% endblock %}
+
+{% block simulator %}
+<!-- simulator content -->
+{% endblock %}
+
+{% block conclusion %}
+<!-- software content -->
+<h4>Design and Simulate Various Code Converters
+</h4>
+<br>
+<strong>Conclusion:
+</strong>
+<br>
+<br>
+<strong>Result
+</strong>
+<p> Binary to gray, gray to binary, Binary coded decimal (BCD) to Ex-3 code converter are simulated and the truth table
+    are verified.
+</p>
+<br>
+<br>
+<strong>Assignment
+</strong>
+<ul>
+    <li> Design a code converter that converts a decimal digit from 8,4, -2,-1 code to BCD
+
+    </li>
+    <li> Design a 5211 to 4211 code converter
+
+    </li>
+    <li> Design 8 bit Binary to gray code converter and vice versa. Also explain its typical application
+
+    </li>
+</ul>
+<br>
+<ul>
+    <li> 1. Digital Electronics, Tokheim, Tata-McGraw Hill, 4th Edition
+
+    </li>
+    <li> Digital Design, M. Morris Mano, Pearson Education, 3rd Edition﻿
+
+    </li>
+</ul>
+{% endblock %}
+
+{% block experimentName %} {%endblock%}
