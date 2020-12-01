@@ -1,0 +1,122 @@
+{% extends 'beLab/basic.html'%}
+
+{%block title%} Zener Diode-Voltage Regulator{% endblock %}
+
+{% load static %}
+{% block tutorial %}
+<h4>Theory</h4>
+<strong>Objective</strong>
+<p>At the end of the experiment,the student will be able to </p>
+<ul>
+    <li>Explain the function of a Zener diode </li>
+    <li>Explain Zener Diode as Voltage Regulator </li>
+</ul>
+<h5>Zener Diode</h5>
+<p>A Zener Diode is a special kind of diode which permits current to flow in the forward direction as normal, but will
+    also allow it to flow in the reverse direction when the voltage is above the breakdown voltage or ‘zener’ voltage.
+    Zener diodes are designed so that their breakdown voltage is much lower - for example just 2.4 Volts.</p>
+<center><img src="{% static 'beLab/zenerdi2.png'%}" alt=""></center>
+<center>Figure 1</center>
+<Strong>Function of Zener Diode</Strong>
+<ul>
+    <li> Zener diodes are a special kind of diode which permits current to flow in the forward direction.</li>
+    <li>Zener diodes will also allow current to flow in the reverse direction when the voltage is above a certain value.
+        This breakdown voltage is known as the Zener voltage. In a standard diode, the Zener voltage is high, and the
+        diode is permanently damaged if a reverse current above that value is allowed to pass through it.</li>
+    <li>In the reverse bias direction, there is practically no reverse current flow until the breakdown voltage is
+        reached. When this occurs there is a sharp increase in reverse current. Varying amount of reverse current can
+        pass through the diode without damaging it. The breakdown voltage or zener voltage (VZ) across the diode remains
+        relatively constant. </li>
+</ul>
+<strong>Zener Diode As A Voltage Regulator</strong>
+<p>A voltage regulator is an electronic circuit that provides a stable DC voltage independent of the load current,
+    temperature and AC line voltage variations. A Zener diode of break down voltage V<sub>Z</sub> is reverse connected
+    to an input voltage source V<sub>I</sub> across a load resistance RL and a series resistor R<sub>S</sub>. The
+    voltage across the zener will remain steady at its break down voltage V<sub>Z</sub> for all the values of zener
+    current I<sub>Z</sub> as long as the current remains in the break down region. Hence a regulated DC output voltage
+    V<sub>0</sub>=V<sub>Z</sub> is obtained across R<sub>L</sub>, whenever the input voltage remains within a minimum
+    and maximum voltage. Basically there are two type of regulations such as:
+    Line Regulation: In this type of regulation, series resistance and load resistance are fixed, only input voltage is
+    changing. Output voltage remains the same as long as the input voltage is maintained above a minimum value.
+    Load Regulation: In this type of regulation, input voltage is fixed and the load resistance is varying. Output volt
+    remains same, as long as the load resistance is maintained above a minimum value.</p>
+
+<h5>line Regulaltion</h5>
+<center><img src="{% static 'beLab/zenerdli.png'%}" alt=""></center>
+<center>Figure 2</center>
+<p>In Line Regulation, Load resistance is constant and input voltage varies. VI must be sufficiently large to turn the
+    Zener Diode ON.</p>
+<img src="{% static 'beLab/formula34.png'%}" alt="">
+<center><span style="font-size: larger;"> or,</span></center>
+<img src="{% static 'beLab/formula35.png'%}" alt="">
+<h5>Load Regulation</h5>
+<center><img src="{% static 'beLab/zenerdlo.png'%}" alt=""></center>
+<center>Figure 3</center>
+<p>In Load Regulation , input voltage is constant and Load resistance varies. Too small a Load Resistance R<sub>L</sub>
+    ,will result in V<sub>TH</sub>&lt;V<sub>Z</sub> and Zener Diode will be OFF.</p>
+<img src="{% static 'beLab/formula36.png'%}" alt="">
+<img src="{% static 'beLab/formula37SS.png'%}" alt="">
+
+{%endblock%}
+
+
+{% block procedure %}
+<H4>Procedure</H4>
+<h5>Zener Diode - Line Regulation</h5>
+<ul>
+    <li> Set the Zener Voltage(VZ) </li>
+    <li> Set the Series Resistance (R<sub>S</sub>) value. </li>
+    <li> Set the Load Resistance (R<sub>L</sub>) value. </li>
+    <li> Vary DC voltage. </li>
+    <li> Voltmeter is placed parallel to load resistor and ammeter series with the series resistor. </li>
+    <li> Choose appropriate DC voltage such that zener diode is 'on'. </li>
+    <li> Now note the Voltmeter and Ammeter reading for various DC voltage. </li>
+    <li> Note the Load current(I<sub>L</sub>), zener current(IZ), Output voltage(VO) </li>
+    <li> Calculate the voltage regulation. </li>
+</ul>
+<center><img src="{% static 'beLab/znrli_pr.png'%}" alt=""></center>
+<center>Figure 1</center>
+
+<hr>
+<h5>Zener Diode - Load Regulation</h5>
+<ul>
+    <li> Set DC voltage. </li>
+    <li> Set the Series Resistance (RS) value. </li>
+    <li> 1W D0-41 Glass Zener Diode 1N4740A, Zener voltage is 10 V. </li>
+    <li> Vary the Load Resistance (R<sub>L</sub>). </li>
+    <li> Voltmeter is placed parallel to load resistor and ammeter series with the series resistor. </li>
+    <li> Choose Load Resistance in such a manner, such that the Zener diode is 'on'. </li>
+    <li> Now note the Voltmeter and Ammeter reading for various Load Resistance. </li>
+    <li> Increase the load resistance (R<sub>L</sub>). </li>
+    <li> Note the Load current(I<sub>L</sub>), zener current(I<sub>Z</sub>), Output voltage(V<sub>O</sub>) </li>
+    <li> Calculate the voltage regulation. </li>
+</ul>
+<center><img src="{% static 'beLab/znrlo_pr.png'%}" alt=""></center>
+<center>Figure 2</center>
+<h5>Zenner characteristics</h5>
+<ul>
+    <li>Select the diode </li>
+    <li>Set the rheostat R<sub>h</sub>=1 Ω </li>
+    <li>By adjusting the rheostat, voltmeter reading is increased from 0 and in each time note the corresponding reading in
+    milliammeter. </li>
+    <li>Take the readings and note Voltmeter reading across Zener diode and Ammeter reading. </li>
+    <li>Plot the V-I graph and observe the change. </li>
+</ul>
+<center><img src="{% static 'beLab/zener_ch (1).png'%}" alt=""></center>
+<center>Figure 3</center>
+{% endblock %}
+
+{% block simulation %}
+<h4>Click on the followings tab to redirect to simulation</h4>
+
+<a href="zdLine" target="blank">
+    <h4><span class="badge badge-info">Zener Diode - LINE Regulator</span></h4>
+</a>
+<a href="zdLoad" target="blank">
+    <h4><span class="badge badge-info">Zener Diode - LOAD Regulator</span></h4>
+</a>
+<a href="zdChar" target="blank">
+    <h4><span class="badge badge-info">Zener characteristics</span></h4>
+</a>
+
+{% endblock %}

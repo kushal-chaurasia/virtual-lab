@@ -4,11 +4,95 @@
 
 {% load static %}
 {% block tutorial %}
+<h4>Theory</h4>
+<h5>Objective</h5>
+<p>At the end of the module the student would be able to</p>
+<ul>
+    <li> Explain Rectification </li>
+    <li> Explain Half Wave Rectification </li>
+    <li> Explain Half Wave Rectification:For Positive Half Cycle </li>
+    <li> Explain Half Wave Rectification:For Negative Half Cycle </li>
+</ul>
+<h5>Rectification</h5>
+<center><img src="{% static 'beLab/halfwaverc.png'%}" alt=""></center>
+<center>Figure 1</center>
+<p>A rectifier is a device that converts alternating current (AC) to direct current (DC), a process known as
+    rectification. Rectifiers are essentially of two types – a half wave rectifier and a full wave rectifier.</p>
+<h5>Half wWave Rectification</h5>
+<center><img src="{% static 'beLab/halfwvrecpn.png'%}" alt=""></center>
+<center>Figure 2</center>
+<p>On the positive cycle the diode is forward biased and on the negative cycle the diode is reverse biased. By using a
+    diode we have converted an AC source into a pulsating DC source. In summary we have ‘rectified’ the AC signal.</p>
+<center><img src="{% static 'beLab/halfwave.png'%}" alt=""></center>
+<center>Figure 3</center>
+<p>The simplest kind of rectifier circuit is the half-wave rectifier.The half-wave rectifier is a circuit that allows
+    only part of an input signal to pass. The circuit is simply the combination of a single diode in series with a
+    resistor, where the resistor is acting as a load.</p>
+<h5>Half Wave Rectifiers – Waveforms</h5>
+<center><img src="{% static 'beLab/halfwv1.png'%}" alt=""></center>
+<center><img src="{% static 'beLab/halfwv2.png'%}" alt=""></center>
+<center>Figure 4</center>
+<P>The output DC voltage of a half wave rectifier can be calculated with the following two ideal equations.</P>
+<center><img src="{% static 'beLab/formula3.png'%}" alt=""></center>
+<h5>Half Wave Rectification:For Positive Half Cycle</h5>
+<center><img src="{% static 'beLab/halfwvrecp.png'%}" alt=""></center>
+<center>Figure 5</center>
+<p>Diode is forward biased, acts as a short circuit, passes the waveform through.</p>
+<p>For positive half cycle:</p>
+<img src="{% static 'beLab/formula4.png'%}" alt="">
+<img src="{% static 'beLab/formula5.png'%}" alt="">
+<h5>Half Wave Rectification:For Negative Half Cycle</h5>
+<center><img src="{% static 'beLab/halfwvrecn.png'%}" alt=""></center>
+<center>Figure 6</center>
+<p>Diode is reverse biased, acts as a open circuit, does not pass the waveform through.</p>
+<p>For negative half cycle:</p>
+<center><img src="{% static 'beLab/formula6.png'%}" alt=""></center>
+<h5>Half wave Rectification:For an Ideal Diode</h5>
+<img src="{% static 'beLab/formula7.png'%}" alt="">
+<h5>Average output voltage</h5>
+<center><img src="{% static 'beLab/formula8.png'%}" alt=""></center>
+<img src="{% static 'beLab/formula9.png'%}" alt="">
+<h5>RMS Load Current</h5>
+<center><img src="{% static 'beLab/formula10.png'%}" alt=""></center>
+<p><strong>Form Factor: </strong> It is defined as the ratio of rms load voltage and average load voltage.</p>
+<center><img src="{% static 'beLab/formula11.png'%}" alt=""></center>
+<b><i>F.F ≥ 1</i></b>
+<b><i>rms ≥ av</i></b>
+<h5>Ripple Factor</h5>
+<center><img src="{% static 'beLab/formula12.png'%}" alt=""></center>
+<p><strong>Efficiency: </strong>It is defined as ratio of dc power available at the load to the input ac power.</p>
+<center><img src="{% static 'beLab/formula13.png'%}" alt=""></center>
+<h5>Peak Inverse Volatge</h5>
+<p>For rectifier applications, peak inverse voltage (PIV) or peak reverse voltage (PRV) is the maximum value of reverse
+    voltage which occurs at the peak of the input cycle when the diode is reverse-biased.The portion of the sinusoidal
+    waveform which repeats or duplicates itself is known as the cycle. The part of the cycle above the horizontal axis
+    is called the positive half-cycle, the part of the cycle below the horizontal axis is called the negative half
+    cycle. With reference to the amplitude of the cycle, the peak inverse voltage is specified as the maximum negative
+    value of the sine-wave within a cycle's negative half cycle.</p>
+<center><img src="{% static 'beLab/formula14.png'%}" alt=""></center>
+
+
 
 {%endblock%}
 
 
 {% block procedure %}
+<h4>Procedure</h4>
+<ul>
+   <li> Set the resistor RL. </li>
+   <li> Click on 'ON' button to start the experiment. </li>
+   <li> Click on 'Sine Wave' button to generate input waveform </li>
+   <li> Click on 'Oscilloscope' button to get the rectified output. </li>
+   <li> Vary the Amplitude, Frequency, volt/div using the controllers. </li>
+   <li> Click on "Dual" button to observe both the waveform. </li>
+   <li> Channel 1 shows the input sine waveform, Channel 2 shows the output rectified waveform. </li>
+   <li> Calculate the Ripple Factor.Theoretical Ripple Factor= 1.21. </li>
+</ul>
+<center><img src="{% static 'beLab/halfwvckt.png'%}" alt=""></center>
+<center>Figure 1</center>
+<h5>Calculation</h5>
+<img src="{% static 'beLab/formula15.png'%}" alt="">
+
 
 {% endblock %}
 

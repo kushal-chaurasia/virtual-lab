@@ -1,0 +1,57 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Transformations: Translation {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<center><h4>Transformations: Translation </h4></center>
+<p>This experiment introduces transformations and explains the concept of translation.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<p>A transformation maps points in space to other points. Translation moves every point by a constant distance in a constant direction. This can be interpreted as the addition of a constant vector to every point. If homogeneous representation is used, translation can be conveniently represented as a matrix multiplication. The translation matrix which translates by v<sub>x</sub>, v<sub>y</sub> and v<sub>z</sub> units looks like:</p>
+<img src="{% static 'cgLab/translation-matrix.png'%}" alt="">
+<p>On multiplication with a vector, the expected result of vector addition is obtained:</p>
+<img src="{% static 'cgLab/point_translation.png'%}" alt="">
+<p>Transformations can be interpreted as the modification of a co-ordinate system, keeping the points constant, effectively changing their relative positions. Thus, a translation of (2,3) translates the co-ordinate system's origin to (-2,-3), effectively translating all points with respect to this co-ordinate system.</p>
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand the effect of translation on Points in 2D/3D space. We also learn the matrix representation for the translation and how to use it to compute the translated point.</p>
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual_2.pdf'%}" download>Click here to download manual</a>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4>Procedure</h4>
+<p>This experiment introduces the concept of the translation transformation.</p>
+<p>The point has a translation applied to it. Move the slider at the bottom to watch the point move to its new location.</p>
+<p>The tree has a node for the transformation applied to the point. This node shows the translation distances along each axis. As the slider is moved, the transformation animates between the starting and ending points.</p>
+<p>The translation matrix T, being applied to the point is also shown. Edit the translation distances and notice how this matrix gets changed.</p>
+<p>Transformations can also be interpreted as a modification of the co-ordinate system, while keeping the point in its original place. You can switch to this behavior at any time by checking the Transform co-ordinate systems checkbox under the Display tab. Use it to compare how the transformation works in both cases.</p>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics1.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

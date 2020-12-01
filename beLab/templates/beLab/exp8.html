@@ -1,0 +1,112 @@
+{% extends 'beLab/basic.html'%}
+
+{%block title%} Capacitative Rectification{% endblock %}
+
+{% load static %}
+{% block tutorial %}
+<h4>Theory</h4>
+<h5>Objective</h5>
+<ul>
+    <li> Learn Filtering of Rectified signal </li>
+    <li> Ripple Voltage and Ripple Factor </li>
+    <li> Learn Capacitive filtering </li>
+</ul>
+<h5>Rectifier</h5>
+<p>In our earlier experiment we have seen that a full-wave rectifier is exactly the same as the half-wave, but allows
+    unidirectional current through the load during the entire sinusoidal cycle (as opposed to only half the cycle in the
+    half-wave). A full-wave rectifier converts the whole of the input waveform to one of constant polarity (positive or
+    negative) at its output.</p>
+<center><img src="{% static 'beLab/capar1.png'%}" alt=""></center>
+<center>Figure 1</center>
+<h5>Filter</h5>
+<center><img src="{% static 'beLab/capar2.png'%}" alt=""></center>
+<center>Figure 2</center>
+<p>What is really desired is to convert the pulsating output of the rectifier to a constant DC supply. Thus we would
+    like to ‘filter’ the pulsating input signal.</p>
+<center><img src="{% static 'beLab/capar3.png'%}" alt=""></center>
+<center>Figure 3</center>
+<p>We can do this by splitting the input waveform into AC (high frequency) and the DC components (very low frequency)
+    and by then ‘rejecting’ the high frequency components.</p>
+<h5>Filtering</h5>
+<p>From our filtering experiments we have seen that the simplest kind of filter that can perform the filtering task just
+    described is a capacitor. Thus, if we connect a capacitor directly across the output of a rectifier, the AC
+    components will ‘see’ a low impedance path to ground and will not, therefore appear in the output.</p>
+<center><img src="{% static 'beLab/capar4.png'%}" alt=""></center>
+<center>Figure 4</center>
+<h5>Full Wave Rectification + Filtering</h5>
+<p>The smoothing capacitor converts the full-wave rippled output of the rectifier into a smooth DC output voltage. The
+    smoothing capacitor acts as a tank.</p>
+<center><img src="{% static 'beLab/capar5.png'%}" alt=""></center>
+<center>Figure 5</center>
+<h5>Ripple Voltage and Ripple Factor</h5>
+<p>Assuming a finite capacitor is connected, since a new charging pulse occurs every half cycle the capacitor charges
+    and discharges very frequently. We can observe that smaller the Vpp, the more the waveform will resemble a pure DC
+    voltage. The variable portion is known as ‘ripple’ and the value Vpp is known as the ripple voltage. Further the
+    ratio of the ripple voltage to the DC or average voltage is known as the ripple factor.</p>
+<center><img src="{% static 'beLab/capar6.png'%}" alt=""></center>
+<center>Figure 6</center>
+<h5>Filling Gaps</h5>
+<p>So we see that, a capacitor-input filter will charge and discharge such that it fills in the “gaps” between each
+    peak. This reduces variations of voltage. As we have seen, the remaining voltage variation is called ripple voltage.
+</p>
+<center><img src="{% static 'beLab/capar7.png'%}" alt=""></center>
+<center>Figure 7</center>
+<h5>Choosing the capacitor</h5>
+<p>Since a rectifier circuit is designed with a particular load in mind, choosing the capacitor needs careful analysis.
+    Since low ripple factors a desired, choosing a large capacitance value is not practical. This is because larger
+    capacitance will cost more and will create higher peak currents in the transformer secondary and in the supply
+    feeding it. In the subsequent experiments, let us see how time constant plays a role in the rectified output
+    waveform shape and characteristics</p>
+<center><img src="{% static 'beLab/capar8.png'%}" alt=""></center>
+<center>Figure 8</center>
+<h5>Half Wave vs Full Wave Capacitive Rectification</h5>
+<p>If the capacitance and voltage sources used are the same, which one among the two – half wave or full wave gives
+    lesser ripple effect ?</p>
+<p>The advantage of a full-wave rectifier over a half-wave is quite clear. The capacitor can more effectively reduce the
+    ripple when the time between peaks is shorter.</p>
+<center><img src="{% static 'beLab/capar9.png'%}" alt=""></center>
+<center>Figure 9</center>
+{%endblock%}
+
+
+{% block procedure %}
+<h4>Procedure</h4>
+<strong>Capacitative Rectification for Half Wave Rectifier</strong>
+<ul>
+    <li> Take a diode, and Load resistor of 1KOhms and capacitor of 102μF. </li>
+    <li> Connect to AC Voltage Source of 50 Hz, 2 V </li>
+    <li> Click on 'ON' button to make the circuit on. </li>
+    <li> Click on 'Sine Wave' button to observe the input waveform. </li>
+    <li> Click on 'Run Simulation' button to observe the filtered waveform. </li>
+    <li> Observe the corresponding waveform. </li>
+    <li> Channel 1 shows the input wave, Channel 2 shows the output wave and Dual shows both the input and output wave.
+    </li>
+</ul>
+<center><img src="{% static 'beLab/prcd1.png'%}" alt=""></center>
+<center>Figure 1</center>
+<h5>Capacitative Rectification for Full Wave Rectifier</h5>
+<ul>
+    <li> Take 4 diodes, Load resistor of 1KOhms and capacitor of 102μF. </li>
+    <li> Connect to AC Voltage Source of 50 Hz, 12 V. </li>
+    <li> Click on 'ON' button to make the circuit on. </li>
+    <li> Click on 'Sine Wave' button to observe the input waveform. </li>
+    <li> Click on 'Run Simulation' button to observe the filtered waveform. </li>
+    <li> Vary the amplitude using the controllers. </li>
+    <li> Observe the corresponding waveform. </li>
+    <li> Channel 1 shows the input wave, Channel 2 shows the output wave and Dual shows both the input and output wave. </li>
+</ul>
+<center><img src="{% static 'beLab/prcd2.png'%}" alt=""></center>
+<center>Figure 2</center>
+{% endblock %}
+
+{% block simulation %}
+<h4>Click on the followings tab to redirect to simulation</h4>
+
+<a href="capacitiveHalf" target="blank">
+    <h4><span class="badge badge-info">Capacitative Rectification for Half Wave Rectifier</span></h4>
+</a>
+<a href="capacitiveFull" target="blank">
+    <h4><span class="badge badge-info">Capacitative Rectification for Full Wave Rectifier</span></h4>
+</a>
+
+{% endblock %}

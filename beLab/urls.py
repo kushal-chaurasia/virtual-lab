@@ -21,9 +21,6 @@ urlpatterns = [
     path('experiment10', views.experiment10, name="experiment10"),
     path('experiment11', views.experiment11, name="experiment11"),
     path('experiment12', views.experiment12, name="experiment12"),
-    path('experiment13', views.experiment13, name="experiment13"),
-    path('experiment14', views.experiment14, name="experiment14"),
-    path('experiment15', views.experiment15, name="experiment15"),
     path('diode1', views.diode1, name="diode1"),
     path('diode2', views.diode2, name="diode2"),
     path('diode3', views.diode3, name="diode3"),
@@ -35,6 +32,11 @@ urlpatterns = [
     path('zdLoad', views.zdLoad, name="zdLoad"),
     path('zdLine', views.zdLine, name="zdLine"),
     path('zdChar', views.zdChar, name="zdChar"),
+    path('bjtCE', views.bjtCE, name = "bjtCE"),
+    path('bjtInput', views.bjtInput, name = "bjInput"),
+    path('bjtcbcInput', views.bjtcbcInput, name = "bjtcbcInput"),
+    path('bjtcbcOutput', views.bjtcbcOutput, name = "bjtcbcOutput"),
+    path('ceAmplifier', views.ceAmplifier, name= "ceAmplifier")
 
 
 

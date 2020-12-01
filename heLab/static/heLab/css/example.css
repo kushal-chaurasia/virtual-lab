@@ -1,0 +1,529 @@
+
+
+.vertical{
+width:170px;		
+}
+
+.vertical .slider {
+	
+	position:relative; 
+	cursor:pointer;
+	border:1px solid #333;
+	float:left; 
+	clear:right;
+	margin-top:10px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	-moz-box-shadow:inset 0 0 8px #000;
+	height:100px;
+	width:9px;
+	margin:0 0 0 60px;
+}
+
+.lable_title{
+	background-color: #ADDFFF; 
+	width:140px; 
+	top:35px; 
+	position:absolute;
+	text-align: center; 
+	color:black; 
+	border-radius: 5px;	
+}
+
+input[type="button"]{
+	border-radius: 4px;
+	border-style: groove;
+	background-color:#E6E6FA;	
+	font-weight: bold;
+}
+
+input[type="button"]:hover{	
+	background-color:#B0C4DE;
+	border-color: #8B0000;
+	text-decoration: underline;
+	color:#8B0000;
+	font-size:medium;
+	/*border-radius: 10px;*/
+	box-shadow: 3px 3px 6px rgba(0,0,0,0.3), inset rgba(0,0,0,0.1) -3px 3px rgba(0,0,0,0.1);	
+}
+
+.vertical .handle { 
+	height:28px;
+	width:28px;
+	position:absolute; 
+	display:block; 
+	margin-top:1px;
+	border:1px solid #000;
+	cursor:move;
+	-moz-box-shadow:0 0 6px #000;
+	-webkit-box-shadow:0 0 6px #000;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px; 
+	top:0;
+		left:-10px;
+
+}
+
+.vertical .range {
+	border:1px inset #ddd;
+	float:left;
+	font-size:14px;
+	font-weight:normal ;
+	margin:0 0 0 15px;
+	padding:3px 0;
+	text-align:center;
+	width:50px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 		
+}
+.vertical .progress{
+	height:5px; 
+	background-color:#C5FF00; 
+	position:absolute;
+	bottom:0;	
+	width:9px; 
+		
+}
+/* progress bar (enabled with progress: true) */
+.progress {
+	height:9px; 
+	background-color:#C5FF00; 
+	position:absolute;
+	bottom:0;	
+}
+/* drag handle */
+.handle { 
+	background:#fff  repeat-x 0 0; 
+	height:28px;
+	width:28px;
+	top:-12px;
+	position:absolute; 
+	display:block; 
+	margin-top:1px;
+	border:1px solid #000;
+	cursor:move;
+	-moz-box-shadow:0 0 6px #000;
+	-webkit-box-shadow:0 0 6px #000;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px; 
+
+}
+
+/* the input field */
+.range {
+	border:1px inset #ddd;
+	float:left;
+	font-size:14px;
+	font-weight:normal ;
+	margin:0 0 0 15px;
+	padding:3px 0;
+	text-align:center;
+	width:50px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 		
+}
+.slider { 
+	background:#3C72E6  repeat-x 0 0; 
+	height:9px; 
+	position:relative; 
+	cursor:pointer;
+	border:1px solid #333;
+	width:100px;
+	float:left; 
+	clear:right;
+	margin-top:10px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	-moz-box-shadow:inset 0 0 8px #000;
+}
+#graph{
+	border:2px solid #ddd;
+	height:280px;
+	width:350px;
+	top:130px;
+	left :600px;
+	position:absolute; 
+}
+#graph_r2r{
+	border:1px solid #ddd;
+	height:280px;
+	width:350px;
+	top:130px;
+	left :600px;
+	position:absolute; 
+}
+#analoggraph {
+border:1px solid #ddd;
+	height:300px;
+	width:400px;
+	top:300px;
+	left :50px;
+	position:absolute; 
+}
+#digitalgraph{
+	border:1px solid #ddd;
+	height:400px;
+	width:600px;
+	top:280px;
+	left :500px;
+	position:absolute; 
+}
+#res_graph{
+border:1px solid #ddd;
+	height:500px;
+	width:900px;
+	top:220px;
+	left :40px;
+	position:absolute; 
+}
+
+/* everything is constructed with a single background image */
+
+/* root element for tabs */
+#flowtabs {
+	
+	/* dimensions */
+	width:760px;
+	height:31px !important;
+	margin:0 !important; 
+	padding:0;	
+	
+	/* IE6 specific branch (prefixed with "_") */
+	_margin-bottom:-2px;
+}
+
+div.wrap {
+		width:700px;
+		margin-bottom:40px;
+	}
+	
+	.wrap .pane  {	
+		background:#fff  repeat-x 0 20px;
+		/*display:none;		*/
+		padding:20px;
+		border:1px solid #999;
+		border-top:0;
+		font-size:14px;	 
+		font-size:18px;
+		color:#456;	
+		 width: 857px;
+		 height:591px;
+		 top:280px;
+		
+	}
+	.wrap .pane p {
+		font-size:38px;	
+		margin:-10px 0 -20px 0;	
+		text-align:right;
+		color:#578;
+		
+	}
+	/* root element for tabs  */
+ul.tabs { 
+	list-style:none; 
+	margin:0 !important; 
+	padding:0;	
+	border-bottom:1px solid #666;	
+	height:30px;
+	width:887px;
+	font-size:16px;
+	font-weight:normal ;
+}
+#middle{
+	position:relative;
+	width:auto;
+	border: 2px solid #000;
+	height:99%;
+	background:#DFD9C3 url(../images/dynamicAnchorBg.jpg);
+       -moz-border-radius: 5px;
+      border-radius: 5px;
+}
+/* single tab */
+ul.tabs li { 
+	float:left;	 
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-image:none !important; 
+	font-size:16px;
+	font-weight:normal ;
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs a { 
+	background: no-repeat -420px 0;
+	font-size:16px;
+	font-weight:normal ;
+	height: 30px;  
+	line-height:30px;
+	width: 134px;
+	text-align:center;	
+	text-decoration:none;
+	color:#333;
+	padding:0px;
+	margin:0px;	
+	position:relative;
+	top:1px;
+}
+
+ul.tabs a:active {
+	outline:none;		
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+	background-position: -420px -31px;	
+	color:#fff;	
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+	background-position: -420px -62px;		
+	cursor:default !important; 
+	color:#000 !important;
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+
+
+/* width 1 */
+ul.tabs a.s 			{ background-position: -553px 0; width:81px; }
+ul.tabs a.s:hover 	{ background-position: -553px -31px; }
+ul.tabs a.s.current  { background-position: -553px -62px; }
+
+/* width 2 */
+ul.tabs a.l 			{ background-position: -248px -0px; width:174px; }
+ul.tabs a.l:hover 	{ background-position: -248px -31px; }
+ul.tabs a.l.current  { background-position: -248px -62px; }
+
+
+/* width 3 */
+ul.tabs a.xl 			{ background-position: 0 -0px; width:248px; }
+ul.tabs a.xl:hover 	{ background-position: 0 -31px; }
+ul.tabs a.xl.current { background-position: 0 -62px; }
+
+        #topic1 {
+   
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 185px;
+    width: 514px;
+}
+		#topic2 {
+    background-color: white;
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 219px;
+    width: 514px;
+}
+		#topic3 {
+    background-color: white;
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 262px;
+    width: 514px;
+}
+		#topic4 {
+    background-color: white;
+    
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 305px;
+    width: 514px;
+}
+		#topic5 {
+    background-color: white;
+    
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 346px;
+    width: 514px;
+}
+		#topic6 {
+    background-color: white;
+    
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 394px;
+    width: 514px;
+}
+		#topic7 {
+    background-color: white;
+    
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 450px;
+    width: 514px;
+}
+	    #topic8 {
+    background-color: white;
+    
+    height: 90px;
+    left: 130px;
+    position: absolute;
+    top: 500px;
+    width: 514px;
+}
+#image , #image2{
+	position:absolute;
+	height:520px;
+	width:200px;
+	left:220px;
+	top:360px;
+}
+#name{
+    font-size: 13px;
+    left: 482px;
+    position: absolute;
+    top: 342px;
+}
+#name2 {
+    left: 500px;
+    position: absolute;
+    top: 525px;
+	font-size:13px;
+}
+#outputbinary,   #outputr2r{
+	left: 680px;
+    position: absolute;
+
+    top: 570px;
+	left: 770px;
+	font-size:16px;
+}
+#r1 ,#r1_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 400px;
+}
+#r2 ,#r2_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 467px;
+}
+#r3 ,#r3_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 533px;
+}
+
+#r4 ,#r4_r2r {
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 599px;
+}
+#r5 ,#r5_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 655px;
+}
+#r6  , #r6_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 721px;
+}
+#r7 ,#r7_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 780px;
+}
+#r8 ,#r8_r2r{
+    font-size: 13px;
+    left: 220px;
+    position: absolute;
+    top: 843px;
+}
+#bit {  
+	position : absolute;
+	left : 100px;
+  background-color: #666699;  
+  color: #ffffff; 
+width : 200px;
+border: 1px solid #666699;  
+  padding: 5px;    
+}
+#dataformat {  
+	position : absolute;
+	left : 10px;
+	top :30px;
+  background-color: #666699;  
+  color: #ffffff; 
+width : 200px;
+border: 1px solid #666699;  
+  padding: 5px;    
+}
+#output_res{
+ position : absolute;
+	left : 350px;
+  background-color: #666699;  
+  color: #ffffff; 
+width : 100px;
+border: 1px solid #666699;  
+  padding: 5px;    
+ }
+#diffrence_res{
+ position : absolute;
+	left : 500px;
+  background-color: #666699;  
+  color: #ffffff; 
+width : 100px;
+border: 1px solid #666699;  
+  padding: 5px;    
+ 
+ }
+#monostable{
+Position : absolute;
+left : 310px;
+top: 220px;
+}
+#resistance_mon{
+Position : absolute;
+left : 36px;
+top: 320px;
+}
+#capacitance_mon{
+Position : absolute;
+left : 36px;
+top: 450px;
+}
+#trigger_graph{
+	border:2px solid #ddd;
+	width:300px;
+	height:150px;
+	top:270px;
+	left :750px;
+	Position:absolute; 
+	
+}
+#capacitor_graph{
+	border:2px solid #ddd;
+	width:300px;
+	height:150px;
+	top:420px;
+	left :750px;
+	position:absolute; 
+	
+}
+#output_graph{
+	border:2px solid #ddd;
+	width:300px;
+	height:150px;
+	top:570px;
+	left :750px;
+	position:absolute; 
+	
+}

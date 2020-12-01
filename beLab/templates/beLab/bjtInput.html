@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJT- CE INPUT CHARACTERISTICS</title>
+    <script src="{% static 'js/canvasjs.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jquery.jqplot.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shCore.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushJScript.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/shBrushXml.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'js/jqplot.meterGaugeRenderer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pop_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bjtceincss.css' %}">
+</head>
+
+<body>
+    <div id="dialogoverlay"></div>
+        <div id="dialogbox">
+            <div>
+                <div id="dialogboxhead"></div>
+                <div id="dialogboxbody"></div>
+                <div id="dialogboxfoot"></div>
+            </div>
+        </div>
+
+        <div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; top:0px;height:1050px; width:1160px;">
+
+            <div style="font-size:30px; text-align:center;padding-right:100px; height:60px"> <b> BJT- CE INPUT CHARACTERISTICS </b></div>
+            <div id="ckt_values1" style="position:relative; top:180px;left:760px; height:300px; width:400px">
+                <p>
+                    <img src ="{s% static 'beLab/bjtce (1).png' %}" style="width:700px;height:420px;top:-30px;position:absolute;right:50px" />  
+                <div class="example-content" style="position:absolute; top:10px;right:150px;left:200px">
+                    <link rel="stylesheet" type="text/css" href="{% static 'css/css_metergauge_ver1.css' %]">
+                    <!------------------------------------Metergauge1(Voltmeter)base-emitter voltage-------------------------------------------------->
+                    <div id="chart1" class="plot" style="position:relative;width:200px; height:110px;top:100px;right:420px"></div>
+                    <script src="{% static 'js/js_metergaugecein_ver1.js' %}"></script>
+
+                    <!------------------------------------Metergauge2(Ammeter)base current----------------------------------------------------->
+                    <div id="chart2" class="plot" style="position:absolute;width:250px; height:110px;right:260px;top:0px"></div>
+
+                    <!------------------------------------Metergauge3(voltmeter)collector-emitter voltage------------------------------------------------------>
+                    <div id="chart3" class="plot" style="position:absolute;width:250px; height:110px;right:70px;top:80px"></div>
+<!------------------------------------Metergauge3(ammeter)collector current------------------------------------------------------>
+                    <div id="chart4" class="plot" style="position:absolute;width:250px; height:110px;right:70px;top:-50px"></div>
+                    
+                    <p style="position:absolute;top:70px;right:435px;font-size:15px"><b>I<sub>B</sub></b></p>
+                     <p style="position:absolute;top:180px;right:450px;font-size:15px"><b>R<sub>h1</sub></b></p>
+                    <p style="position:absolute;top:20px;right:240px;font-size:15px"><b>I<sub>C</sub></b></p>
+                     <p style="position:absolute;top:170px;right:75px;font-size:15px"><b>R<sub>h2</sub></b></p>
+                    <p style="position:absolute;top:168px;right:410px;font-size:15px"><b>V<sub>BE</sub></b></p>
+                    <p style="position:absolute;top:155px;right:220px;font-size:15px"><b>V<sub>CE</sub></b></p>
+                    <p style="position:absolute;top:190px;right:-30px;font-size:15px"><b>V<sub>CC</sub></b></p>
+                    <p style="position:absolute;top:190px;right:550px;font-size:15px"><b>V<sub>BB</sub></b></p>
+                 
+                    
+
+                </div>	
+
+               <input type="number" value=""  id='voltbe'  min="0.3" max="1" step="0.01"  placeholder="Voltmeter"   style="background-color:#e6f5ff;position:absolute; top:193px;  right:480px; width:70px;cursor:pointer" readonly/>
+                <input type="number" value=""  id='voltce'  min="0.3" max="1" step="0.01"  placeholder="Voltmeter"   style="background-color:#e6f5ff;position:absolute; top:175px;  right:295px; width:70px;cursor:pointer" readonly/>             
+               <input type="text" value="" id='ampb' placeholder=" Ammeter"  style="background-color:#e6f5ff;position:absolute; top:90px;  right:495px; width:70px;" readonly/>
+                <input type="text" value="" id='ampc' placeholder=" Ammeter"  style="background-color:#e6f5ff;position:absolute; top:45px;  right:300px; width:70px;" readonly/>
+             <!--   <input type="number" value="" id='voltcc'  min="0" max="10" step="1"  placeholder="Volt"   style="background-color:#e6f5ff;position:absolute; top:173px;  right:128px; width:70px;cursor:pointer" readonly/>
+            <input type="number" value="" id='voltbb'  min="0" max="10" step="1"  placeholder="Volt"   style="background-color:#e6f5ff;position:absolute; top:173px;  right:665px; width:70px;cursor:pointer" readonly/>-->
+              
+            </div>
+
+
+            <div id="cntrwrap" style="position:absolute;border: 2px solid #3385ff; top:40px;width:380px;height:150px;right:300px;">
+                <div id="cntrlr" style="position:absolute; background-color:#3385ff;   height:50px; top:0px; right:0px; width:380px;font-size: 16px;font-weight: bold;"><p style="text-align:center;padding-right:210px;color:white"><b>CONTROLS</b></p></div>
+                <div id="slide" style=" position:absolute; top:70px; right:10px; width:360px;  border-radius: 10px;">
+                   <!-- Base-Emitter(V<sub>BE</sub>) : &nbsp&nbsp<input type="range"  id="bevlt" min="0.3" max="1" step="0.01" value=""  oninput="vbeChange()" style="width:160px;cursor:pointer"> &nbsp; Volt<br>
+                    Collector-collector(V<sub>CC</sub>) : <input type="range"  id="ccvlt" min="0" max="30" step="2" value="" oninput="vccchange()"style="width:150px;cursor:pointer"> &nbsp; Volt<br>
+                    Base-Base(V<sub>BB</sub>) : <input type="range"  id="bbvlt" min="0" max="30" step="2" value="" oninput="vbbchange()"style="width:150px;cursor:pointer"> &nbsp; Volt<br>-->
+                  R<sub>h1</sub>  <input type="range"  id="base_r" min="1" max="100" step="1" value="1" oninput="resbChange()" style="width:150px;cursor:pointer"> &nbsp; Ohms<br>
+                  <input type="text" value="" id='r_base' placeholder="Resistance"  style="background-color:#e6f5ff;position:absolute; right:45px; top:5px; width:70px;" readonly/> 
+              
+                  R<sub>h2</sub>  <input type="range"  id="collector_r" min="1" max="100" step="1" value="1" oninput="rescChange()" style="width:150px;cursor:pointer"> &nbsp; Ohms<br>
+                      <input type="text" value="" id='r_collector' placeholder="Resistance"   style="background-color:#e6f5ff;position:absolute; top:35px; right:45px;width:70px;" readonly/>
+               
+                    <br>	
+                    <input type="button" id="add" value="Add to Table" onclick="tabled()" style="position:absolute; top:100px; width:100px;  right:270px;cursor:pointer "/>  
+                    <input type="button" id="plt" value="Plot" onclick="plot()" style="position:absolute; top:100px; width:100px; right:160px;cursor:pointer "/>  
+                    <input type="button" id="clr" value="Clear" onclick="clearfn()" style="position:absolute; top:100px; width:100px; right:50px; cursor:pointer "/>
+                </div></div>
+            <div id="msg" style="position:absolute;top:40px;right:40px;width:250px;height:150px;">
+                <p id="demo" style="color:red;"></p>
+                <p id="demos" style="color:green;"></p>
+
+            </div>
+            <div id="description" style="background-color: #3385ff;   position:absolute; top:40px; left:30px; width:354px;font-size: 16px;font-weight: bold;">
+                <div class="dropdown">
+                    <p style="text-align:center;padding-right:150px;color:white"> INSTRUCTION</p>
+                    <div class="dropdown-content">
+                        <ol type="1">
+                             <li>Initially set rheostat R<sub>h1</sub> = 1 &#937; and rheostat R<sub>h2</sub> = 1 &#937; </li>
+                            <li>Set the Collector-Emitter Voltage(V<sub>CE</sub>) to 1 V  by adjusting the rheostat  R<sub>h2</sub></li>
+                            <li> Base Emitter Voltage(V<sub>BE</sub>) is varied  by adjusting the rheostat  R<sub>h1</sub>.</li>
+                            <li>Note the reading of Base current(I<sub>B</sub>)in &#956; Ampere.</li>
+                            <li>Click on 'Plot' to plot the I-V characteristics of Common-Emitter configuration. A graph is drawn with VBE along X-axis and IB along Y-axis.</li>
+                            <li>Click on 'Clear' button to take another sets of readings</li> 
+                            <li>Now set the Collector-Emitter Voltage(V<sub>CE</sub>) to 2 V, 3 V, 4 V</li>
+                            
+                            
+
+                        </ol> 
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="tblwrap" style="position:absolute;border: 2px solid #3385ff; top:100px;width:350px;height:490px;left:30px">
+                <div style="position:absolute; font-size:16px;background-color: #3385ff;  top:0px;left:0px; width:350px; height:50px;font-weight: bold;"><p style="text-align:center;padding-right:80px;color:white"> <b> EXPERIMENTAL TABLE</b></p>
+                </div>
+                <div id="table" style="background-color:#e6f5ff;position:absolute;top:50px;width:350px;height:440px; left:0px;overflow-y: auto;">
+
+                    <table id="mytable" border="1" >                    
+                        <tr>
+
+                            <th rowspan="2"> Serial No.</th>
+                            <th colspan="2">Collector-Emitter Voltage <br><input type="text" id="tbvce1" value="" size="4" readonly>V</th>
+                        </tr> 
+                        <tr>
+                            <th scope="col">Base-Emitter Voltage<br>V</th>
+                            <th scope="col">Base Current(&#956;A)</th>
+                        </tr>
+
+                    </table>
+
+                </div></div>
+            <div id="grpwrap" style="position:absolute;border: 2px solid #3385ff; top:650px;width:1050px;height:360px;left:20px">
+                <div style="position:absolute; font-size:16px; top:0px;left:0px;  height:50px;background-color:#3385ff;  width:1050px;font-weight: bold;"><p style="text-align:center;padding-right:910px;color:white"> <b> GRAPH PLOT</b></p>
+                    <div class="tooltip" ><button id="calci"  onclick="printf()" style="position:absolute;padding-right:40px; cursor:pointer;top:13px;right:20px;width:5px;height:25px;border:none; background-color:#3385ff;">
+                            <img src="{% static 'beLab/Print Filled.png' %}" alt="Save icon" style="width:20px;height:20px;top:13px;"/></button> 
+                        <span class="tooltiptext">Print</span></div>
+                </div>
+                <div id="chartContainer" style=" position:absolute;  top:50px;  left:0px; height:300px; width:1050px;  ">
+
+                </div>
+            </div>
+
+
+            
+        </div>
+        <script src="{% static 'js/bjtcein_ver1.js' %}"></script>
+
+</body>
+
+</html>

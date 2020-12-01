@@ -1,0 +1,369 @@
+/* root element for tabs  */
+ul.tabs { 
+	list-style:none; 
+	margin:0 !important; 
+	padding:0;	
+	border-bottom:1px solid #666;	
+	height:41px;
+	
+}
+
+/* single tab */
+ul.tabs li { 
+	float:left;	 
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-image:none !important; 
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs a { 
+	background: url(images/blue_panes.jpg) no-repeat -420px 0;
+	font-size:14px;
+	display:block;
+	height: 28px;  
+	line-height:30px;
+	width: 146px;
+	text-align:center;	
+	text-decoration:none;
+	color:#333;
+	padding:0px;
+	margin:0px;	
+	position:relative;
+	top:42px;
+}
+#tabs{
+	background:#DDDDDD;
+	box-shadow: 0 0 10px #000000;
+	margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+	font-size: 10px;
+	height: 850px;
+	overflow: hidden;
+	padding:3px;
+}
+body{
+	background: url("images/images1.jpg") repeat scroll 0pt 0pt transparent;
+	
+}
+ul.tabs a:active {
+	outline:none;		
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+background-position: -420px -31px;	
+	color:#fff;	
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+	background-position: -420px -66px;		
+	cursor:default !important; 
+	color:#fff !important;
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+
+
+/* width 1 */
+ul.tabs a.s 			{ background-position: -553px 0; width:81px; }
+ul.tabs a.s:hover 	{ background-position: -553px -31px; }
+ul.tabs a.s.current  { background-position: -553px -62px; }
+
+/* width 2 */
+ul.tabs a.l 			{ background-position: -248px -0px; width:174px; }
+ul.tabs a.l:hover 	{ background-position: -248px -31px; }
+ul.tabs a.l.current  { background-position: -248px -62px; }
+
+
+/* width 3 */
+ul.tabs a.xl 			{ background-position: 0 -0px; width:248px; }
+ul.tabs a.xl:hover 	{ background-position: 0 -31px; }
+ul.tabs a.xl.current { background-position: 0 -62px; }
+
+
+/* initially all panes are hidden */ 
+.panes .pane {
+	display:none;		
+}
+
+
+#input1
+{position:relative;left:112px;top:51px;}
+		
+#input2
+{position:relative;left:231px;top:54px;}
+
+#input3
+{position:absolute;left:599px;top:525px;}
+
+#fullsum
+{position:absolute;left:281px;top:686px;}
+
+#fullcarry
+{position:absolute;left:465px;top:667px;}
+
+#halfinput1
+{position:relative;left:201px;top:28px;}
+
+#halfinput2
+{position:relative;left:318px;top:28px;}
+
+#halfsum
+{position:absolute;left:286px;top:650px;}
+
+#halfcarry
+{position:absolute;left:490px;top:650px;}
+
+
+#A1
+{position:absolute;left:400px;top:361px;}
+
+#subAinput
+{position:absolute;left:322px;top:292px;}
+
+#subBinput
+{position:absolute;left:463px;top:292px;}
+
+#suboutput
+{position:absolute;left:349px;top:681px;}
+
+#subborrow
+{position:absolute;left:420px;top:681px;}
+
+
+#fullAinput
+{position:absolute;left:343px;top:172px;}
+
+
+#fullBinput
+{position:absolute;left:423px;top:172px;}
+{position:absolute;left:423px;top:172px;}
+
+
+#fullCinput
+{position:absolute;left:585px;top:389px;}
+
+#fulloutput
+{position:absolute;left:349px;top:578px;}
+
+#fullborrow
+{position:absolute;left:420px;top:578px;}
+
+#b3_4as
+{position:absolute;top: 150px; left: 95px;}
+
+#a3_4as
+{position:absolute;top: 150px; left: 175px;}
+
+#b2_4as
+{position:absolute;top: 150px; left: 295px;}
+
+#a2_4as
+{position:absolute;top: 150px; left: 370px;}
+
+#b1_4as
+{position:absolute;top: 150px; left: 465px;}
+
+#a1_4as
+{position:absolute;top: 150px; left: 545px;}
+
+#b0_4as
+{position:relative; top: 104px; left: 667px;}
+
+#a0_4as
+{position:relative;top: 104px; left: 677px;}
+
+#count_4as
+{position:absolute;top: 194px; left: 807px;}
+
+#s3_4as
+{position:absolute; top: 670px; left: 165px;}
+
+#s2_4as
+{position:absolute;top: 670px; left: 355px;}
+
+#s1_4as
+{position:absolute;top: 670px; left: 545px;}
+
+#s0_4as
+{position:absolute;top: 670px; left: 738px;}
+
+#carry_4as
+{position:absolute;top: 372px; left: 30px;}
+
+#cn1_l
+{position:absolute;top: 330px; left: 30px;}
+
+#a3_l
+{position:absolute;top: 400px; left: 30px;}
+
+#a2_l
+{position:absolute;top: 470px; left: 30px;;}
+
+#a1_l
+{position:absolute; top: 540px; left: 30px;}
+
+#a0_l
+{position:absolute;top: 610px; left: 30px;}
+
+#mode_l
+{position:absolute;top: 306px; left: 730px;}
+
+#b3_l
+{position:absolute;top: 750px; left: 30px;}
+#b2_l
+{position:absolute;top: 827px; left: 30px;}
+
+#b1_l
+{position:absolute;top: 900px; left: 30px;}
+#b0_l
+{position:absolute;  top: 1018px; left: 30px;}
+
+#e2_bte
+{position:absolute;   top: 504px; left: 870px;}
+
+#e1_bte
+{position:absolute;  top: 608px; left: 870px;}
+
+#e0_bte
+{position:absolute; top: 648px; left: 870px;;}
+#s3_l
+{position:absolute;   top: 1070px; left: 100px;}
+#s2_l
+{position:absolute; top: 1100px; left: 360px;}
+#s1_l
+{position:absolute; top: 1100px; left: 360px;}
+#s0_l
+{position:absolute;top: 1100px; left: 360px;}
+#y3_l
+{position:absolute; top: 730px; left: 900px;;}
+#y2_l
+{position:absolute;  top: 730px; left: 947px;}
+#y1_l
+{position:absolute;top: 730px; left: 993px;}
+#y0_l
+{position:absolute;  top: 730px; left: 1050px;}
+
+#i_de
+{position:absolute;  top: 416px; left: 385px;}
+#s0_de
+{position:absolute;  top: 730px; left: 365px;}
+#s1_de
+{position:absolute; top: 579px; left: 365px;;}
+#s2_de
+{position:absolute;   top: 652px; left: 365px;}
+#q0_de
+{position:absolute;  top: 390px; left: 850px;;}
+#q1_de
+{position:absolute; top: 450px; left: 850px;}
+#q2_de
+{position:absolute; top: 515px; left: 850px;}
+#q3_de
+{position:absolute;  top: 570px; left: 850px;}
+#q4_de
+{position:absolute;  top: 630px; left: 850px;}
+#q5_de
+{position:absolute;  top: 690px; left: 850px;}
+#q6_de
+{position:absolute; top: 750px; left: 850px;}
+#q7_de
+{position:absolute;   top: 800px; left: 850px;}
+
+#s0_decoder
+{position:absolute;   top: 374px; left: 377px;}
+#s1_decoder
+{position:absolute;  top: 476px; left: 377px;}
+#s2_decoder
+{position:absolute;   top: 577px; left: 377px;}
+#q0_decoder
+{position:absolute;  top: 393px; left: 940px;}
+#q1_decoder
+{position:absolute;    top: 449px; left: 940px;}
+#q2_decoder
+{position:absolute;   top: 505px; left: 940px;}
+#q3_decoder
+{position:absolute;  top: 565px; left: 940px;}
+#q4_decoder
+{position:absolute;    top: 617px; left: 940px;}
+#q5_decoder
+{position:absolute;    top: 680px; left: 940px;}
+#q6_decoder
+{position:absolute;   top: 740px; left: 940px;}
+#q7_decoder
+{position:absolute;  top: 797px; left: 940px;}
+
+#i0_mul
+{position:absolute;  top: 387px; left: 377px;}
+
+#i1_mul
+{position:absolute;  top: 447px; left: 377px;}
+#i2_mul
+{position:absolute;  top: 510px; left: 377px;}
+#i3_mul
+{position:absolute;  top: 570px; left: 377px;}
+#i4_mul
+{position:absolute; top: 636px; left: 377px;}
+#i5_mul
+{position:absolute;  top: 692px; left: 377px;}
+#i6_mul
+{position:absolute;   top: 753px; left: 377px;}
+#i7_mul
+{position:absolute;  top: 814px; left: 377px;}
+#i8_mul
+{position:absolute; top: 940px; left: 480px;}
+#i9_mul
+{position:absolute; top: 940px; left: 536px;}
+#i10_mul
+{position:absolute;  top: 940px; left: 584px;}
+
+#y_mul
+{position:absolute; top: 641px; left: 995px;}
+
+#y3_a
+{position:absolute; top: 725px; left: 900px;}
+#y2_a
+{position:absolute;   top: 725px; left: 947px;}
+#y1_a
+{position:absolute;   top: 725px; left: 993px;}
+#y0_a
+{position:absolute;  top: 725px; left: 1039px;}
+
+#a1_2bit
+{position:absolute;  top: 264px; left: 553px;}
+#a2_2bit
+{position:absolute;  top: 264px; left: 357px;}
+#b1_2bit
+{position:absolute;   top: 264px; left: 638px;}
+#b2_2bit
+{position:absolute;   top: 264px; left: 426px;}
+
+#button5_2bit
+{position:absolute;   top: 365px; left: 426px;}
+
+#ynew_a
+{position:absolute;  top: 725px; left: 1079px;}
+#y_carry {
+	position:absolute;
+	top: 822px;
+	left: 895px;	
+}
+#y_alu_carry {
+	position:absolute;
+	top: 850px;
+	left: 892px;
+}
+#y_alu_arithmetic {
+	position:absolute;
+	top: 822px;
+	left: 994px;	
+}
+
+#q_mul{
+position:absolute;
+	top: 601px;
+	left:1071px;	
+}

@@ -1,21 +1,177 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Simulating a Local Area Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Simulating a Local Area Network</h4>
+<p>The increasing demand of computers in universities, organizations, offices leads to the development of local area
+    network(LAN). LAN allows to interconnect a number of independent devices with each other within a limited area.</p>
+
+<p>In this experiment we will learn about the simulation of different network topology used in LAN using TCP/UDP
+    connection and how the FTP/CBR will run over it.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Learn about Local Area Network (LAN); different topologies and protocols uses in LAN </li>
+    <li>Learn about simulating a LAN using ns2 </li>
+</ul>
+<hr>
+<h5>Local Area Network</h5>
+<p>A local area network (LAN) provides networking capability to a group of computers in close proximity to each other
+    such as in an office building, a school, or a home. A LAN is useful for sharing resources like files, printers,
+    games or other applications. A LAN is often connected to other LANs, which in turn are connected Internet.</p>
+<h5>LAN Topologies</h5>
+<p>Nodes in LAN are interconnected using one of four basic configurations:</p>
+<ul>
+    <li>Bus Topology</li>
+    <li>Ring Topology</li>
+    <li>Star Topology</li>
+    <li>Mesh Topology</li>
+</ul>
+<p><strong>Bus Topology: </strong>In case of a bus topology, each machine is connected to a single cable through some
+    kind of connector. Terminators (resistors) are required at each end of the bus cable to prevent the signal from
+    bouncing back and forth on the cable.</p>
+<p><strong>Star Topology: </strong>In local area networks with forming a star topology, each network host is connected
+    to a central hub (a signal booster or repeater). In contrast to the bus topology, the star topology connects each
+    node to the hub with a point-to-point connection. All traffic in the network has to pass through the central hub.
+</p>
+<p><strong>Ring Topology: </strong> In local area networks where the ring topology is used, each computer is connected
+    to the network in form of a closed loop or ring. Each machine has a unique address for their identification. Ring
+    topologies typically utilize a token passing scheme to control access to the medium. By utilizing this scheme, only
+    one machine can transmit on the network at a time.</p>
+<p><strong>Mesh Topology: </strong> In a mesh network where all nodes are connected to each other through one or more
+    hop</p>
+<h5>MAC Protocols</h5>
+<p>Medium Access Control (MAC) protocols allows machines to access the communication medium, and thereby to "take turns"
+    at transmitting data.</p>
+
+<p>MAC protocols could be broadly classified into three types:</p>
+<ul>
+    <li>Channel partitioning based protocols (TDMA, CDMA)</li>
+    <li>Random access based protocols (ALOHA, CSMA)</li>
+    <li>Taking turns (token passing, polling)</li>
+</ul>
+<strong>Contention Based Protocol: Carrier Sense Multiple Access / Collision Detection (CSMA/CD)</strong>
+<p>In Carrier Sense Multiple Access with Collision Detection all work stations listen to the shared medium. If there is
+    no ongoing transmission (by other devices), a workstation can transmit. However, if someone else is transmitting,
+    the workstation backs off and waits. If two or more workstations sense that the medium is free, and start
+    transmitting at the same time, a collision occurs! The end devices are however capable of detecting this collision
+    (from the energy level of the medium), and they stop transmitting under such scenario. Each workstation waits for a
+    random amount of time and tries again. CSMA/CD is non deterministic protocol. This works only on wired networks --
+    collisions can't be detected on a wireless network. CSMA/CA based protocols are used instead.</p>
+<strong>Taking Turns</strong>
+<p>In this protocol each workstation takes turn in transmitting. A very common example is token ring LAN. Here a
+    software token is passed from one device to the next. Token ring is an example of deterministic protocol.</p>
+<h5>Ethernet</h5>
+<p>Ethernet is the most popular CSMA/CD protocol. It is standardized as IEEE 802.3. In Ethernet when only one computer
+    needs to transmit data, it can immediately (almost) access the line. However, when many computers want to access the
+    medium frequently it generates a high traffic. This results in high average waiting time and higher chances of
+    collision. In other words, when the size of a LAN increases, it's performance decreases. For example, an Ethernet
+    network with more than 5% collision rate could indicate that the network is getting loaded. When the rate crosses
+    10%, the network could be considerably overloaded [v].</p>
+<strong>Ethernet Frame Structure</strong> <br>
+<img src="{% static 'antLab/lan.png'%}" alt="">
+<p>An Ethernet frame consists of the following fields:</p>
+<ul>
+    <li><strong>Preamble: </strong> 7 bytes with pattern 10101010 followed by one byte with pattern 10101011. It is used
+        to synchronize the receiver, sender.</li>
+    <li><strong>Addresses: </strong> Destination and source MAC address each 6 bytes long.</li>
+    <li><strong>Type: </strong>It indicates the higher layer protocol.</li>
+    <li><strong>CRC: </strong>Cyclic Redundancy Check is used for error detection, and correction to some extent.</li>
+</ul>
+<strong>Ethernet version</strong>
+<p>Following are the different categories of Ethernet available commercially:</p>
+<ul>
+    <li><strong> 10Base2: </strong>It is commonly called thin Ethernet. It operates at 10 Mbps and its maximum segment
+        length is of 200m. </li>
+    <li><strong>10Base5: </strong>Also known as thick Ethernet. It also operates at 10 Mbps, but could extend upto a
+        maximum distance of 500m. </li>
+    <li><strong>10BaseT: </strong>An Ethernet standard that transmits at 10 Mbps basebad signal over twisted wire pairs
+        (telephone wire). Its maximum segment length is of 100m. </li>
+    <li><strong>10BaseF: </strong>This kind of Ethernet use fiber optic cable. Its maximum segment length is of 200m.
+    </li>
+    <li><strong>GbE: </strong>Gigabit Ethernet, which operates at 1000 Mbps. </li>
+</ul>
+<h5>Simulating a LAN using Network Simulator 2</h5>
+<p>The network simulator simulates the three levels related to local area network. They are:</p>
+<ul>
+    <li>Link layer protocols such as ARQ</li>
+    <li>MAC protocol</li>
+    <li>Physical Channel</li>
+</ul>
+There are seven required parameters to setup a LAN with ns2:
+<ul>
+    <li>A group of nodes which are to be connected to form a LAN</li>
+    <li>Delay for the link</li>
+    <li>Bandwidth of the link</li>
+    <li>Link layer type e.g. "LL"</li>
+    <li>Interfacing queue e.g."Queue Drop Tail"</li>
+    <li>MAC layer type</li>
+    <li>Channel type</li>
+</ul>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider a local area network formed by nodes 3, 4, and 5.This LAN communicates with the external world through a router denoted by node 2. There are two servers connected to the router and represented by node no.s 0 and 1. Node 0 is running a application over TCP, which is accessed by node 4.Node 1 is running a application on UDP, which is accessed by node 5.</p>
+<p>The flash video on the right hand side shows how packets are being sent from the external servers to the nodes in LAN.</p>
+<div class="simulation">
+    <h3>animation comes here</h3>
+</div>
+<p>From the above simulation we observe that the packets sent by node 0 to node 4 also reaches node 5 but are eventually dropped there since node 5 is not the destination node. Similarly packets sent by node 1 to node 5 gets dropped at node 4.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+<li>View the simulation provided for a chosen, related problem</li>
+<li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+<li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+<li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the problem statement</li>
+<li>Click on the 'Run' button to execute the simulation script</li>
+<li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of the trace file would be displayed in the area below the 'Run' button</li>
+<li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area below the 'Run' button</li>
+<li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which would be discussed in a later section</li>
+</ul>
 {% endblock %}
 
-{% block experimentName %} {%endblock%}
+{% block excercise %}  
+<a class="excercise " href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+
+<div class="cont my-3" id="ex01">
+<h5>Setting up a local area network with ns2</h5>
+<p>In this exercise you will be simulating a CSMA/CD based LAN with ns2. Consider the LAN with seven nodes to be an isolated one i.e. not connected to the Internet. Node # 0 in the LAN act as a UDP traffic source, and node # 6 is the destination node. Assume CBR traffic to be flowing between the nodes. The simulation lasts for 25 seconds.</p>
+<p>In Ethernet a packet is broadcasted in the shared medium, and only the destination node accepts the packet. Other nodes simply drop it. What should be the number of hops a packet from node # 0 to node # 6 travel? Verify this from the "Hop Count" plot</p>
+<p><strong>Additional Task: </strong> Suppose the above LAN is to be connected to the Internet. Add node # 7 into the network so that it act as the gateway. Connect node # 0 and # 7 with a 1 Mb wired link. Move the UDP source to node # 7. How the hop count should get affected in this case? Verify from the plot.</p>
+
+<h2>Below comes .tcl compiler</h2>
+</div>
+
+
+
+<div class="cont my-3" id="ex02">
+    <h5>Simulating link errors</h5>
+    <p>Consider the following topology:</p>
+    <img src="{% static 'antLab/ex2_xs2.png'%}" alt="">
+    <p>Here node # 2 act as a router. Any traffic to or from the LAN passes through it. Consider node # 1 running a FTP server, and node # 5 is downloading a file of size 4 MB. However, the link between node # 2 and # 3 is fault. It drops packets with a fixed probability of 0.2. Implement a link error model to reflect this.</p>
+    <p>It may be noted here that the file download time will be more than the we had in exercise # 2 of experiment # 1. Try different values of the simulation time to ensure that the file has been entirely transferred. Is the plot of bytes received a linear curve or non-linear? Why?</p>
+    <p>Presence of link errors cause one or more packets to be retransmitted. Verify this from the "Packet Retransmissions" plot.</p>
+    <h2>Below comes .tcl compiler</h2>
+</div>
+{%endblock%}

@@ -1,0 +1,331 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- Bootstrap CSS -->
+    <script type="text/javascript" async="" src="{%static 'heLab/js/analytics.js' %}"></script>
+    <script async="" src="{%static 'heLab/js/gtm.js' %}"></script>
+    <script class="gtm">(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W59SWTR');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="{%static 'heLab/css/example.css' %}" rel="stylesheet" type="text/css">
+    <link href="{%static 'heLab/css/common.css' %}" rel="stylesheet" type="text/css">
+    <script src="{%static 'heLab/js/jquery.js' %}" type="text/javascript"> </script>
+    <script src="{%static 'heLab/js/jquery.tools.min.js' %}"></script>
+    <script src="{%static 'heLab/js/alu.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/raphael.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/jquery.flot.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/utility.js' %}" type="text/javascript"></script>
+
+
+    <link href="{%static 'heLab/css/tabs.css' %}" rel="stylesheet" type="text/css">
+
+    <style>
+        h3 {
+            display: inline;
+            padding: 15%;
+        }
+
+        .content {
+            display: none;
+        }
+
+        div.wrap {
+            width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .wrap .pane {
+            background: #fff repeat-x 0 20px;
+            display: none;
+            padding: 20px;
+            border: 1px solid #999;
+            border-top: 0;
+            font-size: 14px;
+            font-size: 18px;
+            color: #456;
+            padding-bottom: 20px;
+            padding-left: 9px;
+            padding-right: 20px;
+            padding-top: 0px;
+
+            _background-image: none;
+        }
+
+        .wrap .pane p {
+            font-size: 38px;
+            margin: -10px 0 -20px 0;
+            text-align: right;
+            color: #578;
+        }
+
+        #header {
+            top: 2px;
+            left: 2px;
+            position: relative;
+            border: 2px groove #c4c4c4;
+            width: 892px;
+            height: 130px;
+            /*overflow:auto;*/
+            background: url("../../images/ui-bg_gloss-wave_35_f6a828_500x100.png") repeat-x scroll 50% 50% #84BFDF;
+        }
+
+        .imag {
+            position: absolute;
+            z-index: 9999;
+            left: 339px;
+            top: 4px;
+        }
+
+        .imag1 {
+            position: absolute;
+            z-index: 9999;
+            left: 1000px;
+            top: 85px;
+        }
+    </style>
+
+    <title>simulation 1</title>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Logic Operation</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">Arthemetic Operation</span></h3>
+            </a>
+            
+           
+        </div>
+
+
+        <div class="container">
+            <div class="content " id="div1" >
+                	
+		<div class="pane">
+			<!--<img id="run_button" src="images/run_button.png" alt="Run" title="Run" style="position: absolute; top: 154px; left: 527px; height: 55px; width: 60px;">-->
+			<input alt="Run" id="run_button" style="position: absolute; top: 189px; left: 342px; height: 55px; width: 60px;" title="Run" type="button" value="Run"/>
+			<!--<label id="run_l" style="position: absolute; top: 207px; left: 543px;">Run</label>-->
+			<!--<img id="reset_button" src="images/reset_button.png" alt="Clear/Reset" title="Clear/Reset" style="position: absolute; top: 149px; left: 601px; height: 60px; width: 60px;">-->
+			<input alt="Clear/Reset" id="reset_button" style="position: absolute; top: 189px; left: 440px; height: 55px; width: 60px;" title="Clear/Reset" type="button" value="Clear"/>
+			<!--<label id="clr_l" style="position: absolute; top: 206px; left: 613px;">Clear</label>-->
+			<label id="y3_l" style="top: 723px;">Y3</label>
+			<label id="y2_l" style="top: 723px;">Y2</label>
+			<label id="y1_l" style="top: 723px;">Y1</label>
+			<label id="y0_l" style="top: 723px; left: 1036px;">Y0</label>
+			<img id="exp_4" src="{%static 'heLab/images/exp4.png' %}" style="position : absolute;top:282px ; left :103px;"/>
+			
+			<div id="switch0">
+			<img id="a3_3" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 334px; left: 75px;"/>
+			<div id="a3_3_div" style="position: absolute; top: 342px; left: 30px;">
+				<input disabled="true" id="a3_3_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="a2_2" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 405px; left: 75px;"/>	
+			<div id="a2_2_div" style="position: absolute; top: 415px; left: 30px;">
+				<input disabled="true" id="a2_2_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="a1_1" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 473px; left: 75px;"/>
+			<div id="a1_1_div" style="position: absolute; top: 485px; left: 30px;">
+				<input disabled="true" id="a1_1_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>		
+			<img id="a0_0" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 532px; left: 75px;"/>
+			<div id="a0_0_div" style="position: absolute; top: 542px; left: 30px;">
+				<input disabled="true" id="a0_0_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="b3_4" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 680px; left: 75px;"/>	
+			<div id="b3_4_div" style="position: absolute; top: 688px; left: 30px;">
+				<input disabled="true" id="b3_4_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="b2_5" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 752px; left: 75px;"/>
+			<div id="b2_5_div" style="position: absolute; top: 762px; left: 30px;">
+				<input disabled="true" id="b2_5_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="b1_6" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 810px; left: 75px;"/>
+			<div id="b1_6_div" style="position: absolute; top: 820px; left: 30px;">
+				<input disabled="true" id="b1_6_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="b0_7" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 862px; left: 75px;"/>
+			<div id="b0_7_div" style="position: absolute; top: 872px; left: 30px;">
+				<input disabled="true" id="b0_7_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="s3_8" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 307px;"/>
+			<div id="s3_8_div" style="position: absolute; top: 1060px; left: 308px;">
+				<input disabled="true" id="s3_8_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="s2_9" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 375px;"/>
+			<div id="s2_9_div" style="position: absolute; top: 1060px; left: 375px;">
+				<input disabled="true" id="s2_9_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>	
+			<img id="s1_10" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 443px;"/>
+			<div id="s1_10_div" style="position: absolute; top: 1060px; left: 443px;">
+				<input disabled="true" id="s1_10_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>
+			<img id="s0_11" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 511px;"/>
+			<div id="s0_11_div" style="position: absolute; top: 1060px; left: 511px;">
+				<input disabled="true" id="s0_11_text" size="1" style="text-align:center;" type="text" value="0"/>
+			</div>
+			</div>
+			
+			<div id="a_l" style="position : absolute; top:598px ; left : 30px;">
+			<input disabled="true" id="a_logic" size="4" style="text-align:center;" type="text"/></div>
+			
+			<div id="b_l" style="position : absolute; top:936px ; left : 30px;"><input disabled="true" id="b_logic" size="4" style="text-align:center;" type="text"/></div>
+			
+			<img id="mode_l" src="{%static 'heLab/images/on.png' %}" style="position : absolute; top:253px ; left : 727px;"/>
+			<div id="mide_l_div" style="position : absolute; top:260px ; left : 780px;">
+				<input disabled="true" id="mode_l_text" size="1" style="text-align:center;" type="text" value="1"/>
+			</div>
+			<img id="glow3" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position : absolute; top:669px ; left : 891px;"/>
+			<img id="glow2" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position : absolute; top:669px ; left : 937px;"/>
+			<img id="glow1" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position : absolute; top:669px ; left : 983px;"/>
+			<img id="glow0" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position : absolute; top:669px ; left : 1029px;"/>
+			<div id="y_l" style="position: absolute; top: 764px; left: 902px;"><input disabled="true" id="y_logic" size="4" style="text-align:center;" type="text"/></div>
+			<img id="ttexp_4" src="{%static 'heLab/images/tt.png' %}" style="position : absolute;top:248px ; left :850px;"/>
+		</div>
+            </div>
+
+            <div class="content" id="div2" style="margin: 3%;">
+                <div class="pane">
+                    <!--<img id="run_button_arith" src="images/run_button.png" alt="Run" title="Run" style="position: absolute; top: 154px; left: 527px; height: 55px; width: 60px;">-->
+                    <input alt="Run" id="run_button_arith" style="position: absolute; top: 155px; left: 527px; height: 55px; width: 60px;" title="Run" type="button" value="Run"/>
+                    <!--<label id="run_l" style="position: absolute; top: 207px; left: 543px;">Run</label>-->
+                    <!--<img id="reset_button_arith" src="images/reset_button.png" alt="Clear/Reset" title="Clear/Reset" style="position: absolute; top: 149px; left: 601px; height: 60px; width: 60px;">-->
+                    <input alt="Clear/Reset" id="reset_button_arith" style="position: absolute; top: 155px; left: 601px; height: 55px; width: 60px;" title="Clear/Reset" type="button" value="Clear"/>
+                    <!--<label id="clr_l" style="position: absolute; top: 206px; left: 613px;">Clear</label>-->
+                    <label id="y3_a" style="top: 703px; left: 929px;">Y3</label>
+                    <label id="y2_a" style="top: 703px; left: 973px;">Y2</label>
+                    <label id="y1_a" style="top: 703px; left: 1020px;">Y1</label>
+                    <label id="y0_a" style="top: 703px; left: 1064px;">Y0</label>
+                    <label id="y_carry" style="top: 700px; left: 872px;">Carry</label>
+                    <label id="y_alu_arithmetic" style="top: 765px;">Y</label>
+                    
+                <img id="exp_4" src="{%static 'heLab/images/exp41.png' %}" style="position : absolute;top:277px ; left :103px;"/>
+                <div id="switch1">
+                <img id="cin_12" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 288px; left: 58px;"/>
+                <div id="cin_12_div" style="position : absolute; top:297px ; left : 13px">
+                    <input disabled="true" id="cin_12_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>	
+                <img id="at0_0" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 336px; left: 57px;"/>	
+                <div id="at0_0_div" style="position : absolute; top:346px ; left : 13px">
+                    <input disabled="true" id="at0_0_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>	
+                <img id="at1_1" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 399px; left: 57px;"/>
+                <div id="at1_1_div" style="position : absolute; top:409px ; left : 13px">
+                    <input disabled="true" id="at1_1_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>		
+                <img id="at2_2" src="{%static 'heLab/images/off.png' %}" style="position : absolute; top:465px ; left : 57px;"/>
+                <div id="at2_2_div" style="position : absolute; top:475px ; left : 13px">
+                    <input disabled="true" id="at2_2_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>		
+                <img id="at3_3" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 524px; left: 57px;"/>
+                <div id="at3_3_div" style="position : absolute; top:534px ; left : 13px">
+                    <input disabled="true" id="at3_3_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>		
+                <img id="b0_4" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 672px; left: 57px;"/>	
+                <div id="b0_4_div" style="position : absolute; top:682px ; left : 13px">
+                    <input disabled="true" id="b0_4_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="b1_5" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 747px; left: 57px;"/>
+                <div id="b1_5_div" style="position : absolute; top:757px ; left : 13px">
+                    <input disabled="true" id="b1_5_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="b2_6" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 802px; left: 57px;"/>
+                <div disabled="true" id="b2_6_div" style="position : absolute; top:812px ; left : 13px">
+                    <input disabled="true" id="b2_6_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="b3_7" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 854px; left: 57px;"/>
+                <div id="b3_7_div" style="position : absolute; top:864px ; left : 13px">
+                    <input disabled="true" id="b3_7_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="s0_8" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 295px;"/>
+                <div id="s0_8_div" style="position : absolute; top:1060px ; left : 293px">
+                    <input disabled="true" id="s0_8_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="s1_9" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 365px;"/>
+                <div id="s1_9_div" style="position : absolute; top:1060px ; left : 364px">
+                    <input disabled="true" id="s1_9_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="s2_10" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 435px;"/>
+                <div id="s2_10_div" style="position : absolute; top:1060px ; left : 433px">
+                    <input disabled="true" id="s2_10_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="s3_11" src="{%static 'heLab/images/off.png' %}" style="position: absolute; top: 1009px; left: 505px;"/>
+                <div id="s3_11_div" style="position : absolute; top:1060px ; left : 505px">
+                    <input disabled="true" id="s3_11_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                </div>
+                <div id="a_a" style="position : absolute; top:580px ; left : 35px;"><input disabled="true" id="a_arith" size="4" type="text"/></div>
+                
+                <div id="b_a" style="position : absolute; top:910px ; left : 45px"><input disabled="true" id="b_arith" size="4" style="top:50px" type="text"/></div>
+                
+                <img id="mode_a" src="{%static 'heLab/images/off.png' %}" style="position : absolute; top:246px ; left : 728px;"/>
+                <div id="mode_a_div" style="position : absolute; top:255px ; left : 778px; font-weight: bold">
+                    <input disabled="true" id="mode_a_text" size="1" style="text-align:center;" type="text" value="0"/>
+                </div>
+                <img id="glow4" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position: absolute; top: 655px; left: 919px;"/>
+                <img id="glow5" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position: absolute; top: 655px; left: 965px;"/>
+                <img id="glow6" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position: absolute; top: 655px; left: 1010px;"/>
+                <img id="glow7" src="{%static 'heLab/images/lightbulb_up.png' %}" style="position: absolute; top: 655px; left: 1055px;"/>
+                <img id="y_alu_carry" src="{%static 'heLab/images/lightbulb_up.png' %}" style="left: 870px; top: 655px;"/>
+                <div id="y_a" style="position : absolute; top:765px ; left : 1022px;">
+                    <input disabled="true" id="y_arith" size="4" style="text-align:center;" type="text"/>
+                </div>
+                <label id="y_carry2" style="position: absolute; top: 763px; left: 896px;">Carry</label>
+                    
+                <div id="y_carry_div" style="position : absolute; top:765px ; left : 950px;">
+                    <input disabled="true" id="y_carry_text" size="1" style="text-align:center;" type="text"/>
+                </div>
+                <img id="tt1exp_4" src="{%static 'heLab/images/tt3.png' %}" style="position: absolute; top: 220px; left: 834px;"/>
+                <!--<img src="tt2.png"id= "tt1exp_4" style = "position : absolute;top:798px ; left :1129px;"/>-->
+                </div>
+    
+            </div>
+
+           
+
+            
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.link').click(function (e) {
+                e.preventDefault();
+                var content = $(this).attr('rel');
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+                $('.content').hide();
+                $('#' + content).show();
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

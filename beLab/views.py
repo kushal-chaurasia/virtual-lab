@@ -63,21 +63,6 @@ def experiment12(request):
     data ={'Exams': result}
     return render(request,'beLab/exp12.html' , data)
 
-def experiment13(request):
-    result = BeLabQuizes.objects.filter(experimentNO = "experiment13")
-    data ={'Exams': result}
-    return render(request,'beLab/exp13.html' , data)
-
-def experiment14(request):
-    result =BeLabQuizes.objects.filter(experimentNO = "experiment14")
-    data ={'Exams': result}
-    return render(request,'beLab/exp14.html' , data)
-
-def experiment15(request):
-    result = BeLabQuizes.objects.filter(experimentNO = "experiment15")
-    data ={'Exams': result}
-    return render(request,'beLab/exp15.html' , data)
-
 def ohmsLaw1(request):
     return render(request , 'beLab/ohmslaw1.html')
 
@@ -125,3 +110,18 @@ def zdLine(request):
 
 def zdChar(request):
     return render (request, 'beLab/zdChar.html')
+
+def bjtCE(request):
+    return render (request, 'beLab/bjtCE.html')
+
+def bjtInput(request):
+    return render (request, 'beLab/bjtInput.html')
+
+def bjtcbcInput(request):
+    return render (request, 'beLab/bjtcbcInput.html')
+
+def bjtcbcOutput(request):
+    return render (request, 'beLab/bjtcbcOutput.html')
+
+def ceAmplifier(request):
+    return render( request, 'beLab/ceAmplifier.html')

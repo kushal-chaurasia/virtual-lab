@@ -1,0 +1,563 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- Bootstrap CSS -->
+    <script type="text/javascript" async="" src="{%static 'heLab/js/analytics.js' %}"></script>
+    <script async="" src="{%static 'heLab/js/gtm.js' %}"></script>
+    <script class="gtm">(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W59SWTR');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="{%static 'heLab/css/example.css' %}" rel="stylesheet" type="text/css">
+    <link href="{%static 'heLab/css/common.css' %}" rel="stylesheet" type="text/css">
+    <script src="{%static 'heLab/js/jquery.js' %}" type="text/javascript"> </script>
+    <script src="{%static 'heLab/js/jquery.tools.min.js' %}"></script>
+    <script src="{%static 'heLab/js/example.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/raphael.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/jquery.flot.js' %}" type="text/javascript"></script>
+    <script src="{%static 'heLab/js/utility.js' %}" type="text/javascript"></script>
+
+
+    <link href="{%static 'heLab/css/tabs.css' %}" rel="stylesheet" type="text/css">
+
+    <style>
+        h3 {
+            display: inline;
+            padding: 0.6%;
+        }
+
+        .content {
+            display: none;
+        }
+
+        div.wrap {
+            width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .wrap .pane {
+            background: #fff repeat-x 0 20px;
+            display: none;
+            padding: 20px;
+            border: 1px solid #999;
+            border-top: 0;
+            font-size: 14px;
+            font-size: 18px;
+            color: #456;
+            padding-bottom: 20px;
+            padding-left: 9px;
+            padding-right: 20px;
+            padding-top: 0px;
+
+            _background-image: none;
+        }
+
+        .wrap .pane p {
+            font-size: 38px;
+            margin: -10px 0 -20px 0;
+            text-align: right;
+            color: #578;
+        }
+
+        #header {
+            top: 2px;
+            left: 2px;
+            position: relative;
+            border: 2px groove #c4c4c4;
+            width: 892px;
+            height: 130px;
+            /*overflow:auto;*/
+            background: url("../../images/ui-bg_gloss-wave_35_f6a828_500x100.png") repeat-x scroll 50% 50% #84BFDF;
+        }
+
+        .imag {
+            position: absolute;
+            z-index: 9999;
+            left: 339px;
+            top: 4px;
+        }
+
+        .imag1 {
+            position: absolute;
+            z-index: 9999;
+            left: 1000px;
+            top: 85px;
+        }
+    </style>
+
+    <title>simulation 1</title>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <div class="alert alert-primary" role="alert">
+            <a class="link" href="#" rel="div1">
+                <h3><span class="badge badge-info">Half Adder</span></h3>
+            </a>
+
+            <a class="link" href="#" rel="div2">
+                <h3><span class="badge badge-info">Full Adder</span></h3>
+            </a>
+            <a class="link" href="#" rel="div3">
+                <h3><span class="badge badge-info">2 Bit Adder</span></h3>
+            </a>
+            <a class="link" href="#" rel="div4">
+                <h3><span class="badge badge-info">Half Substractor</span></h3>
+            </a>
+            <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Full Substractor</span></h3>
+            </a>
+            <a class="link" href="#" rel="div6">
+                <h3><span class="badge badge-info">4 bit Adder/Subtractor</span></h3>
+            </a>
+        </div>
+
+
+        <div class="container">
+            <div class="content " id="div1" style="margin: 3%;">
+                
+                <div class="pane" id="halfadder" style="display: block;">
+                    <div id="switch" >
+                        <label class="lable_title" style="position: absolute; width:100px; left: 10px; top: 230px;">Half Adder</label>
+                        <input alt="Run" id="run_button_hadd"
+                            style="position: absolute; top: 275px; left: 7px; height: 55px; width: 60px;" title="Run"
+                            type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_hadd"
+                            style="position: absolute; top: 275px; left: 69px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+                        <img id="img" src="{%static 'heLab/images/halfadd.png' %}"
+                            style="position :absolute;top:350px ; left :370px;">
+                        <label id="halfinput1" style="position: absolute; width: 95px; left: 320px; top:280px;">Input
+                            A</label>
+                        <label id="halfinput2" style="position: absolute; width: 95px; left: 505px; top:280px;">Input
+                            B</label>
+                        <label id="halfsum" style="width: 95px; height: 22px; left: 500px;">sum-Output</label>
+                        <label id="halfcarry" style="width: 95px; height: 22px; left: 279px;">carry-Output</label>
+
+                        <div id="switch0">
+                            <input disabled="true" id="a_0_text" maxlength="1" size="1"
+                                style="position: absolute; top: 274px; left: 377px; text-align: center; padding: 2px; margin-left: 13px;"
+                                type="text" value="0">
+                            <img id="a_0" src="{%static 'heLab/images/off.png' %}"
+                                style="position: absolute; top: 300px; left: 377px; margin-left: 10px; margin-top: 10px;">
+
+                            <input disabled="true" id="b_1_text" maxlength="1" size="1"
+                                style="position: absolute; top: 274px; left: 432px; text-align: center; margin-left: 13px; padding: 2px;"
+                                type="text" value="0">
+                            <img id="b_1" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:300px ; left : 432px; margin-left: 10px; margin-top: 10px;">
+                        </div>
+                        <img src="{%static 'heLab/images/half_adder_tt.png' %}"
+                            style="position:absolute; top:400px ; left:620px;">
+                        <img id="carry" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 632px; left: 384px; margin-bottom: 0px; padding-left: 8px;">
+                        <input disabled="true" id="carry_text" maxlength="1" size="1"
+                            style="position: absolute; top: 672px; left: 377px; text-align: center; padding: 2px; margin-left: 10px;"
+                            type="text" value="0">
+
+                        <img id="sum" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 632px; left: 442px; padding-left: 8px;">
+                        <input disabled="true" id="sum_text" maxlength="1" size="1"
+                            style="position: absolute; top: 672px; left: 432px; text-align: center; padding: 2px; margin-left: 10px;"
+                            type="text" value="0">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content" id="div2">
+                <div class="pane" >
+                    <div id="switch1" style="position:absolute; top:-139px; left:-92px;">
+                        <label class="lable_title"
+                            style="position: absolute; width:100px; left: 112px; top: 264px;">Full Adder</label>
+                        <input alt="Run" id="run_button_fadd"
+                            style="position: absolute; top: 309px; left: 109px; height: 55px; width: 60px;"
+                            title="Run" type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_fadd"
+                            style="position: absolute; top: 309px; left: 171px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+                        <img id="img1" src="{%static 'heLab/images/fulladd.png' %}"
+                            style="position : absolute;top:373px ; left :359px;">
+                        <label id="input1" style="left: 313px; top: 303px;">Input A</label>
+                        <label id="input2" style="top: 303px; left: 440px">Input B</label>
+                        <label id="input3"
+                            style="margin-left: 0px; width: 60px; height: 22px; top: 540px; left: 585px;">Input
+                            C</label>
+                        <label id="fullsum"
+                            style="top: 670px; left: 495px; width: 95px; height: 22px;">sum-Output</label>
+                        <label id="fullcarry"
+                            style="width: 95px; height: 22px; left: 290px; top: 670px;">carry-Output</label>
+                        <div id="switches1">
+                            <input disabled="true" id="button1_1_text" maxlength="1" size="1"
+                                style="position: absolute; top: 300px; left: 360px; text-align: center; padding: 2px; margin-left: 27px;"
+                                type="text" value="0">
+                            <img id="button1_1" src="{%static 'heLab/images/off.png' %}"
+                                style="position: absolute; top: 330px; left: 360px; margin-left: 25px; margin-top: 2px;">
+
+                            <input disabled="true" id="button2_2_text" maxlength="1" size="1"
+                                style="position: absolute; top: 300px; left: 414px; text-align: center; padding: 2px; margin-left: 29px;"
+                                type="text" value="0">
+                            <img id="button2_2" src="{%static 'heLab/images/off.png' %}"
+                                style="position: absolute; top: 330px; left: 416px; margin-left: 25px; margin-top: 2px;">
+
+                            <input disabled="true" id="button3_3_text" maxlength="1" size="1"
+                                style="position: absolute; top: 460px; left: 540px; text-align: center; padding: 2px; margin-left: 42px;"
+                                type="text" value="0">
+                            <img id="button3_3" src="{%static 'heLab/images/off.png' %}"
+                                style="position: absolute; top: 490px; left: 541px; margin-left: 40px; margin-top: 2px;">
+                        </div>
+
+                        <img src="{%static 'heLab/images/full_adder_tt.png' %}"
+                            style="position:absolute; top:400px ;left:650px;">
+                        <img id="carry_fulladder" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 657px; left: 368px; margin-left: 23px;">
+                        <input disabled="true" id="carry_fulladder_text" maxlength="1" size="1"
+                            style="position: absolute; top: 710px; left: 360px; text-align: center; padding: 2px; margin-left: 27px;"
+                            type="text" value="0">
+
+                        <img id="sum_fulladder" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 657px; left: 425px; margin-left: 23px;">
+                        <input disabled="true" id="sum_fulladder_text" maxlength="1" size="1"
+                            style="position: absolute; top: 710px; left: 414px; text-align: center; padding: 2px; margin-left: 27px;"
+                            type="text" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="content" id="div3">
+                <div class="pane" >
+                    <div id="switch2" style="position:absolute; top:-139px; left:-10px;">
+                        <label class="lable_title"
+                            style="position: absolute; width:100px; left: 30px; top: 264px;">2 bit Adder</label>
+                        <input alt="Run" id="run_button_2bitadd"
+                            style="position: absolute; top: 309px; left: 27px; height: 55px; width: 60px;"
+                            title="Run" type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_2bitadd"
+                            style="position: absolute; top: 309px; left: 89px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+
+                        <label id="a1_2bit" style="width:70px; height:22px;">Input A1</label>
+                        <label id="b1_2bit" style="width:70px; height:22px;">Input B1</label>
+                        <label id="a2_2bit" style="width:70px; left:350px; height:22px;">Input A2</label>
+                        <label id="b2_2bit" style="width:70px; height:22px;">Input B2</label>
+                        
+
+                        <img id="img1" src="{%static 'heLab/images/2bitadd.png' %}"
+                            style="position: absolute; top: 330px; left: 207px; margin-left: 58px;">
+                        <div id="switches2">
+                            <input disabled="true" id="button1_0_text" maxlength="1" size="1"
+                                style="position: absolute; top: 321px; left: 310px; text-align: center;" type="text"
+                                value="0">
+                            <img id="button1_0" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:307px ; left : 357px;">
+
+                            <input disabled="true" id="button2_1_text" maxlength="1" size="1"
+                                style="position: absolute; top: 321px; left: 464px; text-align: center;" type="text"
+                                value="0">
+                            <img id="button2_1" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:307px ; left : 413px;">
+
+                            <input disabled="true" id="button3_2_text" maxlength="1" size="1"
+                                style="position: absolute; top: 321px; left: 508px; text-align: center;" type="text"
+                                value="0">
+                            <img id="button3_2" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:307px ; left : 557px;">
+
+                            <input disabled="true" id="button4_3_text" maxlength="1" size="1"
+                                style="position: absolute; top: 321px; left: 668px; text-align: center;" type="text"
+                                value="0">
+                            <img id="button4_3" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:307px ; left : 613px;">
+
+                            <input disabled="true" id="button5_4_text" maxlength="1" size="1"
+                                style="position: absolute; top: 466px; left: 808px; text-align: center;" type="text"
+                                value="0">
+                            <img id="button5_4" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:452px ; left : 755px;">
+                        </div>
+                        <input disabled="true" id="sum2_2bit_text" maxlength="1" size="1"
+                            style="position: absolute; top: 656px; left: 385px; text-align: center;" type="text"
+                            value="0">
+                        <img id="sum2_2bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 616px; left: 390px;">
+
+                        <input disabled="true" id="sum1_2bit_text" maxlength="1" size="1"
+                            style="position: absolute; top: 653px; left: 585px; text-align: center;" type="text"
+                            value="0">
+                        <img id="sum1_2bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 616px; left: 591px;">
+
+                        <input disabled="true" id="carry_2bit_text" maxlength="1" size="1"
+                            style="position: absolute; top: 580px; left: 270px; text-align: center;" type="text"
+                            value="0">
+                        <img id="carry_2bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position: absolute; top: 546px; left: 271px;">
+                    </div>
+                </div>
+            
+
+            </div>
+            <div class="content" id="div4">
+                <div class="pane" style="display: block;">
+                    <div id="switch3" style="position:absolute; top:-139px; left:-92px;">
+                        <label class="lable_title"
+                            style="position: absolute; width:120px; left: 112px; top: 264px;">Half
+                            Subtractor</label>
+                        <input alt="Run" id="run_button_hsub"
+                            style="position: absolute; top: 309px; left: 109px; height: 55px; width: 60px;"
+                            title="Run" type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_hsub"
+                            style="position: absolute; top: 309px; left: 171px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+                        <img id="img1" src="{%static 'heLab/images/halfsub.png' %}"
+                            style="position: absolute; top: 338px; left: 333px;">
+                        <label id="subAinput" style="width:60px; left:300px;"> Input A</label>
+                        <label id="subBinput" style="left: 470px; width:60px"> Input B</label>
+                        <label id="suboutput" style="left:410px;"> Output</label>
+                        <label id="subborrow" style="left:349px;"> Borrow</label>
+
+                        <div id="switches3">
+                            <input disabled="true" id="button_0_text" maxlength="1" size="1"
+                                style="position: absolute; top: 274px; left: 361px;text-align: center;" type="text"
+                                value="0">
+                            <img id="button_0" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:302px ; left : 355px;">
+
+                            <input disabled="true" id="button_1_text" maxlength="1" size="1"
+                                style="position: absolute; top: 274px; left: 417px;text-align: center;" type="text"
+                                value="0">
+                            <img id="button_1" src="{%static 'heLab/images/off.png' %}"
+                                style="position : absolute; top:302px ; left : 411px;">
+                        </div>
+                        <img src="{%static 'heLab/images/half_sub_tt.png' %}"
+                            style="position: absolute; top: 400px; left: 601px;">
+                        <img id="carry_halfsub" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position : absolute; top:649px ; left : 360px;">
+                        <input disabled="true" id="carry_halfsub_text" maxlength="1" size="1"
+                            style="position: absolute; top: 653px; left: 313px; text-align: center;" type="text"
+                            value="0">
+
+                        <input disabled="true" id="sum_halfsub_text" maxlength="1" size="1"
+                            style="position: absolute; top: 653px; left: 455px; text-align: center;" type="text"
+                            value="0">
+                        <img id="sum_halfsub" src="{%static 'heLab/images/lightbulb.png' %}"
+                            style="position : absolute; top:649px ; left : 417px;">
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="content" id="div5">
+                <div id="switch3">
+                    <label class="lable_title"
+                        style="position: absolute; width:120px; left: 20px; top: 125px;">Full Subtractor</label>
+                    <img id="img1" src="{%static 'heLab/images/fullsub.png' %}"
+                        style="position: absolute; top: 243px; left: 320px;">
+                    <label id="fullAinput"> Input A</label>
+                    <label id="fullBinput"> Input B</label>
+                    <label id="fullCinput"> Input C</label>
+                    <label id="fulloutput" style="left: 411px"> Output</label>
+                    <label id="fullborrow" style="left: 348px"> Borrow</label>
+                    <div id="switches4">
+                        <input alt="Run" id="run_button_fsub"
+                            style="position: absolute; top: 170px; left: 17px; height: 55px; width: 60px;"
+                            title="Run" type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_fsub"
+                            style="position: absolute; top: 170px; left: 79px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+
+                        <input disabled="true" id="button6_0_text" maxlength="1" size="1"
+                            style="position: absolute; top: 215px; left: 300px; text-align: center;" type="text"
+                            value="0">
+                        <img id="button6_0" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:205px ; left : 350px;">
+
+                        <input disabled="true" id="button7_1_text" maxlength="1" size="1"
+                            style="position: absolute; top: 215px; left: 463px; text-align: center;" type="text"
+                            value="0">
+                        <img id="button7_1" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:205px ; left : 406px;">
+
+                        <input disabled="true" id="button8_2_text" maxlength="1" size="1"
+                            style="position: absolute; top: 427px; left: 530px; text-align: center;" type="text"
+                            value="0">
+                        <img id="button8_2" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:369px ; left : 527px;">
+                    </div>
+                    <img src="{%static 'heLab/images/full_sub_tt.png' %}"
+                        style="position:absolute; top:133px ; left:580px; ">
+                    <input disabled="true" id="carry_fullsub_text" maxlength="1" size="1"
+                        style="position: absolute; top: 547px; left: 305px; text-align: center;" type="text"
+                        value="0">
+                    <img id="carry_fullsub" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position : absolute; top:542px ; left : 357px;">
+
+                    <input disabled="true" id="sum_fullsub_text" maxlength="1" size="1"
+                        style="position: absolute; top: 544px; left: 457px; text-align: center;" type="text"
+                        value="0">
+                    <img id="sum_fullsub" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position : absolute; top:540px ; left : 415px;">
+                </div>
+            
+            </div>
+
+            <div class="content mt-4" id="div6">
+                <br>
+                <div id="switch4" style="position:absolute; left:-15px; top:50px;">
+                    
+                    <label class="lable_title" style=" position:absolute; width:180px; left: 25px; top: 40px;">4 bit
+                        Adder/Subtractor</label>
+                    <img id="4bit" src="{%static 'heLab/images/4bit addsub.png' %}"
+                        style="position: absolute; top: 205px; left: 75px;">
+                    <label id="b3_4as" style="left:77px; top:145px; width:65px;"> Input B3</label>
+                    <label id="a3_4as" style="left:165px; top:145px; width:65px;"> Input A3</label>
+                    <label id="b2_4as" style="left:270px; top:145px; width:65px;"> Input B2</label>
+                    <label id="a2_4as" style="left:358px; top:145px; width:65px;"> Input A2</label>
+                    <label id="b1_4as" style="left:461px; top:145px; width:65px;"> Input B1</label>
+                    <label id="a1_4as" style="left:552px; top:145px; width:65px;"> Input A1</label>
+                    <label id="b0_4as" style="left:647px; top:145px; width:65px;"> Input B0</label>
+                    <label id="a0_4as" style="left:665px; top:145px; width:65px;"> Input A0</label>
+                    <label id="count_4as" style="top: 210px; font-size: 11px;left: 835px; font-weight: bold;"><span
+                            style="text-decoration: overline;">ADD</span>/SUB</label>
+                    <label id="s3_4as" style="top: 570px; left: 160px;"> S3</label>
+                    <label id="s2_4as" style="top: 570px; left: 350px;"> S2</label>
+                    <label id="s1_4as" style="top: 570px; left: 540px;"> S1</label>
+                    <label id="s0_4as" style="top: 570px; left: 732px;"> S0</label>
+                    <label id="carry_4as">CARRY</label>
+                    <div id="switches5">
+                        <input alt="Run" id="run_button_4addsub"
+                            style="position: absolute; top: 75px; left: 27px; height: 55px; width: 60px;"
+                            title="Run" type="button" value="Run">
+                        <input alt="Clear/Reset" id="clear_button_4addsub"
+                            style="position: absolute; top: 75px; left: 89px; height: 55px; width: 60px;"
+                            title="Clear/Reset" type="button" value="Clear">
+
+                        <input disabled="true" id="b3_0_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 60px; text-align: center;" type="text"
+                            value="0">
+                        <img id="b3_0" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 105px;">
+
+                        <input disabled="true" id="a3_1_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 208px; text-align: center;" type="text"
+                            value="0">
+                        <img id="a3_1" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 160px;">
+
+                        <input disabled="true" id="b2_2_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 253px; text-align: center;" type="text"
+                            value="0">
+                        <img id="b2_2" src="{%static 'heLab/images/off.png' %}"
+                            style="position: absolute; top: 174px; left: 297px;">
+
+                        <input disabled="true" id="a2_3_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 401px; text-align: center;" type="text"
+                            value="0">
+                        <img id="a2_3" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 353px;">
+
+                        <input disabled="true" id="b1_4_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 446px; text-align: center;" type="text"
+                            value="0">
+                        <img id="b1_4" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 490px;">
+
+                        <input disabled="true" id="a1_5_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 596px; text-align: center;" type="text"
+                            value="0">
+                        <img id="a1_5" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 548px;">
+
+                        <input disabled="true" id="b0_6_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 640px; text-align: center;" type="text"
+                            value="0">
+                        <img id="b0_6" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 685px;">
+
+                        <input disabled="true" id="a0_7_text" maxlength="1" size="1"
+                            style="position: absolute; top: 187px; left: 790px; text-align: center;" type="text"
+                            value="0">
+                        <img id="a0_7" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:174px ; left : 740px;">
+
+                        <input disabled="true" id="cout_8_text" maxlength="1" size="1"
+                            style="position: absolute; top: 273px; left: 840px; text-align: center;" type="text"
+                            value="0">
+                        <img id="cout_8" src="{%static 'heLab/images/off.png' %}"
+                            style="position : absolute; top:223px ; left : 838px;">
+                    </div>
+                    <img id="carry_4bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position: absolute; top: 410px; left: 69px;">
+                    <input disabled="true" id="carry_4bit_text" maxlength="1" size="1"
+                        style="position: absolute; top: 415px; left: 25px; text-align: center;" type="text"
+                        value="0">
+
+                    <img id="s3_4bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position : absolute; top:532px ; left : 147px;">
+                    <input disabled="true" id="s3_4bit_text" maxlength="1" size="1"
+                        style="position: absolute; top: 533px; left: 102px; text-align: center;" type="text"
+                        value="0">
+
+                    <img id="s2_4bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position : absolute; top:531px ; left : 340px;">
+                    <input disabled="true" id="s2_4bit_text" maxlength="1" size="1"
+                        style="position: absolute; top: 533px; left: 295px; text-align: center;" type="text"
+                        value="0">
+
+                    <img id="s1_4bit" src="{%static 'heLab/images/lightbulb.png"
+                        style="position : absolute; top:532px ; left : 535px;">
+                    <input disabled="true" id="s1_4bit_text" maxlength="1" size="1"
+                        style="position: absolute; top: 533px; left: 490px; text-align: center;" type="text"
+                        value="0">
+
+                    <img id="s0_4bit" src="{%static 'heLab/images/lightbulb.png' %}"
+                        style="position : absolute; top:532px ; left : 722px;">
+                    <input disabled="true" id="s0_4bit_text" maxlength="1" size="1"
+                        style="position: absolute; top: 533px; left: 677px; text-align: center;" type="text"
+                        value="0">
+                </div>
+            
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.link').click(function (e) {
+                e.preventDefault();
+                var content = $(this).attr('rel');
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+                $('.content').hide();
+                $('#' + content).show();
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

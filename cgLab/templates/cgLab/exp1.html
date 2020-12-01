@@ -1,0 +1,61 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Points & Co-ordinate Systems {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<center><h4>Points & Co-ordinate Systems</h4></center>
+<p>This experiment explains how points and co-ordinate systems are used together to represent two and three dimensional shapes.</p>
+<img src="{% static 'cgLab/vector.svg.png'%}" alt="">
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<center><img src="{% static 'cgLab/Cartesian-coordinate-system.png'%}" alt=""></center>
+<p>Two dimensional points are represented as perpendicular distance from orthogonal axes, usually called X and Y. So (2,3) represents a point 2 units from the y-axis and 3 units from the x-axis. If the co-ordinate axes are non-orthogonal, the point represents distances taken parallel to the axes.</p>
+<p>Three dimensional points are represented as distances from each of the three planes formed by the axes. So (2,3,4) represents a point 2 units from YZ-plane, 3 units from XZ-plane and 4 units from XY-plane.</p>
+<p>Coordinates can be 'homogenized' by adding an extra value to the tuple. In 3 dimensions, points are represented as (x,y,z,w) which is equivalent to (x/w, y/w, z/w) in ordinary co-ordinates. This is a convenient representation used heavily in computer graphics as it allows writing the common operations such as translation as a linear product.</p>
+
+
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand the representation of points in 2D or 3D space with orthogonal as well as non-orthogonal coordinate systems.</p>
+
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual.pdf'%}" download>Click here to download manual</a>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4>Procedure</h4>
+<p>This experiment is designed to teach how points and co-ordinate systems are represented in computer graphics. The tree at the right shows a point and the associated co-ordinate system.</p>
+<p>Start by editing the co-ordinates of the point and comparing how the point gets displayed. The co-ordinates can be edited by clicking on the node under <b> Instance->Shape->Vertices</b></p>
+<p>Now try modifying the co-ordinate system's origin and axis directions. This can be done by clicking on the nodes under <b>Instance->Co-ordinate System</b> . Notice how the point is redrawn using the modified co-ordinate system. Also notice how the absolute co-ordinates are displayed.</p>
+<p>All points shown within '[' and ']' use homogeneous co-ordinates, i.e., the fourth component <b>w</b> acts as a scaling factor for calculating the cartesian co-ordinates. Modify this component and notice how the point's co-ordinates get scaled.</p>
+<p>You can also modify the absolute co-ordinates of the point and see how the relative co-ordinates get calculated with respect to the co-ordinate system.</p>
+<p>This scene is currently shown in 2D but you can switch to 3D under the Display tab and perform all the previous actions in 3D. Drag with the right mouse button to rotate the view and use the mouse wheel to zoom in and out.</p>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

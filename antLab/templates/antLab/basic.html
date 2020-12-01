@@ -16,9 +16,11 @@
        
         h3 {
             display: inline;
-            padding: 4.5%;
+            padding: 1.1em;
         }
-
+        .cont {
+            display: none;
+        }
         .content {
             display: none;
         }
@@ -46,6 +48,10 @@
             font-weight: bold;
             color: darkgreen;
         }
+        .code{
+            border: 1px solid black;
+            background-color: rgb(189, 235, 247);
+        }
         {% block style %} 
         /* space for adding css */
         {% endblock %}
@@ -56,7 +62,7 @@
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Virtual Labs</a>
+        <a class="navbar-brand" href="/">Virtual Labs</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,7 +71,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/stream">Stream</a>
@@ -99,6 +105,9 @@
                 <h3><span class="badge badge-info">Procedure</span></h3>
             </a>
             <a class="link" href="#" rel="div5">
+                <h3><span class="badge badge-info">Excercise</span></h3>
+            </a>
+            <a class="link" href="#" rel="div6">
                 <h3><span class="badge badge-info">Quizes</span></h3>
             </a>
             
@@ -131,9 +140,15 @@
                 {% endblock %}
             </div>
 
+            <div class="content" id="div5">
+                {% block excercise %} 
+                <!-- experiment content -->
+                {% endblock %}
+            </div>
+
 
             
-            <div class="content " id="div5">
+            <div class="content " id="div6">
                  
                 <center>
                     <h4>Quizes</h4>
@@ -201,7 +216,14 @@
             $('.content').hide();
             $('#' + content).show();
         });
-
+        $('.excercise').click(function (e) {
+                e.preventDefault();
+                var content = $(this).attr('rel');
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+                $('.cont').hide();
+                $('#' + content).show();
+        });
         function getAnswers(){
             document.getElementById(userAnswer).innerHTML = "";
             var f = document.getElementsByTagName("input");

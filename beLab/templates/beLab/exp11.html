@@ -1,0 +1,193 @@
+{% extends 'beLab/basic.html'%}
+
+{%block title%} BJT Common Base Characteristics {% endblock %}
+
+{% load static %}
+{% block tutorial %}
+<h4>Theory</h4>
+<h5>Objective</h5>
+<p>At the end of the module the student would be able to explain</p>
+<ul>
+    <li> Explain structure of Bipolar Junction Transistor</li>
+    <li> Explain Operation of Bipolar Junction Transistor</li>
+    <li> Explain Common Base characteristics of a BJT</li>
+</ul>
+<h5>Structure of Bipolar Junction Transistor</h5>
+<p>A bipolar junction transistor, BJT, is a single piece of silicon with two back-to-back P-N junctions.BJTs can be made
+    either as PNP or as NPN.</p>
+<center><img src="{% static 'beLab/bjtcbth1.png'%}" alt=""></center>
+<center>Figure 1: Structures, layers and circuit symbol of NPN transistor</center>
+<p>They have three regions and three terminals, emitter, base, and collector represented by E, B, and C respectively.
+    The direction of the arrow indicates the direction of the current in the emitter when the transistor is conducting
+    normally. An easy way to remember this is NPN stands for "Not Pointing iN".</p>
+<center><img src="{% static 'beLab/bjtcbth2.png'%}" alt=""></center>
+<center>Figure 2:Structures, layers and circuit symbol of PNP transistor</center>
+<p><strong>Emmiter (E): </strong>:It is the region to the left end which supply free charge carriers i.e., electrons in
+    n-p-n or holes in p-n-p transistors.These majority carriers are injected to the middle region i.e. electrons in the
+    p region of n-p-n or holes in the n region of p-n-p transistor. Emitter is aheavily doped region to supply a large
+    number of majority carriers into the base.</p>
+<p><strong>Base (B):</strong> It is the middle region where either two p-type layers or two n-type layers are
+    sandwiched. The majority carriers from the emitter region are injected into this rgion.This region is thin and very
+    lightly doped.</p>
+<p><strong>Collector (C): </strong>It is the region to right end where charge carriers are collected.The area of this
+    region is largest compared to emitter and base region . The doping level of this region is intermediate between
+    heavily doped emitter region and lightly doped base region.</p>
+<strong>Note</strong>
+<ul>
+    <li>In digital electronics applications,the transistors are used as a switch. </li>
+    <li>Most bipolar switching circuits use NPN transistors. </li>
+</ul>
+<h5>Operation of Bipolar Junction Transistor</h5>
+<center><img src="{% static 'beLab/bjtcbth3.png'%}" alt=""></center>
+<center>Figure 3:Four Operating Conditions</center>
+<p><strong>Cut-off Region: </strong>Base-emitter junction is reverse biased. No current flow.</p>
+<p><strong>Saturation Region :</strong>Base-emitter junction is forward biased and Collector-base junction is forward
+    biased.</p>
+<p><strong>Active region : </strong>Base-emitter is junction forward biased and Collector-base junction is reverse
+    biased.</p>
+<p><strong>Breakdown Region: </strong>I<sub>C</sub> and V<sub>CE</sub> exceed specifications and can cause damage to the
+    transistor.</p>
+<hr>
+<p><strong>Cut-off Region: </strong> Base-emitter junction is reverse biased. No current flow.</p>
+<p><strong>Saturation Region :</strong>Base-emitter junction is forward biased and Collector-base junction is forward
+    biased.</p>
+<p><strong>Active region : </strong> Base-emitter is junction forward biased and Collector-base junction is reverse
+    biased.</p>
+<p><strong>Breakdown Region: </strong>I<sub>C</sub> and V<sub>CE</sub> \(I_C\) and \(V_{CE}\) exceed specifications and
+    can cause damage to the transistor.</p>
+<hr>
+<h5>Cut-off Region</h5>
+<p>In Cut-Off region both junctions are reverse biased, Base-emitter junction is reverse biased (\(V_{BE}&lt;0\))and
+    also Collector-Base junction is reverse biased(\(V_{CB}>0\)).With reverse biasing, all currents are zero.There are
+    some leakage currents associated with reverse biased junctions,but these currents are small and therefore can be
+    neglected. <br>
+    Application: Open switch</p>
+
+<hr>
+<h5>Forward Active Region</h5>
+<p>In Forward Active region Base-emitter junction is forward biased(\(V_{BE}>0\)) and Collector-Base junction is reverse
+    biased(\(V_{CB}>0\)). In this case, the forward bias of the BE junction will cause the injection of both holes and
+    electrons across the junction. The holes are of little consequence because the doping levels are adjusted to
+    minimize the hole current. The electrons are the carriers of interest. The electrons are injected into the base
+    region where they are called the minority carrier even though they greatly outnumber the holes. <br>
+    Application:Amplifier in analog circuits</p>
+<p>$$I_C= -α_F \times I_E + I_{CO}$$ <br>
+    where, <br>
+    \(α_F\) is the forward current transfer ratio <br>
+    \(I_{CO}\) is Collector reverse saturation current</p>
+<hr>
+<h5>Saturation Region</h5>
+<p>In Saturation region both junctions are Forward biased,Base-emitter junction is forward biased(\(V_{BE}>0\)) and also
+    Collector-Base junction is forward biased(\(V_{CB}&lt;0\)). Maximum currents flows through the transistor with only
+    a small voltage drop across the collector junction.The transistor also does not respond to any change in emitter
+    current or base-emitter voltage. <br>
+    Application:Closed switch</p>
+<hr>
+<h5>Reverse Active Region</h5>
+<p>In Reverse Active region Base-emitter junction is reverse biased(\(V_{BE}&lt;0\)) and Collector-Base junction is
+    forward biased(\(V_{CB}&lt;0\)).The operation is just the same as the forward active region, except all voltage
+    sources, and hence collector and emitter currents, are the reverse of the forward bias case. The current gain in
+    this mode is smaller than that of forward active mode for which this mode in general unsuitable for amplification.
+    <br>
+    Application:In digital circuits and analog switching circuits</p>
+
+<p>$$I_E = -α_R* I_C + I_{EO}$$ where, <br>
+    \(α_R\) is the reverse current transfer ratio\newline \(I_{EO}\) is the Emitter reverse saturation current</p>
+
+<p>This configuration is rarely used because most transistors are doped selectively to give forward current transfer
+    ratios very near unity, which automatically causes the reverse current transfer ratio to be very low.</p>
+<hr>
+<h5>BJT -Common Emitter Circuit</h5>
+<p>The DC behavior of the BJT can be described by the Ebers-Moll Model. The equations for the model are: <br>
+    $$I_F= I_{ES} \times ( exp^ \frac{V_{BE}}{V_T} -1)$$ <br>
+    $$I_R= I_{CS} \times(exp^ \frac{V_{CB}}{V_T} -1)$$ where, <br>
+    \(I _{ES}\) is base-emitter saturation currents, <br>
+    \(I_{CS}\) is base-collector saturation currents <br>
+    $$V_T = \frac{k \times T}{q}$$ <br>
+    where, <br>
+    k is the Boltzmann’s constant ( k = 1.381 e-23 V.C/ K ), <br>
+    T is the absolute temperature in degrees Kelvin, and <br>
+    q is the charge of an electron (q = 1.602 e-19 C).
+</p>
+<p>
+    $$β_F = \frac{α_F}{1 - α_F}$$ $$β_R= \frac{α_R}{1 - α_R}$$ <br>
+    where, <br>
+    \(β_F\) is large signal forward current gain of common-emitter configuration, <br>
+    \(β_R\) is the large signal reverse current gain of the common-emitter configuration <br>
+    $$ α_F=\frac{β_F}{1 + β_F}$$ <br>
+    $$α_R=\frac{β_R}{1 + β_R}$$ <br>
+    where, <br>
+    \(α_R\) is large signal reverse current gain of a common-base configuration, <br>
+    \(α_F\) is large signal forward current gain of the common-base configuration. <br>
+    $$I_C = α_F \times I_F - I_R$$ <br>
+    $$ I_E = -I_F + α_R * I_R$$ <br>
+    $$ I_B = (1 - α_F) \times I_F + (1 - α_R) \times I_R$$ <br>
+    The forward and reverse current gains are related by the expression <br>
+    $$ α_R \times I_{CS}=α_F \times I_{ ES} =I_S$$ <br>
+    where, <br>
+    \(I_S\) is the BJT transport saturation current. <br>
+    The parameters \(α_R\) and \(α_F\) are influenced by impurity concentrations and junction depths. <br>
+    The saturation current, \(I_S\) , can be expressed as <br>
+    $$ I_S = J_S \times A$$ <br>
+    where, <br>
+    A is the area of the emitter and <br>
+    \(J_S\) is the transport saturation current density</p>
+<h5>Input Characteristics</h5>
+<p>The most important characteristic of the BJT is the plot of the emitter current, I<sub>E</sub>, versus the
+    base-emitter voltage,V<sub>BE</sub>, for various values of the collector-base voltage, V<sub>CB</sub></p>
+<p>$$I_E=\phi (V_{BE},V_{CB}) \qquad for \quad constant \quad V_{CB}$$</p>
+<center><img src="{% static 'beLab/bjtcbth4.png'%}" alt=""></center>
+<center>Figure 4: Input Characteristics Circuit</center>
+<h5>Output Characteristics</h5>
+<p>The most important characteristic of the BJT is the plot of the collector current, I<sub>C</sub>, versus the
+    collector-base voltage,V<sub>CB</sub>, for various values of the emitter current, I<sub>E</sub> as shown on the
+    circuit on the right.</p>
+<p>$$I_C =\phi(V_{CB} , I_E) \qquad for \quad constant \quad I_E$$</p>
+<center><img src="{% static 'beLab/bjtcbth5.png'%}" alt=""></center>
+<center>Figure 5: Output Characteristics Circuit</center>
+{%endblock%}s
+
+
+{% block procedure %}
+<h4>Procedure</h4>
+<h5>BJT Common Base - Input Characteristics</h5>
+<ul>
+    <li> Initially set rheostat R<sub>h1</sub> = 1 Ω and rheostat R<sub>h2</sub> = 1 Ω </li>
+    <li> Set the Collector-Base Voltage(V<sub>CB</sub>) to 1 V by adjusting the rheostat R<sub>h2</sub>.</li>
+    <li> Base Emitter Voltage(V<sub>BE</sub>) is varied by adjusting the rheostat R<sub>h1</sub>. </li>
+    <li> Note the reading of emitter current(I<sub>E</sub>)in m Ampere. </li>
+    <li> Click on 'Plot' to plot the I-V characteristics of Common-Base configuration. A graph is drawn with VBE along
+        X-axis and I<sub>E</sub> along Y-axis. </li>
+    <li> Click on 'Clear' button to take another sets of readings </li>
+    <li> Now set the Collector-Emitter Voltage(VCB) to 2 V, 3 V, 4 V </li>
+</ul>
+<center><img src="{% static 'beLab/bjtcb_pr.png'%}" alt=""></center>
+<center>Figure 1</center>
+<h5>BJT Common Base - Output Characteristics</h5>
+<ul>
+  <li>  Initially set rheostat R<sub>h1</sub> = 1 Ω and rheostat R<sub>h2</sub> = 1 Ω </li>
+  <li>  Set the Emitter current(I<sub>E</sub>)1 mA by adjusting the rheostat R<sub>h1</sub> </li>
+  <li>  Vary the Collector-Base Voltage(V<sub>CB</sub>)is varied by adjusting the rheostat R<sub>h2</sub>. </li>
+  <li>  Note the reading of Collector current(I<sub>C</sub>). </li>
+  <li>  Click on 'Plot' to plot the I-V characteristics of Common-Base configuration. A graph is drawn with VCB along X-axis
+    and I<sub>C</sub> along Y-axis. </li>
+  <li>  Click on 'Clear' button to take another sets of readings </li>
+  <li>  Now set the Emitter Current(IE) to 2 mA </li>
+</ul>
+<center><img src="{% static 'beLab/bjtcb_pr (1).png'%}" alt=""></center>
+<center>Figure 2</center>
+{% endblock %}
+
+{% block simulation %}
+<h4>Click on the followings tab to redirect to simulation</h4>
+<br>
+
+<a href="bjtcbcOutput" target="blank">
+    <h4><span class="badge badge-info">BJT- CB OUTPUT CHARACTERISTICS</span></h4>
+</a>
+<a href="bjtcbcInput" target="blank">
+    <h4><span class="badge badge-info">BJT- CB INPUT CHARACTERISTICS</span></h4>
+</a>
+
+
+{% endblock %}

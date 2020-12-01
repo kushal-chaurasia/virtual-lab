@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'phpLab.apps.PhplabConfig',
     'fcnLab.apps.FcnlabConfig',
     'cnsLab.apps.CnslabConfig',
+    'contactus.apps.ContactusConfig',
 ]
 
 MIDDLEWARE = [

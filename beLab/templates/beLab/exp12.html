@@ -1,0 +1,112 @@
+{% extends 'beLab/basic.html'%}
+
+{%block title%} Studies on BJT CE Amplifier{% endblock %}
+
+{% load static %}
+{% block tutorial %}
+<h4>Theory</h4>
+<p>The common emitter configuration is widely used as a basic amplifier as it has both voltage and current
+    amplification.
+    Resistors \(R_{B1}\) and \(R_{B2}\) form a voltage divider across the base of the transistor. The function of this
+    network is to provide necessary bias condition and ensure that emitter-base junction is operating in the proper
+    region.</p>
+<p>In order to operate transistor as an amplifier, biasing is done in such a way that the operating point is in the
+    active region. For an amplifier the Q-point is placed so that the load line is bisected. Therefore, in practical
+    design \(V_{CE}\) is always set to \(V_{CC}/2\). This will confirm that the Q-point always swings within the active
+    region. This limitation can be explained by maximum signal handling capacity. For the maximum input signal, output
+    is produced without any distortion and clipping.</p>
+<h5>Bypass Capacitior</h5>
+<p>The emitter resistor RE is required to obtain the DC quiescent point stability. However the inclusion of \(R_E\) in
+    the circuit causes a decrease in amplification at higher frequencies. In order to avoid such a condition, it is
+    bypassed by a capacitor so that it acts as a short circuit for AC and contributes stability for DC quiescent
+    condition. Hence capacitor is connected in parallel with emitter resistance. $$ X_{CE}&lt;&lt; R_E $$ $$ \frac{1}{2
+    \times \pi \times f \times C_E} &lt;&lt; R_E $$ $$ C_E >> \frac{1}{2 \times \pi \times f \times R_E} $$</p>
+<h5>The Input/ Output Coupling (or Blocking) Capacitor</h5>
+<p>An amplifier amplifies the given AC signal. In order to have noiseless transmission of a signal (without DC), it is
+    necessary to block DC i.e. the direct current should not enter the amplifier or load. This is usually accomplished
+    by inserting a coupling capacitor between two stages. $$ X_{CC} &lt;&lt; R_i \times h_{ie} $$ $$ \frac{1}{2 \times
+    \pi \times f \times C_C} &lt;&lt; R_i \times h_{ie} $$ $$ C_C >> \frac{1}{2 \times \pi \times f \times (R_i \times
+    h_{ie})} $$ <br>
+
+    \(C_C\) - Output Coupling Capacitor <br>
+    \(C_B\) - Input Coupling Capacitor</p>
+<h5>Frequency response of Common Emitter Amplifier</h5>
+<p>Emitter bypass capacitors are used to short circuit the emitter resistor and thus increases the gain at high
+    frequency. The coupling and bypass capacitors cause the fall of the signal in the low frequency response of the
+    amplifier because their impedance becomes large at low frequencies. The stray capacitances are effectively open
+    circuits. In the mid frequency range large capacitors are effectively short circuits and the stray capacitors are
+    open circuits, so that no capacitance appears in the mid frequency range. Hence the mid band frequency gain is
+    maximum. At the high frequencies, the bypass and coupling capacitors are replaced by short circuits. The stray
+    capacitors and the transistor determine the response. <br>
+    The input resistance is medium and is essentially independent of the load resistance \(R_L\) . The output resistance
+    is relatively high and is essentially independent of the source resistance.</p>
+<center><img src="{% static 'beLab/ceampprc.png'%}" alt=""></center>
+<center>Figure 1</center>
+<p>The coupling capacitor, \(C_{C1}\) , couples the source voltage \(V_S\) to the biasing network. Coupling capacitor
+    \(C_{C2}\) connects the collector resistance \(R_C\) to the load \(R_L\) . The bypass capacitance \(C_E\) is used to
+    increase the midband gain, since it effectively short circuits the emitter resistance \(R_E\) at midband
+    frequencies. The resistance \(R_E\) is needed for bias stability. The external capacitors \(C_{C1}\), \(C_{C2}\),
+    \(C_E\) will influence the low frequency response of the common emitter amplifier. The internal capacitances of the
+    transistor will influence the high frequency cut-off. $$ A(s)=\frac{A_m \times S^2 \times (S+w_Z)}{(S+w_{L1})\times
+    (S+w_{L2})\times <br>
+    (S+w_{L3})\times (1+ \frac{S}{w_H})} $$ where, <br>
+    \(A_M\) is the midband gain, <br>
+    \(w_H\) is the frequency of the dominant high frequency pole, <br>
+    \(w_{L1}\), \(w_{L2}\), \(w_{L3}\) are low frequency poles introduced by the coupling and bypass capacitors, <br>
+    \(w_Z\) is the zero introduced by the bypass capacitor.
+</p>
+<P>The midband gain is obtained by short circuiting all the external capacitors and open circuiting the internal
+    capacitors. Figure 2 shows the equivalent for calculating the midband gain.</P>
+<center><img src="{% static 'beLab/midbandgain.png'%}" alt=""></center>
+<center>Figure 2</center>
+<P>$$ A_m=\frac{V_o}{V_s} =-β [r_{CE}|| R_C || R_L][\frac{R_B}{R_B+r_{pi}}][\frac{1}{R_S+(R_B||r_{pi})}]$$
+    It can be shown that the low frequency poles, \(w_{L1}\), \(w_{L2}\), \(w_{L3}\) can be obtained by the following
+    equations: $$ τ_1=\frac{1}{w_{L1}}=C_{C1} \times R_{IN} $$ where, $$ R_{IN}=R_{S}+[R_B || r_{pi}] $$ $$
+    τ_2=\frac{1}{w_{L2}}=C_{C2} \times [R_{L}+(R_C || r_{CE})] $$ $$ τ_3=\frac{1}{w_{L3}}=C_E \times R'_E $$ $$ R'_E=R_E
+    || [\frac{r_{pi}}{β_F +1}+(\frac{R_B || R_S}{β_F +1})]$$ $$ w_Z=\frac{1}{R_E \times C_E} $$ Normally, \(w_Z <
+        w_{L3}\) and the low frequency cut-off \(w_L\) is larger than the largest pole frequency. The low frequency
+        cut-off can be approximated as $$ w_L≅\sqrt(w_{L1})^2+(w_{L2})^2+(w_{L3})^2 $$ The high frequency equivalent
+        circuit of the common-emitter amplifier is shown in Figure 3.</P>
+        <center><img src="{% static 'beLab/highfreq.png'%}" alt=""></center>
+        <center>Figure 3</center>
+        <p>In Figure 3, \(C_μ\) is the collector-base capacitance, \(C_π\) is the emitter to base capacitance, \(r_X\)
+            is the resistance of silicon material of the base region between the base terminal B and an internal or
+            intrinsic base terminal B’. Using the Miller Theorem, it can be shown that the 3-dB frequency at high
+            frequencies is approximately given as $$ w_H^{-1}=(r_{pi}||[r_x+(R_B||R_S)])\times C_T $$ where, $$
+            C_T=C_π+C_μ[1+g_m(R_L|| R_C)] $$ and $$g_m=\frac{I_C}{V_T}$$</p>
+
+        {%endblock%}
+
+
+        {% block procedure %}
+        <h4>Procedure</h4>
+        <ul>
+            <li> The source voltage (VS) is set to 50mV at 1 KHz frequency. </li>
+            <li> Keeping source voltage constant, vary the frequency from 50 Hz in regular steps. </li>
+            <li> Set Source Resistance(RS)=100Ω. </li>
+            <li> Set Collector Resistance(RC)=4000Ω, Set Emitter Resistance(RE)=1000Ω, Set Load Resistance(RL)=2000Ω.
+            </li>
+            <li> Set Base Resistance1(RB1)=47 KΩ, Set Base Resistance2(RB2)=10KΩ. </li>
+            <li> Set Coupling Capacitor1(CC1)=10μF, Set Coupling Capacitor2(CC2) =10μF, Set Bypass Capacitance(CE)=10μF.
+            </li>
+            <li> Click on "Add to Table" button to add the readings to the table. </li>
+            <li> Vary the Frequency by keeping the resistances constant. </li>
+            <li> Click on "Plot" button to plot the Magnitude graph of the CE Amplifier, Frequency(Hz) along X-axis and
+                Magnitude(dB) along Y-axis. </li>
+            <li> Click on "Clear" button to take another set of readings. </li>
+        </ul>
+        <center><img src="{% static 'beLab/ceampprc (1).png'%}" alt=""></center>
+       
+        {% endblock %}
+
+        {% block simulation %}
+        <h4>Click on the followings tab to redirect to simulation</h4>
+        <br>
+
+        <a href="ceAmplifier" target="blank">
+            <h4><span class="badge badge-info">CE Amplifier</span></h4>
+        </a>
+
+
+
+        {% endblock %}

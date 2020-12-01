@@ -1,28 +1,214 @@
 {% extends 'seLab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Designing Test Suite {% endblock %}
 
 
 {%load static%}
 
 {% block introduction %}
 <!-- theory introduction -->
+<h4>Introduction</h4>
+<p>Development of a new software, like any other product, remains incomplete until it subjected to exhaustive tests. The
+   primary objective of testing is not to verify that all desired features have been implemented correctly. However, it
+   also includes verification of the software behavior in case of "bad inputs".</p>
+
+<p> In this experiment we discuss in brief about different types of testing, and provide mechanisms to have hands-on
+   experience on unit testing.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+<H4>Objectives</H4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+   <li> Learn about different techniques of testing a software </li>
+   <li> Design unit test cases to verify the functionality and locate bugs, if any </li>
+</ul>
+<h4>Software Testing</h4>
+<p>Testing software is an important part of the development life cycle of a software. It is an expensive activity.
+   Hence, appropriate testing methods are necessary for ensuring the reliability of a program. According to the
+   ANSI/IEEE 1059 standard, the definition of testing is the process of analyzing a software item, to detect the
+   differences between existing and required conditions i.e. defects/errors/bugs and to evaluate the features of the
+   software item.</p>
+<p>The purpose of testing is to verify and validate a software and to find the defects present in a software. The
+   purpose of finding those problems is to get them fixed.</p>
+<ul>
+   <li><strong>Verification: </strong> is the checking or we can say the testing of software for consistency and
+      conformance by evaluating the results against pre-specified requirements.</li>
+   <li><strong>Validation</strong> looks at the systems correctness, i.e. the process of checking that what has been
+      specified is what the user actually wanted.</li>
+   <li><strong>Defect </strong> is a variance between the expected and actual result. The defect’s ultimate source may
+      be traced to a fault introduced in the specification, design, or development (coding) phases.</li>
+</ul>
+<h4>Standards for Software Test Documentation</h4>
+<p>IEEE 829-1998 is known as the 829 Standard for Software Test Documentation. It is an IEEE standard that specifies the
+   form of a set of documents for use in software testing [i]. There are other different standards discussed below.</p>
+<ul>
+   <li> IEEE 1008, a standard for unit testing </li>
+   <li> IEEE 1012, a standard for Software Verification and Validation </li>
+   <li> IEEE 1028, a standard for software inspections </li>
+   <li> IEEE 1044, a standard for the classification of software anomalies </li>
+   <li> IEEE 1044-1, a guide to the classification of software anomalies </li>
+   <li> IEEE 830, a guide for developing system requirements specifications </li>
+   <li> IEEE 730, a standard for software quality assurance plans </li>
+   <li> IEEE 1061, a standard for software quality metrics and methodology </li>
+   <li> IEEE 12207, a standard for software life cycle processes and life cycle data </li>
+   <li> BS 7925-1, a vocabulary of terms used in software testing </li>
+   <li> BS 7925-2, a standard for software component testing </li>
+</ul>
+<h4>Testing Frameworks</h4>
+<p>Following are the different testing frameworks:</p>
+<ul>
+   <li> jUnit - for Java unit test </li>
+   <li> Selenium - is a suite of tools for automating web applications for software testing purposes, plugin for Firefox
+   </li>
+   <li> HP QC - is the HP Web-based test management tool. It familiarizes with the process of defining releases,
+      specifying requirements, planning tests, executing tests, tracking defects, alerting on changes, and analyzing
+      results. It also shows how to customize project </li>
+   <li> IBM Rational - Rational software has a solution to support business sector for designing, implementing and
+      testing software </li>
+</ul>
+<h4>Need for software Testing</h4>
+<p>There are many reasons for why we should test software, such as:</p>
+<ul>
+   <li> Software testing identifies the software faults. The removal of faults helps reduce the number of system
+      failures. Reducing failures improves the reliability and the quality of the systems. </li>
+   <li> Software testing can also improves the other system qualities such as maintainability, usability, and
+      testability. </li>
+   <li> In order to meet the condition that the last few years of the 20th century systems had to be shown to be free
+      from the ‘millennium bug’. </li>
+   <li> In order to meet the different legal requirements. </li>
+   <li> In order to meet industry specific standards such as the Aerospace, Missile and Railway Signaling standards.
+   </li>
+</ul>
+<h4>Test Case and Test Suite</h4>
+<p>A test case describes an input descriptions and an expected output descriptions. Input are of two types: preconditions (circumstances that hold prior to test case execution) and the actual inputs that are identified by some testing methods. The set of test cases is called a test suite. We may have a test suite of all possible test cases.</p>
+<h4>Types of Software Testing</h4>
+<p>Testing is done in every stage of software development life cycle, but the testing done at each level of software development is different in nature and has different objectives. There are different types of testing, such as stress testing, volume testing, configuration testing, compatibility testing, recovery testing, maintenance testing, documentation testing, and usability testing. Software testing are mainlyof following types</p>
+<ul>
+   <li><strong>Unit Testing</strong></li>
+   <li><strong>Integration Testing </strong></li>
+   <li><strong>System Testing</strong></li>
+</ul>
+<strong>Unit Testing</strong>
+<p>Unit testing is done at the lowest level. It tests the basic unit of software, that is the smallest testable piece of software. The individual component or unit of a program are tested in unit testing. Unit testing are of two types.</p>
+<ul><li><strong>Black Box Testing: </strong> Unit testing is done at the lowest level. It tests the basic unit of software, that is the smallest testable piece of software. The individual component or unit of a program are tested in unit testing. Unit testing are of two types.</li></ul>
+<p><strong>Equivalance Class Partitioning: </strong>In this approach, the domain of input values to a program is divided into a set of equivalence classes. e.g. Consider a software program that computes whether an integer number is even or not that is in the range of 0 to 10. Determine the equivalence class test suite. There are three equivalence classes for this program. - The set of negative integer - The integers in the range 0 to 10 - The integer larger than 10</p>
+<p><strong>Boundary Value analysis :</strong> In this approach, while designing the test cases, the values at boundaries of different equivalence classes are taken into consideration. e.g. In the above given example as in equivalence class partitioning, a boundary values based test suite is { 0, -1, 10, 11 }</p>
+<ul><li><strong>White Box Testing: </strong> It is also known as structural testing. In this testing, test cases are designed on the basis of examination of the code.This testing is performed based on the knowledge of how the system is implemented. It includes analyzing data flow, control flow, information flow, coding practices, exception and error handling within the system, to test the intended and unintended software behavior. White box testing can be performed to validate whether code implementation follows intended design, to validate implemented security functionality, and to uncover exploitable vulnerabilities.This testing requires access to the source code. Though white box testing can be performed any time in the life cycle after the code is developed, but it is a good practice to perform white box testing during the unit testing phase.</li></ul>
+<h4>Integration Testing</h4>
+<p>Integration testing is performed when two or more tested units are combined into a larger structure. The main objective of this testing is to check whether the different modules of a program interface with each other properly or not. This testing is mainly of two types:</p>
+<ul>
+   <li><strong>Top down approach</strong></li>
+   <li><strong>Bottom down approach</strong></li>
+</ul>
+<p>In bottom-up approach, each subsystem is tested separately and then the full system is tested. But the top-down integration testing starts with the main routine and one or two subordinate routines in the system. After the top-level ‘skeleton’ has been tested, the immediately subroutines of the ‘skeleton’ are combined with it and tested.</p>
+<h4>System Testing</h4>
+<p>System testing tends to affirm the end-to-end quality of the entire system. System testing is often based on the functional / requirement specification of the system. Non-functional quality attributes, such as reliability, security, and maintainability are also checked. There are three types of system testing</p>
+<ul>
+   <li><strong>Alpha Testing </strong> is done by the developers who develop the software. This testing is also done by the client or an outsider with the presence of developer or we can say tester.</li>
+   <li><strong>Beta testing </strong> is done by very few number of end users before the delivery, where the change requests are fixed, if the user gives any feedback or reports any type of defect.</li>
+   <li><strong>User acceptance </strong> is also another level of the system testing process where the system is tested for acceptability. This test evaluates the system's compliance with the client requirements and assess whether it is acceptable for software delivery</li>
+</ul>
+<p>An error correction may introduce new errors. Therefore, after every round of error-fixing, another testing is carried out, i.e. called regression testing. Regression testing does not belong to either unit testing, integration testing, or system testing, instead, it is a separate dimension to these three forms of testing.</p>
+<strong>Regression Testing</strong>
+<p>The purpose of regression testing is to ensure that bug fixes and new functionality introduced in a software do not adversely affect the unmodified parts of the program [2]. Regression testing is an important activity at both testing and maintenance phases. When a piece of software is modified, it is necessary to ensure that the quality of the software is preserved. To this end, regression testing is to retest the software using the test cases selected from the original test suite.</p>
+<strong>Example</strong>
+<p>Write a program to calculate the square of a number in the range 1-100</p>
+<pre>
+   #include <stdio.h>
+
+      int 
+      main()  
+      { 
+          int n, res; 
+          printf("Enter a number: "); 
+          scanf("%d", &n); 
+          if (n >= 1 && n <= 100)  
+          { 
+          res = n * n; 
+          printf("\n Square of %d is %d\n", n, res); 
+          } 
+          else if (n<= 0 || n > 100)    
+          printf("Beyond the range"); 
+       
+          return 0; 
+      }
+</pre>
+<p>Output</p>
+<pre>
+   
+ Inputs               Outputs		
+ I1 : -2		O1 :  Beyond the range
+ I2 :  0 	O2 :  Beyond the range 
+ I3 :  1		O3 :  Square of 1 is 1
+ I4 : 100	O4 :  Square of 100 is 10000
+ I5 : 101    O5 :  Beyond the range
+ I6 : 4      O6 :  Square of 4 is 16
+ I7 : 62		O7 :  Square of 62 is 3844
+ Test Cases
+ 
+ T1 : {I1 ,O1}
+ T2 : {I2 ,O2}
+ T3 : {I3, O3}
+ T4 : {I4, O4}
+ T5 : {I5, O5}
+ T6 : {I6, O6}
+ T7 : {I7, O7}
+</pre>
+<strong>Some Remark</strong>
+<p>A prevalent misconception among the beginners is that one should be concerned with testing only after coding ends. Testing is, in fact, not a phase towards the end. It is rather a continuous process. The efforts for testing should begin in the form of preparation of test cases after the requirements have been finalized. The Software Requirements Specification (SRS) document captures all features to be expected from the system. The requirements so identified here should serve as a basis towards preparation of the test cases. Test cases should be designed in such a way that all target features could be verified. However, testing a software is not only about proving that it works correctly. Successful testing should also point out the bugs present in the system, if any.</p>
 {% endblock %}
 
 {% block simulation %}
 <!-- simulation content -->
+<h4>Simulation</h4>
+<p>Exhaustive testing of a software is required to determine it is working as per expectations and requirements. Developers often do not have enough time (or at times interest) to test their codes thoroughly. To handle such scenarios, most projects usually have a dedicated testing team. However, unit testing, at least, is done by the developers.</p>
+<p>Irrespective of who performs testing, or what is being tested, testing usually involve some generic steps. In this simulation we provide a broad overview of the testing process.</p>
 {% endblock %}
 
 {% block caseStudy %}
 <!-- case study content -->
-{% endblock %}
+<h4>Case Study</h4>
+<hr>
+<strong># 1 : A Library Information System for SE VLabs Institute</strong>
+<hr>
+<p>The SE VLabs Institute has been recently setup to provide state-of-the-art research facilities in the field of Software Engineering. Apart from research scholars (students) and professors, it also includes quite a large number of employees who work on different projects undertaken by the institution.</p>
+<p>As the size and capacity of the institute is increasing with the time, it has been proposed to develop a Library Information System (LIS) for the benefit of students and employees of the institute. LIS will enable the members to borrow a book (or return it) with ease while sitting at his desk/chamber. The system also enables a member to extend the date of his borrowing if no other booking for that particular book has been made. For the library staff, this system aids them to easily handle day-to-day book transactions. The librarian, who has administrative privileges and complete control over the system, can enter a new record into the system when a new book has been purchased, or remove a record in case any book is taken off the shelf. Any non-member is free to use this system to browse/search books online. However, issuing or returning books is restricted to valid users (members) of LIS only.</p>
+<p>The final deliverable would a web application (using the recent HTML 5), which should run only within the institute LAN. Although this reduces security risk of the software to a large extent, care should be taken no confidential information (eg., passwords) is stored in plain text.</p>
+<hr>
+<hr>
+<p>As already discussed under the theory section, test case preparation could begin right after requirements identification stage. It is desirable (and advisable) to create a Requirements Traceability Matrix (RTM) showing a mapping from individual requirement to test case(s). A simplified form of the RTM is shown in table 1 (the numbers shown in this table are arbitrary; not specific to LIS).</p>
+<center>Table 1: A simplified mapping from requirements to test cases</center>
+<center><img src="{% static 'seLab/t19.png'%}" alt=""></center>
+<p>Table 1 states which test case should help us to verify that a specified feature has been implemented and working correctly. For instance, if test case # TC6 fails, that would indicate requirement # R4 has not fully realized yet. Note that it is possible that a particular requirement might need multiple test cases to verify whether it has been implemented correctly.</p>
+<p>To be specific to our problem, let us see how we can design test cases to verify the "User Login" feature. The simplest scenario is when both user name and password have been typed in correctly. The outcome will be that the user could then avail all features of LIS. However, there could be multiple unsuccessful conditions:</p>
+<ul>
+   <li> User ID is wrong </li>
+   <li> Password is wrong </li>
+   <li> User ID & password are wrong </li>
+   <li> Wrong password given twice consecutively </li>
+   <li> Wrong password given thrice consecutively </li>
+   <li> Wrong password given thrice consecutively, and security question answered correctly </li>
+   <li> Wrong password given thrice consecutively, and security question answered incorrectly </li>
+</ul>
+<p>We would create test case for the above stated login scenarios. These test cases together would constitute a test suite to verify the concerned requirement. Table 2 shows the details of this test suite.</p>
+<center>Table 2: A test suite to verify the "User Login" feature</center>
+<center><img src="{% static 'seLab/t21.png'%}" alt=""></center>
+<center><img src="{% static 'seLab/t20.png'%}" alt=""></center>
+<p>In a similar way, test suites corresponding to other user requirements could be created as well. A good test plan can reduce the burden of testing team by specifying what exactly they should focus on.</p>
+{% endblock %} 
 
 {% block procedure %}
 <!-- procedure content -->
+<h4>General Instructions</h4>
+<strong>Follow are the steps to be followed in general to perform the experiments</strong>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Solve the given list of exercises</li>
+</ul>
 {% endblock %}
 
 {% block excercise %}

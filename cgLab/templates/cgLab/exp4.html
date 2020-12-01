@@ -1,0 +1,64 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Transformations: Scaling {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<h4>Transformations: Scaling</h4>
+<p>This experiment explains the concept of scaling transformation.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<p>Scaling multiplies the distances from the co-ordinate axes by a constant factor. The scaling matrix which scales by v<sub>x</sub>, v<sub>y</sub> and v<sub>z</sub> units looks like:</p>
+<img src="{% static 'cgLab/scaling-matrix.png'%}" alt="">
+<p>On multiplication with a vector, the expected result is obtained:</p>
+<img src="{% static 'cgLab/point_scaling.png'%}" alt="">
+<p>A scaling transformation can also be interpreted as resizing the co-ordinate axes while keeping the points constant. Thus, a scaling by (2,3) will require redrawing each unit on the X-axis as 2 units and each unit on the Y-axis as 3.</p>
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand the effect of scaling on Points along any axis in 2D/3D space. We also learn the matrix representation for the scaling transformation and how to use it to compute the scaled point.</p>
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual_4.pdf'%}" download>Click here to download manual</a>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<ul>
+    <li> This experiment introduces the concept of the scaling transformation. </li>
+
+<li> The point has a scaling applied to it. Move the slider at the bottom to watch the point move to its new location. </li>
+
+<li> The tree has a node for the transformation applied to the point. This node shows the scaling value along each axis. As the slider is moved, the transformation animates between the starting and ending points. </li>
+
+<li> The scaling matrix T, being applied to the point is also shown. Edit the scale values along any axis and notice how this matrix gets changed. </li>
+
+<li> Transformations can also be interpreted as a modification of the co-ordinate system, while keeping the point in its original place. You can switch to this behavior at any time by checking the Transform co-ordinate systems checkbox under the Display tab. Use it to compare how the transformation works in both cases. </li>
+</ul>
+
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

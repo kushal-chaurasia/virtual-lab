@@ -21,7 +21,7 @@ def experiment3(request):
     return render(request,'antLab/exp3.html' , data)
 
 def experiment4(request):
-    result =AntnLabQuizes.objects.filter(experimentNO = "experiment4")
+    result =AntLabQuizes.objects.filter(experimentNO = "experiment4")
     data ={'Exams': result}
     return render(request,'antLab/exp4.html' , data)
 

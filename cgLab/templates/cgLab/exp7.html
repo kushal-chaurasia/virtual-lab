@@ -1,0 +1,63 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Projections and Cameras {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<h4>Projections and Cameras</h4>
+<p>This experiment explains perspective and orthogonal projections using Cameras.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<p>3D projection is any method of mapping three-dimensional points to a two-dimensional plane. There are 2 types of projections, Orthographic and Perspective.</p>
+<p><strong>Orthographic Projection </strong>is a form of parallel proection, where all the projection lines are orthogonal to the projection plane, resulting in every plane of the scene appearing in affine transformation on the viewing surface. An Orthographic camera captures the othographic projection of the points in the scene.</p>
+<p>An othographic camera, with left and right being vertical clipping planes, top and bottom being horizontal clipping planes, near and far being depth clipping planes, multiplies the current matrix M with the following matrix and replace the current matrix with the result.</p>
+<img src="{% static 'cgLab/ortho.png'%}" alt="">
+<p>When a human eye looks at a scene, object in the distance appear smaller than objects close by - this is known as <b>Perspective projection</b> . Unlike orthographic projection, perspective projection shows distant objects as smaller to provide additional realism.</p>
+<p>The perspective projection requires greater definition. The camera's position, orientation and field of view. Assuming the eye is located at (0,0,0) and (left, bottom, -near) & (right, top, -near) specify the lower-left & upper-right points on the near clipping plane and -f specifying the location of far clipping plane, the perspective projection matrix is</p>
+<img src="{% static 'cgLab/perspective.png'%}" alt="">
+
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand different projections and their matrix representations to project a 3D point. We also learn how to define an OpenGL camera and its various parameters effectively visualising the result.</p>
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual_7.pdf'%}" download>Click here to download manual</a>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<p> This experiment is designed to teach the orthographic and perspective projections using cameras and a bunny. Here we demonstrate different projections and setting up OpenGL cameras.</p>
+
+<p> A Camera node is similar to other Geometry nodes but always stays higher up in the hierarchy. Transformations can be applied to the camera by editing the transformation node just like for any other node. The camera is always placed at the origin of its Coordinate system looking towards -ve Z-axis. The camera view window show the scene as seen by the camera.</p>
+
+<p> A series of transformations have been applied to the Bunny model and also to the camera. Drag the slider to view the motion of camera and the bunny in global reference frame and how the effective motion of the bunny in the camera view.</p>
+
+<p> Try modfying the camera parameters to see the effect on the view. Also modify the camera alignment by modifying the coordinate system and adding transformations.</p>
+
+<p> Add a new orthographic camera and notice the differences between orhographic and projective views.</p>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics2.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

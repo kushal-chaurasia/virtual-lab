@@ -1,21 +1,288 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Basics of Network Simulation {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Introduction</h4>
+<p>Network simulation has become an integral part of most research works in the field of Computer Networks. Whether itis for understanding the behaviour of existing protocols, or to determine the performance of a new protocol, one doesn't often get access to real network devices. This gap has been filled up by network simulation to a large extent. </p>
+
+<p>In this experiment we will get familiar with one of the most popular open source network simulators, Network
+Simulator version 2 (ns2). The experiment makes one familiar with fundamental concepts of ns2, and provides step-by-step instructions on how to install it.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Learn the basic concepts about open source network simulator NS-2, and how to download, install and work with NS-2</li>
+    <li>Defining the different agents and their applications like TCP, FTP over TCP, UDP, CBR over UDP</li>
+    <li>Identifying and solving typical errors encountered during installation of NS-2</li>
+</ul>
+<hr>
+<h4>Introduction</h4>
+<p>Network Simulator version 2 (NS-2) is discrete event packet level simulator. The network simulator covers a very large number of application of different kind of protocols of different network types consisting of different network elements and traffic models. NS-2 is a package of tools that simulates behavior of networks such as creating network topologies, log events that happen under any load, analyze the events and understand the network. The aim of this first experiment is to learn how to use NS-2, to get acquainted with the simulated objects and understand the operations of network simulation. We will also look at how to analyze the outcome of a simulation.</p>
+<h4>Platform required to run network simulator</h4>
+<ul>
+    <li>Unix and Unix like systems </li>
+<li>Linux </li>
+<li>Free BSD </li>
+<li>SunOS/Solaris </li>
+<li>Windows 95/98/NT/2000/XP (requires Cygwin) </li>
+</ul>
+<h4>Backend Environment of Network Simulator</h4>
+<p>Network Simulator is based on two languages: C++ and OTcl. OTcl is the object oriented version of Tool Command Language. While the core of NS-2 is written in C++, one uses OTcl to write simulation scripts. C++ helps in the following way:</p>
+<ul>
+    <li>It helps to increase the efficiency of simulation.</li>
+<li>Its is used to provide details of the protocols and their operation.</li>
+<li>It is used to reduce packet and event processing time.</li>
+</ul>
+<strong>OTcl helps in the following way:</strong>
+<ul>
+   <li> With the help of OTcl we can describe different network topologies </li>
+<li>It helps us to specify the protocols and their applications </li>
+<li>It allows fast development </li>
+<li>Tcl is compatible with many platforms and it is flexible for integration </li>
+<li>Tcl is very easy to use and it is available in free </li>
+</ul>
+<p>And of course, there is a linkage between C++ and OTcl, which allows us to run the simulation scripts.</p>
+<h4>Basics of Tcl Programming for NS-2</h4>
+<p>Network simulation with NS-2 would involve the following general steps:</p>
+<ul>
+    <li>Initialization and termination aspects of network simulator object</li>
+<li>Defining the network topology: nodes, links, queues, mobility of nodes, if any</li>
+<li>Defining the network traffic: creating agents and their applications</li>
+<li>Setting trace for Network Animator (NAM) [optional]</li>
+<li>Tracing</li>
+</ul>
+<p>In this section, we provide a brief overview of the most commonly used features of NS-2. This summary has been prepared based on various tutorials on, and the manual for, NS-2. See the References section for some of the different tutorials available.</p>
+<strong>Initialization</strong>
+<p>To create a new simulator we write</p>
+<div class="code">
+    1 | set ns [new Simulator]
+</div>
+<p>From the above command we get that a variable ns is being initialized by using the set command. Here the code [new Simulator] is a instantiation of the class Simulator which uses the reserved word new. So we can call all the methods present inside the class simulator by using the variable 'ns'.</p>
+<strong>Creating the output files</strong>
+<div class="code">
+1 | # Create the trace files <br>
+2 | set tracefile [open out.tr w] <br>
+3 | $ns trace-all $tracefile <br>
+4 <br>  
+5 | # Create the nam files <br>
+6 | set namfile [open out.nam w] <br>
+7 | $ns namtrace-all $namfile
+
+</div>
+<p>In the above we create a output trace file 'out.tr' and a NAM visualization file 'out.nam'. But in the Tcl script they are not called by their names declared, while they are called by the pointers initialized for them such as 'tracefile' and 'namfile' respectively.The line which starts with # are commented. The next line opens the file 'out.tr' which is used for writing is declared 'w'. The next line uses a simulator method trace-all by which we will trace all the events in a particular format.</p>
+<p>The termination program is done by using a 'finish' procedure</p>
+<div class="code">
+    <pre>
+        1 |# Defining the 'finish' procedure'
+        2
+        3 | proc finish {} {
+        4      global ns tracefile namfile
+        5 |    $ns flush-trace
+        6 |    close $tracefile
+        7 |    close $namfile
+        8 |    exit 0
+        9 | }</pre>
+</div>
+<p>In the above, the keyword proc is used to declare a procedure called 'finish'. The keyword global is used to tell what variables are being used outside the procedure.</p>
+<p>flush-trace is a simulator method that dumps the traces on the respective files. The command close is used to close the trace files and the command exec is used to execute the NAM visualization. The command exit closes the application and returns zero as default for clean exit.</p>
+<P>In ns we end the program by calling the 'finish' procedure</P>
+<div class="code">
+    <pre>
+        1 | # End the program
+        2 | $ns at 125.0 "finish"</pre>
+</div>
+<p>Thus the entire operation ends at 125 seconds.To begin the simulation we will use the command</p>
+<div class="code">
+    <pre>
+        1 | # Start the the simulation process
+        2 | $ns run</pre>
+</div>
+<strong>Defining nodes, links, queues (topology)</strong>
+<p>Way to create a node:</p>
+<div class="code">
+    <pre>
+        1 | set n0 [$ns node]</pre>
+</div>
+<p>In the above we created a node that is pointed by a variable n0. While referring the node in the script we use $n0. Similarly we create another node n2. Now we will set a link between the two nodes.</p>
+<div class="code">
+    <pre>
+        1 | $ns duplex-link $n0 $n2 10Mb 10ms DropTail</pre>
+</div>
+<p>So we are creating a bi-directional link between nodes n0 and n2 with a capacity of 10 Mb/sec and a propagation delay of 10 ms.</p>
+<p>In NS an output queue of a node is implemented as a part of a link whose input is that node to handle the overflow at the queue. If the buffer capacity of the output queue is exceeded then the last packet arrived is dropped and here we will use a 'DropTail' option. There are other queue types such as RED (Random Early Discard) mechanism, FQ (Fair Queuing), DRR (Deficit Round Robin), SFQ (Stochastic Fair Queuing) also available.</p>
+<p>Now we will define the buffer capacity of the queue related to the above link</p>
+<div class="code">
+    <pre>
+        1 | # Set queue size of the link
+        2 | $ns queue-limit $n0 $n2 20</pre>
+</div>
+<p>So, if we summarize the above three things we get</p>
+<div class="code">
+    <pre>
+1 | # Create nodes
+2 |
+3 | set n0 [$ns node]
+4 | set n1 [$ns node]
+5 | set n2 [$ns node]
+6 | set n3 [$ns node]
+7 | set n4 [$ns node]
+8 | set n5 [$ns node]
+9 |
+10| # Create links between the nodes
+11|
+12| $ns duplex-link $n0 $n2 10Mb 10ms DropTail
+13| $ns duplex-link $n1 $n2 10Mb 10ms DropTail
+14| $ns simplex-link $n2 $n3 0.3Mb 100ms DropTail
+15| $ns simplex-link $n3 $n2 0.3Mb 100ms DropTail
+16| $ns duplex-link $n0 $n2 0.5Mb 40ms DropTail
+17| $ns duplex-link $n0 $n2 0.5Mb 40ms DropTail
+18|
+19| # Set queue-size of the link (n2-n3) to 20
+20| $ns queue-limit $n2 $n3 20</pre>
+</div>
+<h4>Agents and applications</h4>
+<strong>TCP</strong>
+<p>TCP is used to provide reliable transport of packets from one host to another host by sending acknowledgements on proper transfer or loss of packets. Thus, TCP requires bi-directional links in order for acknowledgements to return to the source.</p>
+<p>Now we will show how to set up tcp connection between two nodes</p>
+<div class="code">
+    <pre>
+    1 | # Setting a TCP connection
+    2 |
+    3 | set tcp [new Agent/TCP]
+    4 | $ns attach-agent $n0 $tcp
+    5 | set sink [new Agent/TCPSink]
+    6 | $ns attach-agent $n4 $sink
+    7 | $ns connect $tcp $sink
+    8 | $tcp set fid_ 1
+    9 | $tcp set packetSize_ 552</pre>
+</div>
+<p>The command set tcp [new Agent/TCP] gives a pointer called 'tcp' to the TCP agent object of ns. The command $ns attach-agent $n0 $tcp defines the source node of TCP connection. Next the command set sink [new Agent/TCPSink] defines the destination of TCP by a pointer called 'sink'. The next command $ns attach-agent $n4 $sink defines the destination node as n4. Next, the command $ns connect $tcp $sink makes the TCP connection between the source and the destination i.e n0 and n4. When we have several flows (such as TCP, UDP) in a network, to identify these flows we set their flow ID by using the command $tcp set fid_1. In the last line we set the packet size of TCP as 552 byte. The default packet size of TCP is 1000 B.</p>
+<strong>FTP over TCP</strong>
+<p>File Transfer Protocol (FTP) is a standard mechanism provided by the Internet for transferring files from one host to another. FTP differs from other client server applications in that it establishes two connections between the client and the server. One connection is used for data transfer and other one is used for providing control information. FTP uses the services of the TCP. The well Known port 21 is used for control connections and the other port 20 is used for data transfer.</p>
+<p>Here we will learn in how to run a FTP connection over a TCP:</p>
+<div class="code">
+    <pre>
+     1 | # Initiating FTP over TCP
+
+     2 | set ftp [new Application/FTP]
+     3 | $ftp attach-agent $tcp</pre>
+</div>
+<p>In above,the command set ftp [new Application/FTP] gives a pointer called 'ftp' which indicates the FTP application. Next, we attach the ftp application with tcp agent as FTP uses the services of TCP.</p>
+<strong>UDP</strong>
+<p>The User datagram Protocol is one of the main protocols of the Internet protocol suite. UDP helps the host to send send messages in the form of datagrams to another host which is present in a Internet protocol network without any kind of requirement for channel transmission setup. UDP provides a unreliable service and the datagrams may arrive out of order, appear duplicated, or go missing without notice. UDP assumes that error checking and correction is either not necessary or performed in the application, avoiding the overhead of such processing at the network interface level. Time-sensitive applications often use UDP because dropping packets is preferable to waiting for delayed packets, which may not be an option in a real-time system.</p>
+<p>Now we will learn how to create a UDP connection in network simulator.</p>
+<div class="code">
+    <pre>
+     1 | # Setup a UDP connection
+     2 | set udp [new Agent/UDP]
+     3 | $ns attach-agent $n1 $udp
+     4 | $set null [new Agent/Null]
+     5 | $ns attach-agent $n5 $null
+     6 | $ns connect $udp $null
+     7 | $udp set fid_ 2</pre>
+</div>
+<P>The command set udp [new Agent/UDP] gives a pointer called 'udp' which indicates the udp agent which is a object of ns. Then the command $ns attach-agent $n1 $udp defines the source node of UDP connection. Next the command set null [new Agent/Null] defines the destination of udp by a pointer called null. The next command $ns attach-agent $n5 $null defines the destination node as n5. Next, the command $ns connect $udp $null makes the UDP connection between the source and the destination i.e n1 and n5. To identify a particular flow we mark it using the command $udp set fid_2.</P>
+<strong>Constant Bit Rate (CBR)</strong>
+<p>Constant Bit Rate (CBR) is a term used in telecommunications, relating to the quality of service.When referring to codecs, constant bit rate encoding means that the rate at which a codec's output data should be consumed is constant. CBR is useful for streaming multimedia content on limited capacity channels since it is the maximum bit rate that matters, not the average, so CBR would be used to take advantage of all of the capacity. CBR would not be the optimal choice for storage as it would not allocate enough data for complex sections (resulting in degraded quality) while wasting data on simple sections.</p>
+<strong>CBR over UDP Connection</strong>
+<div class="code">
+    <pre>
+     1 | # Setup CBR over UDP
+     2 |
+     3 | set cbr [new Application/Traffic/CBR]
+     4 | $cbr attach-agent $udp
+     5 | $cbr set packetSize_ 1000
+     6 | $cbr set rate_ 0.01Mb
+     7 | $cbr set random_ false</pre>
+</div>
+<p>In the above we define a CBR connection over a UDP one. Well we have already defined the UDP source and UDP agent as same as TCP. Instead of defining the rate we define the time interval between the transmission of packets in the command $cbr set rate_ 0.01Mb. Next, with the help of the command $cbr set random_ false we can set random noise in cbr traffic. We can keep the noise by setting it to false or we can set the noise on by the command $cbr set random_ 1. We can set by packet size by using the command $cbr set packetSize_. The packet size is specified in bytes.</p>
+<strong>Scheduling Event</strong>
+<p>In ns the tcl script defines how to schedule the events or in other words at what time which event will occur and stop. This can be done using the command $ns at time event. Here in our program we will schedule when the ftp and cbr traffic should start and stop.</p>
+<div class="code">
+    <pre>
+     1 | # Scheduling the events
+     2 |
+     3 | $ns at 0.1 "$cbr start"
+     4 | $ns at 1.0 "$ftp start"
+     5 | $ns at 124.0 "$ftp stop"
+     6 | $ns at 124.5 "$cbr stop"</pre>
+</div>
+<strong>Network Animator</strong>
+<p>When we will run the above program in ns then we can can visualize the network in the NAM. But instead of giving random positions to the nodes, we can give suitable initial positions to the nodes and can form a suitable topology. So, in our program we can give positions to the nodes in NAM in the following way</p>
+<div class="code">
+    <pre>
+     1 | # Give position to the nodes (for NAM) 
+     2 |
+     3 | $ns duplex-link-op $n0 $n2 orient-right-down
+     4 | $ns duplex-link-op $n1 $n2 orient-right-up
+     5 | $ns simplex-link-op $n2 $n3 orient-right
+     6 | $ns simplex-link-op $n3 $n2 orient-left
+     7 | $ns duplex-link-op $n3 $n4 orient-right-up
+     8 | $ns duplex-link-op $n3 $n5 orient-right-down</pre>
+</div>
+<p>We can also define the color of CBR and TCP packets for identification in NAM. For this we use the following command</p>
+<div class="code">
+    <pre>
+     1 | # Marking the flows (for NAM)
+     2 | $ns color1 Blue
+     3 | $ns color2 Red</pre>
+</div>
+<p>To view the network animator we need to type the command: nam</p>
+<p>Network Animator could only be run on a desktop. This Virtual Lab does not provide any option to visualize the NAM output (apart from a few screenshots). Henceforth, we would skip creating NAM trace files in our code.</p>
+<h5>Tracing</h5>
+<strong>Tracing object</strong>
+<p>NS-2 simulation can produce visualization trace as well as ASCII file corresponding to the events that are registered at the network. While tracing ns inserts four objects: EnqT, DeqT, RecvT, and DrpT. EnqT registers information regarding the arrival of packet and is queued at the input queue of the link. When overflow of a packet occurs, then the information of the dropped packet is registered in DrpT. DeqT holds the information about the packet that is dequeued instantly. RecvT hold the information about the packet that has been received instantly.</p>
+<center><img src="{% static 'antLab/ns2_trace_file.png'%}" alt=""></center>
+<center>Figure-01: NS-2 trace file format (wired networks)</center>
+<strong>Structure of trace files</strong>
+<p>The following describe about the structure of the trace files produced for wired networks. The format of the trace files are different for wireless networks, and will be discussed in the Experiment on WiMax.</p>
+<ul>
+   <li> The first field is event.It gives you four possible symbols '+' '-' 'r' 'd'. These four symbols correspond respectively to enqueued, dequeued, received and dropped. </li>
+<li>The second field gives the time at which the event occurs </li>
+<li>The third field gives you the input node of the link at which the event occurs </li>
+<li>The fourth field gives you the the output node at which the event occurs </li>
+<li>The fifth field shows the information about the packet type.i.e whether the packet is UDP or TCP </li>
+<li>The sixth field gives the packet size </li>
+<li>The seventh field give information about some flags </li>
+<li>The eight field is the flow id(fid) for IPv6 that a user can set for each flow in a tcl script.It is also used for specifying the color of flow in NAM display </li>
+<li>The ninth field is the source address </li>
+<li>The tenth field is the destination address </li>
+<li>The eleventh field is the network layer protocol's packet sequence number </li>
+<li>The last field shows the unique id of packet </li>
+</ul>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Create a network with three nodes namely 0, 1 and 2. Establish a TCP connection between node 0 and node 2 such that node 0 will send TCP packets to node 2 via node 1.</p>
+<div class="simulator">
+    <h3>animation comess here</h3>
+</div>
+<p>At first the simulator is started and then the trace files, nam files ,finish procedure are defined. Next, three three nodes are created and connected by duplex links while defining bandwidth,delay and queue type.The queue size has been set to define the buffer capacity. A TCP connection is created between node 0 and node 2. Node 0 sends TCP packets to node 2 through node 1 while node 2 in turn send acknowledgements to node 0.The events are scheduled at a particular time.And at last we run to ns to view the simulation and get the required outputs.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4>Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+<li>View the simulation provided for a chosen, related problem</li>
+<li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+<li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+<li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the problem statement</li>
+<li>Click on the 'Run' button to execute the simulation script</li>
+<li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of the trace file would be displayed in the area below the 'Run' button</li>
+<li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area below the 'Run' button</li>
+<li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which would be discussed in a later section</li>
+</ul>
+
 {% endblock %}
 
 {% block experimentName %} {%endblock%}

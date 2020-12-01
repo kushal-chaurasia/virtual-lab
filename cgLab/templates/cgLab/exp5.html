@@ -1,0 +1,64 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Hierarchical Transformations: 2D Demo {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<h4>Hierarchical Transformations: 2D Demo</h4>
+<p>This experiment demonstrates the result of different sequences of transformation on a simple triangle.</p>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<p>We have learnt about Translation matrix <b>T</b>, Rotation matrices <b>R</b> and Scaling matrices <b>S</b> in our previous experiments. A sequence of these transforms can be represented using a composite matrix, say</p>
+<strong>M = R<sub>x</sub>TR<sub>y</sub>ST</strong>
+<p>Operations are not commutative but are associative.</p>
+<p>Translations are commutative: T<sub>1</sub>T<sub>2</sub> = T<sub>2</sub>T<sub>1</sub></p>
+<p>Scaling is commutative: S<sub>1</sub>S<sub>2</sub> = S<sub>2</sub>S<sub>1</sub></p>
+<p>Rotations are NOT commutative: R<sub>1</sub>R<sub>2</sub>  â R<sub>2</sub>R<sub>1</sub></p>
+<p>Also RT â  TR. Consider the following matrix representation.</p>
+<img src="{% static 'cgLab/rt-tr.png'%}" alt="">
+
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand the effective tranformation due to a series of transformations. We also learn the matrix representation for the computing the effective transformation.</p>
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual_5.pdf'%}" download>Click here to download manual</a>
+
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+ <p>This experiment introduces the concept of the hierarchical transformations. Here we show the effect of a series of transformations applied on a triangle. </p>
+
+ <p>We start with a scaling transformation applied to the triangle followed by a translation, rotation and another translation. All these transformations are animated. Drag the slider to animate the transformations on the triangle in order. </p>
+
+ <p>The tree has a node 'Transformation 1' for the transformations applied to the point. Select it and click edit to open the transformation edit panel which shows the list of transformations applied in order. Select any transformation and move it up or down with the respective buttons in the bottom and notice how the order of transformations effect the final result. </p>
+
+ <p>Try adding a new transformation to the list and notice the changes on the triangle. </p>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>Experiment</h4>
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

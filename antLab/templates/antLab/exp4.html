@@ -1,13 +1,44 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Simulation of a Satellite Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Introduction</h4>
+<p>A satellite works as an attendant around the orbit, collect information and relay them to destination. The geostationary satellite appears to be fixed from a ground observer and is useful for telecommunication, television broadcasting, weather forecasting etc. A low earth orbit satellite is closer to the earth and it provide different types of communication service in connection with the small ground terminals. </p>
+
+<p>In this experiment we will learn the simulation of how two terminals on ground are communicated with each other using geostationary satellite and low earth orbit satellite.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Get familiar with the basics of satellite network and how to simulate them with ns2</li>
+<li>Learn the simulation of geostationary satellite and Iridium constellation with ns2</li>
+</ul>
+<hr>
+<h4>Satellite</h4>
+<p>The word ‘Satellite’ comes from the Latin word ‘Satellit’  meaning an attendant, who is constantly revolving  and attaining a larger body.Figure-01 shows a picture of satellite.</p>
+
+<center><img src="{% static 'antLab/pic1.png'%}" alt=""></center>
+<center>Figure-01: Picture of a Satellite</center>
+
+<p>A satellite is kept in a mathematical calculable path called orbit, around another planet to collect information or communication.Figure-02 shows different satellite orbits.Here two different types of satellite orbits are discussed namely, Geostationary Orbit and Low Earth Orbit.</p>
+
+<center><img src="{% static 'antLab/pic3.png'%}" alt=""></center>
+<center>Figure-02: Types of Satellite Orbit</center>
+
+<strong>Geostationary Orbit</strong>
+<p>The rotational period of Geostationary Orbit is equal to that of earth. The geostationary satellite appear to be stationary from the earth surface as the earth and geostationary satellite move with the same speed. The orbit has zero inclination located directly above the equator (equatorial orbit ).</p>
+<p>The geostationary earth orbit satellites are modelled by "bent pipe" repeaters which receives radio frequency by an uplink channel and piped to corresponding downlink</p>
+
+<strong>Low Earth Orbit</strong>
+<p>A low earth orbit (LEO), circles close to the Earth. Generally, LEOs have altitudes between 500 and 2,000 km above the Earth’s surface. A special type of LEO is the Polar Orbit. The polar orbit is a LEO with a high inclination angle (close to 90degrees). So the LEO satellite move around the poles. Iridium and Teledesic are example of polar orbiting satellite systems and can be modelled in ns.</p>
+<p><strong>Courtesy: </strong>The following texts and ns codes are copied from the "The ns Manual, The VINT project, chapter-17 Satellite Networking in ns [i] ". For further details please refer the ns manual.</p>
+<hr>
+<h5>Simulating a Satellite network in ns2</h5>
 {% endblock %}
 
 {% block Simulation %}

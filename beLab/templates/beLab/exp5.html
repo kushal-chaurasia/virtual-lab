@@ -4,15 +4,173 @@
 
 {% load static %}
 {% block tutorial %}
-
+<h4>Theory</h4>
+<strong>Objectives</strong>
+<p>At the end of the experiment, the student should be able to</p>
+<ul>
+    <li> Explain the structure of a P-N junction diode </li>
+    <li> Explain the function of a P-N junction diode </li>
+    <li> Explain forward and reverse biased characteristics of a Silicon diode </li>
+    <li> Explain forward and reverse biased characteristics of a Germanium diode </li>
+</ul>
+<strong>Structure of P-N junction diode</strong>
+<p>The diode is a device formed from a junction of n-type and p-type semiconductor material. The lead connected to the
+    p-type material is called the anode and the lead connected to the n-type material is the cathode. In general, the
+    cathode of a diode is marked by a solid line on the diode.</p>
+<center><img src="{% static 'beLab/diodest.png'%}" alt=""></center>
+<center>Figure 1</center>
+<center><img src="{% static 'beLab/diodestr.png'%}" alt=""></center>
+<center>Figure 2</center>
+<strong>Function of a P-N junction diode in Forward Bias</strong>
+<p>The positive terminal of battery is connected to the P side(anode) and the negative terminal of battery is connected
+    to the N side(cathode) of a diode, the holes in the p-type region and the electrons in the n-type region are pushed
+    toward the junction and start to neutralize the depletion zone, reducing its width. The positive potential applied
+    to the p-type material repels the holes, while the negative potential applied to the n-type material repels the
+    electrons. The change in potential between the p side and the n side decreases or switches sign. With increasing
+    forward-bias voltage, the depletion zone eventually becomes thin enough that the zone's electric field cannot
+    counteract charge carrier motion across the p–n junction, which as a consequence reduces electrical resistance. The
+    electrons that cross the p–n junction into the p-type material (or holes that cross into the n-type material) will
+    diffuse into the nearby neutral region. The amount of minority diffusion in the near-neutral zones determines the
+    amount of current that may flow through the diode.</p>
+<center><img src="{% static 'beLab/frwd.png'%}" alt=""></center>
+<center>Figure 3</center>
+<strong>Function of a P-N junction diode in Reverse Bias</strong>
+<p>The positive terminal of battery is connected to the N side(cathode) and the negative terminal of battery is
+    connected to the P side(anode) of a diode. Therefore, very little current will flow until the diode breaks down.</p>
+<center><img src="{% static 'beLab/rvrsd.png'%}" alt=""></center>
+<center>Figure 4</center>
+<p>The positive terminal of battery is connected to the N side(cathode) and the negative terminal of battery is
+    connected to the P side(anode) of a diode, the 'holes' in the p-type material are pulled away from the junction,
+    leaving behind charged ions and causing the width of the depletion region to increase. Likewise, because the n-type
+    region is connected to the positive terminal, the electrons will also be pulled away from the junction, with similar
+    effect. This increases the voltage barrier causing a high resistance to the flow of charge carriers, thus allowing
+    minimal electric current to cross the p–n junction. The increase in resistance of the p–n junction results in the
+    junction behaving as an insulator.</p>
+<p>The strength of the depletion zone electric field increases as the reverse-bias voltage increases. Once the electric
+    field intensity increases beyond a critical level, the p–n junction depletion zone breaks down and current begins to
+    flow, usually by either the Zener or the avalanche breakdown processes. Both of these breakdown processes are
+    non-destructive and are reversible, as long as the amount of current flowing does not reach levels that cause the
+    semiconductor material to overheat and cause thermal damage.</p>
+<strong>Forward and reverse biased characteristics of a Silicon diode</strong>
+<p><strong>In forward baising: </strong> the positive terminal of battery is connected to the P side and the negative
+    terminal of battery is connected to the N side of the diode. Diode will conduct in forward biasing because the
+    forward biasing will decrease the depletion region width and overcome the barrier potential. In order to conduct,
+    the forward biasing voltage should be greater than the barrier potential. During forward biasing the diode acts like
+    a closed switch with a potential drop of nearly 0.6 V across it for a silicon diode. The forward and reverse bias
+    characteristics of a silicon diode. From the graph, you may notice that the diode starts conducting when the forward
+    bias voltage exceeds around 0.6 volts (for Si diode). This voltage is called cut-in voltage.</p>
+<center><img src="{% static 'beLab/frwpltsi.png'%}" alt=""></center>
+<center>Figure 5</center>
+<p><strong>In reverse baising: </strong>the positive terminal of battery is connected to the N side and the negative
+    terminal of battery is connected to the P side of a diode. In reverse biasing, the diode does not conduct
+    electricity, since reverse biasing leads to an increase in the depletion region width; hence current carrier charges
+    find it more difficult to overcome the barrier potential. The diode will act like an open switch and there is no
+    current flow.</p>
+<strong>Forward and reverse biased characteristics of a Germanium diode</strong>
+<p><strong>In forward baising: </strong>the positive terminal of battery is connected to the P side and the negative
+    terminal of battery is connected to the N side of the diode. Diode will conduct in forward biasing because the
+    forward biasing will decrease the depletion region width and overcome the barrier potential. In order to conduct,
+    the forward biasing voltage should be greater than the barrier potential. During forward biasing the diode acts like
+    a closed switch with a potential drop of nearly 0.3 V across it for a germanium diode. The forward and reverse bias
+    characteristics of a germanium diode. From the graph, you may notice that the diode starts conducting when the
+    forward bias voltage exceeds around 0.3 volts (for Ge diode). This voltage is called cut-in voltage.</p>
+<center><img src="{% static 'beLab/frwpltge.png'%}" alt=""></center>
+<center>Figure 6</center>
+<p><strong>In reverse baising: </strong>the positive terminal of battery is connected to the N side and the negative
+    terminal of battery is connected to the P side of a diode. In reverse biasing, the diode does not conduct
+    electricity, since reverse biasing leads to an increase in the depletion region width; hence current carrier charges
+    find it more difficult to overcome the barrier potential. The diode will act like an open switch and there is no
+    current flow.</p>
+<h4>Diode Equation</h4>
+<p>In the forward-biased and reversed-biased regions, the current (I<sub>f</sub>), and the voltage (V<sub>f</sub>), of a
+    semiconductor diode are related by the diode equation:</p>
+<center><img src="{% static 'beLab/formula1.png'%}" alt=""></center>
+<p>where, <br>
+    <b>I<sub>S</sub></b> is reverse saturation current or leakage current, <br>
+    <b>I<sub>f</sub></b> is current through the diode(forward current), <br>
+    <b>V<sub>f</sub></b> is potential difference across the diode terminals(forward voltage) <br>
+    <b>V<sub>T</sub></b> is thermal voltage, given by</p>
+<center><img src="{% static 'beLab/formula2.png'%}" alt=""></center>
+<p>
+    and <br>
+    k is Boltzmann’s constant = 1.38x10<sup>-23</sup> J /°Kelvin, <br>
+    q is the electronic charge = 1.6x10<sup>-19</sup> joules/volt(Coulombs), <br>
+    T is the absolute temperature in °Kelvin(°K = 273 + temperature in °C), <br>
+    At room temperature (25 °C), the thermal voltage is about 25.7 mV, <br>
+    n is an empirical constant between 0.5 and 2</p>
+<p>The empirical constant, n, is a number that can vary according to the voltage and current levels. It depends on
+    electron drift, diffusion, and carrier recombination in the depletion region. Among the quantities affecting the
+    value of n are the diode manufacture, levels of doping and purity of materials.</p>
+<p>If n=1, the value of k×Tq is 26 mV at 25°C.
+    When n=2, the value of k×Tq becomes 52 mV. For germanium diodes, n is usually considered to be close to 1. For
+    silicon diodes, n is in the range of 1.3 to 1.6.</p>
+<strong>Note</strong>
+<ul>
+    <li> Ideal Diode Model:Diode is a simple switch that is either closed (conducting) or open (non conducting).
+        Specifically, the diode is a short circuit, like a closed switch, when voltage is applied in the forward
+        direction, and an open circuit, like an open switch, when the voltage is applied in the reverse direction. </li>
+    <li> Offset Voltage Model:The offset voltage model adds the barrier potential to the ideal switch model. When the
+        diode is forward biased it is equivalent to a closed switch in series with a small equivalent voltage source
+        equal to the barrier potential (0.6 V for Silicon, 0.2 for germanium) with the positive side towards the anode.
+        When the diode is reverse biased, it is equivalent to an open switch just as in the ideal model. </li>
+    <li> Complete diode Model:It is the most accurate of the diode models. The Complete diode model of a diode consists
+        of the barrier potential, the small forward dynamic resistance and the ideal diode. The resistor approximates
+        the semiconductor resistance under forward bias. This diode model most accurately represents the true operating
+        characteristics of the real diode. </li>
+    <li> When a diode is reverse biased a leakage current flows through the device. This current can be effectively
+        ignored as long as the reverse breakdown voltage of the diode is not exceeded. At potentials greater than the
+        reverse breakdown voltage, charge is pulled through the p-n junction by the strong electric fields in the device
+        and large reverse current flows. This usually destroys the device. There are special diodes that are designed to
+        operate in breakdown. Such diodes are called zener diodes and used as voltage regulators. </li>
+</ul>
+<strong>When is each Model used ?</strong>
+<p><strong>Ideal diode Model: </strong>This is primarily used in troubleshooting. Is the diode working or not. The
+    greatest utility of the ideal diode model is in determining which diodes are on and which are off in a multi-diode
+    circuit.</p>
+<p><strong>Offset Voltage Model: </strong>This is used when a more accurate determination of load current or voltage is
+    required.</p>
+<p><strong>Complete Diode Model: </strong>This is use during the actual design of circuits using diodes.</p>
 {%endblock%}
 
 
 {% block procedure %}
-
+<h4>Procedure</h4>
+<Strong>Forward Baised Si Diode </Strong>
+<ul>
+    <li>Set DC voltage to 0.2 V . </li>
+    <li>Select the diode. </li>
+    <li>Set the resistor. </li>
+    <li>Voltmeter is placed parallel to Silicon diode and ammeter series with resistor. </li>
+    <li>The positive side of battery to the P side(anode) and the negative of battery to the N side(cathode) of the
+        diode. </li>
+    <li>>Now vary the voltage upto 5V and note the Voltmeter and Ammeter reading for particular DC voltage . </li>
+    <li>Take the readings and note Voltmeter reading across Silicon diode and Ammeter reading. </li>
+    <li>Plot the V-I graph and observe the change. </li>
+    <li>Calculate the dynamic resistance of the diode. rd=ΔV/ΔI </li>
+    <li>Therefore from the graph we see that the diode starts conducting when the forward bias voltage exceeds around
+        0.6 </li>
+    <li>volts (for Si diode). This voltage is called cut-in voltage. </li>
+</ul>
+<center><img src="{% static 'beLab/diodefrw_pr.png'%}" alt=""></center>
+<center>Figure 1</center>
+<strong>Reversed Bias Si diode</strong>
+<ul>
+     <li>Set DC voltage to 0.2 V . </li>
+     <li>Select the diode. </li>
+     <li>Set the resistor. </li>
+    Voltmeter is placed parallel to Silicon diode and ammeter series with resistor. </li>
+    The positive terminal of battery is connected to the N side(cathode) and the negative terminal of battery is
+    connected to the P side(anode) of a diode. </li>
+     <li>Now vary the voltage upto 30V and note the Voltmeter and Ammeter reading for DC voltage . </li>
+     <li>Take the readings and note Voltmeter reading across Silicon diode and Ammeter reading. </li>
+     <li>Plot the V-I graph and observe the change. </li>
+</ul>
+<center><img src="{% static 'beLab/diodervrs_pr.png'%}" alt=""></center>
+<center>Figure 2</center>
 {% endblock %}
 
 {% block simulation %}
+
 <h4>Click on the followings tab to redirect to simulation</h4>
 
 <a href="/beLab/diode1" target="blank">
@@ -21,5 +179,5 @@
 <a href="/beLab/diode2" target="blank">
     <h4><span class="badge badge-info">Reverse Bias Sillicon Diode</span></h4>
 </a>
-    
+
 {% endblock %}

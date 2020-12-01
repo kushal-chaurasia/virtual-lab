@@ -279,9 +279,8 @@ One or more attribute(s) of an entity set can be used to define the following ke
             <th>Add</th>
         </tr>
         <tr>
-            <form onsubmit="addEntity();" id="table1">
                 <td><input type="text" class="form-control" name="entity" placeholder="Name of Entity" id="entity"></td>
-                <td> <input type="checkbox" aria-label="Weak or Not"></td>
+                <td> <input type="checkbox" aria-label="Weak or Not" id="weak"> Weak</td>
                 <td><button type="button" class="btn btn-info" id="addEntity">Add</button></td>
             </form> 
         </tr>
@@ -296,9 +295,9 @@ One or more attribute(s) of an entity set can be used to define the following ke
             <th>Add</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><select class="eventList"  id="eventList"></select></td>
+            <td><input type="text" class="form-control" name="attribute" id="attribute"></td>
+            <td><input type="checkbox"  id="primaryKey"> Primary Key</td>
             <td></td>
         </tr>
         <br>
@@ -313,6 +312,18 @@ One or more attribute(s) of an entity set can be used to define the following ke
             <th>Constraints</th>
             <th>Add</th>
         </tr>
+        <tr>
+            <td><select class="eventList"></select></td>
+            <td><input type="text" class="form-control" name="relation" id="relation"></td>
+            <td><select class="eventList"></select></td>
+            <td><select id="constraints">
+            <option value="mtm">Many to Many</option>
+            <option value="mto">Many to One</option>
+            <option value="oto">One to One</option>
+            <option value="otm">One to Many</option>
+            </select></td>
+            <td></td>
+        </tr>
     </table>
     <br>
     <strong>Table #4: Entities and their attributes</strong>
@@ -323,9 +334,9 @@ One or more attribute(s) of an entity set can be used to define the following ke
             <th>Weak</th>
         </tr>
         <tr>
+            <td><span id = "entityData"></span></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td><span id="weakValue"></span></td>
         </tr>
     </table>
     <br>
@@ -336,7 +347,10 @@ One or more attribute(s) of an entity set can be used to define the following ke
             <th>Relation</th>
             <th>Entity</th>
             <th>Constraints</th>
-            <th>Remove</th>
+            
+        </tr>
+        <tr id="final">
+
         </tr>
     </table>
 </div>

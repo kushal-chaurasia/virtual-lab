@@ -1,0 +1,100 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%}Transformation Rotation {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<h4>Transformation Rotation</h4>
+<p>"In geometry and linear algebra, a rotation is a transformation in a plane or in space that describes the motion of a
+    rigid body around a fixed point. A rotation is different from a translation, which has no fixed points. A rotation
+    and the above-mentioned transformations are isometries; they leave the distance between any two points unchanged
+    after the transformation."</p>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Theory</h4>
+<p>Rotation transformation rotates points about an axis through the origin. Rotation about the co-ordinate axes X, Y and
+    Z is a standard operation, which is used often in graphics applications.</p>
+<p>Rotation is performed by multiplying the point with a Rotation Matrix. There are specific matrices for rotations
+    about X, Y and Z axes.</p>
+<img src="{% static 'cgLab/rotation-matrix.png'%}" alt=""> <br>
+<strong>Rotations can also be performed about an arbitrary axis. This can be done in the following manner:</strong>
+<ul>
+    <li> Rotate the arbitrary axis about one of the co-ordinate axes, say Y, to align it to one of the co-ordinate
+        planes,
+        say XY. </li>
+    <li> Rotate this axis about the Z axis to align it to the Y axis. </li>
+    <li> Perform the required rotation about the Y axis using RY. </li>
+    <li> Reverse the steps 2 and 1 to put the axis back in its original alignment. </li>
+</ul>
+<p>Rotation matrices rotate all points about an axis passing through the origin. In order to rotate about a particular
+    point, the point must be translated to origin first. Once the rotation is performed, the point must be translated
+    back to its original location. <br>
+    Thus the matrix for rotating about a particular point is: <br>
+    M = T<sup>-1</sup>RT <br>
+    where T translates the point to origin and R is the rotation matrix.
+</p>
+<p>It is important to know the frame of reference when considering rotations, as all rotations are described relative to
+    a particular frame of reference. In general for any orthogonal transformation on a body in a coordinate system there
+    is an inverse transformation which if applied to the frame of reference results in the body being at the same
+    coordinates. For example in two dimensions rotating a body clockwise about a point keeping the axes fixed is
+    equivalent to rotating the axes counterclockwise about the same point while the body is kept fixed. Thus, a rotation
+    of 45째 about Z-axis is equivalent to rotating the coordinate system by -45째 about the Z-axis.</p>
+
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective</h4>
+<p>Objective of this experiment is to understand the effect of rotation about an axis on Points in 2D/3D space. We also
+    learn the matrix representation for the translation and how to use it to compute the translated point.</p>
+
+<h4>Manual</h4>
+<a href="{%static 'cgLab/vlabs-manual_3'%}" download>Click here to download manual</a>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4>Procedure</h4>
+<ul>
+    <li> This experiment introduces the concept of the rotation transformation. </li>
+
+    <li> The point has a rotation applied to it. Move the slider at the bottom to watch the rotation of the point about
+        origin. </li>
+
+    <li> The tree has a node for the transformation applied to the point. This node shows the rotation axis and the
+        angle by which the point is rotated. As the slider is moved, the transformation animates between the starting
+        and ending points. </li>
+
+    <li> The rotation matrix R, being applied to the point is also shown. Edit the rotation parameters and notice how
+        this matrix gets changed. </li>
+
+    <li> Switch between the two interpretations of rotation at any time by checking the Transform co-ordinate systems
+        checkbox under the Display tab. Use it to compare how the rotation works in both cases. viz., rotation of point
+        with respect to the coordinate axes and the rotation of the coordinate axes wrt the point. </li>
+
+    <li> While rotating along some axes, you may require to switch to a 3 dimensional world. This can be done by
+        checking the 3D checkbox under the Display tab. Drag with the right mouse button to rotate the world. </li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<ul>
+    <li>Please download the appropriate Virtual Lab Graphics package below. <br>
+    <a href="{%static 'cgLab/VirtualLabGraphics.zip'%}" download> Download</a></li>
+    <li>Save the VirtualLabGraphics.zip file and double click it to extract.</li>
+    <li>Run the Start.jar in the extracted folder (VirtualLabGraphics folder) to start the experiments</li>
+    <ul>
+        <li>Windows/MacOSX users can start the experiment by double clicking the Start.jar file.</li>
+        <li>Linux users should run Start.jar by executing the following command in the terminal. <br>
+            Change to the Virtual Lab Directory. <br>
+            $ cd VirtualLabGraphics/ <br>
+            Execute the experiment using the command: <br>
+            $ java -jar Start.jar</li>
+    </ul>
+</ul>
+{% endblock %}

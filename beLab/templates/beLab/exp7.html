@@ -4,12 +4,119 @@
 
 {% load static %}
 {% block tutorial %}
-
+<h4>Theory</h4>
+<h5>Objective</h5>
+<p>At the end of the modue the students will be able to</p>
+<ul>
+    
+<li> Explain Rectification </li>
+<li> Explain Center Tapped Full Wave Rectification </li>
+<li> Explain Bridge Full Wave Rectification </li>
+</ul>
+<h5>Rectification</h5>
+<center><img src="{% static 'beLab/rectifier.png'%}" alt=""></center>
+<center>Figure 1</center>
+<p>A rectifier is a device that converts alternating current (AC) to direct current (DC), a process known as rectification. Rectifiers are essentially of two types – a half wave rectifier and a full wave rectifier.</p>
+<h5>Full Wave Rectifier</h5>
+<p>A full-wave rectifier is exactly the same as the half-wave, but allows unidirectional current through the load during the entire sinusoidal cycle (as opposed to only half the cycle in the half-wave). A full-wave rectifier converts the whole of the input waveform to one of constant polarity (positive or negative) at its output. Let us see our half wave rectifier example and deduce the circuit.</p>
+<center><img src="{% static 'beLab/fullwavrec.png'%}" alt=""></center>
+<center>Figure 2</center>
+<p>For a half wave Rectifier this is what we have observed</p>
+<center><img src="{% static 'beLab/fullwavrcshft.png'%}" alt=""></center>
+<center>Figure 3</center>
+<p>If we change the phase of the input waveform by 180 degrees</p>
+<center><img src="{% static 'beLab/fullwavshft1rc.png'%}" alt=""></center>
+<center>Figure 4</center>
+<p>Now if we add these two circuits, we would get</p>
+<center><img src="{% static 'beLab/fullwavcmbrc.png'%}" alt=""></center>
+<center>Figure 5</center>
+<h5>Full Wave Rectifier - Circuit</h5>
+<p>So, we have seen that this rectifier circuit consists of two sources which have a phase difference along with two diodes. When V1 is positive, V2 is negative. Hence the top diode(D1) will be a short and the bottom diode(D2) will be an open. On the other hand, when V1 is negative, V2 is positive. Hence the bottom diode(D2) will be on and the top diode(D1) will be an open circuit.</p>
+<center><img src="{% static 'beLab/fullwavreccrt.png'%}" alt=""></center>
+<center>Figure 6</center>
+<H5>Full Wave Rectifier – Waveforms</H5>
+<center><img src="{% static 'beLab/fullwavg1.png'%}" alt=""></center>
+<center>Figure 7</center>
+<center><img src="{% static 'beLab/fullwavg2.png'%}" alt=""></center>
+<center>Figure 8</center>
+<center><img src="{% static 'beLab/fullwavg3.png'%}" alt=""></center>
+<center>Figure 9</center>
+<P>The resulting waveform of the schematic is shown above. This configuration is rarely used because sometimes it may be impractical to obtain two voltage sources and it is difficult to SYNC the sources. Let us see how a single source can be used.</P>
+<h5>Full Wave Rectifier – Center Tapped Transformer</h5>
+<p>A Full-Wave Rectifier can be constructed using Center-Tapped transformer – which give us two shifted sinusoids so that exactly one of the waveforms is positive at one time and two diodes. As compared to the half wave rectifier we use two diodes instead of one, one of the two diodes remains in conduction in both of the half cycles. At any point in time, only one of the diodes is forward biased. This allows for continuous conduction through load.</p>
+<center><img src="{% static 'beLab/fullr8.png'%}" alt=""></center>
+<center>Figure 10</center>
+<center><img src="{% static 'beLab/fullr9.png'%}" alt=""></center>
+<center>Figure 11</center>
+<img src="{% static 'beLab/formula20.png'%}" alt="">
+<H5>Center Tapped Transformer – Positive cycle</H5>
+<center><img src="{% static 'beLab/cntrwvp.png'%}" alt=""></center>
+<center>Figure 12</center>
+<img src="{% static 'beLab/formula21.png'%}" alt="">
+<h5>Center Tapped Transformer– Negative cycle</h5>
+<center><img src="{% static 'beLab/cntrwvn.png'%}" alt=""></center>
+<center>Figure 13</center>
+<img src="{% static 'beLab/formula22.png'%}" alt="">
+<h5>Bridge Rectifier</h5>
+<p>Bridge rectifier uses 4 rectifying diodes connected in a "bridged" configuration to produce the desired output but does not require a special centre tapped transformer, thereby reducing its size and cost. The single secondary winding is connected to one side of the diode bridge network and the load to the other side as shown below.</p>
+<center><img src="{% static 'beLab/fullwaverecbridgeckt.png'%}" alt=""></center>
+<center>Figure 14</center>
+<h5>Bridge Rectifier – Positive Half Cycle</h5>
+<p>During the positive half cycle of the supply diodes D1 and D2 conduct in series while diodes D3 and D4 are reverse biased (ideally they can be replaced with open circuits) and the current flows through the load as shown below.</p>
+<center><img src="{% static 'beLab/fullwvrp.png'%}" alt=""></center>
+<center>Figure 15</center>
+<img src="{% static 'beLab/formula23.png'%}" alt="">
+<p>where <br>
+<b><i>V<sub>I</sub></i></b> is the input voltage<br>
+<b><i>V<sub>B</sub></i></b>is barrier potential,<br>
+<b><i>r<sub>d</sub></i></b>is diode resistance<br></p>
+<h5>Bridge Rectifier – Negative Half Cycle</h5>
+<p>During the negative half cycle of the supply, diodes D3 and D4 conduct in series, but diodes D1 and D2 switch of as they are now reverse biased. The current flowing through the load is the same direction as before.</p>
+<center><img src="{% static 'beLab/fullwvrn.png'%}" alt=""></center>
+<center>Figure 16</center>
+<img src="{% static 'beLab/formula24.png'%}" alt="">
+<h5>Average DC Load Voltage</h5>
+<center><img src="{% static 'beLab/formula25.png'%}" alt=""></center>
+<h5>Average Load Current</h5>
+<center><img src="{% static 'beLab/formula26.png'%}" alt=""></center>
+<h5>RMS Load Current</h5>
+<center><img src="{% static 'beLab/formula27.png'%}" alt=""></center>
+<h5>RMS Load Voltage</h5>
+<center><img src="{% static 'beLab/formula28.png'%}" alt=""></center>
+<p><strong>Form Factor: </strong> It is defined as the ratio of rms load voltage and average load voltage.</p>
+<img src="{% static 'beLab/formula29.png'%}" alt="">
+<p><strong>Efficiency: </strong>It is defined as ratio of dc power available at the load to the input ac power.</p>
+<center><img src="{% static 'beLab/formula30.png'%}" alt=""></center>
+<h5>Peak Increse Voltage</h5>
+<p>For rectifier applications, peak inverse voltage (PIV) or peak reverse voltage (PRV) is the maximum value of reverse voltage which occurs at the peak of the input cycle when the diode is reverse-biased.The portion of the sinusoidal waveform which repeats or duplicates itself is known as the cycle. The part of the cycle above the horizontal axis is called the positive half-cycle, the part of the cycle below the horizontal axis is called the negative half cycle. With reference to the amplitude of the cycle, the peak inverse voltage is specified as the maximum negative value of the sine-wave within a cycle's negative half cycle.</p>
+For Bridge Rectifier, <br>
+<img src="{% static 'beLab/formula31.png'%}" alt=""><br>
+For Center Tapped Rectifier, <br>
+<img src="{% static 'beLab/formula32.png'%}" alt="">
+<h5>Note</h5>
+<p>An alternative representation of full-wave bridge rectifier circuit is easier both to remember and to comprehend. It's the exact same circuit, except all diodes are drawn in a horizontal attitude, all “pointing” the same direction.</p>
+<center><img src="{% static 'beLab/fullwvnew.png'%}" alt=""></center>
+<center>Figure 17</center>
 {%endblock%}
 
 
 {% block procedure %}
-
+<h4>Procedure</h4>
+<strong>Bridge Rectifier - Experiment</strong>
+<ul>
+    <li> Set the resistor RL.</li>
+<li> Click on 'ON' button to start the experiment.</li>
+<li> Click on 'Sine Wave' button to generate input waveform</li>
+<li> Click on 'Oscilloscope' button to get the rectified output.</li>
+<li> Vary the Amplitude, Frequency, volt/div using the controllers.</li>
+<li> Click on "Dual" button to observe both the waveform.</li>
+<li> Channel 1 shows the input sine waveform, Channel 2 shows the output rectified waveform.</li>
+<li> Calculate the Ripple Factor.Theoretical Ripple Factor=0.483.</li> 
+</ul>
+<center><img src="{% static 'beLab/fullwvrecckt.png'%}" alt=""></center>
+<center>Figure 1</center>
+<h5>Calculation</h5>
+<img src="{%static 'belab/formula33.png'%}" alt="">
 {% endblock %}
 
 {% block simulation %}

@@ -1,0 +1,261 @@
+{% extends 'cgLab/basic.html'%}
+
+{%block title%} Clipping : Line {% endblock %}
+
+{% load static %}
+
+{% block introduction%}
+<!-- theory content -->
+<h4>Clipping : Line</h4>
+<p>When a 2D image is displayed onto a display screen, often the display area occupies a fraction of the amount of space that covers the entire image area. Thus the unnecessary parts of the image that are located outside the display area can be removed to reduce the exorbitant amount of computations involved to render them. This technique to remove such inessential parts of a scene lying outside the display area is called clipping. The display area is also called the clipped window.</p>
+<p>The technique used to cut/clip the parts of the line belonging in the region, outside of the clipped window, is called line clipping.</p>
+<p>Some common algorithms to perform line clipping are as follows:Some common algorithms to perform line clipping are as follows:</p>
+<ul>
+    <li> Cohen-Sutherland algorithm </li>
+    <li> Liang-Barsky algorithm </li>
+    <li> Nicholl-Lee-Nicholl algorithm </li>
+</ul>
+{%endblock%}
+
+{% block theory %}
+<!-- objective conteent -->
+<h4>Cohen Sutherland's Line Clipping Algorithm</h4>
+<strong>Pseudo Code of the algorithm</strong>
+<p>Input : Two Endpoints of the line, (x<sub>0</sub>, y<sub>0</sub>) & (x<sub>1</sub>, y<sub>1</sub>). <br>
+    Two opposite corner points of the frame buffer.</p>
+<strong>Steps of the Algorithm</strong>
+<div style="border: 1px solid black; padding: 2px;">
+<ul>
+    <li>P<sub>0</sub> = (x<sub>0</sub>, y<sub>0</sub>) & P<sub>1</sub>(x<sub>1</sub>, y<sub>1</sub>).</li>
+    <li>
+        Compute the 4-bit codes for each endpoint. <br>
+The codes of the vertices are computed from the below figure : <br>
+<img src="{% static 'cgLab/code-block.png'%}" alt=""> <br>
+0000 represents the clip window and all other areas outside are to be clipped. <br>
+If both codes are 0000,(bitwise OR of the codes yields 0000 ) line lies completely inside the window: pass the endpoints to the draw routine. <br>
+If both codes have a 1 in the same bit position (bitwise AND of the codes is not 0000), the line lies outside the window. It can be trivially rejected.
+
+
+    </li>
+    <li>If a line cannot be trivially accepted or rejected, at least one of the two endpoints must lie outside the window and the line segment crosses a window edge. This line must be clipped at the window edge before being passed to the drawing routine.
+    </li>
+    <li>Examine one of the endpoints, say P0 and read  P0's 4-bit code in order: Left-to-Right, Bottom-to-Top.</li>
+    <li>When a set bit (1) is found, compute the intersection I of the corresponding window edge with the line from P0 to P1. Replace P0 with I and repeat the algorithm.</li>
+</ul>
+</div>
+{% endblock %}
+
+{% block objective %}
+<!-- procedure content -->
+<h4>Objective </h4>
+<p>Objective of this experiment is to understand the steps of a Line Clipping Algorithm, i.e., how a geometric line is clipped so as to render only the part which a user can view. As an example, we have demonstrated the steps of Cohen Sutherland Algorithm.</p>
+<h4>Manual</h4>
+<ul>
+    <li> The experiment contains a clipping window which represents the screen to which the graphics primitives (line in this case) are rendered to. </li>
+<li> The experiment allows the user to change the size of the clipping window. </li>
+<li> The experiment allows the user to choose the starting and ending coordinates of his own choice. </li>
+<li> The user can move forward and backward through the steps of the experiment. </li>
+<li> At each step of the algorithm, the important computations that took place in that step are also given for better understanding of the algorithm. </li>
+</ul>
+{% endblock %}
+
+{% block procedure %}
+<!-- experiment content -->
+<h4>Procedure</h4>
+<ul>
+    <li>Fix the size of the clipping window (the default parameters are already filled in the input boxes) and then click on Enter. <br>
+    You can also proceed directly to the experiment using the default parameters of the clipping window and the starting and ending coordinates, by clicking on Start Experiment with Default values.</li>
+    <li>Fix the starting and ending coordinates. The default values are already filled in the input boxes. Once you have finalized the coordinates, you can click on Start Experiment to begin with the experiment. <br>You can also go Back to change the values of the frame buffer.  </li>
+    <li>Throughout the experiment, you can click on Next Iteration to go to the next step of the algorithm and Previous Iteration to go to the previous step.
+    </li>
+    <li>Once the experiment ends, you can again experiment with a new line.</li>
+</ul>
+{% endblock %}
+
+{% block experiment %}
+<!-- experiment content -->
+<h4>Experiment</h4>
+<div style="border: 1px solid black ;color: rgb(212, 212, 245);">
+<pre>
+    #include&lt;conio.h>
+
+        #include&lt;iostream.h>
+        
+        #include&lt;graphics.h>
+        
+        static int LEFT=1,RIGHT=2,BOTTOM=4,TOP=8,xl,yl,xh,yh;
+        
+        int getcode(int x,int y){
+        
+        int code = 0;
+        
+        //Perform Bitwise OR to get outcode
+        
+        if(y > yh) code |=TOP;
+        
+        if(y &lt; yl) code |=BOTTOM;
+        
+        if(x &lt; xl) code |=LEFT;
+        
+        if(x > xh) code |=RIGHT;
+        
+        return code;
+        
+        }
+        
+        void main()
+        
+        {
+        
+        int gdriver = DETECT,gmode;
+        
+        initgraph(&gdriver,&gmode,"C:\\TurboC3\\BGI");
+        
+        setcolor(RED);
+        
+        cout<&lt;&lt;"Enter top left and right bottom co-ordinates of clipping window: ";
+        
+        cin>>xl>>yl>>xh>>yh;
+        
+        rectangle(xl,yl,xh,yh);
+        
+        int x1,y1,x2,y2;
+        
+        cout<&lt;&lt;"Enter the 1st point of the line: ";
+        
+        cin>>x1>>y1;
+        
+        cout<&lt;&lt;"Enter the 2nd point of the line:";
+        
+        cin>>x2>>y2;
+        
+        cout<&lt;&lt;"Before clipping:";
+        
+        setcolor(WHITE);
+        
+        line(x1,y1,x2,y2);
+        
+        getch();
+        
+        int outcode1=getcode(x1,y1), outcode2=getcode(x2,y2);
+        
+        int accept = 0; //decides if line is to be drawn
+        
+        while(1){
+        
+        float m =(float)(y2-y1)/(x2-x1);
+        
+        //Both points inside. Accept line
+        
+        if(outcode1==0 && outcode2==0){
+        
+        accept = 1;
+        
+        break;
+        
+        }
+        
+        //AND of both codes != 0.Line is outside. Reject line
+        
+        else if((outcode1 & outcode2)!=0){
+        
+        break;
+        
+        }else{
+        
+        int x,y;
+        
+        int temp;
+        
+        //Decide if point1 is inside, if not, calculate intersection
+        
+        if(outcode1==0)
+        
+        temp = outcode2;
+        
+        else
+        
+        temp = outcode1;
+        
+        //Line clips top edge
+        
+        if(temp & TOP){
+        
+        x = x1+ (yh-y1)/m;
+        
+        y = yh;
+        
+        }
+        
+        else if(temp & BOTTOM){ //Line clips bottom edge
+        
+        x = x1+ (yl-y1)/m;
+        
+        y = yl;
+        
+        }else if(temp & LEFT){ //Line clips left edge
+        
+        x = xl;
+        
+        y = y1+ m*(xl-x1);
+        
+        }else if(temp & RIGHT){ //Line clips right edge
+        
+        x = xh;
+        
+        y = y1+ m*(xh-x1);
+        
+        }
+        
+        //Check which point we had selected earlier as temp, and replace its co-ordinates
+        
+        if(temp == outcode1){
+        
+        x1 = x;
+        
+        y1 = y;
+        
+        outcode1 = getcode(x1,y1);
+        
+        }else{
+        
+        x2 = x;
+        
+        y2 = y;
+        
+        outcode2 = getcode(x2,y2);
+        
+        }
+        
+        }
+        
+        }
+        
+        if(accept)
+        
+        {
+        
+          clrscr();
+        
+          cleardevice();
+        
+          cout<&lt;&lt;"After clipping:";
+        
+          setcolor(RED);
+        
+          rectangle(xl,yl,xh,yh);
+        
+          setcolor(WHITE);
+        
+          line(x1,y1,x2,y2);
+        
+        }
+        
+        getch();
+        
+        closegraph();
+        
+        }
+</pre>
+</div>
+{% endblock %}

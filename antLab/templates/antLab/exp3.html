@@ -1,21 +1,203 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Measuring Network Performance {% endblock %}
+{% load static%}
 {% block introduction%}
 <!-- theory content -->
+<h4>Inntroduction</h4>
+<p>The size and scope of the computer networks are increasing day by day. So measurement is necessary for learning and
+    improving the system behavior. Network performances are measured by calculating bandwidth, delay, throughput etc.
+</p>
+<p>In this experiment we will learn different types of metrics used for measuring the network performance and analyze
+    the performance by different types of curve used in different scenario.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li> Get familiar with the concept of network performance evaluation, and different related metrics </li>
+    <li> Get an overview on bandwidth sharing by multiple traffic flows </li>
+    <li> Identify bottlenecks in a network </li>
+</ul>
+<hr>
+<h5>Network Performance Evaluation</h5>
+<p>For a given network, one might be interested to know how well it is performing. One might also wish to know what
+    could be done to further improve the performance, or if the network is giving the peak performance. Thus, one needs
+    to do a comparative study of the network by considering different options. This performance evaluation helps the
+    user to determine the suitable network configuration that serves him best.</p>
+<p>For example consider a new startup organization which has setup its own web portal. As the portal gradually becomes
+    popular then network traffic increases which would degrade its performance. Therefore, one should have a well
+    configured network with proper load balancing capabilities.</p>
+<h5>Performance Evaluation Metrics</h5>
+<p>Before we can proceed with performance evaluation, we must choose the different metrics that would help us in making
+    comparisons. There could be different metrics to determine the performance like throughput, delay, jitter, packet
+    loss. The choice of metric would depend upon the purpose the network has been setup for. The metrics could be
+    related to the different layers of the network stack. For example, TCP throughput is based on the application layer,
+    whereas IP round trip time is based on the network layer. For example, a network supporting multimedia applications
+    should have minimum delay and jitter.Packet loss might not be a critical issue for such network. However, packet
+    loss might be a considerable factor for networks supporting textual data oriented applications, say someone
+    downloading by FTP.</p>
+<p>Once the metrics have been chosen, one goes for their quantitative evaluation by subjecting the network under diverse
+    conditions. For example, one could make step by step increments in bandwidth of the links, which in turn improve the
+    throughput. However, the throughput might get saturated beyond the certain point. That is, further increase in
+    bandwidth would not improve throughput. Thus, the optimum value of bandwidth has been determined.</p>
+<p>The table below shows different metrics of evaluation, and categories they are appropriate for</p>
+<center><img src="{% static 'antLab/table.png'%}" alt=""></center>
+<p>It might not be always possible or feasible to obtain best performance from a network due to various factors like
+    high cost,complexity, compatibility. In such cases one would like to obtain optimum performance by balancing
+    different factors.</p>
+<p>Following are some of the performance measurement metrics:</p>
+<ul>
+    <li><strong>Latency: </strong> It can take a long time for a packet to be delivered across intervening networks. In
+        reliable protocols where a receiver acknowledges delivery of each chunk of data, it is possible to measure this
+        as round-trip time.</li>
+    <li><strong>Packet Loss: </strong>In some cases, intermediate devices in a network will lose packets. This may be
+        due to errors, to overloading of the intermediate network, or to intentional discarding of traffic in order to
+        enforce a particular service level.</li>
+    <li><strong>Retransmission: </strong> When packets are lost in a reliable network, they are retransmitted. This
+        incurs two delays: First, the delay from re-sending the data; and second, the delay resulting from waiting until
+        the data is received in the correct order before forwarding it up the protocol stack.</li>
+    <li><strong>Throughput: </strong>The amount of traffic a network can carry is measured as throughput, usually in
+        terms such as kilobits per second. Throughput is analogous to the number of lanes on a highway, whereas latency
+        is analogous to its speed limit.</li>
+</ul>
+<h5>Parameters Affecting the Performance of Networks</h5>
+<p>Different parameters can together or independently determine how well a network would perform. A few such are
+    mentioned below:</p>
+<ul>
+    <li><strong>Bandwidth: </strong> Its is the maximum data transfer rate which a link allows.It is expressed in bits
+        per second(bps).</li>
+    <li><strong>Propogation Delay: </strong>It is the amount of time required to for a packet to travel from one node to
+        another.If the propagation delay is high then throughput will be low i.e they are inversely proportional to each
+        other.</li>
+    <li><strong>Quee Type and Quee size: </strong>The queue of a node is implemented as a part of a link whose input is
+        that node to handle the overflow at the queue.But if the buffer capacity of the output queue is exceeded then
+        the last packet arrived is dropped.We do set the buffer capacity by using queue size.</li>
+</ul>
+<h5>Performance Evaluation Technique</h5>
+<p>Before starting with tuning the performance of a network one must remember that the performance, to some extent,
+    depends on the workload as well as the topology. A given topology might give different throughputs under CBR and
+    exponential traffic. Keeping this in mind, one can go for studying an actual network. Otherwise one can simulate its
+    performance using suitable parameters. these simulations would largely depend on queuing theory.</p>
+<h5>Network Performance Evaluation using NS-2</h5>
+<p>In this section we discuss how to evaluate performance of a network by simulating it with ns2.</p>
+<ul>
+    <li>Choose and generate a network topology to be used throughout the simulation. This could be a wired network, in
+        which case the topology remains fixed. However, for a wireless network with mobile nodes the topology would
+        change with time, or randomly.</li>
+    <li>Once the topology has been generated, traffic source(s) and destination(s) are fixed. Assign suitable traffic
+        sources to the source nodes, and traffic sinks to the destination nodes.</li>
+    <li>Some of the parameters that can be used for comparative study of performance of the network are: link bandwidth,
+        propagation delay, node queue type. For example: In ns2 we do create a link by using this code: <br>
+        <center>$ns simplex-link $n2 $n3 0.3Mb 100ms DropTail</center>
+        <p>In this code there could be three parameters namely bandwidth, propagation delay and queue type.
+            We can vary these parameters and could possibly obtain different throughputs. From there we can determine
+            the conditions that provide higher throughput values.In general, we can alter different parameters and study
+            their effects on one or more performance metrics and thereby filter out the combination of parameters that
+            gives best performance.</p>
+    <li>Performance of the network can be determined by considering different metrics for example 'Throughput' </li>
+    <li>We can vary these parameters and could possibly obtain different throughputs, which can be plotted using xgraph
+    </li>
+    <li>From there we can determine the conditions that provide higher throughput values </li>
+    <li>Make suitable combinations with the parameters that wil bring some changes in the throughput </li>
+    <li>Use the best combination of parameters which will bring the best throughput and implement it </li>
+    <li>We are considering only one performance metric i.e throughput in our experiment.Other metrics like packet
+        loss,latency,retransmission can measured to evaluate the performance of a network in a more accurate way which
+        will help us to setup the network in a proper way. </li>
+</ul>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
 
-{% block experimentName %} {%endblock%}
+{% block excercise %}
+<a class="excercise " href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
+
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+
+<div class="cont my-3" id="ex01">
+    <h5>A bottleneck in the network</h5>
+    <p>Consider a dumbbell topology with eight nodes as shown as in the following figure. Consider nodes # 2 and 3 to be
+        two routers connecting two different networks. When the bandwidth of the link 2-3 is much lower than the sum of
+        bandwidths of the other links in the network, it act as a bottleneck.</p>
+    <img src="{% static 'antLab/ex3_xs2.png'%}" alt="">
+    <p>Assume node # 0 running a FTP application (over TCP) and sending data to node # 6. Node # 1 is sending CBR data
+        node # 7. Assume all the links except 2-3 has a bandwidth of 1 Mb, propagation delay of 10ms and queue type as
+        DropTail. (All are duplex links).</p>
+    <strong>Task</strong>
+    <ul>
+        <li>The link 2-3 has a propagation delay of 10 ms. Vary it's bandwidth from 0.5 Mb to 2.5 Mb in steps of 0.25Mb.
+        </li>
+        <li>Compute the throughput for node # 3 in each case </li>
+        <li>Plot the throughput vs. bandwidth data in the "Custom Plot" section below </li>
+    </ul>
+    <p>Based on the above plots, suggest what should be the recommended bandwidth of the link 2-3.</p>
+
+    <p>Now, plot the end-to-end delay between nodes 0 and 6 for the above chosen values of link 2-3 bandwidth. Revisit
+        your previous answer (i.e. optimum bandwidth of link 2-3) based on these graphs.</p>
+    <h2>Below comes .tcl compiler</h2>
+</div>
+
+
+
+<div class="cont my-3" id="ex02">
+    <h4>Bandwidth sharing between TCP and UDP</h4>
+    <p>Consider the dumbbell topology from our previous exercise:</p>
+    <img src="{% static 'antLab/ex3_xs2.png'%}" alt="">
+    <p>Node # 0 is a TCP source, and the corresponding sink is at node # 6. Node # 1 is a UDP source (CBR traffic) with
+        a null agent attached to node # 7. These two traffic flows through the common link 2-3. The aim of this exercise
+        is to examine how TCP and UDP share the bandwidth between themselves when the rate of CBR traffic is changed.
+    </p>
+
+    <p>Set the TCP packet size to 1460 B. The UDP and CBR packet sizes are 1500 B. All the links in the network have
+        same bandwidths (say, 4 Mb), delay and queue types.</p>
+    <strong>Part 1:</strong>
+    <ul>
+
+        <li>Set the initial rate of CBR traffic to 0.5 Mb. Run the simulation, and plot the "Bytes Received" by node #s
+            4 and 5 (sinks for TCP and UDP traffic)</li>
+        <li>Now, increment the rate up to 4 Mb, the link bandwidth, in steps of 0.5 Mb. Run the simulation and plot the
+            graphs again</li>
+    </ul>
+    <p>How does the graphs change after each run? In particular, what's the nature of the graphs when the rate of CBR
+        traffic is 50% of the bandwidth?</p>
+    <h5>Part 2: Behaviour of UDP</h5>
+    <ul>
+        <li>Reduce the bandwidth of the link 2-3 to say, 2 Mb. Repeat the above steps and observe the graphs in this
+            case.</li>
+    </ul>
+    <p>From the graphs plotted observe how UDP occupies a larger portion of the bandwidth. How does the behaviour change
+        for other variations of TCP (Newreno, Vegas)?</p>
+    <h2>Below comes .tcl compiler</h2>
+</div>
+{%endblock%}

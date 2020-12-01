@@ -48,7 +48,7 @@ def experiment8(request):
 def experiment9(request):
     result = PsLabQuizes.objects.filter(experimentNO = "experiment9")
     data ={'Exams': result}
-    return render(request,'antLab/exp9.html' , data)
+    return render(request,'psLab/exp9.html' , data)
 
 def experiment10(request):
     result = PsLabQuizes.objects.filter(experimentNO = "experiment10")
