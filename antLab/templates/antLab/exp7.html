@@ -1,21 +1,237 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Simulating a Mobile Adhoc Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Simulating a Mobile Adhoc Network</h4>
+<p>Mobile Ad Hoc Network is a multi-hop packet based wireless network composed of a set of mobile nodes that can
+    communicate and move at the same time, without using any kind of fixed wired infrastructure. It can change locations
+    and configure itself.</p>
+<p>In this experiment, we will learn how to prepare MANET scenario by using AODV and DSR protocol with different TCL
+    script and detail analyzing of the trace file.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Understand about the basics of Mobile Ad-hoc Networks (MANETs) and different routing protocols </li>
+    <li>Setup a network with wireless nodes using ns2 </li>
+    <li>Get familiar with the different characteristics of MANET through simulation </li>
+</ul>
+<hr>
+<h5>Ad Hoc Network</h5>
+<p>Ad-hoc networks are temporary network. They do not need any external infrastructure like base stations and physical
+    wires.</p>
+<hr>
+<h5>Mobile Ad Hoc NETwork (MANET)</h5>
+<p>MANET automatically configure a network among mobile devices. Each devices moves independently in any direction. Each
+    node acts as a router.</p>
+<center><img src="{% static 'antLab/theory_07_01.jpg'%}" alt=""></center>
+<center>Figure-01: Mobile Ad-hoc Network (MANETs)</center>
+<hr>
+<h5>Routing</h5>
+<p>Routing is the selection of path or a route in a network for forwarding packets. The objective of routing packets in
+    a network is to determine the best possible path in terms of minimising the number of hops (path length), delay,
+    packet loss, cost etc.</p>
+<hr>
+<h5>Routing in MANET</h5>
+<p>MANETs are formed dynamically by connecting arbitrary wireless mobile nodes, without using existing infrastructure.
+    So, routing in MANET is different from traditional routing. Each node in MANET function like a host and a router.
+    The nodes also used in forwarding/receiving their own packets. The nodes also take part in forwarding other's node
+    packet. Therefore, MANET provides limited physical security as compared to the traditional network.</p>
+<hr>
+<h5>Routing Protocols for MANET</h5>
+<b>Proactive (table-driven):</b> DSDV, OLSR etc. <br>
+
+<b>Reactive (on-demand):</b> AODV, DSR etc. <br>
+
+<b>Hybrid:</b> ZRP <br>
+<ul>
+    <li><b>Proactive </b> routing protocols determine path in advance and periodically exchange routing data to maintain
+        the path.</li>
+    <li><b>Reactive </b> routing protocols, on the other hand, determine a route to some destination node only when it
+        is required to send some data to that node. If at any time a path fails, an alternative path is determined
+        again.</li>
+    <li><b>Hybrid </b>routing takes the advantages of both table driven and on-demand algorithms.</li>
+</ul>
+<hr>
+<h5>Destination-Sequenced Distance-Vector (DSDV) algorithm:</h5>
+<strong>The procedure for DSDV [1] is :</strong>
+<ul>
+    <li>Each mobile node maintains a routing table with an entry of routing information from all its neighbors.</li>
+    <li>Each routing information in a routing table specifies
+        <ul>
+            <li>the destination identifier</li>
+            <li>the next hop on the route to the destination</li>
+
+            <li>the distance (in terms of hops) to the destination</li>
+            <li>the next hop on the route to the destination</li>
+            <li>the distance (in terms of hops) to the destination</li>
+            <li>a sequence number by monotonically increasing each time the node sends an update message to its
+                neighbors. A route will be replaced only when the destination sequence number is less than the new one
+                or two routes have the same sequence number but one has a lower metric.</li>
+        </ul>
+    </li>
+    <li>After generating a new routing table, each node broadcasts this table to all its neighbors.</li>
+    <li>Based on the received tables, each mobile node update their tables, until routing information is stable</li>
+</ul>
+<hr>
+<h5>Dynamic Source Routing</h5>
+<p>The DSR protocol is composed of two mechanisms that work together to allow the discovery and maintenance of source
+    routes in the ad hoc network:</p>
+<p><b>Route Discovery: </b>Route discovery is used only when source wants to send a packet to destination and does not
+    know a route to destination. A mobile node A wants to send a packet to a destination node B, then obtain a source
+    route to B.</p>
+<p><b>Route Maintenance: </b> Route Maintenance is the mechanism by which a source node A is able to detect, while using
+    a source route to B. If the network topology has changed and the route is broken then the source route attempts to
+    use any other route to destination if it exist or can invoke route discovery again to find a new route. Route
+    Maintenance is used only when source is actually sending packets to destination.</p>
+<p>Both Route Discovery and Route Maintenance each operate entirely on demand. When the destination node is reached, it
+    returns a reply containing the route to the source node. The reply then travels in the reverse direction of the
+    discovered route or on a path already known by the destination, to the source. The source node, on receiving the
+    reply, will place the route in its route cache.</p>
+<hr>
+<h5>Application for MANET</h5>
+<strong>The applications of MANET are:[iv] </strong>
+<p>Military or police exercises. </p>
+<p> Disaster relief operations. </p>
+<p> Mine site operations. </p>
+<p> Robot data acquisition. etc. </p>
+<hr>
+
+<h5>Advantages</h5>
+<strong>The following are the advantages of MANETs:</strong>
+<p>MANETs provide different access to information and also services of geographic position. </p>
+<p>MANETs work without any pre-existing infrastructure. </p>
+<p>MANETs can be set up at any place and time. </p>
+
+<hr>
+
+<h5>Disadvantages</h5>
+<strong>Some of the disadvantages of MANETs are:</strong>
+<p>Limited resources. </p>
+<p>Limited physical security. </p>
+<p>Intrinsic mutual trust vulnerable to attacks. </p>
+<p>Lack of authorization facilities. </p>
+<p>Volatile network topology makes it hard to detect malicious nodes. </p>
+<p>Security protocols for wired networks cannot work for ad hoc networks </p>
+<hr>
+
+<h5>Simulating a MANET using Network Simulator 2</h5>
+<strong>The Network Simulator simulate following steps for MANET:</strong> <br>
+<p>1.The command required to configure a mobile node :</p>
+<img src="{% static 'antLab/code13.png'%}" alt="">
+<p>The four last option in node configuration can either be ON or OFF based on the condition of the mobile nodes. The
+    agent trace will give the trace of TCP, routerTrace provides tracing of packets used in routing, macTrace is used to
+    trace MAC protocol packets and movementTrace is used to allow tracing the motion of nodes for nam.</p>
+<p>2. Create some mobile nodes and assign them to the channels:</p>
+<img src="{% static 'antLab/code14.png'%}" alt="">
+<P>3. Assigning mobility to the node</P>
+<p>4. Specifying routing protocols.</p>
+<img src="{% static 'antLab/code15.png'%}" alt="">
 {% endblock %}
+
 
 {% block Simulation %}
 <!-- procedure content -->
+<h5>Simulation</h5>
+<p>Consider a typical MANET with four mobile nodes 1, 2, 3, 4 as shown in figure. Nodes are acting as router where any
+    node can transmit packets to other nodes, if they are in communication range. Node 1 is sending packet to node 3 via
+    node 2. After some time node 2 starts moving away and not in the communication range of node 1. So the route breaks
+    between node 1 and 2. In the mean time node 4 comes in the communication range of node 1 and a new route 1-4-3 is
+    created and transmission of packets begins from node 1 to 3 via node 4.</p>
+<p>The flash video on the right hand side shows how nodes are acting as routers in a mobile adhoc networks.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
+{% block excercise %}
+<a class="excercise " href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
 
-{% block experimentName %} {%endblock%}
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+
+<div class="cont my-3" id="ex01">
+    <h5>Write a simple script to simulate the following scenario with ns2.</h5>
+    <p>Consider three mobile nodes, as shown in figure below, moving within a flat topology of 500m x 500m.</p>
+    <center><img src="{% static 'antLab/ex7_xs1.png'%}" alt=""></center>
+
+    <p>Initial positions of nodes 0, 1 and 2 are (454.0, 404.0) , (22.0, 240.0) and (371.0, 185.0) respectively. The
+        nodes move in the following way: </p>
+
+    <p>At time t = 0, </p>
+
+    <p>node 0 starts moving towards point (356.0, 11.5 ) at a speed of 3.55m/sec. </p>
+
+    <p>node 1 starts moving towards point (238.0, 390.0 ) at a speed of 11.4m/sec. </p>
+
+    <p>node 2 starts moving towards point (146.0, 445.0 ) at a speed of 9.7m/sec. </p>
+
+    <p>At time t = 24, node 1 starts moving towards point (320.5, 254.6 ) at a speed of 7.99m/sec. </p>
+
+    <p>At time t = 55, node 2 starts moving towards point (290.5, 254.6 ) at a speed of 5.99m/sec. </p>
+
+    <p>The simulation lasts for 70 secs. At time t = 3 seconds, a TCP connection is initiated between node 0 (source)
+        and node 2 (destination), and a FTP application runs over it. Use AODV as the routing protocol and the IEEE
+        802.11 MAC protocol. </p>
+
+    <p>As a result of the above said movements of the node, data moves from node 0 to node2 (0 - 2)directlty and after
+        some time data moves from node 0 to node2 via node 1 (0 - 1 - 2) and at times no communication happen at all.
+    </p>
+</div>
+<div class="cont my-3" id="ex02">
+    <h5>Write a TCL script to simulate the following scenario with ns2 simulator.</h5>
+    <p>Consider six nodes, (as shown in the figure below) moving within a flat topology of 700m x 700m.</p>
+    <center><img src="{% static 'antLab/ex7_xs2.png'%}" alt=""></center>
+
+    <p>The initial positions of nodes are 0 (150,300) ,1 (300,500),2 (500,500),3 (300,100),4(500,100) and 5(650,300)
+        respectively. </p>
+
+    <p>A TCP connection is initiated between node 0 (source) and node 5 (destination) through node 3 and node 4 i.e the
+        route is 0-3-4-5. </p>
+
+    <p>At time t = 3 seconds the FTP application runs over it. </p>
+
+    <p>After time t=4.0 sec, node 3 (300,100) moves towards node 1 (300,500) with a speed of 5.0m/sec and after some
+        time the path break, then the data transmit with a new path via node 1 and node 2 i.e the new route 0-1-2-5.
+    </p>
+
+    <p>The simulation lasts for 60 secs. </p>
+
+    <p>In the above said case both the route has equal cost. </p>
+
+    <p>Use DSR as the routing protocol and the IEEE 802.11 MAC protocol. </p>
+
+    Now
+    <ul>
+        <li><strong>Analyze the trace file and determine when the use of second route commence, and</strong></li>
+        <li><strong>Plot the number of packets received by each node over the entire time duration of the
+                simulation</strong></li>
+    </ul>
+</div>
+{%endblock%}

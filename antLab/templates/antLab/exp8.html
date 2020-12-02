@@ -1,21 +1,338 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%} Simulating a Wireless Sensor Network{% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Simulating a Wireless Sensor Network</h4>
+<p>A wireless sensor network (WSN) is a wireless network consisting of spatially distributed autonomous devices that use
+    sensors for monitoring and recording the physical conditions of the environment and organizing the collected data at
+    a central location. WSNs measure environmental conditions like temperature, sound, pollution levels, humidity, wind
+    speed and direction, pressure, etc. It consists of anywhere from a few hundreds to thousands of sensor nodes. The
+    sensor node equipment includes a radio transceiver along with an antenna, a micro-controller, an interfacing
+    electronic circuit, and an energy source, usually a battery.</p>
+<p>In this experiment, we can understand about the different protocol of WSN and the working principle of Low-Energy
+    Adaptive Clustering Hierarchy (LEACH) protocol.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Understand basic concepts about Wireless Sensor Networks (WSNs), types, applications of WSN </li>
+    <li>Gain familiarity with LEACH, a cluster based routing protocol for WSNs </li>
+</ul>
+<hr>
+<h5>Wireless Sensor</h5>
+<p>A Sensor network is composed of a large number of sensor nodes that are deployed in a wide area with very low powered
+    sensor nodes. The wireless sensor networks can be utilized in a various information and telecommunications
+    applications. The sensor nodes are very small devices with wireless communication capability, which can collect
+    information about sound, light, motion, temperature etc and processed different sensed information and transfers it
+    to the other nodes.The following figure-01 illustrated the Wireless Sensor Network scenario.</p>
+<center><img src="{% static 'antLab/wsn.png'%}" alt=""></center>
+<center>Figure-01: Illustration of Wireless Sensor Networks</center>
+<hr>
+<h5>Basic Characterstics of WSNs</h5>
+<p>Wireless Sensor Networks are:</p>
+<ul>
+    <li> Self-configuration, Self-healing, Self-optimization, and Self-protection capabilities </li>
+    <li>Short-range broadcast communication and multi-hop routing </li>
+    <li>Dense deployment and cooperative effort of sensor nodes </li>
+    <li>Frequently changing topology due to fading and node failures </li>
+    <li>Severe limitations in energy capacity, computing power, memory, and transmit power. </li>
+</ul>
+<hr>
+<h5>Operating System for WSNs</h5>
+<p>TinyOS operating system is specifically designed for WSNs. It is an event driven operating system. It also provides a
+    programming frame-work for embedded systems. It has component-based execution model implemented in nesC. There are
+    other operating systems developed for WSN like: SOS, CORMOS, EYES, PEEROS, MantisOS, Contiki, kOS, SenOS, Nano-RK,
+    LiteOS.</p>
+<hr>
+<h5>Differences with Mobile Ad hoc Networks</h5>
+<p>We studied mobile ad hoc etworks (MANETs), It is made up of a number of wireless mobile nodes. However, there are
+    significant differences between MANETs and WSNs. </p>
+
+<p>The number of sensor nodes in a sensr network is much more than that in an ad hoc network. Usually sensor networks
+    consist of 1,000 to 10,000 sensor nodes covering the area. </p>
+<p>Sensor nodes are generally static and cooperate together to transfer the sensed data. </p>
+<p>In mobile ad hoc networks, the number of nodes are much less, but their mobility is very high. </p>
+<p>Sensor nodes mainly use the broadcast communication paradigm, whereas most ad hoc networks are based on
+    point-to-point communication. </p>
+<p>Another difference between the two is that sensor nodes have a much lower power consumption requirement, of the order
+    of 0.75 mW. </p>
+<hr>
+<h5>Types of Wireless Network</h5>
+<p>Depending on the environment, there are different types of WSNs</p>
+<b>Terrestrial wireless sensor networks</b>
+<ul>
+    <li>Ad-Hoc (unstructured) </li>
+    <li>Preplanned (structured) </li>
+</ul>
+<b>Underground wireless sensor networks</b>
+<ul>
+    <li>Preplanned </li>
+    <li>More expensive equipment, deployment, maintenance </li>
+</ul>
+<b>Underwater wireless sensor networks</b>
+<ul>
+    <li>Fewer sensor nodes (sparse deployment) </li>
+    <li>More expensive than terrestrial </li>
+    <li>Acoustic wave communication </li>
+    <li>Limited bandwidth </li>
+    <li>Long propagation delay </li>
+    <li>Signal fading </li>
+</ul>
+<b>Multi-media wireless sensor networks</b>
+<ul>
+    <li>Sensor nodes equipped with cameras and microphones </li>
+    <li>High bandwidth/low energy, QoS, filtering, data processing and compressing techniques </li>
+</ul>
+<b>Mobile wireless sensor networks</b>
+<ul>
+    <li>Ability to reposition and organize itself in the network
+    <li>Start with initial deployment and spread out to gather information
+    <li>Deployment, localization, self organizations, navigation and control, coverage, energy, maintenance, data
+        process etc. </li>
+</ul>
+<hr>
+<h5>Routing protocols for WSNs</h5>
+<p>Many routing protocols have been proposed for WSNs. These have been classified into three categories, namely: </p>
+
+<b> Data-centric protocols </b><br>
+
+<b> Hierarchical protocols </b><br>
+
+<b> Location-based protocols </b>
+
+<p>Data-centric protocols are query-based and use the concept of naming of desired data to eliminate many redundant
+    transmissions. </p>
+
+<p>Hierarchical protocols cluster the nodes so that cluster heads can aggregate and reduce the data to save energy. </p>
+
+<p>Location-based protocols use position information to send the data to only the desired regions rather than to the
+    whole network. The more important ones among these are SPIN, LEACH, PEGASIS, TEEN and APTEEN. </p>
+<hr>
+<h5>Clusters and Cluster heads in WSNs</h5>
+<p>Sensor nodes can be partitioned into a number of small groups, which is known as Clusters. These are the
+    organizational unit for wireless sensor networks. Each cluster has the coordinator, called Cluster head (CH). CHs
+    are required to organize activities in the cluster like data-aggregation.</p>
+<strong>Advantages of Clustering</strong>
+<ul>
+    <li>Transmit aggregated data to the data sink </li>
+    <li>Reducing the number of nodes taking part in transmission </li>
+    <li>Useful energy consumption </li>
+    <li>Scalability for large number of nodes </li>
+    <li>Reduces communication overhead for both single and multi hop </li>
+</ul>
+<hr>
+<h5>The LEACH Protocol</h5>
+<p>LEACH (Low-Energy Adaptive Clustering Hierarchy) is a cluster-based routing protocol for WSNs. It adapts the
+    clustering concept to distribute the energy among the sensor nodes in the network. It improves the energy-efficiency
+    of WSN beyond the normal clustering architecture. It uses a TDMA/CDMA MAC to reduce inter-cluster and intra-cluster
+    collisions. As a result, we can extend the life time of our network, and this is the very important issue that is
+    considered in the WSN field.</p>
+
+<center><img src="{% static 'antLab/leach.png'%}" alt=""></center>
+<center>Figure-02: Illustration of LEACH Protocol</center>
+
+<hr>
+
+<h5>Operation of LEACH</h5>
+<p>The operation of leach is devided in two phase</p>
+
+<strong>Setup Phase</strong>
+<ul>
+    <li>Cluster-head Advertisement </li>
+    <li>Cluster Set-Up </li>
+    <li>Transmission schedule creation </li>
+</ul>
+<strong>Steady Phase</strong>
+<ul>
+    <li>Data transmission to cluster heads </li>
+    <li>Signal processing (Data fusion) </li>
+    <li>Data transmission to the base station </li>
+</ul>
+<center><img src="{% static 'antLab/WSN2.png'%}" alt=""></center>
+<center>Figure-03: Illustration of LEACH function with Setup and Steady State Phase</center>
+
+<strong>Algorithm for setting up Phase</strong>
+<p>Execute the following for each node</p>
+<ul>
+    <li>Cluster-head Advertisement
+        <ul>
+            <li>Let x be the random no between 0 and 1, n is the given node, P is the cluster-head probability, r is the
+                current round, G is the set of nodes that were not cluster-heads the previous rounds.,</li>
+            <li>if x &lt; T(n), then that node becomes a cluster-head. The threshold T(n) is determined ([viii]) as: ,
+                <img src="{% static 'antLab/leach_threshold.png'%}" alt="">
+            </li>
+            <li>Nodes that are cluster-heads in round 0 can't be again next 1/P rounds; after 1/P - 1, the threshold
+                value will be
+                T(n)=1 ,</li>
+            <li>In 1/P rounds, all nodes are eligible again to become cluster-heads ,</li>
+            <li>After the election of cluster
+                head, each nodes will broadcasts an advertisement message to the rest of the nodes by using a CSMA MAC
+                protocol.</li>
+        </ul>
+        <p>The algorithm is designed so that each node becomes a cluster-head at least once.</p>
+
+        <p>After the completion of this phase, each non-cluster-head node decides the cluster by using the received
+            signal strength of the advertisement.</p>
+    </li>
+    <li>Cluster Setup
+        <ul>
+
+            <li>Each node informs the cluster-head node about its choice </li>
+            <li>Each node uses CSMA- MAC protocol to transmit the information </li>
+            <li>Cluster heads must keep receivers ON </li>
+        </ul>
+    </li>
+    <li>Transmission schedule creation
+        <ul>
+            <li>Creates a TDMA schedule as per the number of nodes in the cluster. </li>
+            <li>Each node send their data during their allocated transmission time to the cluster head </li>
+        </ul>
+    </li>
+</ul>
+<strong>Algorithm for Steady State Phase</strong>
+<ul>
+    <li> Begin sensing and transmitting data to the cluster-heads. </li>
+    <li>Then, the cluster-head node, receive all the data, aggregates it before sending it to the base-station. </li>
+    <li>After a certain time, which is determined a priori, the network goes back into the setup phase. </li>
+</ul>
+<strong>Advantages of LEACh</strong>
+<ul>
+
+    <li>Increasing the lifetime of the sensor network. </li>
+    <li>Self-organizing, adaptive clustering protocol that uses randomization to distribute the energy load among the
+        sensors in the network. </li>
+    <li>Distributed and no global knowledge of network required. </li>
+</ul>
+<strong>Drawback of LEACH</strong>
+<ul>
+    <li>LEACH assumes all the nodes to have same initial energy, which is not the case always in real-time problems
+    </li>
+    <li>It cannot be applied for mobile nodes, failure of cluster-heads creates a lot of problems </li>
+    <li>It does not take into account that the systems might have multiple base stations. </li>
+    <li>Extra overhead to do dynamic clustering. </li>
+</ul>
+<strong>Discussion on LEACH</strong>
+<p>One of the major drawbacks of LEACH is that the actual number of cluster heads formed per round is varying with
+    respect to the desired number of cluster heads, specified as an input parameter to LEACH. Huafeng Liu,Liang Li and
+    Shiyao Jin in their work on "Cluster Number Variability Problem in LEACH" [viii] had discussed about this problem,
+    and proposed an improved clustering scheme (I-LEACH) as an improvement over LEACH. In the above work, they discussed
+    the I-LEACH protocol in the following steps:</p>
+<ul>
+    <li>Base station (BS) receives the aggregated data from the cluster heads. Therefore, it can be calculated that the
+        number of nodes become the cluster head in the present round. </li>
+    <li>Then the BS sends a broadcast message that contains the probability for the nodes to become the cluster head in
+        the next round. </li>
+</ul>
+<hr>
+<h5>Application of WSNs</h5>
+<p>The applications of WSNs are innumerable, since each sensor node is capable of monitoring a wide variety of ambient
+    conditions such as temperature, humidity, lightning condition, pressure and noise levels. Below, we have given some
+    typical application areas for WSNs. </p>
+
+<p><strong>Military applications:</strong> Sensor nodes can be spread across a battlefield or enemy area and be
+    programmed to track and monitor enemy troop movements or movement of terrorists and can be used to locate their
+    exact positions. </p>
+
+<p><strong>Environmental applications:</strong> Sensor networks are being increasingly used for environmental concerns.
+    Examples include tracking the nesting habits of seabirds by monitoring a large geographic region with human
+    presence, or attaching the sensors directly to large mammals to monitor their behavior. </p>
+
+<p>Monitoring of river currents is another application of WSNs, to measure their water inflow and mixture from various
+    sources. Water-quality monitoring may also be useful to determine contamination with bacteria or other harmful
+    pollutants. </p>
+
+<p>the spread of sensor nodes across a forest to monitor temperatures and give early warnings of fire outbreaks. Weather
+    prediction, climate monitoring, distributed computing, pollution tracking, seismic detection, detecting ambient
+    conditions such as temperature, movement, sound, light, or the presence of certain objects, inventory control and
+    disaster management are other similar applications. </p>
+<p><b>medical Applications: </b>WSNs can be used in medical applications by using the sensor node as a device that can
+    reside on or within the human body and perform tasks that are currently done by costly machines. These include
+    glucose monitors for continuous reading of insulin levels in diabetic patients; heart monitors for keeping track of
+    the functioning of the heart, especially for patients with irregular heartbeats or coronary diseases; and artificial
+    retinal and cortical implants to electronically transmit information to visually impaired persons.</p>
+<p>Other medical applications include use in monitoring of human physiological data, tracking and monitoring doctors and
+    patients inside a hospital and insurance cards.</p>
+
+<p><strong>Industrial applications:</strong> For use in industrial applications, low-cost sensor nodes could be attached
+    to equipment to monitor performance. They could also be attached to parts as they move through an assembly pipeline
+    on the shop floor. Thus, inefficiencies in plant process flow can be recognized quickly, rush orders could be
+    expedited more easily and customer queries could be answered faster and more accurately. </p>
+
+<p><strong>Urban applications:</strong> WSNs can be used for various urban applications like transportation and traffic
+    systems, auto-identification by driving license, parking availability, security monitors in shopping malls, parking
+    garages, city streets and home security. </p>
+
+<strong>Some of the real applications are:</strong>
+
+<p><strong>Volcano Sensor-web:</strong> This system has been used to implement a global surveillance program to study
+    volcanoes. Sensor-web tests to study flooding, cryosphere events, and atmospheric phenomena. </p>
+
+<p><strong>Wireless sensor network system for landslide detection:</strong> This system is already in place at Anthoniar
+    Colony, Munnar, Idukki, Kerala, India. </p>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider a hierarchical WSN, where nodes are running LEACH protocol in order to reduce energy footprint. The
+    concerned network is not so huge, and the expected number of cluster heads is three. </p>
+
+<p>The animation on the right hand side illustrates the working principle of LEACH in the following four steps: </p>
+<ul>
+    <li> Cluster head selection </li>
+    <li>Cluster head advertisement </li>
+    <li>Cluster formation </li>
+    <li>Data transmission </li>
+</ul>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
-
-{% block experimentName %} {%endblock%}
+{% block excercise %}
+<h4>Verify the working principle of LEACH</h4>
+<p>The code in the editor below shows how to simulate LEACH protocol using MannaSim patch with ns2. A summary of the
+    simulation settings is given below:</p>
+<ul>
+    <li> <b> Area: </b> 500 m X 500m </li>
+    <li> <b> Duration: </b>550 sec </li>
+    <li> <b> # of nodes: </b> 11 </li>
+    <li> <b> # of clusters: </b> 4 </li>
+    <li> <b> New cluster formation interval: </b>100 sec (fixed) </li>
+    <li> <b> Initial energy: </b>10 joules </li>
+    <li> <b> Disseminating interval: </b>10 sec </li>
+    <li> <b> Transmission range: </b> 50 m </li>
+    <li> <b> Channel type: </b> Wireless </b> </b></li>
+    <li> <b> Transport protocol: </b> UDP </li>
+    <li> <b> Layer: </b> Physical </li>
+    <li> <b> Antenna: </b> OmniAntenna </li>
+    <li> <b> Radio Propagation </b>:TwoRayGround </li>
+    <li> <b> Sensing interval: </b> 5 sec </li>
+    <li> <b> Data generator type: </b> Temperature </li>
+    <li> <b> Sensing type: </b> Programmed </li>
+</ul>
+The no. of access points has been set to be 0 for our simulation and all the nodes are static.
+<p>The ratio P that has been referred to while describing LEACH in the theory section is obtained in our case as k/N, where k is the # of desired cluster heads, and N is the total # of nodes in the network.</p>
+{%endblock%}

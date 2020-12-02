@@ -1,21 +1,309 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Simulating a Wi-Fi Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Simulating a Wi-Fi Network</h4>
+<p>Wi-Fi enabled devices are connected wirelessly and can connect to the Internet via a wireless access point. Wi-Fi can
+    function in geographical location and can be used where wiring and cable connection is not feasible.</p>
+<p>In this experiment we will learn the different standards and the simulation of Wi-Fi network. It also explains the
+    concept of hidden node and exposed node problem and solve these issues.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Understand about Wi-Fi network, different standards, and related protocols </li>
+    <li>Analyze the Wi-Fi communication range in the presence of the access point (AP) and the base station (BS) </li>
+    <li>Learn about hidden node and exposed node problems, and their possible solutions </li>
+</ul>
+<hr>
+<h5>Wi-Fi Network</h5>
+<p>Wi-Fi (Wireless Fidelity) uses the IEEE 802.11 standard. Wi-Fi has some other extensions like 802.11a, 802.11b, and
+    802.11g. Wi-Fi technology operating at a frequency of 2.4 GHz and uses radio communication.</p>
+
+<h5>IEEE 802.11 Standards</h5>
+<p>Following are the different standards for Wi-Fi</p>
+<ul>
+    <li>802.11 is the wireless local area networks (WLANs) standard. Supports 1- 2 Mbps. </li>
+    <li>802.11a is a high speed WLANs standard for 5 GHz band. It uses an orthogonal frequency division multiplexing
+        (OFDM)
+        encoding scheme. </li>
+    <li>802.11b is a wireless standard for 2.4 GHz band. It supports 11 Mbps. It uses only DSSS (Direct Sequence Spread
+        Spectrum). </li>
+    <li>802.11d is a international roaming. This automatically configures devices to meet local radio frequency (RF)
+        regulations. </li>
+    <li>802.11e address the quality of service (QoS) requirements for all IEEE wireless radio interfaces. </li>
+    <li>802.11f defines inter-access point communications for multiple vendor-distributed WLANs. </li>
+    <li>802.11g establishes an additional modulation technique for 2.4 GHz band. This supports speeds up to 54 Mbps.
+    </li>
+    <li>802.11h supports the spectrum management of the 5 GHz band. </li>
+    <li>802.11i define the current security weaknesses for both encryption and authentication protocols. </li>
+    <li> 802.11n supports more throughput improvements. Also provides speeds up to 500 Mbps. </li>
+</ul>
+<p>The basic difference between 802.11a,802.11b and 802.11g are given below :</p>
+<center><img src="{% static 'antLab/table2.png'%}" alt=""></center>
+<hr>
+<h5>Hardware Requirements for Wi-Fi </h5>
+<p>The following hardware devices are required for connecting the Wi-Fi Network.</p>
+<strong>Access POint</strong>
+<p>Access Point (AP) acts as a bridge between the wired network and wireless devices. It allows multiple devices to
+    connect through it for accessing the network. An AP can also act as a router through which the data transmission can
+    be possible from one AP to another.</p>
+<strong>Wireless Network Card</strong>
+<p>A wireless network card (WNC) is required on each device on a wireless network. A desktop computer would need an
+    internal card, which will usually have a small antenna or an external antenna on it. These antennas are optional on
+    most equipment and they help to increase the signal on the card.</p>
+<strong>Transmitter</strong>
+<p>Transmitter is used for emitting the wireless signals and it also receive the connection requests where a wireless
+    client will send the requests and receives the replies from the transmitter. In this case, the transmitter is the
+    wireless router.</p>
+<hr>
+<h5>How to connect to the Wi-Fi Networks?</h5>
+<p>Wi-Fi Network is easy to connect. Suppose, we will think about our laptop with any operating systems, then we can
+    easily connect to a Wi-Fi network for accessing or we can share different files on a network.</p>
+<p>Once we have acquired the necessary wireless networking hardware then, connect it all together to form a network and
+    allow each device to communicate. The instructions below will act as basic guidelines of what needs to be done.</p>
+<ul>
+    <li>The distance between each computer should be below 100 meters </li>
+    <li>Each computer should be on the same floor </li>
+    <li>Plug the AP into the power outlet and existing Ethernet jack on the network </li>
+    <li>Configure the access point (usually through a web browser) </li>
+    <li>Configure the client computers with the appropriate network settings required to be able to communicate with the
+        AP. </li>
+</ul>
+<hr>
+<h5>Advantages of Wi Fi</h5>
+<p>Following are the different benefits of Wi-Fi Networks</p>
+<ul>
+    <li>In wireless ad-hoc network mode, devices like consumer electronics and gaming applications can directly connect
+        and
+        exchange data with each other. </li>
+    <li>Digital images can be transferred wirelessly from cameras and other devices. </li>
+    <li>All connected devices within the range have access to Internet and inter-networking. </li>
+    <li>Wi-Fi enables wireless voice-applications (Vo WLAN or WVOIP). </li>
+    <li>Wi-Fi provides a secure computer networking gateway, firewall, DHCP server and an intrusion detection system
+        along
+        with other features. </li>
+    <li>Cost of cabling and network deployment of Local Area Networks is significantly reduced. </li>
+    <li>Can be used at placed where wiring and cable lay-out is not feasible. </li>
+    <li>Due to its cost effective nature, it can be used widely in different educational campuses and industries. </li>
+    <li>Wi-Fi device can function in any type of geographical location. </li>
+</ul>
+<hr>
+<h5>Limitations</h5>
+<p>Like any other types of technology, Wi-Fi has its set of drawbacks that are listed as follows:</p>
+<ul>
+    <li>Global inconsistency of spectrum assignments and operational limitations. </li>
+    <li>Overlapping of channels. </li>
+    <li>Limited range of equivalent isotropically radiated power in some areas. </li>
+    <li>Greater power consumption compared to lower bandwidth standards. </li>
+    <li>Limited battery life due to range and reach requirements. </li>
+    <li>Wi-Fi network range is also limited. </li>
+</ul>
+<hr>
+<h5>MAC Protocol</h5>
+<p>The 802.11 standards use a MAC layer known as CSMA/CA (Carrier Sense Multiple Access/Collision Avoidance).</p>
+<p> In CSMA/CA a Wireless node that wants to transmit & performs the following sequence:</p>
+<ul>
+    <li> Listen on the desired channel. </li>
+
+    <li> If channel is idle (no active transmitters) it sends a packet. </li>
+
+    <li> If channel is busy then, the node waits until the transmission end then a contention period where minimum time
+        a
+        host must transmit before it can be sure that the no other host’s packet has collided with its transmission.
+    </li>
+
+    <li> If the channel is still idle at the end of the contention period, then the node transmits its packet otherwise
+        it
+        repeats the process defined in step-3 above until it gets a free channel. </li>
+</ul>
+<p>The MAC header format shown in the figure-01 below:</p>
+<center><img src="{% static 'antLab/theory_05_05.jpg'%}" alt=""></center>
+<center>Figure-01: Illustration of MAC Header Format</center>
+<hr>
+<h5>Use of RTS/CTS to Exchange Data</h5>
+<strong>Step 1:</strong>
+<p>At first the sender check whether the medium is idle or not, if so, after the Distributed Inter Frame Space (DIFS
+    will check the status and sense before transmitting the data in the wireless medium) units of time, it will
+    broadcasts a Request-to-Send (RTS) frame to the receiver address.</p>
+
+<strong>Step 2:</strong>
+<p>If the receiver is within the range, then it will wait for Short Inter Frame Space (SIFS is the small time interval
+    between the data frame and its acknowledgment) unit of time, then only it will respond to the sender with a
+    Clear-to-Send (CTS) frame.</p>
+
+<strong>Step 3:</strong>
+<p>If the sender receive the CTS frame, then it will wait for another SIFS unit of time before sending the data frame to
+    the receiver.</p>
+
+<strong>Step 4:</strong>
+<p>Finally, when the receiver will successfully receive the data frame, it will wait for SIFS unit of time and also send
+    an Acknowledgement (ACK) message return to the sender.</p>
+
+<p>Following figure-02 shows how data exchanges using RTC/CTS</p>
+
+<center><img src="{% static 'antLab/theory_05_06.jpg'%}" alt=""></center>
+<center>Figure-02:How Data exchanges using RTC/CTS</center>
+
+<hr>
+
+<h5>issues in Wi-Fi Network</h5>
+<p>Wi-Fi suffers from two well known problems:</p>
+<ul>
+    <li><b>Hidden Terminal Problem</b></li>
+    <li><b>Exposed Terminal Problem</b></li>
+</ul>
+
+<hr>
+
+<h5>The Hidden Terminal Problem</h5>
+
+<p>The hidden node/ terminal problem found at a point to multipoint network and it is defined as being one in which
+    three or more nodes are present. Let there are three nodes :node A, node B and node C. <br>
+
+    A and C cannot hear each other. <br>
+
+    A sends to B, C cannot receive A. <br>
+
+    C wants to send B, C senses a free medium. <br>
+
+    Collision occurs at B. <br>
+
+    A cannot receive the collision. <br>
+
+    A is hidden for C.</p>
+<p>Figure-03 illustrates the Hidden Terminal Problem using node A,B and C</p>
+<center><img src="{% static 'antLab/theory_05_02.png'%}" alt=""></center>
+<center>Figure-03: Hidden Terminal Problem</center>
+<hr>
+
+<h5>Solution of Hidden Terminal Problem</h5>
+<p>The solution of hidden terminal problem is as follows.</p>
+<ul>
+    <li> When A wants to send a packet to B , A first sends a Request-to-send (RTS) to B. </li>
+    <li> On receiving RTS, B responds by sending Clear-to-Send (CTS). </li>
+    <li> When C overhears a CTS, it keeps quiet for the duration of the transfer. </li>
+    <li> Transfer duration is included in both RTS and CTS. </li>
+    <li> RTS and CTS are short frames, reduces collision chance. </li>
+</ul>
+<strong>The other methods that can be employed to solve hidden terminal problem are :</strong>
+
+<ul>
+    <li> Increase transmitting power from the nodes. </li>
+    <li> Use unidirectional antennas. </li>
+    <li> Remove obstacles. </li>
+    <li> Move the node. </li>
+    <li> Use protocol enhancement software. </li>
+    <li> Use antenna diversity. </li>
+</ul>
+<strong> Effect of Hidden Terminal Problem </strong>
+
+<p>If one node hidden to another then the re-transmission will increase. It also increase the delay and decrease the
+    throughput.</p>
+
+<hr>
+
+<h5>Exposed Terminal Problem</h5>
+<p>Suppose there are four nodes: node A, node B, node C and node D.</p>
+
+<ul>
+    <li>B can send to both A and C . </li>
+    <li>C can send to D, but not to A or B. </li>
+    <li>A and C cannot hear each other. </li>
+</ul>
+<p>Now the Problem as follows : <br>
+    - When B transmits to A, C detects the transmission using the carrier sense mechanism. <br>
+    - So C defers transmitting to D. <br>
+    - But C could have sent to D, so blocked unnecessarily.</p>
+<p>The following figure-04 shows the Exposed Terminal Problem using node A,B,C and D</p>
+
+<center><img src="{% static 'antLab/theory_05_03.png'%}" alt=""></center>
+<center>Figure-04: Exposed Terminal Problem</center>
+
+<hr>
+
+<h5>Solution to the Exposed Terminal Problem</h5>
+<p>Exposed terminal problems cannot be mitigated with RTS/CTS. This can be explained with the following scenario.</p>
+<ul>
+   <li> Suppose B sends RTS to A. </li>
+   <li> A sends CTS to B. </li>
+   <li> C hears RTS, but not CTS, assumes it is ok to send to D. </li>
+</ul>
+<hr>
+
+<h5>Simulating a Wi-Fi using Network Simulator 3</h5>
+<p>NS-3 is an open source network simulator, and supposed to be the future replacement of NS-2. We would be using NS-3 for this experiment. Providing a tutorial on NS-3 is, however, outside the scope of this experiment. The Exercises section presents two problems and their solutions using NS-3. We would use the existing codes and tweak it to get familiarized with the basic characteristics of Wi-Fi. Nevertheless, one could visit the NS-3website to learn more about this simulator.</p>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider an access point and two base stations A and B as shown in figure. Base stations can communicate with the access point, if they are within the communication range. Initially base station A is not within communication range. After sometimes, A starts moving and comes within the range and starts transmitting packets to the access point.</p>
+<p>Base station A does not know the presence of another base station B (hidden node) and vice versa. Both the hidden nodes start transmitting at the same time and collision occurs. To overcome this RTS and CTS frames are used.</p>
+<br>
+<h3>animation comes here</h3>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
+{% block excercise %}
+<a class="excercise " href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
 
-{% block experimentName %} {%endblock%}
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+
+<div class="cont my-3" id="ex01"> 
+    <strong>Illustration of Wifi communication range</strong>
+
+    <p>Consider a Wifi access point (AP) and a base station (STA), which are both static. The STA can communicate with the AP only when it is within a certain distance from the AP. Beyond that range, the two nodes can't receive each others signals.</p>
+    <p>Given below is a code to simulate the said scenario with ns3. STA sends a packet to the AP; AP echoes it back to the base station. The AP is located at position (x, y) = (0, 0). STA is at (xDistance, 0) (all distances in meter). Default value of xDistance is set to 10. [Lines #74, #129]</p>
+
+    <p>Increase the value of xDistance in the code and find out the maximum distance up to which two way communication is possible. This can be verified from the output of the code, which will show the STA has received reply from the AP (indicated by IP address).</p>
+
+    <div class="code">
+        <center><H2>SPACE FOR NS2 COMPILER</H2></center>
+    </div>
+</div>
+<div class="cont my-3" id="ex02"> 
+    <strong>Illustration of hidden node problem</strong>
+    <p>Consider two Wifi base stations (STA) and an access point (AP) located along the x-axis. All the nodes are fixed. The AP is situated at the middle of the two STA, the distance of separation being 150 m.</p>
+
+    <p>Node #0 and node #1 are the hidden terminals. Both are transmitting some data to the AP (almost at same rate) at the same time. The loss across the wireless link between each STA and the AP is fixed at 50 dB irrespective of the distance of separation</p>
+
+    <p>To study how RTS/CTS helps in wireless networks, we run two experiments. In the first one, no RTS/CTS is being sent. In the second one, nodes do exchange RTS/CTS packets</p>
+    <strong>Compare the no. of packet retransmissions required in both the cases (as obtained in the output) and convince yourself about the result.</strong>
+    <p><strong>Note: </strong>Enable only one experiment at a time (line #s 177, 180), otherwise output for both the experiments will come together and it would be a bit difficult to compare. You could use the text filtering option provided below the simulation output section to count the number of retransmissions.</p>
+
+    <div class="code">
+        <center><H2>SPACE FOR NS2 COMPILER</H2></center>
+    </div>
+</div>
+    
+{%endblock%}

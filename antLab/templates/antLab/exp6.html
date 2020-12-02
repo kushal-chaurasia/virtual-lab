@@ -1,21 +1,229 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Simulating a WiMAX Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Simulating a WiMAX Network</h4>
+<p>Wimax (802.16) is the next stage to a broadband as well as a wireless world. It can provide wireless access up to 30
+    miles (50 km) for fixed stations, and 3 - 10 miles (5 - 15 km) for mobile stations. It supports low latency
+    applications such as voice, video, and Internet access at the same time.</p>
+<p>In this experiment, we will learn how data rates obtained for different modulation schemes also we can analyze the
+    communication range of WiMAX</p>
+
+
 {%endblock%}
+
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to: </strong>
+<ul>
+    <li>Understand about WiMAX networks, standards, limitations </li>
+    <li>Get familiar with adaptive modulation techniques used with WiMAX </li>
+</ul>
+<hr>
+<h5>WiMAX</h5>
+<p>WiMAX stands for Worldwide Interoperability for Microwave Access. It is a broadband wireless point-to-multipoint
+    specification from the IEEE 802.16 working group. It was developed by Institute of Electrical and Electronics
+    Engineers (IEEE) in June 2001. WiMAX is designed to operate as a wireless MAN (Metropolitan Area Network). It is a
+    telecommunications protocol that provides fixed and mobile Internet access.</p>
+<hr>
+
+<h5>Standards</h5>
+<ul>
+    <li>The IEEE 802.16 WiMAX standard specified for the 10 to 66 GHz ranges</li>
+    <li>802.16d was updated by 802.16a in 2004 to 802.16-2004. It added specification for the 2 to 11 GHz range.
+        802.16d, it also known as "fixed WiMAX”.</li>
+    <li>802.16e was updated by 802.16d in December 2005. It is known as "roaming and mobile WiMAX" and uses scalable
+        orthogonal frequency-division multiplexing (OFDM). It has potential benefits in terms of coverage, self
+        installation, power consumption, frequency re-use and bandwidth efficiency.</li>
+    <li> 802.16e also adds a capability for full mobility support</li>
+    <li>802.16m (New) The Institute of Electrical and Electronics Engineers is expected this year in 2011 to provide
+        final approval for the 802.16m standard, also known as "WiMAX 2" [iii] . However it plans on testing out 802.16m
+        sometime next year in the hopes of deploying it in 2012.</li>
+</ul>
+<strong>Following table shows the differentiate among IEEE 802.16,802.16d and 802.16e</strong> <br>
+<center><img src="{%static 'antLab/theory_06_01.jpg'%}" alt=""></center>
+<center>Illustration of different WiMAX standards</center>
+<hr>
+
+<h5>How WiMAX works ?</h5>
+<p>WiMAX is possible through broadband access to DSL lines. The working method of WiMAX is different from Wi-Fi network,
+    because Wi-Fi system can be connected via LAN card or router, while the connectivity of WiMAX network constitutes of
+    two parts in which one is WiMAX tower or booster also known as WiMAX base station and second is WiMAX receiver or
+    Customer Premise Equipment (CPE). </p>
+
+<p>WiMAX technology providers build a network with the help of towers that enable communication access over many miles.
+    The broadband service of WiMAX technology is available in coverage areas. The coverage areas of WiMAX technology
+    separated in series of over lied areas called channel. </p>
+
+<p>When a user sends data from one location to another, the wireless connection is transferred from one cell to another
+    cell. When signal transmit form user to WiMAX base station or base station to user (WiMAX receiver), the wireless
+    channel faces many attenuation such as fraction, reflection, refraction, wall obstruction etc. These all attenuation
+    may cause of distorted, and split toward multi path. The target of WiMAX receiver is to rebuild the transmitted data
+    perfectly to make possible reliable data transmission. </p>
+
+<hr>
+<h5>Limitations of WiMAX</h5>
+<P>WiMax cannot provide highest performance over 50 kilometers. As the distance increases, bit error rate reduces the
+    performance. Reducing distance to less than 1km allows a device to operate at higher bit rate. A user closer to base
+    station gets better speed at around 30 Mbps.</P>
+
+<P>As an available bandwidth is shared between no. of users, performance depends on number of active users connecting to
+    that base station. So this needs a use of Quality of Service (QOS) mechanism to provide a minimum guaranteed
+    throughput.</P>
+<hr>
+
+<h5>Modulation Schemes</h5>
+<p>Modulation is a technique of transfer information through a medium.[v] Modulation is used because of noise in the
+    signal and signal attenuation. Basically in WIMAX Digital Modulation Technique are used. Digital Modulation
+    Technique is known as conversion from digital to analog and reverse is known as demodulation</p>
+
+<p>In WIMAX following modulation techniques are used</p>
+<ul>
+    <li>BPSK: Binary Phase Shift Keying. </li>
+    <li>QPSK(1/2): Quadrature Phase Shift Keying. </li>
+    <li>QPSK(3/4): Quadrature Phase Shift Keying. </li>
+    <li>16QAM(1/2): Quadrature Amplitude Modulation. </li>
+    <li>16QAM(3/4): Quadrature Amplitude Modulation. </li>
+    <li>64QAM(2/3): Quadrature Amplitude Modulation. </li>
+    <li>64QAM(3/4): Quadrature Amplitude Modulation. </li>
+</ul>
+<ul>
+    <li>BPSK-It is very simple PSK(Phase Shift Keying).Its phase is separated by 180 degree.In this one bit can coded in
+        one symbol. </li>
+    <li>QPSK-It also a type of PSK(Phase Shift Keying).Two bits coded in one symbol.It is two dimension signalling </li>
+
+    <li>QAM-It is combination of Phase Modulation and Amplitude Modulation.It is advantageousn in performance of
+        noise.In thin n bits can coded in one symbol. </li>
+</ul>
+<p>Now one importent question why different modulation techniques are used in WIMAX?</p>
+<p>Different modulation technique perform good task for a certain distance.Some modulation scheme does not work for a
+    long distance.</p>
+
+<hr>
+
+<h5>Here some terminology,expression and table are given below</h5>
+<strong>Symbol rate= Bit rate/no of bit transmitted in each symbol</strong> <br>
+which means that the symbol rates depend upon the number of bits transmitted in each symbol.
+<hr>
+
+<h5>Difference between low symbol rate and high symbol rate</h5>
+<center><img src="{%static 'antLab/table3.png'%}" alt=""></center>
+
+<p>From general concept we know that as power degrades(attenuates) with the increasing distance. <br>
+    <b> SNR=Power of Signal/Power of Noise </b> <br>
+    Here SNR depends on Power of Signal.If power of Signal is more SNR value is more.</p>
+<p>Now we can take an example, <br>
+    In BPSK the number of bit per symbol is 1 and in QPSK the number of bit per symbol is 2. <br>
+    In BPSK if power is less, SNR value is also less and if power get attenuates over a long distance then also it can
+    transmit properly as mentioned earlier. <br>
+    Similarly in case of QPSK if power is less, the SNR value is also less and if power gets attenuates over a long
+    distance then it may error in the signal as no <br>
+    of bit per symbol is more than BPSK.</p>
+<p>In the table given below shows the different scheme of modulation are given along with SNR values and maximum
+    distance cover</p>
+<center><img src="{%static 'antLab/table4.png'%}" alt=""></center>
+<hr>
+
+<h5>WIMAX module for NS-2</h5>
+<p> <b>Module name:ns2-wimax-awg</b> <br>
+    Module Details:Initially this module was developed at National Institute of Standards and Technology but later on it
+    was decided to combine individuals team effort supported by Application Architecture Task Group(AATG), Wimax Forum
+    and National Institute of Standards and Technology. By applying this patch we can directly use WiMAX in the existing
+    NS-2. All the features available are listed in NS-2_Release_2_6_Documentation.pdf document [ix], including</p>
+
+<ul>
+    <li>OFDMA for physical layer </li>
+    <li>Time Division Duplexing (TDD) </li>
+    <li>Schedulers for link allocation to registered Mobile Stations (MSs) according to bandwidth requested </li>
+    <li>IEEE 802.16e MAC layer extensions </li>
+    <li>Fragmentation and reassembly of frames </li>
+    <li>Fast fading models: ITU PED A, PED B and VEHIC A </li>
+    <li>QoS scheduling, ARQ </li>
+</ul>
+<hr>
+
+<h5>Addressing Format in ns2</h5>
+<b>The Default address format </b>
+<p>The address space consists of two part node id and port id.Here node id is flat, we can say if there is n number of
+    node then its id will be 1 to 10.</p>
+<b>The Hierarchical address format</b>
+<p>In hierarchical addressing node-id has three level as x.y.z, where x is domain number, y is cluster number and z is
+    number of node in each cluster.</p>
+
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>A WiMAX deployment could typically work in three architectural modes: Point-to-Multipoint (PMP), Mesh, or Mobile
+    Multi-hop Relay (MMR) mode. In this simulation we would visualize how a typical WiMAX network works in PMP and Mesh
+    mode.</p>
+<div class="code">
+    <h3>Animation comes here</h3>
+</div>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
-
-{% block experimentName %} {%endblock%}
+{% block excercise %}
+<h5>Comparison of data rates obtained for different modulation schemes</h5>
+<p>The following code simulates a WiMAX network with a base station, sink node and a mobile node. The mobile node is,
+    however, kept static in this scenario. The sink node is connected to the base station with a wired link. An uplink
+    transmission (line #58) of CBR data occur from the mobile (wireless) node to the sink node via the base station.</p>
+<p>The objective of this exercise is to study how data rates vary with distance for different modulation technique.
+    Following parameters could be varied to obtain different results:</p>
+<ul>
+    <li>Modulation technique (line #57) </li>
+    <li>Distance of the mobile node from the base station (line #59) </li>
+</ul>
+<p>Modulation technique (line #57) takes a value from 1 to 7 with each number representing a different technique as
+    noted below:</p>
+<pre>    1: OFDM_BPSK_1_2
+    2: OFDM_QPSK_1_2
+    3: OFDM_QPSK_3_4
+    4: OFDM_16QAM_1_2
+    5: OFDM_16QAM_3_4
+    6: OFDM_64QAM_2_3
+    7: OFDM_64QAM_3_4
+    </pre>
+<strong>Task</strong>
+<ul>
+    <li>Keeping the modulation technique fixed, run the simulation for different distances (line #59) between the base
+        station and the mobile node. Take the initial distance as 1000m, and increase upto 5000m in steps of say, 1000m.
+    </li>
+    <li>Every time you run the simulation for different distances, calculate the average throughput of the sink node
+        with ID
+        0.0.0. Use the 'Mixed' mode of the Trace Analyzer for this purpose. Note down the distance and the average
+        throughput obtained in the format &lt;distance>, &lt;vg_thruput> </li>
+    <li>Paste the collected data from all the runs, and paste in them in the Custom Plot area. Put appropriate labels
+        and plot the data. </li>
+    <li>Repeat the previous steps for other modulation techniques as well. </li>
+</ul>
+<p>In a similar way, plot the data rate vs. distance graphs for different modulation techniques in case of downlink transmission. For this purpose change 'ul' to 'dl' in line #58.</p>
+<p><strong>NOTE: </strong>Please note that the code for WiMAX uses hierarchical address. Also, the trace file contain events both in wired and wireless (new) format. However, the next node ID in the trace file is always an integer -- even though we use hierarchical addresses. The address 1.0.1 of the mobile node translates to 4194305 (verify from the trace file). So, in case of downlink transmission, to calculate average throughput, please use node ID as 4194305.</p>
+<div class="code">
+    <h2>.tcl COmpliler comes here</h2>
+</div>
+{%endblock%}

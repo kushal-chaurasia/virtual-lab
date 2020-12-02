@@ -1,13 +1,50 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Setting up a Bluetooth Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Setting up a Bluetooth Network</h4>
+<p>Bluetooth was ratified as IEEE 802.15 standard. The technology got its unusual name in honor of Harald Bluetooth,
+    king of Denmark in the mid-tenth century. It is used for short-range connections between desktop and laptop
+    computers, PDAs, digital cameras, scanners, cellular phones, and printers. Bluetooth uses a standard 2.4 GHz
+    frequency so that all bluetooth-enabled devices will be compatible with each other.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<b>After completing this experiment you will be able to: </b>
+<ul>
+    <li>Understand about Bluetooth networks and how it is differentiate from WiFi networks </li>
+    <li>Get familiar with Piconet and Scatternet formation </li>
+    <li>Simulating the Bluetooth networks with NS2 by using UCBT extensions </li>
+</ul>
+<hr>
+
+<h5>Blueetooth Network</h5>
+<p>The name Bluetooth was named after 10th century Viking king in Denmark Harald Bluetooth who united and controlled
+    Denmark and Norway [i]. Bluetooth is a low power, low cost, and short range radio network standard. It supports
+    unlicensed Industrial, Scientific and Medical (ISM) 2.4 GHz short-range radio frequency band. It is complementary to
+    the Wi-Fi network specified by IEEE 802.11b/g/a standard. Bluetooth uses a frequency hopping scheme to provide
+    robust wireless communication. As a cable replacement, Bluetooth is widely used in cell phone, PDA, laptop, headset,
+    and printer, etc. to form a Personal Area Network (PAN) and provide universal access . Bluetooth uses a radio
+    technology called frequency-hopping spread spectrum</p>
+<hr>
+<h5>Who staerted Blueetooth?</h5>
+<ul>
+    <li>Bluetooth wireless technology was accepted by engineers at Swedish telecommunications manufacturer
+        Telefonaktiebolaget LM Ericsson </li>
+    <li>In 1994 Ericsson had started a project to study the feasibility of a low-cost and low-power radio interface to
+        replace cables between mobile accessories and mobile phones </li>
+    <li>In 1998, Bluetooth technology was starting to take shape and led to the development of the Bluetooth Special
+        Interest Group (SIG); with the founding members being:IBM, Intel, Nokia, Toshiba and Ericsson </li>
+</ul>
+<hr>
+
+<h5>Blueetooth vs Wi-Fi</h5>
+<p>Bluetooth and Wi-Fi technologies have some similarities because both are wireless technologies and used to communicate with other devices.</p>
+<center><img src="{% static 'antLab/table5.png'%}" alt=""></center>
 {% endblock %}
 
 {% block Simulation %}

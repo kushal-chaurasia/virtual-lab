@@ -5,9 +5,13 @@
 {% block introduction%}
 <!-- theory content -->
 <h4>Introduction</h4>
-<p>A satellite works as an attendant around the orbit, collect information and relay them to destination. The geostationary satellite appears to be fixed from a ground observer and is useful for telecommunication, television broadcasting, weather forecasting etc. A low earth orbit satellite is closer to the earth and it provide different types of communication service in connection with the small ground terminals. </p>
+<p>A satellite works as an attendant around the orbit, collect information and relay them to destination. The
+    geostationary satellite appears to be fixed from a ground observer and is useful for telecommunication, television
+    broadcasting, weather forecasting etc. A low earth orbit satellite is closer to the earth and it provide different
+    types of communication service in connection with the small ground terminals. </p>
 
-<p>In this experiment we will learn the simulation of how two terminals on ground are communicated with each other using geostationary satellite and low earth orbit satellite.</p>
+<p>In this experiment we will learn the simulation of how two terminals on ground are communicated with each other using
+    geostationary satellite and low earth orbit satellite.</p>
 {%endblock%}
 
 {% block theory %}
@@ -16,37 +20,262 @@
 <strong>After completing this experiment you will be able to:</strong>
 <ul>
     <li>Get familiar with the basics of satellite network and how to simulate them with ns2</li>
-<li>Learn the simulation of geostationary satellite and Iridium constellation with ns2</li>
+    <li>Learn the simulation of geostationary satellite and Iridium constellation with ns2</li>
 </ul>
 <hr>
 <h4>Satellite</h4>
-<p>The word ‘Satellite’ comes from the Latin word ‘Satellit’  meaning an attendant, who is constantly revolving  and attaining a larger body.Figure-01 shows a picture of satellite.</p>
+<p>The word ‘Satellite’ comes from the Latin word ‘Satellit’ meaning an attendant, who is constantly revolving and
+    attaining a larger body.Figure-01 shows a picture of satellite.</p>
 
 <center><img src="{% static 'antLab/pic1.png'%}" alt=""></center>
 <center>Figure-01: Picture of a Satellite</center>
 
-<p>A satellite is kept in a mathematical calculable path called orbit, around another planet to collect information or communication.Figure-02 shows different satellite orbits.Here two different types of satellite orbits are discussed namely, Geostationary Orbit and Low Earth Orbit.</p>
+<p>A satellite is kept in a mathematical calculable path called orbit, around another planet to collect information or
+    communication.Figure-02 shows different satellite orbits.Here two different types of satellite orbits are discussed
+    namely, Geostationary Orbit and Low Earth Orbit.</p>
 
 <center><img src="{% static 'antLab/pic3.png'%}" alt=""></center>
 <center>Figure-02: Types of Satellite Orbit</center>
 
 <strong>Geostationary Orbit</strong>
-<p>The rotational period of Geostationary Orbit is equal to that of earth. The geostationary satellite appear to be stationary from the earth surface as the earth and geostationary satellite move with the same speed. The orbit has zero inclination located directly above the equator (equatorial orbit ).</p>
-<p>The geostationary earth orbit satellites are modelled by "bent pipe" repeaters which receives radio frequency by an uplink channel and piped to corresponding downlink</p>
+<p>The rotational period of Geostationary Orbit is equal to that of earth. The geostationary satellite appear to be
+    stationary from the earth surface as the earth and geostationary satellite move with the same speed. The orbit has
+    zero inclination located directly above the equator (equatorial orbit ).</p>
+<p>The geostationary earth orbit satellites are modelled by "bent pipe" repeaters which receives radio frequency by an
+    uplink channel and piped to corresponding downlink</p>
 
 <strong>Low Earth Orbit</strong>
-<p>A low earth orbit (LEO), circles close to the Earth. Generally, LEOs have altitudes between 500 and 2,000 km above the Earth’s surface. A special type of LEO is the Polar Orbit. The polar orbit is a LEO with a high inclination angle (close to 90degrees). So the LEO satellite move around the poles. Iridium and Teledesic are example of polar orbiting satellite systems and can be modelled in ns.</p>
-<p><strong>Courtesy: </strong>The following texts and ns codes are copied from the "The ns Manual, The VINT project, chapter-17 Satellite Networking in ns [i] ". For further details please refer the ns manual.</p>
+<p>A low earth orbit (LEO), circles close to the Earth. Generally, LEOs have altitudes between 500 and 2,000 km above
+    the Earth’s surface. A special type of LEO is the Polar Orbit. The polar orbit is a LEO with a high inclination
+    angle (close to 90degrees). So the LEO satellite move around the poles. Iridium and Teledesic are example of polar
+    orbiting satellite systems and can be modelled in ns.</p>
+<p><strong>Courtesy: </strong>The following texts and ns codes are copied from the "The ns Manual, The VINT project,
+    chapter-17 Satellite Networking in ns [i] ". For further details please refer the ns manual.</p>
 <hr>
 <h5>Simulating a Satellite network in ns2</h5>
+<p>we could introduce the following positions at the beginning of simulation script in order to correctly configure the
+    terminals and satellite objects.</p>
+<img src="{% static 'antLab/code1.png' %}" alt="">
+<p>Specifically, the array opt defines the type of the objects that make up a terminal node and configure their
+    attributes. Then, configure the satellite object and terminals.</p>
+<p>There are three different types of nodes in satellite network:</p>
+<ul>
+    <li> Geostationary satellite nodes</li>
+    <li> Terminal nodes (placed on the Earth's surface)</li>
+    <li> Non-geostationary satellite nodes</li>
+</ul>
+<h5>Geostationary satellite nodes</h5>
+<p>A geostationary satellite is specified by its longitude above the equator. The longitude ranges from [-180,180]
+    degrees. Two types of geostationary nodes exist: ``geo'' (for processing satellites) and ``geo-repeater'' (for
+    bent-pipe satellites).</p>
+<img src="{% static 'antLab/code2.png' %}" alt="">
+
+<h5>Terminal Nodes</h5>
+<p>A terminal node is specified by its latitude and longitude. Latitude ranges from [-90, 90] and longitude ranges from
+    [-180, 180], with negative values corresponding to south and west, respectively.</p>
+<img src="{% static 'antLab/code3.png' %}" alt="">
+<h5>Polar orbiting satellite nodes(Non-geostationary satellite)</h5>
+<p>Satellite orbits are usually specified by six parameters: altitude, semi-major axis, eccentricity, right ascension of
+    ascending node, inclination, and time of perigee passage.</p>
+<p>The polar orbiting satellites in ns have purely circular orbits, so the orbits include parameters altitude,
+    inclination, longitude, alpha and plane.</p>
+<ul>
+    <li><strong>Altitude: </strong>is specified in kilometers above the Earth's surface.</li>
+    <li><strong>Incliation </strong> can range from [0.180]degrees with 90 corresponding to pure polar orbits and angles
+        greater than 90 degrees corresponding to “retrograde'' orbits. The ascending node refers to the point where the
+        footprint of the satellite orbital track crosses the equator moving from south to north. In this simulation
+        model,</li>
+    <li><strong>Longitude of ascending node </strong> specifies the earth-centric longitude at which the satellite's
+        nadir point crosses the equator moving south to north. Longitude of ascending node can range from [-180,180]
+        degrees.</li>
+    <li><strong>Alpha </strong> specifies the initial position of the satellite along this orbit, starting from the
+        ascending node. For example, an alpha of 180 degrees indicates that the satellite is initially above the equator
+        moving from north to south. Alpha can range from [0,360] degrees.</li>
+    <li><strong>Plane </strong> is specified when creating polar satellite nodes- all satellites in the same plane are
+        given the same plane index.</li>
+</ul>
+<img src="{% static 'antLab/code4.png' %}" alt="">
+
+<h5>Satellite Link</h5>
+<p>Satellite links[i] transmit and receive interfaces must be connected to different channels, and there is no ARP
+    implementation in satellite links.</p>
+<div class="code">
+    1 | $node add-interface $type $ll $qtype $qlim $mac $mac_bw $phy
+</div>
+<p>The add-interface is eithere a add-gsl or add-isl. The following parameters must be provided:</p>\
+<ul>
+    <li><b>type:</b> It is used to identify the different types of links: geo or polar for links from a terminal to a
+        geo or polar satellite, respectively, gsl and gsl-repeater for links from a satellite to a terminal, and
+        intraplane, interplane, and crossseam ISLs. </li>
+    <li><b>ll:</b> The link layer type (class LL/Sat is currently the only one defined). </li>
+    <li><b>qtype:</b> The queue type (e.g., class Queue/DropTail). </li>
+    <li><b>qlim:</b> The length of the interface queue, in packets. </li>
+    <li><b>mac:</b> The MAC type. Currently, two types are defined: class Mac/Sat- a basic MAC for links with only one
+        receiver (i.e., it does not do collision detection), and Class Mac/Sat/UnslottedAloha- an implementation of
+        unslotted Aloha. </li>
+    <li><b>mac_bw:</b> The bandwidth of the link is set by this parameter, which controls the transmission time how fast
+        the MAC sends. </li>
+    <li><b>phy:</b> The physical layer- currently two Phys (Class Phy/Sat and Class Phy/Repeater) are defined. The class
+        Phy/Sat just pass the information up and down the stack- as in the wireless code, a radio propagation model
+        could be attached at this point. The class Phy/Repeater pipes any packets received on a receive interface
+        straight through to a transmit interface. </li>
+</ul>
+<p>An ISL(Inter Satellite Link) can be added between two nodes using the following instproc:</p>
+<div class="code">1 |
+    $ns add-isl $ltype $node1 $node2 $bw $qtype $qlim
+</div>
+<p>This creates two channels, and appropriate network interfaces on both nodes, and attaches the channels to the network
+    interfaces. The bandwidth of the link is set to bw. The linktype (ltype) must be specified as either intraplane,
+    interplane, or crossseam.</p>
+<p>A GSL(Ground to Satellite Link) involves adding network interfaces and a channel on board the satellite, and then
+    defining the correct interfaces on the terrestrial node and attaching them to the satellite link, as follows:</p>
+<img src="{% static 'antLab/code5.png' %}" alt="">
+
+<p>The type must be either geo or polar.The command setups a bidirectional connection between satellite node and the
+    terminal node using parameters previously indicated opt.</p>
+<h5>Handsoff</h5>
+<p>Satellite handoff [i] modelling is used in LEO satellite network simulations.There are two types of links to polar
+    orbiting satellites that must be handed off: GSLs to polar satellites, and crossseam ISLs. </p>
+
+<p>Each terminal connected to a polar orbiting satellite runs a timer.when the time expires,the HandoffManager to check
+    the current position of the satellite.If the satellite has fallen below the elevation mask of the terminal, the
+    handoff manager detaches the terminal from that satellite's up and down links, and searches for another possible
+    satellite. If it finds a suitable polar satelite, it connects its network interfaces to that satellite's uplink and
+    downlink channels, and restarts the handoff timer. If it does not find a suitable satellite, it restarts the timer
+    and tries again later. If any link changes occur, the routing agent is notified. </p>
+
+<p>The elevation mask and handoff timer interval are set as follows:</p>
+<img src="{% static 'antLab/code6.png' %}" alt="">
+<p>Handoffs may be randomized to avoid phase effects by setting the following variable:</p>
+<img src="{% static 'antLab/code7.png' %}" alt="">
+<p>If handoff_randomization_ is true, then the next handoff interval is a random variate picked from a uniform
+    distribution across.</p>
+
+<p>The satellite handoff interval is set by the following command:</p>
+<img src="{% static 'antLab/code8.png' %}" alt="">
+
+<p>Interplane and crossseam ISLs are deactivated near the poles, because the pointing requirements for the links are too
+    severe as the satellite draw close to one another. Shutdown of these links is governed by a parameter:</p>
+<img src="{% static 'antLab/code9.png' %}" alt="">
+<p>If crossseam ISLs exist, there are certain situations in which the satellites draw too close to one another in the
+    mid-latitudes (if the orbits are not close to being pure polar orbits). The occurence of this orbital overlap is
+    checked with the following parameter:</p>
+<img src="{% static 'antLab/code10.png' %}" alt="">
+
+<h5>Routing</h5>
+<p>The routing genie is a class SatRouteObject and is created and invoked with the following OTcl commands:</p>
+<img src="{% static 'antLab/code11.png' %}" alt="">
+<p>where the call to compute_routes is performed after all of the links and nodes in the simulator have been
+    instantiated.</p>
+
+<h5>Structure of trace files in Satellite network</h5>
+<p> The trace is organized in 16 fields as follows:</p>
+<img src="{% static 'antLab/tab1.png' %}" alt="">
+<ul>
+    <li>The first 12 fields are similar to conventional ns tracing.</li>
+    <li>The last four fields log the geographic latitude and longitude of the node logging the trace (the latitude and
+        longitude correspond to the nadir point of the satellite). </li>
+</ul>
+Ex:
+<pre>+ 1.0000 66 26 cbr 210 ------- 0 66.0 67.0 0 0 37.90 -122.30 48.90 -120.94</pre>
+<p>In this case, node 66 is at latitude 37.90 degrees, longitude -122.30 degrees, while node 26 is a LEO satellite whose
+    subsatellite point is at 48.90 degrees latitude, -120.94 degrees longitude (negative latitude corresponds to south,
+    while negative longitude corresponds to west).</p>
+<p>To enable tracing of all satellite links in the simulator, use the following commands before instantiating nodes and
+    links:</p>
+<img src="{% static 'antLab/code12.png' %}" alt="">
+<p>Then use the following line after all node and link creation (and all error model insertion, if any) to enable
+    tracing of all satellite links:</p>
+<div class="code">
+    1 |
+    $ns trace-all-satlinks $f
+
+</div>
+
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider two satellite terminals located at two different places on the earth and a geostationary satellite. One
+    satellite terminal act as transmitting antenna and another act as receiving antenna.Transmitting antenna sending
+    signals using "Bent-pipe" geostationary satellite.On receiving signal, receiving antenna is sending acknowledgment.
+</p>
+
+<p> The flash video on the right hand side shows forecasting using geostationary satellite.</p>
+<h2>animation comes here</h2>
+<hr>
+<p>From the above simulation we observed that geostationary satellite appear to be fixed over one spot above the
+    equator. so satellite terminals do not track the geostationary satellite.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
+{% block excercise %}
+<a class="excercise " href="#" rel="ex01">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 01</span></h4>
+</a>
 
-{% block experimentName %} {%endblock%}
+<a class="excercise" href="#" rel="ex02">
+    <h4 style="display: inline;"><span class="badge badge-info">Excercise 02</span></h4>
+</a>
+
+
+<div class="cont my-3" id="ex01">
+    <h4>Simulating a geostationary satellite scenario with ns2</h4>
+    <p>Consider an INSAT-3A multipurpose geostationary satellite and two satellite terminals, one at Bangkok and the
+        other at Baghdad. The position of Bangkok is 13.9 degree latitude north and 100.9 degree longitude east. The
+        position of Baghdad is 33.8 degree latitude north and 44.4 degree longitude east. INSAT-3A is used to provide
+        television broadcasting from Bangkok to Baghdad. INSAT-3A is positioned at 93.5 degrees longitude East. The
+        traffic consists of a FTP source and a CBR stream. The simulation lasts for 50 secs.</p>
+    <p>Analyze the trace file and find the following:</p>
+    <ul>
+
+        <li>End-to-end delay between two terminals </li>
+        <li>What is the nature of the delay that you expect in this scenario </li>
+    </ul>
+</div>
+
+
+
+
+<div class="cont my-3" id="ex02">
+    <h4>Simulation of Low Earth Orbit (LEO) satellites with ns2</h4>
+    <p>Write a script to simulate the following scenario with ns2. </p>
+
+    <p>Sets up two terminals, one in Boston and one at Berkeley.Send a packet in each second from Berkeley to Boston for
+        whole day. Consider the following parameters for Iridium constellation :</p>
+    <img src="{% static 'antLab/iridiumparameter.png' %}" alt="">
+    <p>The simulation lasts for one earth rotation (86400 sec).</p>
+    <p>Analyze the trace file and find the following:</p>
+    <ul>
+        <li> What should be the nature of Hop-count for the packets sent from source to destination. Plot and verify
+            this with graph </li>
+        <li>What should be the nature of end-to-end delay for the packets sent from source to destination and how it is
+            related with the plot of count </li>
+    </ul>
+    <p><strong>Additional Challenge: </strong>If you wish to go one more step ahead, compare the end-to-end delays for
+        scenarios when geostationary and LEO satellites are used. First, try to think logically what should be the
+        nature of curves in the two cases. Next, verify your answer by plotting two graphs. You can use the code from
+        exercise #1, and set the simulation time as 86400 s (time for one earth rotation).</p>
+
+</div>
+{%endblock%}
