@@ -1,21 +1,250 @@
 {% extends 'antLab/basic.html' %}
 
-{%block title%} {% endblock %}
-
+{%block title%}Setting up a ZigBee Network {% endblock %}
+{% load static %}
 {% block introduction%}
 <!-- theory content -->
+<h4>Setting up a ZigBee Network</h4>
+<p>Zigbee is used for wireless personal area network (PAN). It support thousands of nodes in each PAN. Zigbee devices
+    work with low power. So energy consumption is less and battery life is more. Zigbee technology used in many
+    applications, such as industry, medical applications, residential.</p>
+<p>In this experiment, we will learn the simulation of star topology in zigbee network and study how energy consumption
+    vary with beacon order for different superframe order.</p>
 {%endblock%}
 
 {% block theory %}
 <!-- objective conteent -->
+<h4>Objective</h4>
+<strong>After completing this experiment you will be able to:</strong>
+<ul>
+    <li>Understand about the basics of Zigbee Networks </li>
+    <li>Learn the simulation of star topology in ns2 </li>
+</ul>
+<hr>
+<h5>ZigBee Network</h5>
+<p>The name ZigBee originates from the zig-zag waggle dance of Honey bees [i]. ZigBee is based on IEEE 802.15.4 standard
+    for Low Rate Wireless Personal Area Network (LR-WPAN). ZigBee uses radio frequency (RF) for communication and
+    operated on one of the three different radio bands: 868 MHz in Europe, 915 MHz in the USA and Australia, and 2.4 GHz
+    in world wide.</p>
+<hr>
+<h5>IEEE 802.15.4 and ZigBee</h5>
+<p>The following table describe about IEEE 802.15.4 and ZigBee</p>
+<center><img src="{% static 'antLab/table7.png'%}" alt=""></center>
+<hr>
+<h5>ZigBee vs. Bluetooth</h5>
+<p>The following table describe the difference between ZigBeeand Bluetooth</p>
+<center><img src="{% static 'antLab/table8.png'%}" alt=""></center>
+<hr>
+<h5>Features & Characteristic of ZigBee Technology</h5>
+<p>The features and characteristics of Zigbee technology [v] are as follows:</p>
+<ol>
+    <li>ZigBee network connect several units and control through one button. </li>
+    <li>ZigBee network is controlled by a remote control device at a specific range and as the control device is present
+        centrally,it reduces manpower. </li>
+    <li>ZigBee devices are reliable because they are designed on low-power frequency. </li>
+    <li>ZigBee technology supports 3 different types of devices.They are coordinator, router and end-user devices. </li>
+</ol>
+<ul>
+    <li>Coordinators are the primary devices to help in activation of the system by collecting the data in form of
+        memory. </li>
+    <li>Routers are the secondary devices that function by sending information to the destination. </li>
+    <li>End-user devices are basically receivers that are not able to send information itself. </li>
+</ul>
+<hr>
+<h5>Application of ZigBee Technology</h5>
+<p>ZigBee Technology used in many applications [v]. Some of them are described below:</p>
+<ul>
+    <li> ZigBee technology is programmed in a chip form and that chip is used in many devices to function automatically.
+        For example controlling and monitoring a whole factory unit while sitting in one cabin is possible by using
+        ZigBee technology. </li>
+    <li>Building automation </li>
+    <li>Consumer electronics </li>
+    <li>Automatic meter reading </li>
+    <li>Home automation </li>
+    <li>Managing health care system </li>
+    <li>Retail management </li>
+    <li>Telecommunications </li>
+</ul>
+
+<hr>
+<h5>Component of IEEE 802.15.4 LR-WPAN</h5>
+<p>Different component of IEEE 802.15.4 LR-WPAN [vi] are:</p>
+<ul>
+    <li><b>Coordinator: </b> Coordinator controls and monitor the established network. Based on their operation scope
+        two different kinds of coordinators are present.The PAN-Coordinator, which acts as a coordinator for the entire
+        PAN and the ordinary coordinator,which function within the scope of a cluster.</li>
+    <li><b>Cluster: </b> A cluster is a small section of a bigger network, which has its own coordinator. Groups of
+        clusters communicate with a central PAN-Coordinator to form the PAN in a mesh topology.</li>
+    <li><b>Device/End Node: </b> A device is either a reduced/full function device, these are the end devices(leaf of a
+        tree structure). Any device that is not a co-ordinator is an end node (device).</li>
+    <li><b>Personal Operating Space: </b> It is the operating range of a node in all directions, and is a constant
+        irrespective of being in motion or stationary.</li>
+</ul>
+<p>There are 14 PHY and 35 MAC Primitives defined by the IEEE 802.15.4 standard [iv]. The LR-WPAN supports two types of
+    devices called the Full Function Device and the Reduced Function Device.</p>
+<ul>
+    <li><b>Full Function Device: </b> It is a device which supports all the 49 primitives supported by the technology
+        [iv]. It acts as a PAN coordinator, a Coordinator, or just as an end node (device). Also an FFD can function as
+        a routing device in certain network topologies where data transfer among FFD is allowed (EX: peer-to-peer
+        communication).</li>
+    <li><b>Reduced Function Device: </b> It is a device with reduced functionality which can only function as an end
+        device or node. It can only communicate with the coordinator. Their functionality is extremely low. So these
+        devices are intended for simple applications like a light switch, etc. They merely send information to the
+        coordinator at regular intervals about the status of the device it is monitoring. It can only support a maximum
+        of 38 primitives</li>
+</ul>
+<hr>
+<h5>Network Topologies</h5>
+<p>A Low rate WPAN supports three different types of topologies</p>
+<ul>
+    <li>Star Topology </li>
+    <li>Peer-to-Peer Topology </li>
+    <li>Cluster Tree/Mesh Topology </li>
+</ul>
+<strong>Star Topology</strong>
+<p>In the star topology, the PAN coordinator have the primary control. In this topology devices monitore their
+    application and report it to the coordinator.The Figure-01 shows star topology.</p>
+<center><img src="{% static 'antLab/Figure1Startopology.jpeg'%}" alt=""></center>
+<br>
+<strong>Peer to peer Topology</strong>
+<p>The peer-to peer topology has a PAN coordinator and any device can communicate with any other device.This topology
+    allows more complex network formations.Figure-02 shows peer-to-peer topology.</p>
+<center><img src="{% static 'antLab/Figure-2peertopeer.jpeg'%}" alt=""></center>
+
+<p>In the above figure the possible communication scenarios are between node-to-node, node-to-coordinator,
+    coordinator-to-node. As is evident if two devices need to transfer data, both have to be full function devices. A
+    peer-to-peer network can be ad-hoc, self-organizing and self-healing.</p>
+<strong>Cluster-Tree Topology</strong>
+<p>In cluster tree topology several small clusters are present and are able to communicate peer-to-peer and can be
+    controlled with a PAN coordinator. Each cluster can have its own coordinator and the coordinators can communicate
+    with the PAN Coordinator. We can choose a PAN coordinator among several existing clusters.Figure-03 shows
+    cluster-tree topology.</p>
+<center><img src="{% static 'antLab/ClusterTree.jpeg'%}" alt=""></center>
+<hr>
+<h5>Zigbee Architecture</h5>
+<p>IEEE 802.15.4 consists of PHY and the MAC layers [vi]. The upper layers are left for application developers.</p>
+
+<p>The PHY layer is responsible for activation and deactivation of the radio transceiver, ED, LQI, channel selection,
+    clear channel assessment (CCA), and transmitting as well as receiving packets across the physical medium. Similarly,
+    the MAC layer is responsible for beacon management, channel access, guaranteed time slots (GTS) management, frame
+    validation, acknowledged frame delivery, association, and disassociation.</p>
+<center><img src="{% static 'antLab/Figure4.jpg'%}" alt=""></center>
+<hr>
+<h5>The Superframe structure</h5>
+<p>The superframe structure [vi] is determined by the coordinator. IEEE 802.15.4 networks are able to operate in two
+    different modes of operation</p>
+<ul>
+    <li>Beacon mode </li>
+    <li>Non beacon mode </li>
+</ul>
+<p>In beacon mode, the coordinator sends out periodic packets or beacons. The purpose of this is to enable all nodes to
+    sleep between beacons and wake up when the beacon timer expires, ready to receive the beacon from the coordinator.
+    The superframe structure is only applicable in beacon mode networks. In non beacon networks the superframe structure
+    is disabled and nodes contend for channel access by CSMA/CA.</p>
+<center><img src="{% static 'antLab/Figure5Superframe.jpg'%}" alt=""></center>
+<p><b>Contention Access Period:</b> It is the time duration in symbols during which the devices can compete with each
+    other to access the channel using CSMA-CA and transmit the data.</p>
+<p><b>Contention Free Period/Guaranteed Time Slots:</b> Certain low-latency application devices are given exclusive
+    rights over the channel to start transmission directly. There can as many as 7 slots assigned for GTS transmissions.
+    These transmissions start immediately after the contention access period.</p>
+<p><b>Inactive Period:</b> It is the time period during which the coordinator would not interact with the PAN.
+    Therefore, there will be no beacon transmissions. So the devices go to sleep mode in this duration.</p>
+<p><b>Superframe Duration:</b> The total time duration of the CAP, CFP (GTS) and a Beacon. The superframe duration
+    doesn’t include the inactive period.</p>
+<p><b>Beacon Interval:</b> It is the time duration between two successive beacons.</p>
+<p>The beacon and superframe orders can range from 1 to 15 inclusive but the superframe order must be less than or equal
+    to the beacon order. When the beacon and superframe order are equal there is no inactive period between beacons,
+    when the superframe order is less than the beacon order there is an inactive period and setting them both to 15
+    disables beacon mode.</p>
+<hr>
+<h5>Nodes Configuration</h5>
+<p>The node configurations [ix] of ZigBee network are defined below</p>
+<ul>
+    <li>The PAN coordinator in ZigBee network are defined by: <br>
+        <img src="{% static 'antLab/code16.png'%}" alt="">
+        <p>The above syntax is use to initiate a Pan-Coordinator in a network & any device can be made pan-coordinator
+            by using above syntax, even if any of the above parameters are omitted, then the default values in an above
+            equation can be used.</p>
+        <p>Example:</p>
+        <img src="{% static 'antLab/code17.png'%}" alt="">
+    </li>
+    <li>The syntax for configuring a full functional device is: <br>
+        <img src="{% static 'antLab/code18.png'%}" alt="">
+        <p>The above command turned on the node as a device or a coordinator, if some of the parameter is neglected than the rest of parameters will get set by default variable as defined above.</p>
+        <p>Example:</p>
+        <img src="{% static 'antLab/code19.png'%}" alt="">
+    </li>
+</ul>
+<hr>
+<h5>Energy model</h5>
+<p>At the beginning of the simulation the node has an initial energy. This is known as initialEnergy [vii]. Energy is consumed when a node receives or transmits a packet. This energy are called rxPower and txPower.</p>
+<p>The basic energy model is defined by class EnergyModel as shown below:</p>
+<img src="{% static 'antLab/code20.png'%}" alt="">
+<p>The class variable energy_ represents the level of energy in the node at any given time. The constructor EnergyModel(energy) requires the initial-energy to be passed along as a parameter. The other class methods are used to decrease the energy level of the node for every packet transmitted ( DecrTxEnergy(txtime, P_tx)) and every packet received ( DecrRcvEnergy (rcvtime, P_rcv)) by the node. P_tx and P_rcv are the transmitting and receiving power (respectively) required by the node’s interface or PHY. At the beginning of simulation, energy_ is set to initialEnergy_ which is then decremented for every transmission and reception of packets at the node. When the energy level at the node goes down to zero, no more packets can be received or transmitted by the node.</p>
+
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider a typical zigbee network with star topology. Node0 act as PAN coordinator and have the primary control over all devices. It emits periodic beacon and superframe is sent along with this. Node2 (End device) synchronises with the coordinator (Node0). Then, data transfer begins between two device.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
-
-{% block experimentName %} {%endblock%}
+{% block excercise %}
+<h4>Average energy consumption of nodes in ZigBee technology</h4>
+<p>Configure a star topology which consist of seven nodes(including coordinator) in zigbee network as shown in the figure</p>
+<center><img src="{% static 'antLab/Figure1Startopology.jpeg' %}" alt=""></center>
+<p>Consider the following parameters given in the table.</p>
+<img src="{% static 'antLab/table9.png'%}" alt="">
+<p>The objective of this exercise is to study how energy consumption vary with beacon order for different superframe order. Following tasks has to be performed to obtain different results:</p>
+<strong>Tasks</strong>
+<ul>
+    <li>The simulation code for the above scenario is given below. </li>
+<li>In line number #116 & #117 node 0 is activated and initiated as a PAN-coordinator. </li>
+<li>In the code given below( line number #117 - #123) it is given BO = 6, SO = 0 . </li>
+<pre>
+    $ns_ at 0.0 "$node_(0) sscs startPANCoord 1 6 0";  # startPANCoord &lt;txBeacon=1> &lt;BO=6> &lt;SO=0> 
+    $ns_ at 0.5 "$node_(1) sscs startDevice 1 0 0 6 0";  # startDevice &lt;isFFD=1> &lt;assoPermit=1> &lt;txBeacon=0> &lt;BO=6> &lt;SO=0>
+    $ns_ at 1.5 "$node_(2) sscs startDevice 1 0 0 6 0"
+    $ns_ at 2.5 "$node_(3) sscs startDevice 1 0 0 6 0"
+    $ns_ at 3.5 "$node_(4) sscs startDevice 1 0 0 6 0"
+    $ns_ at 4.5 "$node_(5) sscs startDevice 1 0 0 6 0"
+    $ns_ at 5.5 "$node_(6) sscs startDevice 1 0 0 6 0"</pre>
+    <li>Run the simulation for 100 seconds then go to the trace file generated from this simulation. </li>
+<li>Initial energy of node 1, 2, 3, 4, 5 and 6 is 0.999866 (For example initial energy of node1 is 0.999866 as present in trace file “N -t 0.000640 -n 1 -e 0.999866”) </li>
+<li>Final energy of nodes are found from the last lines of trace file as shown below: </li>
+<pre>
+    N -t 99.346112 -n 3 -e 0.759371 
+    N -t 99.346112 -n 6 -e 0.838787 
+    N -t 99.346112 -n 1 -e 0.836963 
+    N -t 99.346112 -n 4 -e 0.799610 
+    N -t 99.346112 -n 2 -e 0.794901 
+    N -t 99.346112 -n 5 -e 0.840717</pre>
+    <li>From this we can calculate the energy consumed (Final energy - Initial energy) by node 1, 2, 3, 4, 5, 6 are 0.162903, 0.204965, 0.240495, 0.200256, 0.159149, 0.161079 </li>
+<li>So total energy consumption of 6 nodes is (0.162903+0.204965+0.240495+0.200256+0.159149+0.161079) = 1.128847 and average energy consumption of node is 1.128847 / 6 = 0.188141167 </li>
+<li>So at BO = 6 and SO = 0 the average energy consumption of node is 0.188141167. So note down the data (6,0.188141167) in plot custom data </li>
+<li>Repeat step-3 to step-9 with BO = 7, 8, 9, 10 and SO = 0 </li>
+<li>Repeat step-3 to step-9 with BO = 6, 7, 8, 9, 10 and SO = 1, 2 </li>
+<li>So we will get 5 X 3 = 15 sets of data </li>
+</ul>
+{%endblock%}

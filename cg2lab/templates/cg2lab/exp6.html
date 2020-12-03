@@ -1,17 +1,109 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Scaling transformation of a 2-D object {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>Scaling transformation of a 2-D object</h4>
+</center>
+<br>
+<br>
+<strong>Aim</strong>
+<br>
+<br>
+<p>To learn scaling Transformation performed on 2-D graphics object.</p>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Scaling transformation of a 2-D object</h4>
+</center>
+<br>
+<br>
+<strong>Theory</strong>
+<br>
+<br>
+<li>A scaling of an object is used to change the size of the object.</li>
+<li>A translation moves an object to a different position on the screen.</li>
+<li>The scaling transformation is needed to manipulate the initial object coordinate and display the modified object
+    coordinate with the help of scaling factors in X-direction defined as ‘Sx’ and in Y-directions defined as ‘Sy’ as
+    shown in figure below:</li>
+
+{% load static %}
+
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (87).png'%}" alt="">
+
+<li>We can scale a point in 2-D by multiplying with scaling factor (Sx, Sy) to the original coordinate P(x, y) to get
+    the new coordinate P’(x’ ,y’) as:</li>
+
+<pre>
+    x’ = x * Sx;
+    y’ = y * Sy;
+</pre>
+<li>A scaling may moves all the points in the object either closer to the origin or away from origin, with respect to Sx
+    and Sy.</li>
+<li>Scaling transformation can be performed :</li>
+<ul>
+    <li>About the origin :</li>
+    <p>If the point p (x,y) is scaled about origin with scaling factor Sx, and Sy, then we can write the coordinate of
+        P’
+    </p>
+    <pre>
+     x’ = x * Sx;
+     y’ = y * Sy;
+ </pre>
+</ul>
+
+<ul>
+    <li>About an arbitrary point P (px,py):</li>
+    <p>To perform the scaling about the arbitrary point ’P’ we have to follow the steps listed below.</p>
+    <p>Translate the 2-D object so that arbitrary point ‘P’ will coincide with the origin by performing the translation
+        transformation with translation factor T(-px, -py)</p>
+    <p>Scale the object with respect to origin, with scaling factor Sx and Sy respectively.</p>
+    <p>Inverse Translate the object with respect to the arbitrary point ‘P’ by performing translation transformation
+        with translation factor T(px,py)</p>
+</ul>
+<li>Scaling can be represented with the use of Homogenous coordinate system using matrix representation as
+</li>
+<img style="height: 6em;" src="{% static 'cg2lab/Screenshot (88).png'%}" alt="">
+
+<p>where , P(x ,y) coordinate will be scaled to P’(x’, y’) with respect to the scaling factor ‘Sx’ and ‘Sy’.</p>
+<li>If the scaling factors are in between 0 and 1 then the points will be moved closer to the origin and the object will be smaller</li>
+<li>If the scaling factors are larger than 1 then the points will be moved away from the origin and the object will be larger.</li>
+<li>If the scaling factors Sx and Sy are the same, then it is called as uniform scaling else called as differential scaling.</li>
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Scaling transformation of a 2-D object</h4>
+</center>
+        <br>
+    <br>
+<strong>Procedure</strong>
+        <br>
+    <br>
+<strong>ALGORITHM :</strong>
+    <br>
+        <br>
+            <ul>
+                <li>Start.</li>
+                <li>Accept coordinates to construct a 2-D object.</li>
+                <li>Display the 2-D object.</li>
+                <li>Construct the Homogeneous matrix for the object with reference to the coordinate of the object.</li>
+                <li>Accept the scaling factor Sx, Sy with reference to the coordinate system.</li>
+                <li>Construct the scaled 2-D object with Sx, Sy (x’ = x * Sx; y’ = y * Sy ) with the use of Homogeneous matrix described
+                    earlier.</li>
+                <li>Plot scaled object (x’, y’) w.r.t. Homogeneous coordinates.</li>
+                <li>Stop.</li>
+            </ul>
 {% endblock %}
 
 {% block simulation %}

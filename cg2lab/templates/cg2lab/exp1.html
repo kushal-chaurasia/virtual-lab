@@ -4,14 +4,113 @@
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Aim</strong>
+        <br>
+    <br>
+<p>To learn Digital Differential Analyser (DDA) Line Drawing Algorithm</p>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Theory</strong>
+        <br>
+    <br>
+<ul>
+    <li>DDA is an incremental scan conversion method to determine points on screen to draw a line where the Start and End coordinates of the Line segment are provided.</li>
+
+    <li>DDA calculates the length of the line segment with respect to the difference between either X coordinates or Y coordinates, whichever is greater.</li>
+
+    <li>In DDA, we either step across X-Direction and solve for Y (In case of gentle slope lines ) or we step Y-Direction and solve for X (incase of sharp slope lines) with the help of increment in either X and/or Y directions.</li>
+
+    <li>As the increments are calculated with respect to X or Y direction ,so one of the increment will be either (1,/0/-1) and the other increment may be in float.</li>
+
+    <li>Floating point arithmetic in DDA algorithm is time-consuming which results in poor end point accuracy.</li>
+
+    <li>It is the simplest algorithm and does not require special skills for implementation.</li>
+</ul>
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Procedure</strong>
+        <br>
+    <br>
+ <strong>ALGORITHM :</strong>
+    <ul>`
+        <li>Start.</li>
+        <li>Accept End points of the line which are (x1, y1) and (x2, y2).</li>
+        <li>Calculate the Length of the Line segment:</li>
+    </ul>
+{% load static %}
+
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (58).png'%}" alt="">
+    <br>
+
+    <li>Calculate the increment in X and Y directions respectively as:</li>
+        <br>
+    <br>
+<pre>xincr = (x2-x1) / length.</pre>
+
+<pre>yincr = (y2-y1) / length.</pre>
+        <br>
+    <br>
+
+        <li>Initialize:</li>
+        <br>
+    <br>
+
+    <pre> x=x1+0.5.</pre>
+
+    <pre> y=y1+0.5.</pre>
+            <br>
+        <br>
+    <br>
+ <pre>i=1.</pre>
+    
+        <li>while ( i <= length )</li>
+            <br>
+        <br>
+    <pre>{</pre>
+
+
+
+        <pre>plot (integer(x), integer(y))</pre>
+            <br>
+        <br>
+        <pre>x = x + xincr.</pre>
+
+
+        <pre>y = y + yincr.</pre>
+
+
+        <pre>i   = i + 1.</pre>
+
+
+      <pre>}</pre>
+            <br>
+        <br>
+    <li>Stop.</li>
+
 {% endblock %}
 
 {% block simulation %}

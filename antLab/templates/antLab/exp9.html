@@ -43,16 +43,129 @@
 <hr>
 
 <h5>Blueetooth vs Wi-Fi</h5>
-<p>Bluetooth and Wi-Fi technologies have some similarities because both are wireless technologies and used to communicate with other devices.</p>
+<p>Bluetooth and Wi-Fi technologies have some similarities because both are wireless technologies and used to
+    communicate with other devices.</p>
 <center><img src="{% static 'antLab/table5.png'%}" alt=""></center>
+<hr>
+<h5>Bluetooth – Power Classes</h5>
+<p>Power Classes :</p>
+<center><img src="{% static 'antLab/table6.png'%}" alt=""></center>
+<p>In this case, if you wish to communicate over the 100m range, you will need a class 1 Bluetooth device at both ends.
+    But if you wish to communicate over the 10m range, you can have a class 1 or class 2 device at both ends.</p>
+<hr>
+<h5>Blueetooth Versions</h5>
+<p>Many Bluetooth specification versions have been released since Bluetooth technology was finally introduced in 1998.
+    Versions 1.0 and 1.0B had too many problems and restraints for manufacturers to successfully develop Bluetooth
+    devices. The main issue was the lack of interoperability among devices.</p>
+<ul>
+    <li><b>Blueetooth 1.1: </b>The Bluetooth Core Specification version 1.1 is the most successful operating version of
+        Bluetooth technology. Bluetooth 1.1 corrected many of the problems found in the earlier versions. As a result,
+        the devices using Bluetooth 1.1 have much more interoperability</li>
+    <li><b>Bluetooth 1.2: </b>Many new Bluetooth devices, like the latest cell phones, are being sold with the newer
+        Bluetooth specification version 1.2. It has backward compatible with Bluetooth 1.1, adaptive Frequency Hopping -
+        helps reduce radio interference by eliminating the use of crowded frequencies in the hopping sequence, faster
+        transmission speeds (1 Mbps) etc.</li>
+    <li><b>Bluetooth 2.0:</b>Version 2.0 + EDR (Enhanced Data Rate) was announced by the Bluetooth SIG in June 2004 and
+        began appearing in Bluetooth devices in late 2005. It delivers data transfer rates up to three times faster than
+        the original Bluetooth specification.</li>
+    <li><b>Bluetooth 2.1: </b> Bluetooth Core Specification Version 2.1 is fully backward compatible with 1.2, and was
+        adopted by the Bluetooth SIG on July 26, 2007. It supports theoretical data transfer speeds of up to 3 Mb/s.
+        This specification includes two features, such as, Extended inquiry response (EIR) and Sniff subrating</li>
+    <li><b>Bluetooth 3.0:</b>The 3.0 specification was adopted by the Bluetooth SIG on April 21, 2009. It supports
+        theoretical data transfer speeds of up to 24 Mb/s. Its main new feature is AMP (Alternate MAC/PHY), the addition
+        of 802.11 as a high speed transport</li>
+</ul>
+<hr>
+<h5>How does Bluetooth work?</h5>
+<ul>
+
+    <li>Bluetooth is a standard for tiny, radio frequency chips that can be plugged into your devices</li>
+    <li>These chips were designed to take all of the information that your wires normally send, and transmit it at a
+        special frequency to something called a receiver Bluetooth chip</li>
+    <li>Bluetooth chip is designed to replace cables. Information normally carried by the cable, is transmitted at a
+        special frequency to a receiver Bluetooth chip</li>
+    <li>These devices can form a quick ad-hoc secure “piconet” and start communication</li>
+    <li>A piconet starts with two connected devices, and may grow to eight connected devices</li>
+    <li>All Bluetooth devices are peer units and have identical implementations. However, when establishing a piconet,
+        one unit will act as a Master and the other(s) as slave(s) for the duration of the piconet connection</li>
+</ul>
+<hr>
+<h5>Network of Bluetooth</h5>
+<p>Bluetooth technology provides both point-to-point and point-to-multipoint connection. In point-to-multipoint connections, the channel is shared among several Bluetooth units. In point-to-point connections, only two units share the connection. Bluetooth protocols assume that a small number of units will participate in communications at any given time. These small groups are called piconets , and they consist of one master unit and up to seven active slave units. The master is the unit that initiates transmissions, and the slaves are responding units. This type of Bluetooth network can have only one master unit. If several piconets overlap a physical area, and members of the various piconets communicate with each other, this new, larger network is known as a scatternet . Any unit in one piconet can communicate in a second piconet as long as it serves as master for only one piconet at a time. The following figure-01 illustrated the Bluetooth Scatternet scenario with slave/slave node.</p>
+<center><img src="{% static 'antLab/Scatternet1.png'%}" alt=""></center>
+<center>Figure-01: Illustration of Bluetooth Piconets & Scatternet with Slave/Slave node</center>
+<p>When the no. of piconet connect with each other with the slave nodes, then the slave nodes, which are connected with both the Master nodes of Piconets are known as Slave/Slave nodes. But when the no. of piconets are connected with each other with another master nodes, then the master nodes, which are Slave to one Piconet and Master for other Piconets are known as Master/Slave nodes.The following figure-02 illustrated the Bluetooth Scatternet with master/slave scenario.</p>
+<center><img src="{% static 'antLab/masterslave1.png'%}" alt=""></center>
+<center>Figure-02: Illustration of Bluetooth Scatternet with Master/Slave node</center>
+<hr>
+<h5>How to coonnect Bluetooth</h5>
+<p>Bluetooth enables ad hoc networking. Rather than depending on a broadband system, which relies on terminals and base stations for maintaining connections to the network via radio links, Bluetooth implements peer-to-peer connectivity. No base stations or terminals are involved. Using peer-to-peer connectivity, Bluetooth technology simplifies personal area wireless connections, enabling all digital devices to communicate spontaneously.</p>
+<p>Bluetooth technology also provides fast, secure voice and data transmissions. The range for connectivity is up to 10 meters, and line of sight is not required. The Bluetooth radio unit:</p>
+<ul>
+    <li>Functions even in noisy radio environments, ensuring audible voice transmissions in severe conditions </li>
+    <li>Protects data by using error-correction methods </li>
+    <li>Provides a high transmission rate </li>
+    <li>Encrypts and authenticates for privacy</li>
+</ul> 
+<hr>
+<h5>Simulating Bluetooth Network with NS-2</h5>
+<p>We have used UCBT (Bluetooth extension for NS-2 at the University of Cincinnati) extension for Bluetooth. Other Bluetooth extensions are BlueHoc and Blueware. UCBT is the most accurate, complete and up-to-date open-source Bluetooth simulator. UCBT adapts to the PAN profile with Bluetooth Network Encapsulation Protocol (BNEP). UCBT provides multiple bridge scheduling algorithms to enable scatternets to operate smoothly. Prototype self-organized scatternets are being designed and simulated.</p>
+<p>Engelstad et al. (2003) proposed two algorithms for the formation of scatternets. While studying such algorithms is out of scope of the present lab experiment, we focus on a few performance metrics that the authors have considered. Let N and M, respectively, denote the total number of nodes in the scatternet and the number of master nodes (= number of piconets). Further, let S, SS and MS, respectively, denote the counts of the number of pure slave, slave-slave and master-slave nodes in the scatternet so formed. Engelstad et al. defined the following two metrics based on these data:</p>
+<ul>
+    <li><b>Piconet density: </b>P = M / N</li>
+    <li><b>Slave Degree: </b>D = (S + SS + MS) / M</li>
+</ul>
+<p>The UCBT Bluetooth extension that we have used for this experiment, defines the degrees of the different types of nodes in the connectivity graph (in the file lmp.cc) formed in the scatternet as follows:</p>
+<pre>
+Degree in the connectivity graph
+   slave: 1
+   master: number of 1 hop masters or 2 hop masters via S/S bridges
+   S/S bridge: number of masters
+   M/S bridge: number of masters + number of 1 hop masters or 2 hop 
+                                   masters via S/S bridges for master role.
+   Well, the degree of a master need more thoughts.
+   Basically, we want to remove duplicated bridges.
+</pre>
 {% endblock %}
 
 {% block Simulation %}
 <!-- procedure content -->
+<h4>Simulation</h4>
+<p>Consider a typical Bluetooth Network with Piconet and Scatternet scenario. A Master node with maximum seven no. of Slave nodes forming a Piconet. No. of Piconet can form Scatternet. Where the no. of Piconet may be connected with Slave/Slave nodes or Master/Slave nodes.</p>
+
+<p>The flash video on the right hand side shows the formation of Piconet and Scatternet.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- experiment content -->
+<h4> Procedure</h4>
+<p>Follow are the steps to be followed in general to perform the experiments in Advanced Network Technologies</p>
+<ul>
+    <li>Read the theory about the experiment</li>
+    <li>View the simulation provided for a chosen, related problem</li>
+    <li>Take the self evaluation to judge your understanding (optional, but recommended)</li>
+    <li>Go to the exercises section, choose a problem, and carefully read the problem description</li>
+    <li>Write a script (or make necessary changes) to simulate the desired scenario in the code editor just below the
+        problem statement</li>
+    <li>Click on the 'Run' button to execute the simulation script</li>
+    <li>Simulation with ns2: If the simulation was successful, and was instructed to create a trace file, contents of
+        the trace file would be displayed in the area below the 'Run' button</li>
+    <li>Simulation with ns3: If the simulation was successful, output of the program would be displayed in the area
+        below the 'Run' button</li>
+    <li>A trace file generated as a result of simulation with ns2 could be used for certain kind of analysis, which
+        would be discussed in a later section</li>
+</ul>
 {% endblock %}
-
-{% block experimentName %} {%endblock%}
+{% block excercise %}
+<h5>Simulation of Piconets and Scatternets</h5>
+<p>The following code simulates the formation of piconets and scatternets considering a number of Bluetooth enabled nodes. The code in line # 8 specifies the number of nodes used in the simulation. At the end of the simulation output, you will find some entries like:</p>
+<pre>
+    -slave 25 1.000000
+    -master 4 0.500000 0.750000 6.000000
+    -S/S br 2 2.000000
+    -M/S br 1 2.000000 0.500000 1.500000
+    -br 3 2.000000
+    -not connected 0
+</pre>
+<p>The first line shows the number of slaves in the scatternet and the average degree of slaves, which is the ratio of the degree of the slaves to the total number of slaves. The second and third entries of the second line, respecitvely, indicates the number of master nodes and the average degree of masters. Similarly, the first number in the third and fourth lines, respectively, denotes the number of slave-slave and master-slave nodes. For further details, please look into the scat-form.cc file.</p>
+{%endblock%}

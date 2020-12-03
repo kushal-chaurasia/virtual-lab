@@ -1,17 +1,182 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Digital Differential Analyser (DDA) Line Drawing Algorithm vs Bresenham Line drawing Algorithm {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm vs Bresenham Line drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Aim</strong>
+        <br>
+    <br>
+<p>To study the difference between Digital Differential Analyser (DDA) and Bresenham Line drawing Algorithm.</p>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm vs Bresenham Line drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Theory</strong>
+        <br>
+    <br>
+        <ul>
+            <li>DDA Line Drawing Algorithm is an incremental scan conversion method to determine points on screen to draw a line.</li>
+        </ul>
+
+        <ul>
+            <li>Bresenham Line Drawing Algorithm is an accurate, efficient raster line drawing algorithm that scan converts line
+                using only incremental integer calculations.</li>
+        </ul>  
+
+        <ul>
+            <li>In Bresenham's algorithm, the next point to be plotted with respect to the value of decision parameter and increment
+                will be always integer.</li>
+        </ul>
+
+        <ul>
+            <li>Floating point arithmetic in DDA algorithm is time-consuming, which results in poor end point accuracy of a line
+                segment. The use of floor/ceil function may increase the accuracy of the point.</li>
+        </ul>
+        
+        <ul>
+            <li>Floating point arithmetic in DDA algorithm is time-consuming, which results in poor end point accuracy of a line
+                segment. The use of floor/ceil function may increase the accuracy of the point.</li>
+        </ul>
+            
+        <ul>
+            <li>Bresenham algorithm can work efficiently and provides more end point accuracy for the gentle slope lines and sharp
+                slope line without having floating calculation</li>
+        </ul>
+            
+        <ul>
+            <li>DDA is the simplest algorithm and does not require special skills for its implementation.</li>
+        </ul>
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Digital Differential Analyser (DDA) Line Drawing Algorithm vs Bresenham Line drawing Algorithm</h4>
+</center>
+        <br>
+    <br>
+<strong>Procedure</strong>
+    <br>
+<br>
+    <strong>DDA ALGORITHM :</strong>
+    <br>
+        <br>
+    <li>Start.</li>
+            <br>
+        <br>
+    <li>Accept End points of the line which are (x1, y1) and (x2, y2).</li>
+    <br>
+        <br>
+    <li>Calculate the Length of the Line segment:</li>
+            <br>
+        <br>
+        {% load static %}
+
+        <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (69).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate the increment in X and Y directions respectively as:</li>
+        <br>
+    <br>
+    <img style="height: 7em;" src="{% static 'cg2lab/Screenshot (70).png'%}" alt="">
+        <br>
+    <br>
+<li>Initialize:</li>
+        <br>
+    <br>
+    <img style="height: 6em;" src="{% static 'cg2lab/Screenshot (71).png'%}" alt="">     
+<br>
+    <br>
+    <img style="height: 4em;" src="{% static 'cg2lab/Screenshot (72).png'%}" alt="">  
+        <br>
+    <br>
+
+<li>while ( i <= length )</li>
+<br>
+    <br>
+    <img style="height: 24em;" src="{% static 'cg2lab/Screenshot (73).png'%}" alt="">
+        <br>
+    <br>
+<li>Stop.</li>
+        <br>
+    <br>
+<strong>BRESENHAM ALGORITHM :</strong>
+    <br>
+        <br>
+<pre>
+ Let considering the line segment which has Gentle Slope
+
+
+ Assume: x2 > x1 and y2 > y1.
+</pre>
+        <br>
+    <br>
+<li>Start.</li>
+        <br>
+    <br>
+<li>Accept end points of a line segment (x1,y1),(x2,y2).</li>
+        <br>
+    <br>
+<li>Calculate:</li>
+    <br>
+        <br>
+        <img style="height: 6em;" src="{% static 'cg2lab/Screenshot (74).png'%}" alt="">
+
+        <br>
+    <br>
+<li>Calculate the Length of the Line segment as:</li>
+     <br>
+         <br>
+        <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (75).png'%}" alt="">
+
+        <br>
+    <br>
+<li>Calculate Initial Decision Parameter as:</li>
+    <br>
+        <br>
+        <img style="height: 3em;" src="{% static 'cg2lab/Screenshot (76).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate</li>
+    <br>
+        <br>
+        <img style="height: 6em;" src="{% static 'cg2lab/Screenshot (77).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate xincr as:</li>
+    <br>
+        <br>
+        <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (78).png'%}" alt="">
+        <br>
+    <br>
+<li>Initialize:</li>
+    <br>
+        <br>
+        <img style="height: 8em;" src="{% static 'cg2lab/Screenshot (79).png'%}" alt="">
+        <br>
+    <br>
+<LI>while(i <= length)</LI>
+    <br>
+        <br>
+        <img style="height: 32em;" src="{% static 'cg2lab/Screenshot (80).png'%}" alt="">
+        <br>
+    <br>
+<li>Stop.</li>
 {% endblock %}
 
 {% block simulation %}

@@ -1,17 +1,89 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Translation transformation of a 2-D object {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>Translation transformation of a 2-D object</h4>
+</center>
+
+<strong>Aim</strong>
+<br>    
+    <br>
+        <p>To learn translation Transformation performed on 2-D graphics object</p>
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Translation transformation of a 2-D object</h4>
+</center>
+        <br>
+    <br>
+
+<strong>Theory</strong>
+        <br>
+    <br>
+<li>The geometrical change of an object from a current size/shape to new size/shape with change in the coordinates of
+    the object is called as transformation.
+</li>
+<li>A translation moves an object to a different position on the screen.</li>
+<li>The transformation is needed to manipulate the initial object coordinate and display the modified object coordinate
+    with the help of translation factors in X-direction defined as ‘Tx’ and Y-directions defined as ‘Ty’ as shown in
+    figure below:</li>
+
+{% load static %}
+
+        <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (85).png'%}" alt="">
+
+<li>We can translate a point in 2-D by adding translation coordinate (Tx, Ty)to the original coordinate (x, y) toget the
+    new coordinates (x' ,y')
+</li>
+
+<pre>
+
+x' = x + Tx;
+
+y'= y + Ty;
+</pre>
+
+<li>A translation moves all the points in the object along the same straight-line path to new positions w.r.t Tx and Ty.</li>
+<li>Translation can be represented with the use of Homogenous coordinate system using matrix representation as</li>
+
+<img style="height: 6em;" src="{% static 'cg2lab/Screenshot (86).png'%}" alt="">
+    <br>
+<p>where , P(x ,y) coordinate will be translated to P’(x’, y’) with respect to the translation factor ‘tx’ and ‘ty’.</p>
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Translation transformation of a 2-D object</h4>
+</center>
+        <br>
+    <br>
+<strong>Procedure</strong>
+        <br>
+    <br>
+<strong>ALGORITHM :</strong>
+    <br>
+        <br>
+            <ul>
+                <li>Start.</li>
+                <li>Accept coordinates to construct a 2-D object.</li>
+                <li>Calculate the Length of the Line segment:</li>
+                <li>Display the 2-D object.</li>
+                <li>Construct the Homogeneous matrix for the object with reference to the coordinate of the object.</li>
+                <li>Accept the translation value tx, ty with reference to the coordinate system.</li>
+                <li>Move the 2D object with tx, ty (x’ = x + tx; y’ = y + ty ) with the use of Homogeneous matrix described earlier</li>
+                <li>Plot translated object (x’, y’) w.r.t.Homogeneous coordinates.</li>
+                <li>Stop.</li>
+
+            </ul>
 {% endblock %}
 
 {% block simulation %}

@@ -1,17 +1,108 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Rotation transformation of a 2-D object {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+<center>
+    <h4>Rotation transformation of a 2-D object</h4>
+</center>
+        <br>
+    <br>
+<strong>Aim</strong>
+        <br>
+    <br>
+<p>To study the <b>Rotation</b> Transformation performed on 2-D graphics object.</p>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Rotation transformation of a 2-D object</h4>
+</center>
+        <br>
+    <br>
+<strong>Theory</strong>
+        <br>
+    <br>
+<li>A rotation of an object is used to rotate an object in either clockwise or anticlockwise direction.</li>
+<li>A rotation repositions all points of an object along a circular path in the plane centered at the origin or arbitrary point.</li>
+<li>The rotation transformation is needed to manipulate the initial object coordinate and display the modified object
+    coordinate with the help of rotation angle (Ɵ) ,with respect to the origin or the arbitrary point as shown in figure
+    below:
+</li>
+
+{% load static %}
+
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (89).png'%}" alt="">
+<li>Consider a point P(x,y) is rotated in anticlockwise direction by an angle ‘Ɵ’. The point P(x,y) is represented as</li>
+
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (90).png'%}" alt="">
+
+<pre>
+ x = R * cos f
+ y = R * sin f
+</pre>
+<li>The Point P’(x’,y’) after performing the rotation in anticlockwise direction by an angle ‘Ɵ’ is represented as</li>
+
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (91).png'%}" alt="">
+<pre>
+ x’ = x * cos q – y * sin q
+ y’ = x * sin q + y * cos q
+</pre>
+<li>The Point P(x,y) is rotated in clockwise direction by an angle ‘Ɵ’, then replace ‘Ɵ’ by ’- Ɵ’; and simplify the equation.</li>
+<li>Rotation transformation can be performed :</li>
+
+<ul>
+    <li>About the origin :</li>
+    <p>If the point p (x,y) is rotated about origin with an angle ‘Ɵ’ in anticlockwise direction; then we can write the coordinate of P’(x’,y’) as:</p>
+<pre>
+ x’ = x * cos q – y * sin q
+ y’ = x * sin q + y * cos q
+</pre>
+</ul>
+    <li>About an arbitrary point P (px,py) :</li>
+    <p>To perform the rotation about the arbitrary point ‘P’ we have to follow the steps listed below.</p>
+    <ul>
+        <li>Translate the 2-D object so that arbitrary point ‘P’ will coincide with the origin, by performing the translation transformation with translation factor T(-px, -py)
+        </li>
+        <li>Rotate the object with respect to origin, with rotation angle ‘Ɵ’ in either clockwise or anticlockwise direction
+            respectively.
+        </li>
+        <li>Inverse Translate the object with respect to the arbitrary point ‘P’ by performing translation transformation with translation factor T(px,py)</li>
+    </ul>
+
+<li>Rotation can be represented with the use of Homogenous coordinate system using matrix representation as</li>
+<img style="height: 7em;" src="{% static 'cg2lab/Screenshot (92).png'%}" alt="">
+
+<p>where, P(x ,y) coordinate will be rotated to P’(x’, y’) with respect to the angle ‘Ɵ’; in anticlockwise direction.</p>
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Rotation transformation of a 2-D object </h4>
+</center>
+        <br>
+    <br>
+<strong>Procedure</strong>
+        <br>
+    <br>
+        <ul>
+            <li>Start.</li>
+            <li>Accept coordinates to construct a 2-D object.</li>
+            <li>Display the 2-D object.</li>
+            <li>Construct the Homogeneous matrix for the object with reference to the coordinate of the object.</li>
+            <li>Accept the angle of rotation ‘Ɵ’, with reference to the coordinate system in wither clockwise or anticlockwise
+                direction.</li>
+            <li>Construct the rotated 2-D object with an angle ‘Ɵ’; with the use of Homogeneous matrix described earlier.</li>
+            <li>Plot rotated object (x’, y’) w.r.t.Homogeneous coordinates.</li>
+            <li>Stop.</li>
+        </ul>
 {% endblock %}
 
 {% block simulation %}

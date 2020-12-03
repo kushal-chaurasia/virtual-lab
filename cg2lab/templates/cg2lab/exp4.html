@@ -1,17 +1,95 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Bresenham Circle Drawing Algorithm {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>Bresenham Circle Drawing Algorithm</h4>
+</center>
+
+<strong>Aim</strong>
+        <br>
+    <br>
+<b>To learn Bresenham Circle Drawing Algorithm.</b>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Bresenham Circle Drawing Algorithm </h4>
+</center>
+
+<strong>Theory</strong>
+        <br>
+    <br>
+<p>As the circle is collection of points that are at equal distance from the center of the circle. There are various methods to find the points on the circumference of the circle with respect to the center of the circle. The different methods are listed as below:</p>
+    <br>
+        <br>
+                <li>Trigonometric Method : x=rcosθ and y=rsin θ</li>
+                <li>Polynomial Method : x2+y2=r2</li>
+                <li>Midpoint Circle Algorithm</li>
+                <li>Bresenham Circle Algorithm</li>
+
+        {% load static %}
+
+        <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (81).png'%}" alt="">
+
+                <li>As shown in the figure1 the spacing between plotted pixel positions is not uniform.Bresenham Circle Algorithm plots the first pixel which lie on the Y axis with the coordinates as (0, Radius).</li>
+                <li>Bresenham Circle Algorithm makes the use of decision parameter to calculate the next pixel location from a previously known pixel location (x, y)</li>
+                <li>In Bresenham’s algorithm at any point (x, y) we have two option to choose the next pixel in the X–direction either (x+1, y) or (x+1, y-1).</li>
+                <li>Consider the case explained below:</li>
+                <p>![theoryimage2](images/theoryImage2.png "theory image 2")</p>
+                <li>If the point P1 is far away from actual circle;it will yield greater +ve value Da i.e Da = x^2 + y^2 - R^2
+                </li>
+                <li>If (Da +Db>=0); then point P2 is closer to Actual Circle else P1 is closer</li>
+                <li>If the point P2 is closer to the actual circle, then the x will be incremented and y will be decremented. If the point P1 is closer to the actual circle, then the x will be incremented and y will remain same.</li>
+                <li>With the use of Bresenham circle drawing algorithm computation can be reduced by considering the symmetry of circles.</li>
+                <li>8 Way Symmetry: A point (a,b)can be represented with the use of 8 way symmetry as</li>
+                <p>![theoryimage3](images/theoryImage3.png "theory image 3")</p>
+                <li>(a ,b); (a,-b); (-a ,b); (-a,-b) and (b, a); (b,-a); (-b, a); (-b,-a);</li>
+
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>Bresenham Circle Drawing Algorithm </h4>
+</center>
+
+<strong>Procedure</strong>
+        <br>
+    <br>
+<strong>ALGORITHM :</strong>
+        <br>
+    <br>
+<pre>
+ <li>Start.</li>
+<li>Accept center (xc,yc) point and radius r of the circle</li>
+<li>Initialize:</li>       
+</pre>
+    <img style="height: 4em;" src="{% static 'cg2lab/Screenshot (82).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate initial decision parameter as:</li>
+    <br>
+        <br>
+        <img style="height: 3em;" src="{% static 'cg2lab/Screenshot (83).png'%}" alt="">
+        <br>
+    <br>
+<li>while(x <= y)</li>
+    <br>
+        <br>
+        <img style="height: 30em;" src="{% static 'cg2lab/Screenshot (84).png'%}" alt="">
+        <br>
+    <br>
+<li>Stop.</li>
+
 {% endblock %}
 
 {% block simulation %}

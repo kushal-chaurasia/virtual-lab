@@ -1,17 +1,185 @@
 {% extends 'cg2lab/basic.html' %}
 
-{%block title%} {% endblock %}
+{%block title%} Even-Odd method {% endblock %}
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>Even-Odd method</h4>
+</center>
+<br>
+<br>
+<strong>Aim</strong>
+<br>
+<br>
+<p>To learn the Even-Odd method to check the seed point of the polygon</p>
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Even-Odd method</h4>
+</center>
+<br>
+<br>
+<li>Polygon is plane figure joining the finite number of line segment to form closed circuit.</li>
+<li>Polygons are of two types as:</li>
+<br>
+<br>
+{% load static %}
+
+<img style="height: 5em;" src="{% static 'cg2lab/Screenshot (93).png'%}" alt="">
+<li>Convex Polygon</li>
+<br>
+<br>
+<p>If the line segment joining any two points lies completely inside then it is called as convex polygon. In convex
+    polygon, none of the interior angles, between the vertices, is greater than or equal to 180°.</p>
+
+<img style="height: 10em;" src="{% static 'cg2lab/Screenshot (94).png'%}" alt="">
+<li>Concave Polygon</li>
+<br>
+<br>
+<p>If the line segment joining any two points does not lies completely inside or a part of the line segment lies outside
+    the polygon, then it is called as concave polygon. In concave polygon, at least one angle of a polygon is more than
+    180°.</p>
+
+<img style="height: 10em;" src="{% static 'cg2lab/Screenshot (95).png'%}" alt="">
+<li>Interior Point:</li>
+<br>
+<br>
+<p>If we want to fill the polygon with the seed fill algorithm, then we should know the point which is inside the
+    polygon. The point which lies inside the polygon is called as seed point.To determine whether the given point is
+    inside or outside the polygon, we can use the Even-Odd method.</p>
+<br>
+<br>
+<li>Even Odd Method:</li>
+<br>
+<br>
+<p>Even–odd method basically works on the principle that calculates the number of intersection with the polygon edges.
+    If the numbers of intersections are odd then the point is inside the polygon i.e. seed point. If the numbers of
+    intersections are even then the point is outside the polygon.</p>
+
+<p>To check whether the point is inside the polygon, we have to draw the line segment from the point P(x, y) to the
+    Point P’(0,y) (i.e. minimum x coordinate keeping the same y value). If it intersects the edge of the polygon, then
+    count the intersection.</p>
+
+<img style="height: 10em;" src="{% static 'cg2lab/Screenshot (96).png'%}" alt="">
+
+<p>As shown in the figure above for the point P1 and P4, the line segment from point P1 and point P4 to point (0,y)
+    produces two number of intersections for point P1 and point P4. The number of intersections is Even which indicates
+    that, the point P1 and point P4 are outside the polygon.</p>
+
+<p>Similarly, for the point P2 and P3, the line segment from point P2 and point P3 to point (0,y) produces 3 number of
+    intersections for point P2 and 1 number of intersection for point P3. The number of intersections (3,1) are Odd. Odd
+    number of intersection for point P2 ( 3 intersections) and point P3 ( 1 intersection) indicates that, the point P2
+    and point P3 are inside the polygon.</p>
+
+<p>Now if the point of intersection is at the vertex as shown in figure below, then the number of intersection counted
+    will be decided by the other end point of the edge, being intersected. </p>
+<br>
+<br>
+<img style="height: 10em;" src="{% static 'cg2lab/Screenshot (97).png'%}" alt="">
+
+<br>
+<br>
+
+<p>Consider the point P1; the line from point P1 to (0, y) intersects two edges of the polygon. The other end points of
+    the two edges being intersected, lies toward a single side of the line joining point P1 and (0, y). So we will
+    consider 2 numbers of intersections at the vertex. As the number of intersection is even (2); so the point P1 is
+    outside the polygon.</p>
+
+<p>Similarly, for the point P2; the line from point P2 to (0, y) intersects three edges of the polygon. One intersection
+    is at the vertex and other is not at vertex. The other end points of the two edges, being intersected at the vertex,
+    lies toward a single side of the line joining point P2 and (0,y). So we will consider 2 numbers of intersections at
+    the vertex. These two intersections and one intersection of the third edge make the total number of intersections as
+    3. As the number of intersection is odd (3); so the point P2 is inside the polygon.</p>
+
+<p>Similarly, for the point P3; the line from point P3 to (0, y) intersects three edges of the polygon. One intersection
+    is at the vertex and other is not at vertex. The other end points of the two edges, being intersected at the vertex,
+    lies toward opposite side of the line joining point P3 and (0,y). So we will consider 1 number of intersections at
+    the vertex. This intersection and one intersection of the third edge make the total number of intersections as 2. As
+    the number of intersection is even (2); so the point P3 is outside the polygon.</p>
+
+<p>Similarly, for the point P4; the intersection is at the vertex. The other end points of the two edges, being
+    intersected at the vertex, lies toward opposite side of the line joining point P4 and (0,y). So we will consider 1
+    number of intersections at the vertex. As the number of intersection is odd (1); so the point P4 is inside the
+    polygon. </p>
+
+
+
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+
+<center>
+    <h4>Even-Odd method</h4>
+</center>
+<br>
+<br>
+<strong>Procedure</strong>
+<br>
+<br>
+<strong>ALGORITHM</strong>
+<br>
+<br>
+<p>Even Odd Method:</p>
+<ul>
+    <li>Even–odd method basically works on the principle that calculates the number of intersection with the polygon
+        edges.
+        If the numbers of intersections are odd then the point is inside the polygon i.e. seed point. If the numbers of
+        intersections are even then the point is outside the polygon.</li>
+
+    <li>To check whether the point is inside the polygon, we have to draw the line segment from the point P(x, y) to the
+        Point P’(0,y) (i.e. minimum x coordinate keeping the same y value). If it intersects the edge of the polygon,
+        then
+        count the intersection. </li>
+
+    <img style="height: 10em;" src="{% static 'cg2lab/Screenshot (98).png'%}" alt="">
+
+    <li>As shown in the figure above for the point P1 and P4, the line segment from point P1 and point P4 to point (0,y)
+        produces two number of intersections for point P1, point P4. The number of intersections is Even which indicate
+        that, the point P1 and point P4 are outside the polygon. </li>
+
+    <li>Similarly, for the point P2 and P3, the line segment from point P2 and point P3 to point (0,y) produces 3 number
+        of intersections for point P2 and 1 number of intersection for point P3. The number of intersections (3,1) are
+        Odd. Odd number of intersection for point P2 ( 3 intersections) and point P3 ( 1 intersection) indicates that,
+        the point P2 and point P3 are inside the polygon. </li>
+
+    <li>Now if the point of intersection is at the vertex as shown in figure below, then the number of intersection
+        counted will be decided by the other end point of the edge, being intersected. </li>
+
+    <img style="height: 10em;" src="{% static 'cg2lab/Screenshot (99).png'%}" alt="">
+
+    <li>Consider the point P1; the line from point P1 to (0, y) intersects two edges of the polygon. The other end points of
+        the two edges being intersected, lies toward a single side of the line joining point P1 and (0, y). So we will
+        consider 2 numbers of intersections at the vertex. As the number of intersection is even (2); so the point P1 is
+        outside the polygon. </li>
+
+    <li>Similarly, for the point P2; the line from point P2 to (0, y) intersects three edges of the polygon. One
+        intersection is at the vertex and other is not at vertex. The other end points of the two edges, being intersected
+        at the vertex, lies toward a single side of the line joining point P2 and (0,y). So we will consider 2 numbers of
+        intersections at the vertex. These two intersections and one intersection of the third edge make the total number of
+        intersections as 3. As the number of intersection is odd (3); so the point P2 is inside the polygon. </li>
+
+    <li>Similarly, for the point P3; the line from point P3 to (0, y) intersects three edges of the polygon. One
+        intersection is at the vertex and other is not at vertex. The other end points of the two edges, being intersected
+        at the vertex, lies toward opposite side of the line joining point P3 and (0,y). So we will consider 1 number of
+        intersections at the vertex. This intersection and one intersection of the third edge make the total number of
+        intersections as 2. As the number of intersection is even (2); so the point P3 is outside the polygon. </li>
+
+    <li>Similarly, for the point P4; the intersection is at the vertex. The other end points of the two edges, being
+        intersected at the vertex, lies toward opposite side of the line joining point P4 and (0,y). So we will consider 1
+        number of intersections at the vertex. As the number of intersection is odd (1); so the point P4 is inside the
+        polygon. </li>
+</ul>
+
+
+
 {% endblock %}
 
 {% block simulation %}

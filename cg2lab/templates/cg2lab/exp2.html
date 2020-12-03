@@ -4,14 +4,134 @@
 
 {% block aim %}
 <!-- aim content -->
+
+<center>
+    <h4>
+        <h4>Bresenham Line Drawing Algorithm</h4>
+    </h4>
+</center>
+<br>
+<br>
+<strong>Aim</strong>
+<br>
+<br>
+<p>To study Bresenham Line Drawing Algorithm</p>
+
 {%endblock%}
 
 {% block theory %}
 <!-- theory conteent -->
+
+<center>
+    <h4>Bresenham Line Drawing Algorithm</h4>
+</center>
+<br>
+<br>
+<strong>Theory</strong>
+<br>
+<br>
+
+<li>Bresenham’s Line drawing algorithm is an accurate, efficient raster line drawing algorithm, that scan converts line
+    using only incremental integer calculations.</li>
+
+<li>Let us consider the starting point (x1, y1) of a given gentle slope line, we step to each successive column (x
+    direction) and plot the pixel whose scan-line ‘y’ value closest to the actual line path.</li>
+
+{% load static %}
+<img style="height: 13em;" src="{% static 'cg2lab/Screenshot (59).png'%}" alt="">
+<br>
+<b>
+    (x1,y1)
+</b>
+<br>
+
+<li>Now if we consider the next point to be plotted with respect to the point(x1,y1) we may select the point as either
+    (x1+1,y1) or (x1+1,y1+1) as shown in figure 1. • For the selection of the next point Bresenham algorithm uses the
+    decision parameter, to decide whether which point is closer to the actual line segment.</li>
+
+<li>Algorithm considers the vertical distances between the specified point (x1+1, y1) and (x1+1, y1+1) with respect to
+    the line segment.</li>
+
+<li>As it is observed that for the gentle slope line we will be having more points on X direction, so we have to always
+    increment in X-direction respectively.</li>
+
+<li>With the increment in X direction, the decision parameter will decide the increment in y direction as either (0/1)
+    for the gentle slope line.</li>
+
+<li>Bresenham algorithm can work efficiently and provides more end point accuracy for the gentle slope lines as well as
+    sharp slope lines.</li>
+
 {% endblock %}
 
 {% block procedure %}
 <!-- procedure content -->
+
+<center>
+    <h4>
+        <h4>Bresenham Line Drawing Algorithm</h4>
+    </h4>
+</center>
+
+<strong>Procedure</strong>
+        <br>
+    <br>
+<strong>ALGORITHM :</strong>
+        <br>
+    <br>
+        <img style="height: 3em;" src="{% static 'cg2lab/Screenshot (60).png'%}" alt="">
+            <br>
+        <br>
+        <img style="height: 3em;" src="{% static 'cg2lab/Screenshot (61).png'%}" alt="">
+
+                <li>Start.</li>
+            <br>
+        <br>
+                 <li>Accept end points of a line segment (x1,y1),(x2,y2).</li>
+            <br>
+        <br>
+            <li>Calculate:</li>
+
+            <img style="height: 5em;" src="{% static 'cg2lab/Screenshot (62).png'%}" alt="">
+        <br>
+    <br>
+    <li>Calculate the Length of the Line segment as:</li>
+            <br>
+        <br>
+    <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (63).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate Initial Decision Parameter as:</li>
+        <br>
+    <br>
+        <img style="height: 3em;" src="{% static 'cg2lab/Screenshot (64).png'%}" alt="">
+    <br>
+<br>
+    <li>Calculate:</li>
+            <br>
+        <br>
+    <img style="height: 5em;" src="{% static 'cg2lab/Screenshot (65).png'%}" alt="">
+        <br>
+    <br>
+<li>Calculate xincr as:</li>
+    <br>
+<br>
+    <img style="height: 13em;" src="{% static 'cg2lab/Screenshot (66).png'%}" alt="">   
+        <br>
+    <br>
+<li>Initialize:</li>
+        <br>
+    <br>
+        <img style="height: 7em;" src="{% static 'cg2lab/Screenshot (67).png'%}" alt="">
+        <br>
+    <br>
+<li>while(i <= length)</li>
+        <br>
+    <br>
+    <img style="height: 26em;" src="{% static 'cg2lab/Screenshot (68).png'%}" alt="">
+            <br>
+        <br>
+<li>Stop.</li>
+
 {% endblock %}
 
 {% block simulation %}
